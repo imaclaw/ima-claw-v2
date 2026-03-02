@@ -219,8 +219,8 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
 function chApplySort(sort){
   chCurrentSort=sort;
   var sorted=chSkills.slice();
-  if(sort==='trending') sorted.sort(function(a,b){return (b.stats.installsCurrent||0)-(a.stats.installsCurrent||0)});
-  else if(sort==='downloads') sorted.sort(function(a,b){return (b.stats.downloads||0)-(a.stats.downloads||0)});
+  if(sort==='trending') sorted.sort(function(a,b){return ((b.stats||{}).installsCurrent||0)-((a.stats||{}).installsCurrent||0)});
+  else if(sort==='downloads') sorted.sort(function(a,b){return ((b.stats||{}).downloads||0)-((a.stats||{}).downloads||0)});
   else if(sort==='newest') sorted.sort(function(a,b){return (b.createdAt||0)-(a.createdAt||0)});
   chFiltered=sorted;
   chShown=0;
@@ -256,9 +256,9 @@ function chRender(){
 function chLoadMore(){chShown+=chPerPage;chRender();}
 
 function chCard(s){
-  var dl=s.stats.downloads||0;
-  var stars=s.stats.stars||0;
-  var installs=s.stats.installsCurrent||0;
+  var st=s.stats||{};var dl=st.downloads||0;
+  var stars=st.stars||0;
+  var installs=st.installsCurrent||0;
   var ver=s.latestVersion?s.latestVersion.version:'';
   var dlText=dl>1000?Math.round(dl/1000)+'k':dl;
   var url='https://clawhub.ai/s/'+s.slug;
