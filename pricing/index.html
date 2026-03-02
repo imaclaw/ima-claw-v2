@@ -168,7 +168,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img src="https://cdn.simpleicons.org/discord/5865F2" style="width:14px;height:14px">Discord</a>
     <div class="lang-dropdown">
-      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
         <button onclick="setLang('zh')">🇨🇳 中文</button>
         <button onclick="setLang('en')">🇺🇸 English</button>
@@ -439,25 +439,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 
 </div>
 
-<script>
-var _zhStore={};
-var PRICING_I18N={en:{"nav.home":"Home","nav.adopt":"🦞 Adopt","nav.skills":"Skills","nav.pricing":"🛒 Store","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community"}};
-function setLang(l){
-  try{localStorage.setItem('imaclaw-lang',l)}catch(e){}
-  var isZh=l==='zh'||l==='zh-CN';
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var k=el.getAttribute('data-i18n');
-    if(!_zhStore[k])_zhStore[k]=el.innerHTML;
-    if(isZh){el.innerHTML=_zhStore[k]}
-    else if(PRICING_I18N['en']&&PRICING_I18N['en'][k]){el.innerHTML=PRICING_I18N['en'][k]}
-  });
-  var m={'zh':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
-  var t=document.querySelector('.lang-trigger');
-  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
-  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
-}
-(function(){try{var l=localStorage.getItem('imaclaw-lang');if(l&&l!=='zh'&&l!=='zh-CN')setTimeout(function(){setLang(l)},50)}catch(e){}})();
-document.addEventListener('click',function(){document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});document.querySelector('.nav-links').classList.remove('open')});
-</script>
+<script src="../i18n/core.js"></script>
+<script src="../assets/js/nav.js"></script>
 </body>
 </html>

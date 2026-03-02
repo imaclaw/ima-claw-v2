@@ -77,7 +77,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <a href="../blog/" data-i18n="nav.blog">博客</a>
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <div class="lang-dropdown">
-      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
         <button onclick="setLang('zh')">🇨🇳 中文</button>
         <button onclick="setLang('en')">🇺🇸 English</button>
@@ -161,60 +161,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 <div style="text-align:center;margin:32px auto;padding:20px;background:rgba(88,101,242,0.1);border:1px solid rgba(88,101,242,0.3);border-radius:12px;max-width:480px"><div style="font-size:15px;font-weight:600;color:white;margin-bottom:8px" data-i18n="blog.community.title">🦞 加入 Ima Claw 社区</div><div style="font-size:13px;color:#a0a0a0;margin-bottom:12px" data-i18n="blog.community.desc">和其他龙虾主人交流，获取最新动态、技能分享和帮助</div><a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:#5865F2;color:white;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none"><img src="https://cdn.simpleicons.org/discord/white" style="width:16px;height:16px"><span data-i18n="blog.community.btn">加入 Discord</span></a></div>
 <footer><p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> · I'm A Studio, I'm A Claw 🦞</p></footer>
 
-<script src="../i18n-sub.js?v=20260301b"></script>
-<script>
-// Close mobile nav on outside click
-document.addEventListener('click',function(e){
-  var nav=document.querySelector('.nav-links');
-  var ham=document.querySelector('.hamburger');
-  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}
-  document.querySelectorAll('.lang-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')});
-});
-document.querySelectorAll('.nav-links a').forEach(function(a){
-  a.addEventListener('click',function(){var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open')});
-});
-</script>
-<script>
-var _zhStore={};
-var NAV_I18N={en:{"nav.home":"Home","nav.adopt":"🦞 Adopt","nav.skills":"Skills","nav.pricing":"🛒 Store","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community",
-"blog.title":"Yuki & Claw Chronicles",
-"blog.subtitle":"Building products with my lobster.<br>When things break, we laugh and keep going.",
-"blog.title.release":"\"Can you build a website?\" — And so came 1.34M words, and a website.",
-"blog.desc.release":"26 hours · 45 pages · 12,616 lines of code · 295 commits · 0 hand-written lines. One PM's question, one AI lobster's full commitment.",
-"blog.tag.guide":"Guide",
-"blog.log4":"Founder's Log #4",
-"blog.title.collab":"Vibe Coding Collaboration Guide: When the Boss Can't Code, and AI Can't Read Minds",
-"blog.desc.collab":"24 hours of non-stop dev, 5 rounds just to align buttons. At 1 AM I had the AI write a collaboration handbook — screenshot markup, 10 essential terms, cache strategies, confirmation rules. For anyone building websites with AI.",
-"blog.log3":"Founder's Log #3",
-"blog.title.devlog":"🦞 Lobster All-Nighter: 24-Hour Dev Log",
-"blog.desc.devlog":"At 1 AM, the boss is still circling screenshots on her phone, the lobster is still pushing to git. 60+ commits, 5 rounds of button alignment, 1 missing CSS variable — the real 24 hours of Ima Claw team (1 human + 1 lobster).",
-"blog.log2":"Founder's Log #2",
-"blog.title2":"4 AM Vibe Coding: 8 Bugs, 25 Minutes, 0 Lines of Code",
-"blog.desc2":"Couldn't sleep, started fixing the product. Screenshots and voice on my phone — 8 issues fixed in 25 minutes, all from bed. This is the ultimate form of Vibe Coding.",
-"blog.readmore":"Read More →",
-"blog.log1":"Founder's Log #1",
-"blog.title1":"I Built This Site with Ima Claw. It Deleted the Claw's Face.",
-"blog.desc1":"2 hours, 0 lines of code, one lobster having an existential crisis. The real story of Vibe Coding a website with our own product — including every crash and burn.",
-"blog.community.title":"🦞 Join the Ima Claw Community",
-"blog.community.desc":"Connect with other Claw owners, get updates, share skills and get help",
-"blog.community.btn":"Join Discord"
-}};
-function setLang(l){
-  try{localStorage.setItem("imaclaw-lang",l)}catch(e){}
-  var isZh=l==="zh"||l==="zh-CN";
-  document.querySelectorAll("[data-i18n]").forEach(function(el){
-    var k=el.getAttribute("data-i18n");
-    if(!_zhStore[k])_zhStore[k]=el.innerHTML;
-    if(isZh){el.innerHTML=_zhStore[k]}
-    else if(NAV_I18N["en"]&&NAV_I18N["en"][k]){el.innerHTML=NAV_I18N["en"][k]}
-  });
-  var m={"zh":"🇨🇳 中文","en":"🇺🇸 EN","es":"🇪🇸 ES","ja":"🇯🇵 JA","ar":"🇸🇦 AR"};
-  var t=document.querySelector(".lang-trigger");
-  if(t)t.textContent="🌐 "+(m[l]||l)+" ▾";
-  document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")});
-}
-(function(){try{var l=localStorage.getItem("imaclaw-lang");if(l&&l!=="zh"&&l!=="zh-CN")setTimeout(function(){setLang(l)},50)}catch(e){}})();
-document.addEventListener("click",function(){document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")})});
-</script>
+<script src="../i18n/core.js"></script>
+<script src="../assets/js/nav.js"></script>
 </body>
 </html>

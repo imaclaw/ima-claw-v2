@@ -136,7 +136,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <a href="../blog/" data-i18n="nav.blog">博客</a>
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <div class="lang-dropdown">
-      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
         <button onclick="setLang('zh')">🇨🇳 中文</button>
         <button onclick="setLang('en')">🇺🇸 English</button>
@@ -200,7 +200,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 <span style="color:#e67e22">⚠️</span> 没有托管运维，系统维护全靠自己</div>
 </div>
 
-
 <!-- Step 1: Install -->
 <div class="step">
 <span class="step-num">STEP 1</span>
@@ -250,8 +249,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
   <a href="../docs/models/aws-bedrock/" class="provider"><div class="icon"><img src="logos/aws.svg" alt="AWS Bedrock"></div><div class="name">AWS Bedrock</div><div class="tag">Claude · Llama</div></a>
   <div class="provider"><div class="icon"><img src="logos/more.svg" alt="更多"></div><div class="name" data-i18n="provider.more.name">更多...</div><div class="tag" data-i18n="provider.more.tag">20+ 供应商</div></div>
 </div>
-
-
 
 <div class="provider-details" data-i18n="step2.providers">
   <div class="pd"><span class="pd-name">🔑 统一接入</span> — 所有模型通过 ImaClaw 统一封装，只需一个 ImaStudio 账号和 ImaClaw API Key 即可使用全部 30+ 模型，无需逐个注册</div>
@@ -304,7 +301,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 • "我要做一个产品发布的社媒文案，帮我想 5 个版本"</div>
 </div>
 
-
 </div>
 
 <div id="steps-cloud" style="display:none;padding:16px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid #4A80D4;border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(58,108,190,0.03) 0%,transparent 120px)">
@@ -341,7 +337,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 <div>🧠 <strong>记忆永存</strong> — 对话记忆、偏好设置永不丢失</div>
 </div>
 </div>
-
 
 <div style="margin-top:24px;padding:16px;background:var(--surface);border-radius:12px;border:1px solid var(--border);font-size:12px">
 <h3 style="color:var(--text);font-size:14px;margin-bottom:10px;text-align:center" data-i18n="cloud.compare.title">本地 vs 云端</h3>
@@ -493,209 +488,8 @@ function copyCode(btn) {
 }
 </script>
 
-<script>
-document.addEventListener('click',function(e){
-  var nav=document.querySelector('.nav-links');
-  var ham=document.querySelector('.hamburger');
-  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}
-});
-document.querySelectorAll('.nav-links a').forEach(function(a){
-  a.addEventListener('click',function(){var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open')});
-});
-</script>
-
-<script>
-var ADOPT_I18N = {
-en: {
-  "adopt.title": "Adopt Your Baby Claw",
-  "adopt.subtitle": "Choose a way to start adopting your AI Claw companion.",
-  "adopt.sub1": "3 minutes to install. 0 lines of code. Free forever.",
-  "adopt.sub2": "All you need is a computer and an API Key.",
-  "adopt.platforms": "macOS · Linux · Windows (WSL2) · Raspberry Pi · Cloud · All platforms",
-  "bubble.adopt": "Master, come adopt me! ❤️",
-  "bubble.cta": "Book Now →",
-  "back": "← Back to Home",
-  "btn.copy": "Copy",
-  "tab.local": "Local",
-  "tab.local.sub": "Free · Ready Now",
-  "tab.cloud": "Cloud",
-  "tab.cloud.sub": "Coming Soon · 24/7 Online",
-  "tab.recommend": "⭐ Pick",
-  "local.title": "🖥 Local — Your Claw lives on your computer",
-  "local.info": "<span style='color:#E8584E'>✅</span> Free forever, no payment needed<br><span style='color:#E8584E'>✅</span> Deep integration with local files, terminal, browser<br><span style='color:#E8584E'>✅</span> Open source, fully customizable<br><span style='color:#eab308'>⚠️</span> Offline when computer is off<br><span style='color:#eab308'>⚠️</span> Command line required, higher learning curve<br><span style='color:#eab308'>⚠️</span> Self-managed skills, open ecosystem has security risks<br><span style='color:#eab308'>⚠️</span> No managed hosting, all maintenance is on you",
-  "cloud.title": "☁️ Cloud — Your Claw lives in the cloud, always ready",
-  "cloud.info": "<span style='color:#4A80D4'>✅</span> 24/7 online, never offline, always ready to serve<br><span style='color:#4A80D4'>✅</span> Zero config, sign up and use, no command line<br><span style='color:#4A80D4'>✅</span> IMA managed hosting, skill security scanning, worry-free<br><span style='color:#4A80D4'>✅</span> Enterprise data backup, multi-device seamless sync<br><span style='color:#4A80D4'>✅</span> Auto updates, always get the latest capabilities",
-  "cloud.coming": "Cloud Adoption Coming Soon",
-  "cloud.cta": "📋 Book Beta Access",
-  "cloud.compare.title": "Local vs Cloud",
-  "cloud.features.title": "☁️ Cloud version will support:",
-  "cloud.promo": "🔥 Limited offer: Free cloud beta spots available now!",
-  "cloud.promo.sub": "Fill out the form to reserve your spot. We'll notify you first when it opens.",
-  "cloud.desc": "Your Claw runs 24/7 in the cloud, serving you anytime, anywhere.<br>No installation, no command line, just sign up and go.",
-  "cloud.features": "<div>🌐 <strong>Use in Browser</strong> — Open a web page to chat with your Claw</div><div>📱 <strong>Multi-device Sync</strong> — Phone, computer, tablet seamlessly</div><div>⏰ <strong>24/7 Online</strong> — Scheduled tasks, message forwarding, background processing</div><div>🔐 <strong>Data Security</strong> — Enterprise encryption, auto backup</div><div>⚡ <strong>One-click Connect</strong> — Telegram, Discord, Feishu and all channels</div><div>🧠 <strong>Eternal Memory</strong> — Chat memory and preferences never lost</div>",
-  "cloud.tryfirst": "Can't wait? Try <a href='javascript:switchMode(&quot;local&quot;)' style='color:var(--lobster-light)'>local adoption</a> first, ready in 3 minutes!",
-  "skills.title": "🎯 Skills Your Claw Knows Out of the Box",
-  "faq.title": "❓ FAQ",
-  "faq.q1": "Is it really free?",
-  "faq.a1": "Ima Claw itself is completely free and open source. You need to provide your own AI model API Key (most providers offer free tiers). Your Claw runs on your own machine, and your data stays with you.",
-  "faq.q2": "What kind of computer do I need?",
-  "faq.a2": "Anything that runs Node.js — MacBook, Windows laptop, Linux server, even a Raspberry Pi. No GPU needed since AI inference runs in the cloud via your API Key.",
-  "faq.q3": "How is this different from ChatGPT?",
-  "faq.a3": "ChatGPT is a chat window. Your Claw is a full creative partner — it creates images, videos, music, manages social media, runs 24/7, and learns your style over time.",
-  "faq.q4": "Is my data safe?",
-  "faq.a4": "Your Claw runs on your own machine. Data never passes through third-party servers. Memory, chat history, and files are all stored locally. You can view, delete, or export anytime.",
-  "faq.q5": "Do IMA Studio skills cost extra?",
-  "faq.a5": "IMA Studio's image, video, and music generation use a credits system. You get free credits on signup. Combined with your Claw, one prompt creates professional-level content.",
-  "faq.q6": "What if I run into problems?",
-  "faq.a6": "Join our <a href='https://discord.gg/UdXFVYhh' target='_blank' style='color:var(--lobster-light)'>Discord community</a> for help. Thousands of Claw owners are there to help you!",
-  "step1.title": "One Command, Install Ima Claw",
-  "step1.desc": "Open Terminal, paste the command below and hit Enter. The script auto-detects your environment, installs Node.js (if needed), and launches the config wizard.",
-  "step1.time": "⏱ ~30 seconds",
-  "step1.wsl": "💡 <strong>Windows users:</strong> Install <a href='https://learn.microsoft.com/en-us/windows/wsl/install' style='color:var(--gold)'>WSL2</a> first, then use the macOS/Linux command in WSL for the best experience.",
-  "step2.title": "Give Your Claw a Brain 🧠",
-  "step2.desc": "Ima Claw comes with 30+ AI models. Just one <strong>ImaStudio account</strong> to access them all.",
-  "step2.time": "⏱ ~1 minute",
-  "step2.clickhint": "Click any model for details:",
-  "step2.register.hint": "💡 Sign up for ImaStudio, get your ImaClaw API Key, and access all 30+ models",
-  "step2.register.btn": "Sign Up Free →",
-  "step2.providers": "<div class='pd'><span class='pd-name'>🔑 Unified Access</span> — All models via ImaClaw unified API. One ImaStudio account + API Key for all 30+ models</div><div class='pd'><span class='pd-name'>🟢 Google Gemini</span> — Gemini 2.5 Pro/Flash, powerful multimodal</div><div class='pd'><span class='pd-name'>🟠 Anthropic Claude</span> — Claude Sonnet/Opus, deep reasoning & long context</div><div class='pd'><span class='pd-name'>🟣 Alibaba Qwen</span> — Qwen-Max/Plus, strong Chinese ability</div><div class='pd'><span class='pd-name'>🌙 Kimi K2.5</span> — Long context, balanced Chinese & English</div><div class='pd'><span class='pd-name'>🔵 MiniMax</span> — MiniMax-Text-01, ultra-long context</div><div class='pd'><span class='pd-name'>⚫ OpenAI</span> — GPT-4o/o3, industry benchmark</div><div class='pd'><span class='pd-name'>🟡 AWS Bedrock</span> — Claude/Llama via AWS, enterprise-grade</div>",
-  "step3.title": "Connect Your Chat 💬",
-  "step3.desc": "After installation, the setup wizard guides you to connect your Claw to your favorite chat platform. It supports:",
-  "step3.time": "⏱ ~1 minute",
-  "step3.skip": "You can skip this step and chat via web/terminal first, then connect later.",
-  "step4.title": "Start Chatting with Your Claw!",
-  "step4.desc": "Congrats! Your Claw is awake. Try saying:",
-  "step4.firstmsg": "\"Hey there! Who are you? I'm your new master 😊\"",
-  "step4.intro": "It will introduce itself, get to know you, and ask what you'd like to name it. Every Claw is unique — raise it your way!",
-  "step4.label": "Your first message to the Claw",
-  "step4.tips": "🎯 <strong>Tips:</strong> Try asking your Claw to generate an image, search the web, or tell you a joke!",
-  "cta.title": "Ready?",
-  "cta.desc": "Open your terminal, paste one command, and your Claw arrives in 30 seconds 🦞",
-  "cta.btn": "📖 Full Documentation",
-  "skill.allinone.title": "IMA All-in-One Creation",
-  "skill.allinone.desc": "Images + Videos + Music, 40+ AI models, one skill covers the entire creative pipeline",
-  "skill.intelligence.title": "IMA Intelligence Pack",
-  "skill.intelligence.desc": "Prompt optimizer + style library + batch processing for maximum efficiency",
-  "skill.image.title": "IMA Image Creation",
-  "skill.image.desc": "Midjourney · SeeDream · Banana Pro, text/image to image, up to 4K",
-  "skill.video.title": "IMA Video Production",
-  "skill.video.desc": "20+ models, Wan 2.6 · Kling 2.1 · Sora · Veo 3.1, delivered in minutes",
-  "skill.music.title": "IMA Music Creation",
-  "skill.music.desc": "Suno · DouBao, songs / BGM / sound effects, AI music production",
-  "skill.nano.title": "Nano Banana 2",
-  "skill.nano.desc": "Gemini image generation, up to 1K/2K/4K",
-  "skill.seedance.title": "Seedance 2.0",
-  "skill.seedance.desc": "ByteDance video generation, 1.5 Pro with audio",
-  "skill.videoguide.title": "Video Creation Guide",
-  "skill.videoguide.desc": "AI video knowledge base: camera control, prompt optimization, model selection",
-  "skill.research.title": "Deep Research",
-  "skill.research.desc": "AI Researcher + Gemini deep research, structured analysis reports",
-  "skill.web.title": "Web Search & Analysis",
-  "skill.web.desc": "Real-time web search, deep research, competitor analysis",
-  "skill.twitter.title": "Twitter / X",
-  "skill.twitter.desc": "Search + publish + engagement analytics, all-in-one",
-  "skill.xhs.title": "Xiaohongshu Creator",
-  "skill.xhs.desc": "Write notes + generate covers + one-click publish",
-  "skill.xhsanalytics.title": "Xiaohongshu Analytics",
-  "skill.xhsanalytics.desc": "Trend tracking, sentiment analysis, competitor monitoring",
-  "skill.linkedin.title": "LinkedIn Writer",
-  "skill.linkedin.desc": "Professional posts that sound like a real person, not a content mill",
-  "skill.seo.title": "SEO Writer",
-  "skill.seo.desc": "Search engine + reader dual-optimized long-form content",
-  "skill.wechat.title": "WeChat Official",
-  "skill.wechat.desc": "Markdown to WeChat drafts in one click",
-  "skill.humanizer.title": "AI Humanizer",
-  "skill.humanizer.desc": "Remove signs of AI writing, make content sound natural",
-  "skill.weather.title": "Weather",
-  "skill.weather.desc": "Real-time weather and forecasts, no API key needed",
-  "skill.feishu.title": "Feishu Integration",
-  "skill.feishu.desc": "Docs, calendars, tasks, Bitable — full Feishu workspace integration",
-  "skill.more.title": "100+ More Skills",
-  "skill.more.desc": "Browse the Skill marketplace, install with one command, infinite expansion",
-  "page.title": "Adopt Your Claw 🦞 - Ima Claw",
-  "step1.ps.label": "PowerShell (Admin)",
-  "provider.qwen.name": "Alibaba Qwen",
-  "provider.more.name": "More...",
-  "provider.more.tag": "20+ providers",
-  "channel.telegram.tag": "Recommended · Easiest",
-  "channel.whatsapp.tag": "Scan to connect",
-  "channel.discord.tag": "Bot mode",
-  "channel.feishu.name": "Feishu",
-  "channel.feishu.tag": "Enterprise",
-  "channel.signal.tag": "Advanced · Self-config",
-  "channel.imessage.tag": "Advanced · macOS only",
-  "community.title": "🦞 Join the Ima Claw Community",
-  "community.desc": "Connect with other Claw owners. Get updates, tips, and help.",
-  "community.btn": "Join Discord",
-  "cloud.compare": "<tr style='border-bottom:1px solid var(--border)'><td style='padding:6px 4px;font-weight:600;color:var(--text)'></td><td style='padding:6px 4px;text-align:center;font-weight:600;color:#E8584E'>🖥 Local</td><td style='padding:6px 4px;text-align:center;font-weight:600;color:#4A80D4'>☁️ Cloud</td></tr><tr style='border-bottom:1px solid var(--border)'><td style='padding:6px 4px'>Availability</td><td style='text-align:center'>When on</td><td style='text-align:center'>24/7</td></tr><tr style='border-bottom:1px solid var(--border)'><td style='padding:6px 4px'>Data</td><td style='text-align:center'>Local</td><td style='text-align:center'>Encrypted</td></tr><tr style='border-bottom:1px solid var(--border)'><td style='padding:6px 4px'>Cost</td><td style='text-align:center'>Free</td><td style='text-align:center'>Monthly</td></tr><tr style='border-bottom:1px solid var(--border)'><td style='padding:6px 4px'>Setup</td><td style='text-align:center'>CLI</td><td style='text-align:center'>Sign up</td></tr><tr><td style='padding:6px 4px'>Local access</td><td style='text-align:center'>✅ Deep</td><td style='text-align:center'>🔗 Remote</td></tr>",
-  "nav.home": "Home", "nav.adopt": "🦞 Adopt", "nav.skills": "Skills", "nav.pricing": "🛒 Store", "nav.docs": "Docs", "nav.blog": "Blog", "nav.community": "Community"
-},
-ja: {
-  "adopt.title": "AI クリエイティブロブスターを迎えよう",
-  "adopt.sub1": "3分でインストール。コード不要。永久無料。",
-  "adopt.sub2": "必要なのはパソコンとAPI Keyだけ。",
-  "nav.home": "ホーム", "nav.skills": "スキル", "nav.pricing": "🛒 購入", "nav.docs": "ヘルプ", "nav.blog": "ブログ"
-},
-es: {
-  "adopt.title": "Adopta Tu Baby Langosta",
-  "adopt.subtitle": "Elige una forma de adoptar a tu compañero langosta IA.",
-  "bubble.adopt": "¡Amo, ven a adoptarme! ❤️",
-  "bubble.cta": "Reservar →",
-  "tab.local": "Local",
-  "tab.local.sub": "Gratis · Disponible Ya",
-  "tab.cloud": "Nube",
-  "tab.cloud.sub": "Próximamente · 24/7 Online",
-  "tab.recommend": "⭐ Top",
-  "local.title": "🖥 Local — Tu langosta vive en tu computadora",
-  "cloud.title": "☁️ Nube — Tu langosta vive en la nube, siempre lista",
-  "cloud.coming": "Adopción en la Nube Próximamente",
-  "cloud.cta": "📋 Reservar Acceso Beta",
-  "skills.title": "🎯 Habilidades que Tu Langosta Ya Tiene",
-  "faq.title": "❓ Preguntas Frecuentes",
-  "adopt.sub1": "3 minutos. 0 líneas de código. Gratis para siempre.",
-  "adopt.sub2": "Solo necesitas una computadora y una API Key.",
-  "adopt.platforms": "macOS · Linux · Windows (WSL2) · Raspberry Pi · Nube · Todas las plataformas",
-  "step1.title": "Un Comando, Instala Ima Claw",
-  "step1.desc": "Abre la Terminal, pega el comando y presiona Enter. El script detecta tu entorno, instala Node.js (si falta) e inicia el asistente.",
-  "step2.title": "Dale un Cerebro a Tu Langosta",
-  "step2.desc": "Durante la configuración, pega tu API Key. Este es el cerebro de tu langosta — el modelo que elijas define su personalidad.",
-  "step3.title": "Conecta Tu Chat",
-  "step3.desc": "Elige tu plataforma de mensajería preferida. Tu langosta estará donde tú chatees.",
-  "step4.title": "¡A Crear!",
-  "step4.desc": "Abre tu app de chat y saluda a tu langosta. Puede crear imágenes, videos, música, gestionar redes — lo que necesites.",
-  "nav.home": "Inicio", "nav.adopt": "🦞 Adoptar", "nav.skills": "Skills", "nav.pricing": "🛒 Tienda", "nav.docs": "Ayuda", "nav.blog": "Blog", "nav.community": "Comunidad"
-},
-ar: {
-  "adopt.title": "تبنَّ جراد بحر ذكي للإبداع",
-  "adopt.sub1": "٣ دقائق للتثبيت. بدون كود. مجاني للأبد.",
-  "adopt.sub2": "كل ما تحتاجه هو حاسوب ومفتاح API.",
-  "nav.home": "الرئيسية", "nav.skills": "المهارات", "nav.pricing": "🛒 المتجر", "nav.docs": "المساعدة", "nav.blog": "المدونة"
-}
-};
-
-var _zhStore = {};
-(function(){try{var l=localStorage.getItem('imaclaw-lang');if(l&&l!=='zh'&&l!=='zh-CN')setTimeout(function(){setLang(l)},50)}catch(e){}})();
-function setLang(l) {
-  try{localStorage.setItem('imaclaw-lang',l)}catch(e){}
-  var isZh = l==='zh'||l==='zh-CN';
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var k = el.getAttribute('data-i18n');
-    if(!_zhStore[k]) _zhStore[k] = el.innerHTML;
-    if(isZh) { el.innerHTML = _zhStore[k]; }
-    else if(ADOPT_I18N[l]&&ADOPT_I18N[l][k]) { el.innerHTML = ADOPT_I18N[l][k]; }
-    else if(ADOPT_I18N['en']&&ADOPT_I18N['en'][k]) { el.innerHTML = ADOPT_I18N['en'][k]; }
-  });
-  var tt=document.querySelector('title[data-i18n]');if(tt){var tk=tt.getAttribute('data-i18n');if(!_zhStore[tk])_zhStore[tk]=tt.textContent;if(isZh){tt.textContent=_zhStore[tk]}else if(ADOPT_I18N[l]&&ADOPT_I18N[l][tk]){tt.textContent=ADOPT_I18N[l][tk]}else if(ADOPT_I18N['en']&&ADOPT_I18N['en'][tk]){tt.textContent=ADOPT_I18N['en'][tk]}}
-  var m={'zh':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
-  var t=document.querySelector('.lang-trigger');
-  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
-  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
-  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
-}
-// Auto-detect: default zh, only switch if user explicitly chose another lang in THIS session
-(function(){try{var l=localStorage.getItem('imaclaw-lang');if(l){setLang(l)}else{setLang('zh-CN')}}catch(e){setLang('zh-CN')}})();
-switchMode('cloud');
-</script>
-
+<script>switchMode('cloud');</script>
+<script src="../i18n/core.js"></script>
+<script src="../assets/js/nav.js"></script>
 </body>
 </html>

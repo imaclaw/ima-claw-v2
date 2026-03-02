@@ -99,7 +99,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <a href="../blog/" data-i18n="nav.blog">博客</a>
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <div class="lang-dropdown">
-      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
         <button onclick="setLang('zh')">🇨🇳 中文</button>
         <button onclick="setLang('en')">🇺🇸 English</button>
@@ -203,7 +203,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
   <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center">📱 iOS/macOS <span style="opacity:0.6">29</span></a>
 </div>
 
-
 </div>
 </div>
 
@@ -215,74 +214,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 </section>
 
 <footer class="ft"><p>&copy; 2026 Ima Claw &middot; <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> &middot; <a href="../">&larr; <span data-zh>返回首页</span><span data-en>Back</span></a></p></footer>
+
 <script>
-var ZH_CACHE={};
-function setLang(l){
-  var isZh=l==='zh'||l==='zh-CN';
-  var NAV_EN={"nav.home":"Home","nav.adopt":"🦞 Adopt","nav.skills":"Skills","nav.pricing":"🛒 Store","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community"};
-  var _zhNav={};
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var k=el.getAttribute('data-i18n');
-    if(!_zhNav[k])_zhNav[k]=el.innerHTML;
-    if(isZh){el.innerHTML=_zhNav[k]}
-    else if(NAV_EN[k]){el.innerHTML=NAV_EN[k]}
-  });
-  // Show/hide data-zh/data-en spans (keep existing behavior)
-  document.querySelectorAll('[data-zh]').forEach(function(e){e.style.display=isZh?'':'none'});
-  document.querySelectorAll('[data-en]').forEach(function(e){e.style.display=(!isZh&&(l==='en'||l==='es'||l==='ja'||l==='ar'))?'':'none'});
-  // For non-en foreign langs, translate data-en elements
-  var TR={
-    es:{
-      "Claw Skill Market":"Tienda Oficial de Skills","Give Your Claw":"Dale a Tu Claw","Superpowers":"Superpoderes",
-      "Security-reviewed, one-click install. Every skill makes your Claw stronger.":"Verificado, un clic. Cada skill hace más fuerte a tu Claw.",
-      "All":"Todo","Create":"Crear","Social":"Social","Write":"Escribir","Brain":"Cerebro","Tools":"Herramientas",
-      "Official":"Oficial","Community":"Comunidad","Featured":"Destacado","Essential":"Esencial",
-      "Developer? Publish Your Skill":"¿Desarrollador? Publica tu Skill",
-      "Build skills for Ima Claw. Submit to the store and empower every Claw.":"Crea skills para Ima Claw. Envía a la tienda y fortalece todos los Claws.",
-      "Submit Skill":"Enviar Skill","Back":"Volver"
-    },
-    ja:{
-      "Claw Skill Market":"公式スキルストア","Give Your Claw":"あなたのClawに","Superpowers":"超能力を",
-      "Security-reviewed, one-click install. Every skill makes your Claw stronger.":"審査済み、ワンクリック。全スキルがClawを強化。",
-      "All":"全て","Create":"創作","Social":"SNS","Write":"執筆","Brain":"知能","Tools":"ツール",
-      "Official":"公式","Community":"コミュニティ","Featured":"おすすめ","Essential":"必須",
-      "Developer? Publish Your Skill":"開発者？スキルを公開しよう",
-      "Build skills for Ima Claw. Submit to the store and empower every Claw.":"Ima Clawのスキルを開発してストアに公開しよう。",
-      "Submit Skill":"スキルを提出","Back":"戻る"
-    },
-    ar:{
-      "Claw Skill Market":"متجر المهارات الرسمي","Give Your Claw":"امنح كلاو الخاص بك","Superpowers":"قوى خارقة",
-      "Security-reviewed, one-click install. Every skill makes your Claw stronger.":"مُراجع أمنيًا، تثبيت بنقرة. كل مهارة تجعل كلاو أقوى.",
-      "All":"الكل","Create":"إبداع","Social":"تواصل","Write":"كتابة","Brain":"ذكاء","Tools":"أدوات",
-      "Official":"رسمي","Community":"مجتمع","Featured":"مميز","Essential":"أساسي",
-      "Developer? Publish Your Skill":"مطور؟ انشر مهارتك",
-      "Build skills for Ima Claw. Submit to the store and empower every Claw.":"طوّر مهارات لـ Ima Claw وانشرها في المتجر.",
-      "Submit Skill":"إرسال مهارة","Back":"رجوع"
-    }
-  };
-  if(TR[l]){
-    document.querySelectorAll('[data-en]').forEach(function(e){
-      if(!ZH_CACHE[e.textContent])ZH_CACHE[e.textContent]=e.textContent;
-      var t=TR[l][e.textContent.trim()];
-      if(t){e.textContent=t;e.style.display='';}
-      else{e.style.display='';}
-    });
-  }
-  // Update trigger
-  var m={'zh':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
-  var t=document.querySelector('.lang-trigger');
-  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
-  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
-  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
-}
 function filter(cat){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});event.target.closest('.filter-btn').classList.add('active');document.querySelectorAll('.card').forEach(function(c){if(cat==='all'){c.style.display='';return}c.style.display=c.dataset.cat&&c.dataset.cat.includes(cat)?'':'none'})}
-// Restore saved language preference (localStorage first)
-(function(){try{var l=localStorage.getItem('imaclaw-lang');if(l){setLang(l)}else{setLang('zh-CN')}}catch(e){setLang('zh-CN')}})();
-// Close mobile nav on outside click
-document.addEventListener("click",function(e){var nav=document.querySelector(".nav-links");var ham=document.querySelector(".hamburger");if(nav&&nav.classList.contains("open")&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove("open")}document.querySelectorAll(".lang-dropdown.open").forEach(function(d){if(!d.contains(e.target))d.classList.remove("open")})});
-document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){var nav=document.querySelector(".nav-links");if(nav)nav.classList.remove("open")})});
 </script>
-
-
+<script>
+// Handle data-zh/data-en toggle (skill cards use this format)
+document.addEventListener('langchange', function(e) {
+  var isZh = e.detail.lang === 'zh-CN';
+  document.querySelectorAll('[data-zh]').forEach(function(el){ el.style.display = isZh ? '' : 'none'; });
+  document.querySelectorAll('[data-en]').forEach(function(el){ el.style.display = isZh ? 'none' : ''; });
+});
+// Also run on initial load
+(function(){ var l = window.getLang && getLang() || 'zh-CN'; var isZh = l === 'zh-CN';
+  document.querySelectorAll('[data-zh]').forEach(function(el){ el.style.display = isZh ? '' : 'none'; });
+  document.querySelectorAll('[data-en]').forEach(function(el){ el.style.display = isZh ? 'none' : ''; });
+})();
+</script>
+<script src="../i18n/core.js"></script>
+<script src="../assets/js/nav.js"></script>
 </body>
 </html>

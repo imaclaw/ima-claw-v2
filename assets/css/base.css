@@ -1,0 +1,32 @@
+/* Ima Claw v2 - Base CSS */
+/* Shared variables, reset, typography */
+
+:root {
+  --bg: #0c0c12;
+  --surface: #16161e;
+  --border: rgba(255,255,255,0.06);
+  --text: #ffffff;
+  --text-2: rgba(255,255,255,0.55);
+  --text-3: rgba(255,255,255,0.35);
+  --lobster: #d4403a;
+  --lobster-light: #e8685a;
+  --lobster-glow: rgba(212,64,58,0.15);
+  --accent: #e8685a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--lobster-light); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; }
+code { font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 0.9em; }
+
+/* Utility */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }

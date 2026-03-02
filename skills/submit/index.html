@@ -103,7 +103,7 @@ footer p{color:var(--text-3);font-size:12px}
     <a href="../../blog/" data-i18n="nav.blog">博客</a>
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <div class="lang-dropdown" style="position:relative;margin-left:8px">
-      <button class="lang-trigger" onclick="this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
         <button onclick="setLang('zh-CN')">🇨🇳 中文</button>
         <button onclick="setLang('en')">🇺🇸 English</button>
@@ -200,41 +200,7 @@ footer p{color:var(--text-3);font-size:12px}
   <p>© 2026 Ima Claw · <a href="https://www.imastudio.com">Ima Studio</a> · I'm A Studio, I'm A Claw 🦞</p>
 </footer>
 
-<script>
-var _zhStore={};
-var SUBMIT_I18N={en:{
-"nav.home":"Home","nav.skills":"Skills","nav.pricing":"🛒 Store","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community",
-"sub.badge":"🦞 Developer Program",
-"sub.title":"Submit Your Skill",
-"sub.desc":"Build a Skill, share it with Claw users worldwide. Pass review and it goes live on the Skill Market.",
-"sub.b1":"Global Distribution","sub.b1d":"Reach all Ima Claw users instantly",
-"sub.b2":"Official Certification","sub.b2d":"Get an official recommended badge after review",
-"sub.b3":"Revenue Sharing","sub.b3d":"Earn developer revenue from paid Skills",
-"sub.s1":"Create Skill Project","sub.s1d":"Create your Skill with the standard directory structure. Each Skill must include a <code>SKILL.md</code> file as its entry point.",
-"sub.s2":"Write SKILL.md","sub.s2d":"Describe trigger conditions, execution flow, and I/O. This is the key document for your Claw to understand and execute your skill.",
-"sub.s3":"Local Testing",
-"sub.s4":"Publish to ClawHub",
-"sub.struct":"📁 Standard Directory Structure",
-"sub.review":"Review Standards",
-"sub.r1":"Security First","sub.r2":"Complete Documentation","sub.r3":"Clear Functionality","sub.r4":"Tested",
-"sub.ready":"🦞 Ready?",
-"sub.ready.desc":"Join the developer community and make every Claw stronger",
-"sub.discord":"Join Discord Community","sub.clawhub":"Visit ClawHub"
-}};
-function setLang(l){
-  try{localStorage.setItem("imaclaw-lang",l)}catch(e){}
-  var isZh=l==='zh'||l==='zh-CN';
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var k=el.getAttribute('data-i18n');
-    if(!_zhStore[k])_zhStore[k]=el.innerHTML;
-    if(isZh){el.innerHTML=_zhStore[k]}
-    else if(SUBMIT_I18N.en[k]){el.innerHTML=SUBMIT_I18N.en[k]}
-  });
-  var m={'zh-CN':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
-  var t=document.querySelector('.lang-trigger');if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
-  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
-}
-(function(){try{var l=localStorage.getItem('imaclaw-lang');if(l&&l!=='zh'&&l!=='zh-CN')setTimeout(function(){setLang(l)},50)}catch(e){}})();
-</script>
+<script src="../../i18n/core.js"></script>
+<script src="../../assets/js/nav.js"></script>
 </body>
 </html>

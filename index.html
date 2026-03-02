@@ -204,17 +204,17 @@ nav{padding:14px 16px}
     <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
     <a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img src="https://cdn.simpleicons.org/discord/5865F2" style="width:14px;height:14px">Discord</a>
     <div class="lang-dropdown" style="position:relative;margin-left:8px">
-      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
-        <button onclick="setLang('zh-CN')">🇨🇳 中文</button>
-        <button onclick="setLang('en')">🇺🇸 English</button>
-        <button onclick="setLang('es')">🇪🇸 Español</button>
-        <button onclick="setLang('ja')">🇯🇵 日本語</button>
-        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+        <button data-lang="zh-CN">🇨🇳 中文</button>
+        <button data-lang="en">🇺🇸 English</button>
+        <button data-lang="es">🇪🇸 Español</button>
+        <button data-lang="ja">🇯🇵 日本語</button>
+        <button data-lang="ar">🇸🇦 العربية</button>
       </div>
     </div>
   </div>
-<button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+<button class="hamburger">☰</button>
 </nav>
 
 <section class="hero">
@@ -387,15 +387,9 @@ nav{padding:14px 16px}
 </div>
 <p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> 出品· I'm A Studio, I'm A Claw 🦞 · <a href="https://github.com/openclaw/openclaw" target="_blank">Built on OpenClaw</a></p></footer>
 
-<script src="i18n.js?v=20260301b"></script>
-<script src="app.js"></script>
-<script>
-/* Close lang dropdown when clicking outside */
-document.addEventListener("click",function(e){
-  if(!e.target.closest(".lang-dropdown")){
-    document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")});
-  }
-});
-</script>
+<script src="i18n/core.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="i18n/core.js"></script>
+<script src="assets/js/nav.js"></script>
 </body>
 </html>
