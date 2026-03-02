@@ -80,13 +80,13 @@ body{padding-top:60px}
     <a href="../" data-i18n="nav.home">首页</a>
     <a href="../adopt/" class="nav-adopt" data-i18n="nav.adopt">🦞 领养</a>
     <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
-    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="../pricing/" data-i18n="nav.pricing">购买</a>
     <a href="../docs/" data-i18n="nav.docs">帮助</a>
     <a href="../blog/" data-i18n="nav.blog">博客</a>
     <a href="https://imastudio.com/community" target="_blank" rel="noopener" data-i18n="nav.community">社区</a>
     <a href="https://discord.gg/UdXFVYhh" aria-label="Join Ima Claw Discord community" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img loading="lazy" decoding="async" src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27%235865F2%27%3E%3Cpath d=%27M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z%27/%3E%3C/svg%3E" alt="Discord" style="width:14px;height:14px">Discord</a>
     <div class="lang-dropdown">
-      <button class="lang-trigger">🌐 中文 ▾</button>
+      <button class="lang-trigger">中文 ▾</button>
       <div class="lang-menu">
         <button data-lang="zh-CN">🇨🇳 中文</button>
         <button data-lang="en">🇺🇸 English</button>
@@ -106,16 +106,16 @@ body{padding-top:60px}
 </section>
 <div class="filter-bar">
 <button class="filter-btn active" onclick="filter('all')"><span data-i18n="skills.filter.all">全部</span></button>
-<button class="filter-btn" onclick="filter('create')">🎨 <span data-i18n="skills.filter.create">创作</span></button>
+<button class="filter-btn" onclick="filter('create')"><span data-i18n="skills.filter.create">创作</span></button>
 <button class="filter-btn" onclick="filter('image')">🖼️ <span data-i18n="skills.filter.image">图片</span></button>
-<button class="filter-btn" onclick="filter('video')">🎬 <span data-i18n="skills.filter.video">视频</span></button>
+<button class="filter-btn" onclick="filter('video')"><span data-i18n="skills.filter.video">视频</span></button>
 <button class="filter-btn" onclick="filter('music')">🎵 <span data-i18n="skills.filter.music">音乐</span></button>
 <button class="filter-btn" onclick="filter('write')">✍️ <span data-i18n="skills.filter.write">写作</span></button>
-<button class="filter-btn" onclick="filter('social')">📱 <span data-i18n="skills.filter.social">社媒</span></button>
+<button class="filter-btn" onclick="filter('social')"><span data-i18n="skills.filter.social">社媒</span></button>
 <button class="filter-btn" onclick="filter('marketing')">📣 <span data-i18n="skills.filter.marketing">营销</span></button>
-<button class="filter-btn" onclick="filter('web')">🌐 <span data-i18n="skills.filter.web">网站</span></button>
-<button class="filter-btn" onclick="filter('brain')">🧠 <span data-i18n="skills.filter.brain">智能</span></button>
-<button class="filter-btn" onclick="filter('tool')">🔧 <span data-i18n="skills.filter.tools">工具</span></button>
+<button class="filter-btn" onclick="filter('web')"><span data-i18n="skills.filter.web">网站</span></button>
+<button class="filter-btn" onclick="filter('brain')"><span data-i18n="skills.filter.brain">智能</span></button>
+<button class="filter-btn" onclick="filter('tool')"><span data-i18n="skills.filter.tools">工具</span></button>
 </div>
 <div class="grid">
 <div class="card feat feat-main" data-cat="create image video music marketing web" onclick="location.href='../docs/skills/ima-all-in-one/'" style="cursor:pointer">
@@ -162,7 +162,7 @@ body{padding-top:60px}
 .cm-search-box input:focus{border-color:var(--lobster)}
 .cm-search-box::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px}
 .cm-cat-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.cm-cat-tag{padding:7px 16px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-2);transition:all .2s}
+.cm-cat-tag{padding:8px 18px;border-radius:20px;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-2);transition:all .2s}
 .cm-cat-tag:hover,.cm-cat-tag.active{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff}
 .cm-skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px}
 .cm-skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s}
@@ -225,39 +225,39 @@ body{padding-top:60px}
 <script>
 // Category config: hot (shown) + other (collapsed)
 var CH_HOT = [
-  {key:'Image & Video Generation', q:'image video generation', zh:'🎨 图片与视频', en:'🎨 Image & Video', n:170},
-  {key:'AI & LLMs', q:'AI LLM', zh:'🤖 AI 与大模型', en:'🤖 AI & LLMs', n:189},
-  {key:'Marketing & Sales', q:'marketing sales', zh:'📣 营销与销售', en:'📣 Marketing', n:104},
-  {key:'Search & Research', q:'search research', zh:'🔍 搜索与研究', en:'🔍 Research', n:346},
-  {key:'Communication', q:'communication chat', zh:'💬 通讯与社交', en:'💬 Communication', n:149},
-  {key:'Productivity & Tasks', q:'productivity task', zh:'📋 效率与任务', en:'📋 Productivity', n:203},
-  {key:'Notes & PKM', q:'notes knowledge', zh:'📝 笔记与知识', en:'📝 Notes & PKM', n:67},
-  {key:'Data & Analytics', q:'data analytics', zh:'📊 数据与分析', en:'📊 Data & Analytics', n:41},
-  {key:'Speech & Transcription', q:'speech transcription voice', zh:'🎙️ 语音与转录', en:'🎙️ Speech', n:44},
-  {key:'Media & Streaming', q:'media streaming', zh:'📺 媒体流媒体', en:'📺 Media', n:83}
+  {key:'Image & Video Generation', q:'image video generation', zh:'图片与视频', en:'Image & Video', n:170},
+  {key:'AI & LLMs', q:'AI LLM', zh:'AI 与大模型', en:'AI & LLMs', n:189},
+  {key:'Marketing & Sales', q:'marketing sales', zh:'营销与销售', en:'📣 Marketing', n:104},
+  {key:'Search & Research', q:'search research', zh:'搜索与研究', en:'Research', n:346},
+  {key:'Communication', q:'communication chat', zh:'通讯与社交', en:'Communication', n:149},
+  {key:'Productivity & Tasks', q:'productivity task', zh:'效率与任务', en:'📋 Productivity', n:203},
+  {key:'Notes & PKM', q:'notes knowledge', zh:'笔记与知识', en:'Notes & PKM', n:67},
+  {key:'Data & Analytics', q:'data analytics', zh:'数据与分析', en:'Data & Analytics', n:41},
+  {key:'Speech & Transcription', q:'speech transcription voice', zh:'语音与转录', en:'🎙️ Speech', n:44},
+  {key:'Media & Streaming', q:'media streaming', zh:'媒体流媒体', en:'📺 Media', n:83}
 ];
 
 var CH_OTHER = [
-  {key:'Coding Agents & IDEs', q:'coding IDE agent', zh:'💻 编程与IDE', en:'💻 Coding & IDEs', n:1209},
-  {key:'Web & Frontend Development', q:'web frontend', zh:'🌐 Web 开发', en:'🌐 Web Dev', n:928},
-  {key:'DevOps & Cloud', q:'devops cloud', zh:'☁️ DevOps', en:'☁️ DevOps', n:405},
-  {key:'Browser & Automation', q:'browser automation', zh:'🤖 浏览器自动化', en:'🤖 Automation', n:328},
-  {key:'CLI Utilities', q:'cli command line', zh:'⌨️ 命令行工具', en:'⌨️ CLI Tools', n:184},
-  {key:'Git & GitHub', q:'git github', zh:'🔀 Git/GitHub', en:'🔀 Git/GitHub', n:166},
-  {key:'PDF & Documents', q:'pdf document', zh:'📄 PDF与文档', en:'📄 PDF & Docs', n:110},
-  {key:'Transportation', q:'transportation travel', zh:'🚗 出行交通', en:'🚗 Transport', n:109},
-  {key:'Health & Fitness', q:'health fitness', zh:'💪 健康运动', en:'💪 Health', n:87},
-  {key:'Calendar & Scheduling', q:'calendar scheduling', zh:'📅 日历日程', en:'📅 Calendar', n:55},
-  {key:'Shopping & E-commerce', q:'shopping ecommerce', zh:'🛍️ 购物电商', en:'🛍️ Shopping', n:52},
-  {key:'Security & Passwords', q:'security password', zh:'🔐 安全密码', en:'🔐 Security', n:53},
-  {key:'Personal Development', q:'personal development growth', zh:'🎯 个人成长', en:'🎯 Growth', n:51},
-  {key:'Apple Apps & Services', q:'apple macos', zh:'🍎 Apple 生态', en:'🍎 Apple', n:43},
-  {key:'Smart Home & IoT', q:'smart home iot', zh:'🏠 智能家居', en:'🏠 Smart Home', n:42},
-  {key:'Gaming', q:'gaming game', zh:'🎮 游戏', en:'🎮 Gaming', n:36},
-  {key:'Clawdbot Tools', q:'claw bot', zh:'🦞 龙虾工具', en:'🦞 Claw Tools', n:29},
-  {key:'Self-Hosted & Automation', q:'self hosted automation', zh:'🖥️ 自托管', en:'🖥️ Self-Hosted', n:30},
-  {key:'iOS & macOS Development', q:'ios macos development', zh:'📱 iOS/macOS', en:'📱 iOS/macOS', n:29},
-  {key:'Moltbook', q:'moltbook', zh:'📓 Moltbook', en:'📓 Moltbook', n:45}
+  {key:'Coding Agents & IDEs', q:'coding IDE agent', zh:'编程与IDE', en:'Coding & IDEs', n:1209},
+  {key:'Web & Frontend Development', q:'web frontend', zh:'Web 开发', en:'Web Dev', n:928},
+  {key:'DevOps & Cloud', q:'devops cloud', zh:'DevOps', en:'☁️ DevOps', n:405},
+  {key:'Browser & Automation', q:'browser automation', zh:'浏览器自动化', en:'Automation', n:328},
+  {key:'CLI Utilities', q:'cli command line', zh:'命令行工具', en:'⌨️ CLI Tools', n:184},
+  {key:'Git & GitHub', q:'git github', zh:'Git/GitHub', en:'🔀 Git/GitHub', n:166},
+  {key:'PDF & Documents', q:'pdf document', zh:'PDF与文档', en:'PDF & Docs', n:110},
+  {key:'Transportation', q:'transportation travel', zh:'出行交通', en:'🚗 Transport', n:109},
+  {key:'Health & Fitness', q:'health fitness', zh:'健康运动', en:'💪 Health', n:87},
+  {key:'Calendar & Scheduling', q:'calendar scheduling', zh:'日历日程', en:'Calendar', n:55},
+  {key:'Shopping & E-commerce', q:'shopping ecommerce', zh:'购物电商', en:'🛍️ Shopping', n:52},
+  {key:'Security & Passwords', q:'security password', zh:'安全密码', en:'🔐 Security', n:53},
+  {key:'Personal Development', q:'personal development growth', zh:'个人成长', en:'🎯 Growth', n:51},
+  {key:'Apple Apps & Services', q:'apple macos', zh:'Apple 生态', en:'🍎 Apple', n:43},
+  {key:'Smart Home & IoT', q:'smart home iot', zh:'智能家居', en:'Smart Home', n:42},
+  {key:'Gaming', q:'gaming game', zh:'游戏', en:'Gaming', n:36},
+  {key:'Clawdbot Tools', q:'claw bot', zh:'龙虾工具', en:'🦞 Claw Tools', n:29},
+  {key:'Self-Hosted & Automation', q:'self hosted automation', zh:'自托管', en:'Self-Hosted', n:30},
+  {key:'iOS & macOS Development', q:'ios macos development', zh:'iOS/macOS', en:'iOS/macOS', n:29},
+  {key:'Moltbook', q:'moltbook', zh:'Moltbook', en:'📓 Moltbook', n:45}
 ];
 
 var CH_LOCAL=new Set(["gog", "summarize", "github", "sonoscli", "weather", "self-improving-agent", "notion", "mcporter", "nano-pdf", "tavily-search", "nano-banana-pro", "model-usage", "obsidian", "openai-whisper", "agent-browser", "skill-creator", "himalaya", "gemini", "blogwatcher", "video-frames"]);
@@ -293,7 +293,7 @@ setTimeout(chLoadAll, 2000);
 function chGetLang(){return(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh')?'zh':'en'}
 function chCatLabel(c){return chGetLang()==='zh'?c.zh:c.en}
 function chRenderCats(){
-  var isZh=chGetLang()==='zh';var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()">'+(isZh?'🌐 全部':'🌐 All')+'</button>';
+  var isZh=chGetLang()==='zh';var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()">'+(isZh?'全部':'All')+'</button>';
   CH_HOT.forEach(function(c){
     h+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+chCatLabel(c)+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
   });
@@ -433,7 +433,7 @@ function chSearchInput(){
       chShown=0;
       chRender();
       document.getElementById('ch-result-info').style.display='block';
-      document.getElementById('ch-result-text').innerHTML='🔍 '+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
+      document.getElementById('ch-result-text').innerHTML=''+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
     })
     .catch(function(){
       chShown=0;
@@ -443,7 +443,7 @@ function chSearchInput(){
   chShown=0;
   chRender();
   document.getElementById('ch-result-info').style.display='block';
-  document.getElementById('ch-result-text').innerHTML='🔍 '+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
+  document.getElementById('ch-result-text').innerHTML=''+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
   document.querySelectorAll('.ch-sort,.ch-cat').forEach(function(b){b.classList.remove('active')});
   chActiveCat=null;
 }
