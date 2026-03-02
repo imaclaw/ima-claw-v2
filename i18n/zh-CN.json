@@ -776,5 +776,6 @@
   "skills.community.error": "数据加载失败，请刷新重试",
   "skills.filter.image": "图片",
   "skills.filter.video": "视频",
-  "skills.filter.music": "音乐"
+  "skills.filter.music": "音乐",
+  "cloud.discord": "加入社区"
 }

@@ -776,5 +776,6 @@
   "skills.community.error": "Failed to load, please refresh",
   "skills.filter.image": "Image",
   "skills.filter.video": "Video",
-  "skills.filter.music": "Music"
+  "skills.filter.music": "Music",
+  "cloud.discord": "Join Community"
 }

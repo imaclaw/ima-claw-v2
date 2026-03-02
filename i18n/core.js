@@ -76,7 +76,7 @@
     }
 
     var xhr = new XMLHttpRequest();
-    var url = basePath + 'i18n/' + lang + '.json?v=11';
+    var url = basePath + 'i18n/' + lang + '.json?v=12';
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
