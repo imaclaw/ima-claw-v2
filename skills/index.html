@@ -41,7 +41,8 @@ a{color:var(--lobster-light);text-decoration:none}
 .filter-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 20px 28px}
 .filter-btn{padding:8px 18px;border-radius:20px;font-size:14px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-2);transition:all .2s}
 .filter-btn:hover,.filter-btn.active{background:var(--lobster);border-color:var(--lobster);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1100px;margin:0 auto;padding:0 16px 50px}
+.hero-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1100px;margin:0 auto 24px;padding:0 16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1100px;margin:0 auto;padding:0 16px 50px}
 @media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr);padding:0 24px 50px}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;transition:all .3s;position:relative}
 .card:hover{border-color:rgba(231,76,60,0.3);transform:translateY(-2px)}
@@ -55,12 +56,12 @@ a{color:var(--lobster-light);text-decoration:none}
 .t-new{background:rgba(46,204,113,0.12);color:var(--green)}
 .t-com{background:rgba(74,158,255,0.12);color:var(--blue)}
 .card .models{font-size:11px;color:var(--text-3);margin-top:5px}
-.feat{grid-column:span 1;background:linear-gradient(135deg,var(--surface) 0%,rgba(231,76,60,0.05) 100%);border-color:rgba(231,76,60,0.2);padding:16px;display:flex;gap:14px;align-items:center}
+.feat{background:linear-gradient(135deg,var(--surface) 0%,rgba(231,76,60,0.05) 100%);border-color:rgba(231,76,60,0.2);padding:16px;display:flex;gap:14px;align-items:center}
 .feat .ic{font-size:32px;margin:0;flex-shrink:0}
 .feat .fc{flex:1}
 .feat h3{font-size:22px;margin-bottom:4px}
 .feat p{font-size:14px;margin-bottom:10px}
-@media(max-width:600px){.feat{flex-direction:column;text-align:left;grid-column:1/-1;align-items:flex-start;gap:0}.feat-main{grid-column:auto}.feat .ic{margin-bottom:8px}}
+@media(max-width:600px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.feat{flex-direction:column;text-align:left;align-items:flex-start;gap:0}.feat-main{grid-column:auto}.feat .ic{margin-bottom:8px}}
 .cta{text-align:center;padding:40px 20px 50px}
 .cta h2{font-size:32px;margin-bottom:8px;color:#fff}
 .cta p{color:var(--text-2);font-size:15px;margin-bottom:16px}
@@ -117,7 +118,7 @@ body{padding-top:60px}
 <button class="filter-btn" onclick="filter('brain')"><span data-i18n="skills.filter.brain">智能</span></button>
 <button class="filter-btn" onclick="filter('tool')"><span data-i18n="skills.filter.tools">工具</span></button>
 </div>
-<div class="grid">
+<div class="hero-grid">
 <div class="card feat feat-main" data-cat="create image video music marketing web" onclick="location.href='../docs/skills/ima-all-in-one/'" style="cursor:pointer">
 <span class="ic"><img src="../mascot.png" alt="Ima Claw" style="width:32px;height:32px"></span>
 <div class="fc">
@@ -134,6 +135,8 @@ body{padding-top:60px}
 <div class="meta"><span class="tag t-off"><span data-i18n="skills.tag.official2">官方</span></span><span class="tag t-pop">⭐ <span data-i18n="skills.tag.essential">必装</span></span></div>
 <div class="models"><span data-i18n="skills.card.intel.models">记忆系统 · 项目记忆 · 任务追踪 · 深度调研 · 上下文管理</span></div>
 </div></div>
+</div>
+<div class="grid">
 <div class="card" onclick="location.href='../docs/skills/seedance/'" style="cursor:pointer"" data-cat="create video marketing"><div class="ic">💃</div><h3>Seedance 2.0</h3><p><span data-i18n="skills.card.seedance.desc">ByteDance 视频生成，1.5 Pro 含音频。</span></p><div class="meta"><span class="tag t-off"><span data-i18n="skills.tag.official3">官方</span></span><span class="tag t-pop">🔥</span><span class="tag t-new">NEW</span></div><div class="models">Seedance 1.5 Pro · 1.0 Pro</div></div>
 <div class="card" onclick="location.href='../docs/skills/nano-banana/'" style="cursor:pointer"" data-cat="create image marketing web"><div class="ic">🍌</div><h3>Nano Banana 2</h3><p><span data-i18n="skills.card.banana.desc">Gemini 图片生成，支持 4K。</span></p><div class="meta"><span class="tag t-pop">🔥</span><span class="tag t-com"><span data-i18n="skills.tag.community">社区</span></span></div></div>
 <div class="card" onclick="location.href='../docs/skills/ima-image/'" style="cursor:pointer"" data-cat="create image marketing web"><div class="ic">🎨</div><h3><span data-i18n="skills.card.image">IMA 图片生成</span></h3><p><span data-i18n="skills.card.image.desc">10+ 模型，文生图、图生图，一句话出图。</span></p><div class="meta"><span class="tag t-off"><span data-i18n="skills.tag.official4">官方</span></span></div><div class="models">SeeDream 4.5 · GPT Image · Midjourney · Imagen 4</div></div>
