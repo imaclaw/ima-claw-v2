@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Google Veo 视频 - Ima Claw Skill</title>
+<link rel="stylesheet" href="../../../assets/css/variables.css">
+<link rel="stylesheet" href="../../../assets/css/nav.css">
 <style>
 :root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--gold:#f2c744;--green:#2ecc71;--blue:#3498db}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -11,31 +13,8 @@ body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;backgroun
 a{text-decoration:none;color:inherit}
 
 /* === SHARED NAV CSS === */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{height:40px;width:40px;border-radius:8px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
-.logo-text b{color:var(--lobster-light)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--text)}
-.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
-.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
-.lang-dropdown{display:inline-block;position:relative}
-.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
-.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
-.lang-dropdown.open .lang-menu{display:block}
-.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
-.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
-@media(max-width:768px){
-  nav{padding:14px 16px}
-  .hamburger{display:block}
-  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-  .nav-links.open{display:flex!important}
-  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
-  .nav-links a:last-child{border-bottom:none}
-  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
-}
+.lang-dropdown.open @media(max-width:768px){
+              .nav-links }
 /* === END SHARED NAV CSS === */
 
 /* Tutorial layout */
@@ -106,8 +85,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 .faq-arrow{transition:transform .2s;color:var(--text-3)}
 
 /* Bottom nav */
-.bottom-nav{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
-.btn-back{padding:12px 24px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.bottom-.btn-back{padding:12px 24px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-back:hover{border-color:var(--border-hover);color:var(--text)}
 .btn-community{padding:12px 24px;background:var(--lobster);color:#fff;font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-community:hover{background:var(--lobster-light)}

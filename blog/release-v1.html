@@ -22,6 +22,8 @@
 <meta property="og:title" content="你能做网站吗？于是有了134万字，和一个网站。">
 <meta property="og:description" content="26小时 · 45页面 · 12616行代码 · 0行手写 · 134万字对话 · 1个人">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/nav.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{overflow-x:hidden;width:100%;max-width:100%}
@@ -31,14 +33,6 @@ body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-seri
 a{text-decoration:none;color:inherit}
 
 /* Nav */
-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{height:40px;width:40px;border-radius:8px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em}.logo-text b{color:var(--lobster-light)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--text)}
-.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
 
 /* Content */
 .page{max-width:900px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
@@ -102,13 +96,7 @@ footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
 /* Mobile */
 @media(max-width:768px){
   .page{padding:40px 16px 80px;max-width:100%}
-  nav{padding:14px 16px}
-  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-  .nav-links.open{display:flex!important}
-  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
-  .nav-links a:last-child{border-bottom:none}
-  .hamburger{display:block}
-  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+              .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .stats-grid-6{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .stats-grid-4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .chat-wrap{max-width:100%}

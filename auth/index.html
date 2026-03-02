@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>登录 - Ima Claw</title>
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/nav.css">
 <style>
 :root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--gold:#f2c744;--green:#2ecc71;--blue:#3498db}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -11,12 +13,7 @@ body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;backgroun
 a{text-decoration:none;color:inherit}
 
 /* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{height:40px;width:40px;border-radius:8px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
-.logo-text b{color:var(--lobster-light)}
-@media(max-width:768px){nav{padding:14px 16px}}
+@media(max-width:768px){}
 
 /* Auth Layout */
 .auth-page{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;overflow:hidden}

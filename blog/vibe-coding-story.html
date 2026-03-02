@@ -20,25 +20,16 @@
 <meta name="twitter:description" content="How this entire website was built using Ima Claw itself — a meta Vibe Coding story of an AI assistant building its own home.">
 <meta name="twitter:image" content="https://imaclaw.github.io/ima-claw-v2/mascot.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/nav.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--surface-2:#1B1B28;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12)}
 body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 
-.lang-dropdown{position:relative;display:inline-block}
-.lang-trigger{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--text-2);cursor:pointer}
-.lang-menu{display:none;position:absolute;right:0;top:110%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:120px;z-index:99}
-.lang-dropdown.open .lang-menu{display:block}
-.lang-menu button{display:block;width:100%;text-align:left;padding:8px 12px;border:none;background:none;color:var(--text-2);font-size:12px;border-radius:8px;cursor:pointer}.lang-menu button:hover{background:rgba(255,255,255,0.06);color:var(--text)}
-/* lang toggle removed - using nav only */
+.lang-dropdown.open /* lang toggle removed - using nav only */
 
-nav{padding:16px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{height:32px;width:32px;border-radius:8px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em}.logo-text b{color:var(--lobster-light)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}.nav-links a:hover{color:var(--text)}
 .nav-links a.active{color:var(--lobster-light)}
 
 .article{max-width:720px;margin:0 auto;padding:60px 40px 100px}
@@ -88,31 +79,11 @@ html[lang="en"] span[data-zh],html[lang="en"] a[data-zh]{display:none}
 html[lang="en"] div[data-zh]{display:none}html[lang="en"] div[data-zh]{display:none}
 html[lang="en"] blockquote[data-zh]{display:none}html[lang="en"] blockquote[data-zh]{display:none}
 
-@media(max-width:600px){.article{padding:40px 20px 80px}.nav-links{display:none}}
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:rgba(12,12,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em}.logo-text b{color:#E8584E}
-.nav-links{display:flex;gap:20px;align-items:center}
-.nav-links a{color:rgba(255,255,255,0.35);font-size:13px;font-weight:500;transition:color .3s;text-decoration:none}.nav-links a:hover{color:#E8E8ED}
-.nav-cta{background:#D4403A!important;color:#fff!important;padding:7px 18px;border-radius:20px;font-weight:700;font-size:12px!important}
-.lang-dropdown{position:relative;display:inline-block}
-.lang-trigger{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);cursor:pointer}
-.lang-menu{display:none;position:absolute;right:0;top:110%;background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px;min-width:120px;z-index:99}
-.lang-dropdown.open .lang-menu{display:block}
-.lang-menu button{display:block;width:100%;text-align:left;padding:8px 12px;border:none;background:none;color:rgba(255,255,255,0.55);font-size:12px;border-radius:8px;cursor:pointer}.lang-menu button:hover{background:rgba(255,255,255,0.06);color:#E8E8ED}
-
+@media(max-width:600px){.article{padding:40px 20px 80px}}
+#.lang-dropdown.open 
 body{padding-top:60px}
-.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
 @media(max-width:600px){
-.hamburger{display:block}
-#nav{padding:12px 16px}
-.nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-.nav-links.open{display:flex!important}
-.nav-links a{padding:12px 20px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px;color:rgba(255,255,255,0.55);text-align:right;display:block}
-.nav-links a:last-child{border-bottom:none}
-.nav-links a{padding:12px 20px;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px;margin-bottom:2px;color:rgba(255,255,255,0.55);text-align:right;display:block}
-.nav-links .lang-dropdown{padding:12px 20px;text-align:right!important;text-align:right;display:flex;justify-content:flex-end}
-}
+#.nav-links }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"我用 Ima Claw 做了这个网站 — Blog — Ima Claw 🦞","description":"How this entire website was built using Ima Claw itself — a meta Vibe Coding story of an AI assistant building its own home.","author":{"@type":"Person","name":"Yuki He"},"publisher":{"@type":"Organization","name":"Ima Claw","logo":{"@type":"ImageObject","url":"https://imaclaw.github.io/ima-claw-v2/mascot.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://imaclaw.github.io/ima-claw-v2/blog/vibe-coding-story.html"}}</script>
 </head>

@@ -20,6 +20,8 @@
 <meta name="twitter:description" content="A 24-hour non-stop development log of building Ima Claw — the lobster that never sleeps. Raw, unfiltered Vibe Coding diary.">
 <meta name="twitter:image" content="https://imaclaw.github.io/ima-claw-v2/mascot.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/nav.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06);--blue:#4A80D4;--gold:#f2c744}
@@ -27,24 +29,8 @@ body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-seri
 a{text-decoration:none;color:inherit}
 
 /* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
-.logo img{height:40px;width:40px;border-radius:8px}
-.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
-.logo-text b{color:var(--lobster-light)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--text)}
-.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
-.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
 @media(max-width:768px){
-  nav{padding:14px 16px}
-  .hamburger{display:block}
-  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-  .nav-links.open{display:flex!important}
-  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
-  .nav-links a:last-child{border-bottom:none}
-}
+            }
 
 /* Article */
 .article{max-width:720px;margin:0 auto;padding:40px 20px 80px}
