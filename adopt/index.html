@@ -35,21 +35,21 @@ a{text-decoration:none;color:inherit}
 .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(212,64,58,0.06) 0%,transparent 60%);pointer-events:none}
 .lobster{animation:float 3s ease-in-out infinite;margin-bottom:-24px;margin-top:0}
 @keyframes popIn{0%{opacity:0;transform:scale(0.5)}50%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero h1{font-size:clamp(24px,5vw,36px);font-weight:900;color:var(--lobster-light);margin-bottom:12px}
-.hero .sub{color:var(--text-2);font-size:16px;max-width:800px;margin:0 auto 8px}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:var(--lobster-light);margin-bottom:12px}
+.hero .sub{color:var(--text-2);font-size:18px;max-width:800px;margin:0 auto 8px}
 .hero .tiny{color:#555;font-size:13px}
 
 /* Steps */
 .steps{max-width:1100px;margin:0 auto;padding:20px 20px 60px}
 .step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:20px;position:relative}
-.step-num{position:absolute;top:-12px;left:24px;background:var(--lobster);color:#fff;font-size:13px;font-weight:800;padding:4px 14px;border-radius:20px}
-.step h2{font-size:20px;margin:8px 0 12px;font-weight:700}
-.step p{color:var(--text-2);font-size:14px;margin-bottom:16px}
-.step .time{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:12px;font-weight:600;margin-bottom:12px}
+.step-num{position:absolute;top:-12px;left:24px;background:var(--lobster);color:#fff;font-size:14px;font-weight:800;padding:5px 16px;border-radius:20px}
+.step h2{font-size:26px;margin:10px 0 14px;font-weight:700}
+.step p{color:var(--text-2);font-size:16px;margin-bottom:16px}
+.step .time{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:14px;font-weight:600;margin-bottom:12px}
 
 /* Code box */
-.code-box{background:#0d0d12;border:1px solid #2a2a35;border-radius:10px;padding:14px 18px;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:14px;color:var(--green);position:relative;overflow-x:auto;margin:12px 0}
-.code-box .label{color:#555;font-size:11px;margin-bottom:6px;font-family:-apple-system,sans-serif}
+.code-box{background:#0d0d12;border:1px solid #2a2a35;border-radius:10px;padding:14px 18px;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:15px;color:var(--green);position:relative;overflow-x:auto;margin:12px 0}
+.code-box .label{color:#555;font-size:13px;margin-bottom:6px;font-family:-apple-system,sans-serif}
 .code-box code{display:block;white-space:pre;user-select:all}
 .copy-btn{position:absolute;top:10px;right:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:inherit}
 .copy-btn:hover{background:#2a2a35;color:#fff}
@@ -89,7 +89,7 @@ a{text-decoration:none;color:inherit}
 
 /* CTA */
 .cta-section{text-align:center;padding:40px 20px 60px;background:linear-gradient(180deg,transparent,rgba(212,64,58,0.03))}
-.cta-section h2{font-size:24px;margin-bottom:12px}
+.cta-section h2{font-size:32px;margin-bottom:12px}
 .cta-section p{color:var(--text-2);margin-bottom:24px}
 .btn-start{display:inline-block;padding:14px 48px;background:linear-gradient(135deg,var(--lobster),#c0392b);color:#fff;font-size:16px;font-weight:700;border-radius:12px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
 .btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,64,58,0.3)}
@@ -104,12 +104,12 @@ a{text-decoration:none;color:inherit}
 
 /* FAQ */
 .faq{max-width:1100px;margin:0 auto;padding:0 20px 40px}
-.faq h2{text-align:center;font-size:22px;margin-bottom:24px}
+.faq h2{text-align:center;font-size:32px;margin-bottom:24px}
 .faq-item{border-bottom:1px solid var(--border);padding:16px 0}
-.faq-q{font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q{font-weight:700;font-size:17px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .faq-q::after{content:'▸';transition:transform .2s}
 .faq-item.open .faq-q::after{transform:rotate(90deg)}
-.faq-a{color:var(--text-2);font-size:14px;padding-top:10px;display:none}
+.faq-a{color:var(--text-2);font-size:15px;padding-top:10px;display:none}
 .faq-item.open .faq-a{display:block}
 
 @media(max-width:800px){.step{padding:20px 18px}.code-box{font-size:12px}}
@@ -167,7 +167,7 @@ a{text-decoration:none;color:inherit}
 <div id="mode-local" onclick="switchMode('local')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(232,88,78,0.3)">
 <div style="font-size:24px;margin-bottom:4px">💻</div>
 <div style="font-size:15px;font-weight:700;color:var(--text)" data-i18n="tab.local">本地领养</div>
-<div style="font-size:11px;color:#E8584E;margin-top:2px" data-i18n="tab.local.sub">免费 · 立即可用</div>
+<div style="font-size:13px;color:#E8584E;margin-top:2px" data-i18n="tab.local.sub">免费 · 立即可用</div>
 </div>
 <div style="width:1px;background:var(--border)"></div>
 <div id="mode-cloud" onclick="switchMode('cloud')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);opacity:0.4;position:relative;overflow:visible">
