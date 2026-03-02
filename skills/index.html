@@ -275,7 +275,11 @@ chRenderCats();
 chRenderSort();
 
 fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(data){
-  chSkills=data.skills||[];
+  chSkills=(data.skills||[]).map(function(s){return{
+    slug:s.s||'',displayName:s.n||s.s||'',summary:s.d||'',summary_zh:s.z||'',
+    category:s.c||'',stats:{downloads:s.dl||0,stars:s.st||0,installsCurrent:s.ic||0},
+    latestVersion:{version:s.v||''},createdAt:s.t||0
+  }});
   document.getElementById('ch-total').textContent=chSkills.length.toLocaleString()+'+';
   chApplySort('trending');
 }).catch(function(){
