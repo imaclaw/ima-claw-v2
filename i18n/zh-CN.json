@@ -114,8 +114,8 @@
   "skills.cat.marketing": "📣 营销与销售",
   "skills.cat.images": "🎨 图片与视频",
   "skills.community.viewall": "查看全部 5,000+ 技能 →",
-  "skills.community.desc": "来自全球开发者的技能，为你的龙虾解锁无限可能",
-  "skills.community.title": "🌍 IMA 社区技能市场",
+  "skills.community.desc": "来自全球开发者的 <span id=\"ch-total\" style=\"color:var(--lobster-light);font-weight:700\">9,200+</span> 个精选技能",
+  "skills.community.title": "社区<span style=\"color:var(--lobster-light)\">技能市场</span>",
   "skills.tag.official10": "官方",
   "skills.card.calendar.desc": "查询、创建、修改日历事件。",
   "skills.card.calendar": "飞书日历",
@@ -762,5 +762,16 @@
   "faq.a6": "加入 <a href=\"https://imastudio.com/community\" style=\"color:var(--gold)\" target=\"_blank\" rel=\"noopener\">IMA 社区",
   "cta.title": "准备好了吗？",
   "cta.desc": "打开终端，复制这行命令，你的龙虾 30 秒后就到 🦞",
-  "cta.btn": "📖 查看完整文档 →"
+  "cta.btn": "📖 查看完整文档 →",
+  "skills.community.badge": "🌍 社区技能",
+  "skills.community.search": "按名称或描述搜索技能...",
+  "skills.community.sort": "排序：",
+  "skills.community.trending": "🔥 热门",
+  "skills.community.downloads": "📥 下载",
+  "skills.community.newest": "🆕 最新",
+  "skills.community.more": "📂 更多分类 ▾",
+  "skills.community.all": "🌐 全部",
+  "skills.community.loadmore": "加载更多",
+  "skills.community.empty": "没有找到匹配的技能",
+  "skills.community.error": "数据加载失败，请刷新重试"
 }

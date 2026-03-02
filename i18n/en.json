@@ -120,8 +120,8 @@
   "skills.cat.marketing": "📣 Marketing & Sales",
   "skills.cat.images": "🎨 Images & Video",
   "skills.community.viewall": "View all 5,000+ skills →",
-  "skills.community.desc": "Skills from global developers to unlock infinite possibilities",
-  "skills.community.title": "🌍 IMA Community Skill Market",
+  "skills.community.desc": "Over <span id=\"ch-total\" style=\"color:var(--lobster-light);font-weight:700\">9,200+</span> curated skills from global developers",
+  "skills.community.title": "Community <span style=\"color:var(--lobster-light)\">Skill Market</span>",
   "skills.tag.official10": "Official",
   "skills.card.calendar.desc": "Query, create, modify calendar events.",
   "skills.card.calendar": "Feishu Calendar",
@@ -762,5 +762,16 @@
   "sub.s3": "Local Testing",
   "sub.s4": "Publish to ClawHub",
   "sub.struct": "📁 Standard Directory Structure",
-  "sub.title": "Submit Your Skill"
+  "sub.title": "Submit Your Skill",
+  "skills.community.badge": "🌍 Community Skills",
+  "skills.community.search": "Search skills by name or description...",
+  "skills.community.sort": "Sort:",
+  "skills.community.trending": "🔥 Trending",
+  "skills.community.downloads": "📥 Downloads",
+  "skills.community.newest": "🆕 Newest",
+  "skills.community.more": "📂 More categories ▾",
+  "skills.community.all": "🌐 All",
+  "skills.community.loadmore": "Load more",
+  "skills.community.empty": "No matching skills found",
+  "skills.community.error": "Failed to load, please refresh"
 }

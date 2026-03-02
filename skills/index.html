@@ -189,14 +189,14 @@ body{padding-top:60px}
 <div id="community-browse" style="max-width:1100px;margin:20px auto 0;padding:0 20px">
 <div style="border-top:1px solid var(--border);padding-top:24px;margin-bottom:32px">
 <div style="text-align:center;margin-bottom:20px">
-<div style="display:inline-block;margin-bottom:10px;padding:4px 12px;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.25);border-radius:20px;font-size:12px;color:var(--lobster-light);font-weight:600">🌍 Community Skills</div>
-<h2 style="font-size:28px;font-weight:900;margin-bottom:6px">社区<span style="color:var(--lobster-light)">技能市场</span></h2>
-<p style="color:var(--text-2);font-size:14px">来自全球开发者的 <span id="ch-total" style="color:var(--lobster-light);font-weight:700">9,200+</span> 个精选技能</p>
+<div style="display:inline-block;margin-bottom:10px;padding:4px 12px;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.25);border-radius:20px;font-size:12px;color:var(--lobster-light);font-weight:600" data-i18n="skills.community.badge">🌍 Community Skills</div>
+<h2 style="font-size:28px;font-weight:900;margin-bottom:6px" data-i18n="skills.community.title">社区<span style="color:var(--lobster-light)">技能市场</span></h2>
+<p style="color:var(--text-2);font-size:14px" data-i18n="skills.community.desc">来自全球开发者的 <span id="ch-total" style="color:var(--lobster-light);font-weight:700">9,200+</span> 个精选技能</p>
 </div>
 
 <!-- Search -->
 <div class="cm-search-box" style="margin-bottom:20px">
-  <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearchInput()">
+  <input type="text" id="ch-search" placeholder="Search skills by name or description..." data-i18n-placeholder="skills.community.search" oninput="chSearchInput()">
 </div>
 
 <!-- Hot categories -->
@@ -204,13 +204,13 @@ body{padding-top:60px}
 
 <!-- More categories (collapsed) -->
 <div style="margin-bottom:20px">
-  <button class="cm-cat-tag" onclick="var g=document.getElementById('ch-more-cats');g.style.display=g.style.display==='none'?'flex':'none';this.classList.toggle('active')" style="margin-bottom:8px">📂 更多分类 ▾</button>
+  <button class="cm-cat-tag" onclick="var g=document.getElementById('ch-more-cats');g.style.display=g.style.display==='none'?'flex':'none';this.classList.toggle('active')" style="margin-bottom:8px" data-i18n="skills.community.more">📂 更多分类 ▾</button>
   <div id="ch-more-cats" style="display:none;flex-wrap:wrap;gap:8px"></div>
 </div>
 
 <!-- Sort buttons -->
 <div style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px">
-  <span style="font-size:12px;color:var(--text-3);margin-left:4px">排序：</span>
+  <span style="font-size:12px;color:var(--text-3);margin-left:4px" data-i18n="skills.community.sort">排序：</span>
   <button class="ch-sort-btn active" onclick="chSortBy('trending',this)">🔥 热门</button>
   <button class="ch-sort-btn" onclick="chSortBy('downloads',this)">📥 下载</button>
   <button class="ch-sort-btn" onclick="chSortBy('newest',this)">🆕 最新</button>
@@ -224,7 +224,7 @@ body{padding-top:60px}
 <!-- Skill grid -->
 <div class="cm-skill-grid" id="ch-skill-grid"></div>
 <div id="ch-load-more" style="text-align:center;margin-top:16px;display:none">
-  <button onclick="chLoadMore()" style="padding:10px 28px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;font-size:14px;font-weight:600">加载更多</button>
+  <button onclick="chLoadMore()" style="padding:10px 28px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;font-size:14px;font-weight:600" data-i18n="skills.community.loadmore">加载更多</button>
 </div>
 </div>
 </div>
@@ -282,7 +282,7 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
 
 function chRenderCats(){
   // Hot categories
-  var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()">🌐 全部</button>';
+  var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()" data-i18n="skills.community.all">🌐 全部</button>';
   CH_HOT.forEach(function(c){
     h+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
   });
