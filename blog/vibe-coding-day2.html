@@ -128,101 +128,101 @@ body{padding-top:60px}
 
   <!-- Chinese Version -->
   <div data-zh>
-    <h1>凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码 🌙</h1>
-    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px">作者：Yuki 和龙虾爪爪</p>
-    <p class="lead">上次我用 Ima Claw 从零搭了整个官网，龙虾的脸被抠没了。这次我凌晨 4 点睡不着，拿起手机开始 review 网站，发现一堆小问题——于是又开始和爪爪 Vibe Coding。25 分钟，修了 8 个问题，依然 0 行代码。记录一下这个深夜迭代 session。</p>
+    <h1 data-i18n="day2.h11">凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码 🌙</h1>
+    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px" data-i18n="day2.p1">作者：Yuki 和龙虾爪爪</p>
+    <p class="lead" data-i18n="day2.p2">上次我用 Ima Claw 从零搭了整个官网，龙虾的脸被抠没了。这次我凌晨 4 点睡不着，拿起手机开始 review 网站，发现一堆小问题——于是又开始和爪爪 Vibe Coding。25 分钟，修了 8 个问题，依然 0 行代码。记录一下这个深夜迭代 session。</p>
 
-    <h2>起因：凌晨 4 点的产品经理综合症 🌙</h2>
+    <h2 data-i18n="day2.h21">起因：凌晨 4 点的产品经理综合症 🌙</h2>
 
-    <p>创业者都有这个毛病——睡前"最后看一眼产品"，然后就停不下来了。</p>
+    <p data-i18n="day2.p3">创业者都有这个毛病——睡前"最后看一眼产品"，然后就停不下来了。</p>
 
-    <p>我打开手机看官网，切到英文版，发现导航栏展开后有<strong>两个语言选择器重叠在一起</strong>。然后越看越多：导航点了不收起、卡片排版不对称、倒计时还没加……</p>
+    <p data-i18n="day2.p4">我打开手机看官网，切到英文版，发现导航栏展开后有<strong>两个语言选择器重叠在一起</strong>。然后越看越多：导航点了不收起、卡片排版不对称、倒计时还没加……</p>
 
-    <p>于是我在飞书上跟爪爪开始了一场<strong>凌晨 4 点的 Vibe Coding session</strong>。</p>
+    <p data-i18n="day2.p5">于是我在飞书上跟爪爪开始了一场<strong>凌晨 4 点的 Vibe Coding session</strong>。</p>
 
-    <h2>25 分钟干了什么</h2>
+    <h2 data-i18n="day2.h22">25 分钟干了什么</h2>
 
-    <p>以下是完整时间线，全程手机飞书对话，全程 0 行代码：</p>
+    <p data-i18n="day2.p6">以下是完整时间线，全程手机飞书对话，全程 0 行代码：</p>
 
     <div class="highlight-box">
-      <h3>⏱️ 完整时间线</h3>
+      <h3 data-i18n="day2.h31">⏱️ 完整时间线</h3>
       <ul>
-        <li><strong>04:13</strong> — 博客升级：成绩单加了"设计师: 0 人"（所有设计都是 AI 做的），经验总结从 3 条扩充到 5 条，加了"后续迭代反思"新章节</li>
-        <li><strong>04:17</strong> — 发现导航栏有两个语言选择器重叠，删掉多余的那个</li>
-        <li><strong>04:21</strong> — 手机导航栏点了不收起！加了点击外部区域关闭 + 点链接关闭 + 切语言关闭。顺手修了全站 6 个页面</li>
-        <li><strong>04:26</strong> — "还剩 399 只"改成<strong>72 小时实时倒计时</strong>，5 种语言同步更新</li>
-        <li><strong>04:32</strong> — "1,000"数字不够显眼，加粗放大，白色突出</li>
-        <li><strong>04:34</strong> — 英文版"专属为你"区域 3 张卡片右边贴边，改成 flexbox 居中布局</li>
-        <li><strong>04:36</strong> — 默认语言从写死英文改成<strong>自动检测浏览器语言</strong>，不支持的语言 fallback 英文</li>
-        <li><strong>04:38</strong> — Skills 页视频模型列表加上 Google Veo 3 系列</li>
+        <li data-i18n="day2.li1"><strong>04:13</strong> — 博客升级：成绩单加了"设计师: 0 人"（所有设计都是 AI 做的），经验总结从 3 条扩充到 5 条，加了"后续迭代反思"新章节</li>
+        <li data-i18n="day2.li2"><strong>04:17</strong> — 发现导航栏有两个语言选择器重叠，删掉多余的那个</li>
+        <li data-i18n="day2.li3"><strong>04:21</strong> — 手机导航栏点了不收起！加了点击外部区域关闭 + 点链接关闭 + 切语言关闭。顺手修了全站 6 个页面</li>
+        <li data-i18n="day2.li4"><strong>04:26</strong> — "还剩 399 只"改成<strong>72 小时实时倒计时</strong>，5 种语言同步更新</li>
+        <li data-i18n="day2.li5"><strong>04:32</strong> — "1,000"数字不够显眼，加粗放大，白色突出</li>
+        <li data-i18n="day2.li6"><strong>04:34</strong> — 英文版"专属为你"区域 3 张卡片右边贴边，改成 flexbox 居中布局</li>
+        <li data-i18n="day2.li7"><strong>04:36</strong> — 默认语言从写死英文改成<strong>自动检测浏览器语言</strong>，不支持的语言 fallback 英文</li>
+        <li data-i18n="day2.li8"><strong>04:38</strong> — Skills 页视频模型列表加上 Google Veo 3 系列</li>
       </ul>
     </div>
 
-    <h2>有意思的细节 🔍</h2>
+    <h2 data-i18n="day2.h23">有意思的细节 🔍</h2>
 
-    <h3>导航栏的"幽灵代码" 👻</h3>
-    <p>修手机导航关闭逻辑的时候，爪爪发现有些页面的 JavaScript 竟然写在了 <code>&lt;script&gt;</code> 标签<strong>外面</strong>——裸露的 JS 代码直接躺在 HTML 里。这是之前 Vibe Coding 留下的"遗产"😅。浏览器居然没报错，但代码也没生效。爪爪顺手清理了 6 个页面的脏代码。</p>
+    <h3 data-i18n="day2.h32">导航栏的"幽灵代码" 👻</h3>
+    <p data-i18n="day2.p7">修手机导航关闭逻辑的时候，爪爪发现有些页面的 JavaScript 竟然写在了 <code>&lt;script&gt;</code> 标签<strong>外面</strong>——裸露的 JS 代码直接躺在 HTML 里。这是之前 Vibe Coding 留下的"遗产"😅。浏览器居然没报错，但代码也没生效。爪爪顺手清理了 6 个页面的脏代码。</p>
 
-    <p>教训：<strong>AI 写代码有时候会把代码塞到错误的位置。</strong>它能写出正确的逻辑，但放到了错误的地方。就像一个实习生写了完美的函数，然后保存到了错误的文件里。</p>
+    <p data-i18n="day2.p8">教训：<strong>AI 写代码有时候会把代码塞到错误的位置。</strong>它能写出正确的逻辑，但放到了错误的地方。就像一个实习生写了完美的函数，然后保存到了错误的文件里。</p>
 
-    <h3>卡片对称之战 📐</h3>
-    <p>英文版的"专属为你"区域有 4 张卡片，用 2×2 grid 布局。中文没问题，但<strong>英文文本更长</strong>，第三张卡片就贴到了右边边缘。</p>
-    <p>我跟爪爪说了三轮：</p>
+    <h3 data-i18n="day2.h33">卡片对称之战 📐</h3>
+    <p data-i18n="day2.p9">英文版的"专属为你"区域有 4 张卡片，用 2×2 grid 布局。中文没问题，但<strong>英文文本更长</strong>，第三张卡片就贴到了右边边缘。</p>
+    <p data-i18n="day2.p10">我跟爪爪说了三轮：</p>
     <ul>
-      <li>第一轮："卡片偏右了" → 它加了 padding，没完全解决</li>
-      <li>第二轮："英文下偏右，中文还行" → 它缩了 max-width</li>
-      <li>第三轮："三张卡片要居中" → 它终于明白了，从 grid 改成 flexbox + justify-content: center</li>
+      <li data-i18n="day2.li9">第一轮："卡片偏右了" → 它加了 padding，没完全解决</li>
+      <li data-i18n="day2.li10">第二轮："英文下偏右，中文还行" → 它缩了 max-width</li>
+      <li data-i18n="day2.li11">第三轮："三张卡片要居中" → 它终于明白了，从 grid 改成 flexbox + justify-content: center</li>
     </ul>
-    <p>三轮对话，每轮不到 30 秒。传统开发？打开 DevTools，找元素，调 CSS，刷新，看效果——同样的事情，但多了一堆认知负担。Vibe Coding 的好处是<strong>你只需要描述"不对"在哪里</strong>，不需要知道怎么修。</p>
+    <p data-i18n="day2.p11">三轮对话，每轮不到 30 秒。传统开发？打开 DevTools，找元素，调 CSS，刷新，看效果——同样的事情，但多了一堆认知负担。Vibe Coding 的好处是<strong>你只需要描述"不对"在哪里</strong>，不需要知道怎么修。</p>
 
-    <h3>语言自动检测 🌍</h3>
-    <p>之前所有页面都写死了 <code>setLang('en')</code>。问题是：中国用户打开网站看到的是英文。</p>
-    <p>我说："默认语言改成检测系统语言，5 种之外的 fallback 英文。"</p>
-    <p>一句话。爪爪直接改了 5 个页面，加了完整的语言映射（包括 zh-TW、zh-HK 都映射到中文）。这种<strong>"全站批量改"</strong>的操作是 Vibe Coding 最舒服的地方——你不需要逐个文件找代码，说一句就全改了。</p>
+    <h3 data-i18n="day2.h34">语言自动检测 🌍</h3>
+    <p data-i18n="day2.p12">之前所有页面都写死了 <code>setLang('en')</code>。问题是：中国用户打开网站看到的是英文。</p>
+    <p data-i18n="day2.p13">我说："默认语言改成检测系统语言，5 种之外的 fallback 英文。"</p>
+    <p data-i18n="day2.p14">一句话。爪爪直接改了 5 个页面，加了完整的语言映射（包括 zh-TW、zh-HK 都映射到中文）。这种<strong>"全站批量改"</strong>的操作是 Vibe Coding 最舒服的地方——你不需要逐个文件找代码，说一句就全改了。</p>
 
-    <h2>成绩单 📊</h2>
+    <h2 data-i18n="day2.h24">成绩单 📊</h2>
 
     <div class="highlight-box">
-      <h3>📊 Vibe Coding Session #2 成绩单</h3>
+      <h3 data-i18n="day2.h35">📊 Vibe Coding Session #2 成绩单</h3>
       <ul>
-        <li>⏱️ 总耗时：<strong>25 分钟</strong></li>
-        <li>🐛 修复 bug：<strong>8 个</strong>（含 1 个全站性问题）</li>
-        <li>📄 涉及页面：<strong>6 个</strong>（全站覆盖）</li>
-        <li>✨ 新功能：<strong>3 个</strong>（倒计时、语言自动检测、模型更新）</li>
-        <li>🌐 翻译更新：<strong>5 种语言同步</strong></li>
-        <li>📝 代码量：<strong>0 行</strong></li>
-        <li>💬 对话轮次：<strong>~12 轮</strong></li>
-        <li>🔧 工具：飞书 + Ima Claw（爪爪）</li>
-        <li>📱 设备：<strong>手机</strong>（全程躺在床上完成）</li>
+        <li data-i18n="day2.li12">⏱️ 总耗时：<strong>25 分钟</strong></li>
+        <li data-i18n="day2.li13">🐛 修复 bug：<strong>8 个</strong>（含 1 个全站性问题）</li>
+        <li data-i18n="day2.li14">📄 涉及页面：<strong>6 个</strong>（全站覆盖）</li>
+        <li data-i18n="day2.li15">✨ 新功能：<strong>3 个</strong>（倒计时、语言自动检测、模型更新）</li>
+        <li data-i18n="day2.li16">🌐 翻译更新：<strong>5 种语言同步</strong></li>
+        <li data-i18n="day2.li17">📝 代码量：<strong>0 行</strong></li>
+        <li data-i18n="day2.li18">💬 对话轮次：<strong>~12 轮</strong></li>
+        <li data-i18n="day2.li19">🔧 工具：飞书 + Ima Claw（爪爪）</li>
+        <li data-i18n="day2.li20">📱 设备：<strong>手机</strong>（全程躺在床上完成）</li>
       </ul>
     </div>
 
     <div class="divider"></div>
 
-    <h2>反思：Vibe Coding 的第二天比第一天更有趣</h2>
+    <h2 data-i18n="day2.h25">反思：Vibe Coding 的第二天比第一天更有趣</h2>
 
-    <p>第一天（<a href="vibe-coding-story.html" style="color:var(--lobster-light)">上篇博客</a>）是<strong>从 0 到 1</strong>——搭框架、写文案、做设计，爆发力很强但也很混乱。</p>
+    <p data-i18n="day2.p15">第一天（<a href="vibe-coding-story.html" style="color:var(--lobster-light)">上篇博客</a>）是<strong>从 0 到 1</strong>——搭框架、写文案、做设计，爆发力很强但也很混乱。</p>
 
-    <p>第二天是<strong>从 1 到 1.1</strong>——打磨细节、修 bug、优化体验。这个阶段 Vibe Coding 反而更舒服：</p>
+    <p data-i18n="day2.p16">第二天是<strong>从 1 到 1.1</strong>——打磨细节、修 bug、优化体验。这个阶段 Vibe Coding 反而更舒服：</p>
 
     <ul>
-      <li><strong>反馈循环更短</strong>——手机上刷新就能验证，不需要等部署</li>
-      <li><strong>描述问题比描述需求简单</strong>——"右边卡片贴边了"比"做一个响应式布局"好说得多</li>
-      <li><strong>批量操作是杀手级场景</strong>——"全站改默认语言"一句话搞定 5 个文件</li>
-      <li><strong>AI 的记忆是优势</strong>——爪爪记得整个代码库的结构，不需要我告诉它文件在哪</li>
+      <li data-i18n="day2.li21"><strong>反馈循环更短</strong>——手机上刷新就能验证，不需要等部署</li>
+      <li data-i18n="day2.li22"><strong>描述问题比描述需求简单</strong>——"右边卡片贴边了"比"做一个响应式布局"好说得多</li>
+      <li data-i18n="day2.li23"><strong>批量操作是杀手级场景</strong>——"全站改默认语言"一句话搞定 5 个文件</li>
+      <li data-i18n="day2.li24"><strong>AI 的记忆是优势</strong>——爪爪记得整个代码库的结构，不需要我告诉它文件在哪</li>
     </ul>
 
-    <p>最让我惊喜的是：<strong>我全程躺在床上用手机完成了这一切。</strong>不需要打开电脑，不需要 IDE，不需要 DevTools。拍个截图、说句话，网站就更新了。</p>
+    <p data-i18n="day2.p17">最让我惊喜的是：<strong>我全程躺在床上用手机完成了这一切。</strong>不需要打开电脑，不需要 IDE，不需要 DevTools。拍个截图、说句话，网站就更新了。</p>
 
-    <p>这才是 Vibe Coding 的终极形态——<strong>不是"不写代码"，而是"随时随地都能改产品"。</strong></p>
+    <p data-i18n="day2.p18">这才是 Vibe Coding 的终极形态——<strong>不是"不写代码"，而是"随时随地都能改产品"。</strong></p>
 
-    <p>凌晨 4 点，躺在床上，25 分钟，8 个问题，0 行代码。</p>
+    <p data-i18n="day2.p19">凌晨 4 点，躺在床上，25 分钟，8 个问题，0 行代码。</p>
 
-    <p>晚安。🦞</p>
+    <p data-i18n="day2.p20">晚安。🦞</p>
 
     <div class="divider"></div>
 
-    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8">
+    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8" data-i18n="day2.p21">
       <strong style="color:var(--text)">Ima Claw</strong> — I'm A Studio. I'm A Claw.<br>
       为创作者深度优化的 7×24 专属 AI 智能体。<br>
       <a href="../#cta" style="color:var(--lobster-light)">免费领养你的第一只龙虾 →</a>

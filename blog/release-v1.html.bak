@@ -127,105 +127,105 @@ footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
 
   <div class="hero">
     <div class="meta">
-      <span class="tag" data-i18n="release.tag1">Release Note</span>
-      <span class="tag" style="background:rgba(46,204,113,0.1);color:#2ecc71" data-i18n="release.tag2">v1.0</span>
-      <span data-i18n="release.date">2026-03-02</span>
+      <span class="tag">Release Note</span>
+      <span class="tag" style="background:rgba(46,204,113,0.1);color:#2ecc71">v1.0</span>
+      <span>2026-03-02</span>
     </div>
-    <h1><span data-i18n="release.title_line1">"你能做网站吗？"</span><br><span data-i18n="release.title_line2">于是有了134万字，和一个网站。</span></h1>
-    <div class="hero-sub" data-i18n="[html]release.hero_sub">一个产品经理的一句话，一只 AI 龙虾的 26 小时。<br>本来只想做一个首页，结果做了 45 个页面。<br>零行手写代码，从 0 到 1。</div>
+    <h1>"你能做网站吗？"<br><span>于是有了134万字，和一个网站。</span></h1>
+    <div class="hero-sub">一个产品经理的一句话，一只 AI 龙虾的 26 小时。<br>本来只想做一个首页，结果做了 45 个页面。<br>零行手写代码，从 0 到 1。</div>
   </div>
 
   <div class="chat-wrap">
-    <div style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:24px;text-align:center" data-i18n="release.chat_intro">有时候，一切只是从一个念头开始。</div>
-    <img src="img/chat-origin-real.jpg" alt="最初的对话" data-i18n="[alt]release.chat_img_alt" style="width:100%;max-width:380px;display:block;margin:0 auto;border-radius:16px;border:1px solid var(--border)">
-    <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--text-3)" data-i18n="release.chat_date">2026年2月28日 · 一切的起点</div>
+    <div style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:24px;text-align:center">有时候，一切只是从一个念头开始。</div>
+    <img src="img/chat-origin-real.jpg" alt="最初的对话" style="width:100%;max-width:380px;display:block;margin:0 auto;border-radius:16px;border:1px solid var(--border)">
+    <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--text-3)">2026年2月28日 · 一切的起点</div>
   </div>
 
   <div class="arrow">↓</div>
-  <div class="time-label" data-i18n="release.time_label">26 HOURS LATER</div>
+  <div class="time-label">26 HOURS LATER</div>
 
-  <div class="section-label" data-i18n="release.section_build">BUILD</div>
+  <div class="section-label">BUILD</div>
   <div class="stats-grid-6">
     <div class="stat" style="background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,215,0,0.04));border-color:rgba(255,215,0,0.25)">
-      <div class="stat-tag" style="color:#ffd700" data-i18n="release.stat_team_tag">TEAM</div>
-      <div class="stat-num" style="color:#ffd700" data-i18n="release.stat_team_num">1</div>
-      <div class="stat-label" data-i18n="release.stat_team_label">个人</div>
+      <div class="stat-tag" style="color:#ffd700">TEAM</div>
+      <div class="stat-num" style="color:#ffd700">1</div>
+      <div class="stat-label">个人</div>
     </div>
     <div class="stat red">
-      <div class="stat-tag" data-i18n="release.stat_time_tag">TIME</div>
-      <div class="stat-num" data-i18n="release.stat_time_num">26h</div>
-      <div class="stat-label" data-i18n="release.stat_time_label">总耗时</div>
+      <div class="stat-tag">TIME</div>
+      <div class="stat-num">26h</div>
+      <div class="stat-label">总耗时</div>
     </div>
     <div class="stat">
-      <div class="stat-tag" data-i18n="release.stat_pages_tag">PAGES</div>
-      <div class="stat-num" data-i18n="release.stat_pages_num">45</div>
-      <div class="stat-label" data-i18n="release.stat_pages_label">个页面</div>
+      <div class="stat-tag">PAGES</div>
+      <div class="stat-num">45</div>
+      <div class="stat-label">个页面</div>
     </div>
     <div class="stat">
-      <div class="stat-tag" data-i18n="release.stat_commits_tag">COMMITS</div>
-      <div class="stat-num" data-i18n="release.stat_commits_num">295</div>
-      <div class="stat-label" data-i18n="release.stat_commits_label">次提交</div>
+      <div class="stat-tag">COMMITS</div>
+      <div class="stat-num">295</div>
+      <div class="stat-label">次提交</div>
     </div>
     <div class="stat">
-      <div class="stat-tag" data-i18n="release.stat_code_tag">CODE</div>
-      <div class="stat-num" data-i18n="release.stat_code_num">12,616</div>
-      <div class="stat-label" data-i18n="release.stat_code_label">行代码</div>
+      <div class="stat-tag">CODE</div>
+      <div class="stat-num">12,616</div>
+      <div class="stat-label">行代码</div>
     </div>
     <div class="stat green">
-      <div class="stat-tag" data-i18n="release.stat_manual_tag">MANUAL</div>
-      <div class="stat-num" data-i18n="release.stat_manual_num">0</div>
-      <div class="stat-label" data-i18n="release.stat_manual_label">行手写代码</div>
+      <div class="stat-tag">MANUAL</div>
+      <div class="stat-num">0</div>
+      <div class="stat-label">行手写代码</div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <div class="section-label" data-i18n="release.section_collab">COLLABORATION</div>
+  <div class="section-label">COLLABORATION</div>
   <div class="stats-grid-4">
     <div class="stat blue">
-      <div class="stat-tag" data-i18n="release.stat_human_tag">HUMAN</div>
-      <div class="stat-num" data-i18n="release.stat_human_num">1,800+</div>
-      <div class="stat-label" data-i18n="release.stat_human_label">条主人指令</div>
+      <div class="stat-tag">HUMAN</div>
+      <div class="stat-num">1,800+</div>
+      <div class="stat-label">条主人指令</div>
     </div>
     <div class="stat blue">
-      <div class="stat-tag" data-i18n="release.stat_ai_tag">AI</div>
-      <div class="stat-num" data-i18n="release.stat_ai_num">8,500+</div>
-      <div class="stat-label" data-i18n="release.stat_ai_label">条龙虾回复</div>
+      <div class="stat-tag">AI</div>
+      <div class="stat-num">8,500+</div>
+      <div class="stat-label">条龙虾回复</div>
     </div>
     <div class="stat blue">
-      <div class="stat-tag" data-i18n="release.stat_images_tag">IMAGES</div>
-      <div class="stat-num" data-i18n="release.stat_images_num">1,700+</div>
-      <div class="stat-label" data-i18n="release.stat_images_label">张截图交互</div>
+      <div class="stat-tag">IMAGES</div>
+      <div class="stat-num">1,700+</div>
+      <div class="stat-label">张截图交互</div>
     </div>
     <div class="stat red">
-      <div class="stat-tag" data-i18n="release.stat_total_tag">TOTAL</div>
-      <div class="stat-num" data-i18n="release.stat_total_num">134万</div>
-      <div class="stat-label" data-i18n="release.stat_total_label">字对话量</div>
+      <div class="stat-tag">TOTAL</div>
+      <div class="stat-num">134万</div>
+      <div class="stat-label">字对话量</div>
     </div>
   </div>
 
-  <div class="summary" data-i18n="[html]release.summary">对话量相当于<em>两本长篇小说</em>，全程<em>零行手写代码</em></div>
+  <div class="summary">对话量相当于<em>两本长篇小说</em>，全程<em>零行手写代码</em></div>
   <div class="tags-row">
-    <span data-i18n="release.tag_lang">5种语言</span>
-    <span data-i18n="release.tag_images">89张图片</span>
-    <span data-i18n="release.tag_mobile">移动端适配</span>
-    <span data-i18n="release.tag_dark">深色主题</span>
-    <span data-i18n="release.tag_docs">完整文档站</span>
+    <span>5种语言</span>
+    <span>89张图片</span>
+    <span>移动端适配</span>
+    <span>深色主题</span>
+    <span>完整文档站</span>
   </div>
 
   <div class="site-link">
-    <a href="https://imaclaw.github.io/ima-claw/" target="_blank" rel="noopener" data-i18n="release.site_link">→ 看看这个网站 imaclaw.github.io/ima-claw</a>
+    <a href="https://imaclaw.github.io/ima-claw/" target="_blank" rel="noopener">→ 看看这个网站 imaclaw.github.io/ima-claw</a>
   </div>
 
   <div class="brand"><strong>IMA Claw</strong> · Powered by OpenClaw</div>
 
   <div class="cta-section">
-    <h3 data-i18n="release.cta_title">想要一只自己的龙虾？🦞</h3>
-    <p data-i18n="release.cta_desc">Ima Claw — 你的私人 AI 创作伙伴，24/7 在线</p>
-    <a href="../adopt/" class="cta-btn" data-i18n="release.cta_btn">💙 免费领养</a>
+    <h3>想要一只自己的龙虾？🦞</h3>
+    <p>Ima Claw — 你的私人 AI 创作伙伴，24/7 在线</p>
+    <a href="../adopt/" class="cta-btn">💙 免费领养</a>
   </div>
 
-  <a href="./" class="back" data-i18n="release.back">← 返回博客</a>
+  <a href="./" class="back">← 返回博客</a>
 
 </div>
 
