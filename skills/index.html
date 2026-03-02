@@ -197,7 +197,7 @@ body{padding-top:60px}
 </div>
 
 <!-- Hot categories -->
-<div id="ch-hot-cats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
+<div id="ch-hot-cats" data-has-all="1" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
 
 <!-- More categories (collapsed) -->
 <div style="margin-bottom:16px">
@@ -279,7 +279,7 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
 
 function chRenderCats(){
   // Hot categories
-  var h='';
+  var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()">🌐 全部</button>';
   CH_HOT.forEach(function(c){
     h+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
   });
