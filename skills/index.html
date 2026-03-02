@@ -307,6 +307,8 @@ function chFilterCat(btn, catKey, query){
   });
 
   chFiltered=localResults.concat(searchResults);
+  // Sort: skills with stats first
+  chFiltered.sort(function(a,b){return ((b.stats||{}).downloads||0)-((a.stats||{}).downloads||0)});
   chShown=0;
 
   // Also fetch from ClawHub API for more results
