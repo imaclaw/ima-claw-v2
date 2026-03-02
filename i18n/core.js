@@ -155,6 +155,7 @@
     loadLang(lang, function (dict) {
       applyTranslations(dict);
       updateUI(lang);
+      try{window.dispatchEvent(new Event('langChanged'))}catch(e){}
     });
   }
 
