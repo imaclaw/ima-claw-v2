@@ -13,7 +13,7 @@
   <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
   <div class="nav-links">
     <a href="../../../">首页</a><a href="../../../adopt/" class="nav-adopt">🦞 领养</a><a href="../../../skills/">Skill 市场</a><a href="../../../pricing/">🛒 购买</a><a href="../../../docs/">帮助</a><a href="https://imastudio.com/community" target="_blank">社区</a>
-    <div class="lang-dropdown"><button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button><div class="lang-menu"><button onclick="setLang('zh')">🇨🇳 中文</button><button onclick="setLang('en')">🇺🇸 English</button></div></div>
+    <div class="lang-dropdown"><button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button><div class="lang-menu"><button data-lang="">🇨🇳 中文</button><button data-lang="">🇺🇸 English</button></div></div>
   </div>
   <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
 </nav>
@@ -68,5 +68,7 @@
 <div class="other-channels"><h3>接入其他渠道</h3><div class="channel-row"><a href="../telegram/" class="channel-link"><img src="../../../adopt/logos/telegram.svg" alt="">Telegram</a><a href="../whatsapp/" class="channel-link"><img src="../../../adopt/logos/whatsapp.svg" alt="">WhatsApp</a><a href="../feishu/" class="channel-link"><img src="../../../adopt/logos/feishu.png" alt="">飞书</a><a href="../signal/" class="channel-link"><img src="../../../adopt/logos/signal.svg" alt="">Signal</a><a href="../imessage/" class="channel-link"><img src="../../../adopt/logos/imessage.svg" alt="">iMessage</a></div></div>
 </div>
 <script>function copyCode(btn){var block=btn.parentElement;var text=block.textContent.replace("复制","").replace("已复制!","").trim();navigator.clipboard.writeText(text);btn.textContent="已复制!";btn.style.background="var(--green)";btn.style.color="#fff";setTimeout(function(){btn.textContent="复制";btn.style.background="";btn.style.color=""},1500)}document.addEventListener("click",function(e){document.querySelectorAll(".lang-dropdown.open").forEach(function(d){if(!d.contains(e.target))d.classList.remove("open")});var nav=document.querySelector(".nav-links");var ham=document.querySelector(".hamburger");if(nav&&nav.classList.contains("open")&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove("open")}});</script>
+<script src="../../../i18n/core.js"></script>
+<script src="../../../assets/js/nav.js"></script>
 </body>
 </html>

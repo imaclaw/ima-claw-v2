@@ -115,11 +115,11 @@ body{padding-top:60px}
     <div class="lang-dropdown" style="position:relative;margin-left:8px">
       <button class="lang-trigger" onclick="this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
       <div class="lang-menu">
-        <button onclick="setLang('zh-CN')">🇨🇳 中文</button>
-        <button onclick="setLang('en')">🇺🇸 English</button>
-        <button onclick="setLang('es')">🇪🇸 Español</button>
-        <button onclick="setLang('ja')">🇯🇵 日本語</button>
-        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+        <button data-lang="zh-CN">🇨🇳 中文</button>
+        <button data-lang="en">🇺🇸 English</button>
+        <button data-lang="es">🇪🇸 Español</button>
+        <button data-lang="ja">🇯🇵 日本語</button>
+        <button data-lang="ar">🇸🇦 العربية</button>
       </div>
     </div>
   </div>
@@ -440,54 +440,9 @@ body{padding-top:60px}
 
 <footer><p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">Ima Studio</a> · I'm A Studio, I'm A Claw 🦞</p></footer>
 
-<script src="../i18n-sub.js?v=20260301b"></script>
-<script>
-function setLang(l){try{localStorage.setItem("imaclaw-lang",l)}catch(e){}
-  document.documentElement.lang=l;
-  var isZh=l==='zh-CN'||l==='zh';
-  document.querySelectorAll('[data-zh]').forEach(function(e){e.style.display=isZh?'block':'none'});
-  document.querySelectorAll('[data-en]').forEach(function(e){e.style.display=isZh?'none':'block'});
-  // Also handle data-i18n elements via i18n-sub.js
-  if(typeof I18N!=='undefined'){
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var k=el.getAttribute('data-i18n');
-      if(!el._zh)el._zh=el.innerHTML;
-      if(isZh){el.innerHTML=el._zh}
-      else if(I18N[l]&&I18N[l][k]){el.innerHTML=I18N[l][k]}
-      else if(I18N['en']&&I18N['en'][k]){el.innerHTML=I18N['en'][k]}
-    });
-  }
-  var m={'zh-CN':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
-  var t=document.querySelector('.lang-trigger');
-  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
-  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
-  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
-}
-// Auto-detect language from browser
-(function(){try{var s=localStorage.getItem('imaclaw-lang');if(s){setLang(s)}else{var l=navigator.language||'en';var m={'zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','zh-HK':'zh-CN','en':'en','es':'es','ja':'ja','ar':'ar'};setLang(m[l]||m[l.split('-')[0]]||'en')}}catch(e){}})();
 
-// Close mobile nav on outside click
-document.addEventListener('click',function(e){
-  var nav=document.querySelector('.nav-links');
-  var ham=document.querySelector('.hamburger');
-  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){
-    nav.classList.remove('open');
-  }
-  // Close all lang dropdowns on outside click
-  document.querySelectorAll('.lang-dropdown.open').forEach(function(d){
-    if(!d.contains(e.target))d.classList.remove('open');
-  });
-});
-// Close mobile nav after clicking a nav link
-document.querySelectorAll('.nav-links a').forEach(function(a){
-  a.addEventListener('click',function(){
-    var nav=document.querySelector('.nav-links');
-    if(nav)nav.classList.remove('open');
-  });
-});
-// Close mobile nav after language switch
-var origSetLang=setLang;
-setLang=function(l){origSetLang(l);var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open');};
-</script>
+
+<script src="../i18n/core.js"></script>
+<script src="../assets/js/nav.js"></script>
 </body>
 </html>

@@ -134,8 +134,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <div class="lang-dropdown">
       <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
       <div class="lang-menu">
-        <button onclick="setLang('zh')">🇨🇳 中文</button>
-        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button data-lang="">🇨🇳 中文</button>
+        <button data-lang="">🇺🇸 English</button>
       </div>
     </div>
   </div>
@@ -240,4 +240,6 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+<script src="../../../i18n/core.js"></script>
+<script src="../../../assets/js/nav.js"></script>
 </body></html>

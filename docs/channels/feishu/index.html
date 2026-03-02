@@ -19,8 +19,8 @@
     <div class="lang-dropdown">
       <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
       <div class="lang-menu">
-        <button onclick="setLang('zh')">🇨🇳 中文</button>
-        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button data-lang="">🇨🇳 中文</button>
+        <button data-lang="">🇺🇸 English</button>
       </div>
     </div>
   </div>
@@ -96,5 +96,7 @@
 function copyCode(btn){var block=btn.parentElement;var text=block.textContent.replace("复制","").replace("已复制!","").trim();navigator.clipboard.writeText(text);btn.textContent="已复制!";btn.style.background="var(--green)";btn.style.color="#fff";setTimeout(function(){btn.textContent="复制";btn.style.background="";btn.style.color=""},1500)}
 document.addEventListener("click",function(e){document.querySelectorAll(".lang-dropdown.open").forEach(function(d){if(!d.contains(e.target))d.classList.remove("open")});var nav=document.querySelector(".nav-links");var ham=document.querySelector(".hamburger");if(nav&&nav.classList.contains("open")&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove("open")}});
 </script>
+<script src="../../../i18n/core.js"></script>
+<script src="../../../assets/js/nav.js"></script>
 </body>
 </html>
