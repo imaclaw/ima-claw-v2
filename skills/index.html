@@ -272,7 +272,7 @@ function chCard(s){
         (installs?'<span>🔧 '+installs+'</span>':'')+
         (ver?'<span style="opacity:0.6">v'+chEsc(ver)+'</span>':'')+
       '</span>'+
-      '<span class="sk-install" onclick="event.preventDefault();chCopy(''+chEsc(s.slug)+'')">📋 复制安装</span>'+
+      '<span class="sk-install" onclick="event.preventDefault();chCopy(\x27'+chEsc(s.slug)+'\x27)">📋 复制安装</span>'+
     '</div></a>';
 }
 
