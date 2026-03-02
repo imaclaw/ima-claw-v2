@@ -37,7 +37,25 @@ a{color:var(--lobster-light);text-decoration:none}
 .hero h1{font-size:52px;font-weight:900;line-height:1.15;margin-bottom:20px;text-align:center}
 .hero h1 span{color:var(--lobster-light)}
 .hero-desc{font-size:20px;color:var(--text-2);max-width:800px;margin:0 auto}
-@media(max-width:600px){.hero h1{font-size:28px}.hero-desc{font-size:15px}.pain-header h2,.diff-header h2,.pricing-header h2,.cap-header h2,.compare-header h2,.faq-header h2{font-size:20px}.solution-section h2{font-size:22px}.cta-section h2{font-size:22px}}
+@media(max-width:600px){
+  .container{padding:80px 16px 40px}
+  .hero h1{font-size:26px}
+  .hero-desc{font-size:14px;line-height:1.6}
+  .pain-header h2,.diff-header h2,.pricing-header h2,.cap-header h2,.compare-header h2,.faq-header h2{font-size:20px}
+  .solution-section h2{font-size:20px}
+  .solution-section{padding:24px 16px}
+  .solution-new{padding:16px 20px}
+  .solution-new .price{font-size:28px}
+  .cta-section h2{font-size:20px}
+  .cta-section{padding:32px 16px}
+  .diff-grid{grid-template-columns:1fr !important}
+  .faq-list{grid-template-columns:1fr !important}
+  .pricing-grid{grid-template-columns:1fr !important}
+  .cap-grid{grid-template-columns:1fr !important}
+  .plan-card{padding:20px 16px}
+  .compare-section{padding:0}
+  .compare-section th,.compare-section td{padding:8px 6px;font-size:12px}
+}
 
 .pain-section{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;margin-top:48px;margin-bottom:60px}
 .pain-header{text-align:center;margin-bottom:32px}
