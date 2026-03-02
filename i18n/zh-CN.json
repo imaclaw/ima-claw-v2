@@ -696,7 +696,7 @@
   "step4.intro": "它会自我介绍、了解你、然后问你想叫它什么名字。每只龙虾都是独一无二的——养出你自己的风格！",
   "step4.tips": "🎯 <strong>第一次聊天的灵感：",
   "cloud.title": "☁️ 云端领养 — 你的龙虾住在云上，随时待命",
-  "cloud.info": "<span><span style=\"color:#4A80D4\">✅</span> 7×24 小时在线，永不关机</span><span><span style=\"color:#4A80D4\">✅</span> 零配置，注册即用</span><span><span style=\"color:#4A80D4\">✅</span> IMA 托管运维，安全扫描</span><span><span style=\"color:#4A80D4\">✅</span> 企业级备份，多设备同步</span><span><span style=\"color:#4A80D4\">✅</span> 自动更新，最新能力</span>",
+  "cloud.info": "<div><span style=\"color:#4A80D4\">✅</span> 7×24 小时在线，永不关机</div><div><span style=\"color:#4A80D4\">✅</span> 零配置，注册即用</div><div><span style=\"color:#4A80D4\">✅</span> IMA 托管运维，安全扫描</div><div><span style=\"color:#4A80D4\">✅</span> 企业级备份，多设备同步</div><div><span style=\"color:#4A80D4\">✅</span> 自动更新，最新能力</div>",
   "cloud.promo": "🔥 限时福利：云端领养限量免费内测名额开放中！",
   "cloud.promo.sub": "填写表单预约名额，开放时第一时间通知你",
   "cloud.cta": "📋 免费预约",

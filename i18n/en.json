@@ -551,7 +551,7 @@
   "local.title": "🖥 Local — Your Claw lives on your computer",
   "local.info": "<span style='color:#E8584E'>✅</span> Free forever, no payment needed<br><span style='color:#E8584E'>✅</span> Deep integration with local files, terminal, browser<br><span style='color:#E8584E'>✅</span> Open source, fully customizable<br><span style='color:#eab308'>⚠️</span> Offline when computer is off<br><span style='color:#eab308'>⚠️</span> Command line required, higher learning curve<br><span style='color:#eab308'>⚠️</span> Self-managed skills, open ecosystem has security risks<br><span style='color:#eab308'>⚠️</span> No managed hosting, all maintenance is on you",
   "cloud.title": "☁️ Cloud — Your Claw lives in the cloud, always ready",
-  "cloud.info": "<span><span style=\"color:#4A80D4\">✅</span> 24/7 online, never offline</span><span><span style=\"color:#4A80D4\">✅</span> Zero config, sign up and go</span><span><span style=\"color:#4A80D4\">✅</span> IMA managed, security scanned</span><span><span style=\"color:#4A80D4\">✅</span> Enterprise backup, multi-device sync</span><span><span style=\"color:#4A80D4\">✅</span> Auto updates, latest capabilities</span>",
+  "cloud.info": "<div><span style=\"color:#4A80D4\">✅</span> 24/7 online, never offline</div><div><span style=\"color:#4A80D4\">✅</span> Zero config, sign up and go</div><div><span style=\"color:#4A80D4\">✅</span> IMA managed, security scanned</div><div><span style=\"color:#4A80D4\">✅</span> Enterprise backup, multi-device sync</div><div><span style=\"color:#4A80D4\">✅</span> Auto updates, latest capabilities</div>",
   "cloud.coming": "Cloud Adoption Coming Soon",
   "cloud.cta": "📋 Book Beta Access",
   "cloud.compare.title": "Local vs Cloud",
