@@ -186,27 +186,27 @@ body{padding-top:60px}
 .cm-result-info .back{cursor:pointer;color:var(--text-3);margin-right:8px}
 @media(max-width:600px){.cm-skill-grid{grid-template-columns:1fr}}
 </style>
-<div id="community-browse" style="max-width:1100px;margin:40px auto 0;padding:0 20px">
-<div style="border-top:1px solid var(--border);padding-top:40px;margin-bottom:32px">
+<div id="community-browse" style="max-width:1100px;margin:20px auto 0;padding:0 20px">
+<div style="border-top:1px solid var(--border);padding-top:24px;margin-bottom:32px">
 <h2 style="font-size:24px;font-weight:900;margin-bottom:6px">🌍 社区技能市场</h2>
-<p style="color:var(--text-2);font-size:14px;margin-bottom:16px">来自全球开发者的 <span id="ch-total">9,200+</span> 个技能</p>
+<p style="color:var(--text-2);font-size:14px;margin-bottom:12px">来自全球开发者的 <span id="ch-total">9,200+</span> 个技能</p>
 
 <!-- Search -->
-<div class="cm-search-box" style="margin-bottom:16px">
+<div class="cm-search-box" style="margin-bottom:20px">
   <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearchInput()">
 </div>
 
 <!-- Hot categories -->
-<div id="ch-hot-cats" data-has-all="1" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
+<div id="ch-hot-cats" data-has-all="1" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
 
 <!-- More categories (collapsed) -->
-<div style="margin-bottom:16px">
+<div style="margin-bottom:20px">
   <button class="cm-cat-tag" onclick="var g=document.getElementById('ch-more-cats');g.style.display=g.style.display==='none'?'flex':'none';this.classList.toggle('active')" style="margin-bottom:8px">📂 更多分类 ▾</button>
   <div id="ch-more-cats" style="display:none;flex-wrap:wrap;gap:8px"></div>
 </div>
 
 <!-- Sort buttons -->
-<div style="display:flex;gap:12px;margin-bottom:12px;align-items:center">
+<div style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px">
   <span style="font-size:12px;color:var(--text-3);margin-left:4px">排序：</span>
   <button class="ch-sort-btn active" onclick="chSortBy('trending',this)">🔥 热门</button>
   <button class="ch-sort-btn" onclick="chSortBy('downloads',this)">📥 下载</button>
