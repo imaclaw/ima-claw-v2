@@ -76,7 +76,7 @@ a{text-decoration:none;color:inherit}
 .provider .name{font-weight:600;color:var(--text)}
 .provider .tag{font-size:11px;color:var(--text-2);margin-top:4px}
 .provider-details{margin:16px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
-.pd{font-size:13px;color:var(--text-2);line-height:1.8;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.pd{font-size:15px;color:var(--text-2);line-height:1.8;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .pd:last-child{border-bottom:none}
 .pd-name{color:var(--text);font-weight:600}
 
@@ -164,26 +164,26 @@ a{text-decoration:none;color:inherit}
 
 <!-- Tabs -->
 <div style="display:flex;gap:0;border-radius:12px;overflow:visible;border:1px solid var(--border);margin-bottom:0">
-<div id="mode-local" onclick="switchMode('local')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(232,88,78,0.3)">
-<div style="font-size:24px;margin-bottom:4px">💻</div>
-<div style="font-size:15px;font-weight:700;color:var(--text)" data-i18n="tab.local">本地领养</div>
-<div style="font-size:13px;color:#E8584E;margin-top:2px" data-i18n="tab.local.sub">免费 · 立即可用</div>
+<div id="mode-cloud" onclick="switchMode('cloud')" style="flex:1;padding:18px 16px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(232,88,78,0.3);position:relative;overflow:visible">
+<div style="position:absolute;top:-1px;left:-1px;background:var(--lobster);color:white;font-size:12px;font-weight:700;padding:5px 12px 5px 14px;border-radius:12px 0 8px 0;line-height:1;letter-spacing:0.5px;z-index:2" data-i18n="tab.recommend">⭐ Pick</div>
+<div style="font-size:28px;margin-bottom:6px">☁️</div>
+<div style="font-size:17px;font-weight:700;color:var(--text)" data-i18n="tab.cloud">Cloud</div>
+<div style="font-size:14px;color:#4A80D4;margin-top:4px" data-i18n="tab.cloud.sub">Coming Soon · 24/7 Online</div>
 </div>
 <div style="width:1px;background:var(--border)"></div>
-<div id="mode-cloud" onclick="switchMode('cloud')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);opacity:0.4;position:relative;overflow:visible">
-<div style="position:absolute;top:-1px;right:-1px;background:var(--lobster);color:white;font-size:11px;font-weight:700;padding:4px 10px 4px 12px;border-radius:0 12px 0 8px;line-height:1;letter-spacing:0.5px;z-index:2" data-i18n="tab.recommend">⭐推荐</div>
-<div style="font-size:24px;margin-bottom:4px">☁️</div>
-<div style="font-size:15px;font-weight:700;color:var(--text)" data-i18n="tab.cloud">云端领养</div>
-<div style="font-size:11px;color:#4A80D4;margin-top:2px" data-i18n="tab.cloud.sub">即将推出 · 7×24h 在线</div>
+<div id="mode-local" onclick="switchMode('local')" style="flex:1;padding:18px 16px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);opacity:0.4">
+<div style="font-size:28px;margin-bottom:6px">💻</div>
+<div style="font-size:17px;font-weight:700;color:var(--text)" data-i18n="tab.local">Local</div>
+<div style="font-size:14px;color:#E8584E;margin-top:4px" data-i18n="tab.local.sub">Free · Ready Now</div>
 </div>
 </div>
 
 <!-- Content area with visual connection to tabs -->
-<div id="steps-local" style="padding:16px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid var(--lobster);border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(212,64,58,0.03) 0%,transparent 120px)">
+<div id="steps-local" style="padding:24px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid var(--lobster);border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(212,64,58,0.03) 0%,transparent 120px)">
 
 <!-- Local info panel -->
-<div style="margin-bottom:20px;padding:14px 16px;background:rgba(212,64,58,0.04);border:1px solid rgba(212,64,58,0.12);border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.8">
-<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px" data-i18n="local.title">🖥 本地领养 — 你的龙虾住在你的电脑里</div>
+<div style="margin-bottom:20px;padding:14px 16px;background:rgba(212,64,58,0.04);border:1px solid rgba(212,64,58,0.12);border-radius:10px;font-size:15px;color:var(--text-2);line-height:1.8">
+<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:17px" data-i18n="local.title">🖥 本地领养 — 你的龙虾住在你的电脑里</div>
 <div data-i18n="local.info"><span style="color:#E8584E">✅</span> 永久免费，无需付费<br>
 <span style="color:#E8584E">✅</span> 与本地文件、终端、浏览器深度联动<br>
 <span style="color:#E8584E">✅</span> 开源透明，自由定制<br>
@@ -296,11 +296,11 @@ a{text-decoration:none;color:inherit}
 
 </div>
 
-<div id="steps-cloud" style="display:none;padding:16px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid #4A80D4;border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(58,108,190,0.03) 0%,transparent 120px)">
+<div id="steps-cloud" style="display:none;padding:24px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid #4A80D4;border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(58,108,190,0.03) 0%,transparent 120px)">
 
 <!-- Cloud info panel -->
-<div style="margin-bottom:20px;padding:14px 16px;background:rgba(58,108,190,0.04);border:1px solid rgba(58,108,190,0.12);border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.8">
-<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px" data-i18n="cloud.title">☁️ 云端领养 — 你的龙虾住在云上，随时待命</div>
+<div style="margin-bottom:20px;padding:14px 16px;background:rgba(58,108,190,0.04);border:1px solid rgba(58,108,190,0.12);border-radius:10px;font-size:15px;color:var(--text-2);line-height:1.8">
+<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:17px" data-i18n="cloud.title">☁️ 云端领养 — 你的龙虾住在云上，随时待命</div>
 <div data-i18n="cloud.info"><span style="color:#4A80D4">✅</span> 7×24 小时在线，永不关机，随时随地服务<br>
 <span style="color:#4A80D4">✅</span> 零配置，注册即用，无需命令行<br>
 <span style="color:#4A80D4">✅</span> IMA 托管运维，Skill 安全扫描，省心安全<br>
