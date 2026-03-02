@@ -464,7 +464,8 @@ function chReset(){
   document.getElementById('ch-result-info').style.display='none';
 }
 
-function chRender(){document.title='R:'+chFiltered.length+'/'+chSkills.length;
+function chRender(){
+  if(!chFiltered.length&&chSkills.length)chFiltered=chSkills.slice();
   var items=chFiltered.slice(0, chShown+chPerPage);
   chShown=items.length;
   document.getElementById('ch-skill-grid').innerHTML=items.length?items.map(chCard).join(''):'<div style="text-align:center;padding:20px;color:var(--text-3)">没有找到匹配的技能</div>';
