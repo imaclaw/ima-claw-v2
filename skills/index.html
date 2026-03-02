@@ -280,7 +280,7 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
   document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">数据加载失败，请刷新重试</div>';
 });
 
-function chGetLang(){return(localStorage.getItem('lang')||'zh-CN').startsWith('zh')?'zh':'en'}
+function chGetLang(){return(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh')?'zh':'en'}
 function chCatLabel(c){return chGetLang()==='zh'?c.zh:c.en}
 function chRenderCats(){
   var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()" data-i18n="skills.community.all">🌐 全部</button>';
