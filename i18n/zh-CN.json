@@ -773,5 +773,8 @@
   "skills.community.all": "🌐 全部",
   "skills.community.loadmore": "加载更多",
   "skills.community.empty": "没有找到匹配的技能",
-  "skills.community.error": "数据加载失败，请刷新重试"
+  "skills.community.error": "数据加载失败，请刷新重试",
+  "skills.filter.image": "图片",
+  "skills.filter.video": "视频",
+  "skills.filter.music": "音乐"
 }

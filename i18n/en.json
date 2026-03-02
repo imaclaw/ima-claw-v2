@@ -773,5 +773,8 @@
   "skills.community.all": "🌐 All",
   "skills.community.loadmore": "Load more",
   "skills.community.empty": "No matching skills found",
-  "skills.community.error": "Failed to load, please refresh"
+  "skills.community.error": "Failed to load, please refresh",
+  "skills.filter.image": "Image",
+  "skills.filter.video": "Video",
+  "skills.filter.music": "Music"
 }
