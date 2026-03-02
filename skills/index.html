@@ -209,7 +209,7 @@ body{padding-top:60px}
 </div>
 
 <!-- Sort buttons -->
-<div id="ch-sort-bar" style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px"></div>
+<div id="ch-sort-bar" style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px;padding-left:4px"></div>
 <!-- Result info -->
 <div class="cm-result-info" id="ch-result-info" style="display:none;margin-bottom:12px">
   <span class="back" onclick="chReset()" style="cursor:pointer">← 返回</span> <span id="ch-result-text"></span>
@@ -309,7 +309,7 @@ function chRenderCats(){
 function chRenderSort(){
   var isZh=chGetLang()==='zh';
   document.getElementById('ch-sort-bar').innerHTML=
-    '<span style="font-size:12px;color:var(--text-3);margin-left:4px">'+(isZh?'排序：':'Sort:')+' </span>'+
+    '<span style="font-size:12px;color:var(--text-3);margin-left:0">'+(isZh?'排序：':'Sort:')+' </span>'+
     '<button class="ch-sort-btn'+(chCurrentSort==='trending'?' active':'')+'" onclick="chSortBy(\x27trending\x27,this)">'+(isZh?'🔥 热门':'🔥 Trending')+'</button>'+
     '<button class="ch-sort-btn'+(chCurrentSort==='downloads'?' active':'')+'" onclick="chSortBy(\x27downloads\x27,this)">'+(isZh?'📥 下载':'📥 Downloads')+'</button>'+
     '<button class="ch-sort-btn'+(chCurrentSort==='newest'?' active':'')+'" onclick="chSortBy(\x27newest\x27,this)">'+(isZh?'🆕 最新':'🆕 Newest')+'</button>';
