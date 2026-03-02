@@ -25,7 +25,7 @@ nav.scrolled{background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bo
 .lang-dropdown{display:inline-block}
 .lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
 .lang-trigger:hover{border-color:var(--lobster)}
-.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
 .lang-dropdown.open .lang-menu{display:block}
 .lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
 .lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
