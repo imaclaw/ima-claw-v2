@@ -204,7 +204,7 @@ body{padding-top:60px}
 
 <!-- More categories (collapsed) -->
 <div style="margin-bottom:20px">
-  <a href="javascript:void(0)" id="ch-more-btn" onclick="var g=document.getElementById('ch-more-cats');var open=g.style.display==='none';g.style.display=open?'flex':'none';var isZh=(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh');this.textContent=open?(isZh?'收起分类 ▴':'Less categories ▴'):(isZh?'更多分类 ▾':'More categories ▾')" style="font-size:13px;color:var(--text-3);text-decoration:none;cursor:pointer;display:inline-block;margin:4px 0 8px">更多分类 ▾</a>
+  <a href="javascript:void(0)" id="ch-more-btn" onclick="var g=document.getElementById('ch-more-cats');var open=g.style.display==='none';g.style.display=open?'flex':'none';var isZh=(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh');this.textContent=open?(isZh?'▴ Less':'▴ Less'):(isZh?'▾ More':'▾ More')" style="font-size:13px;color:var(--text-3);text-decoration:none;cursor:pointer;display:inline-block;margin:4px 0 8px">▾ More</a>
   <div id="ch-more-cats" style="display:none;flex-wrap:wrap;gap:8px"></div>
 </div>
 
