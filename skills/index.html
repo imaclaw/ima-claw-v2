@@ -271,20 +271,21 @@ var CH_LOCAL=new Set(["gog", "summarize", "github", "sonoscli", "weather", "self
 var chSkills=[], chFiltered=[], chShown=0, chPerPage=20, chCurrentSort='trending', chActiveCat=null;
 
 // Load local data
+chRenderCats();
+chRenderSort();
+
 fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(data){
   chSkills=data.skills||[];
   document.getElementById('ch-total').textContent=chSkills.length.toLocaleString()+'+';
-  chRenderCats();
-  chRenderSort();
   chApplySort('trending');
 }).catch(function(){
-  document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">数据加载失败，请刷新重试</div>';
+  document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">'+(chGetLang()==='zh'?'数据加载失败，请刷新重试':'Failed to load. Please refresh.')+'</div>';
 });
 
 function chGetLang(){return(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh')?'zh':'en'}
 function chCatLabel(c){return chGetLang()==='zh'?c.zh:c.en}
 function chRenderCats(){
-  var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()" data-i18n="skills.community.all">🌐 全部</button>';
+  var isZh=chGetLang()==='zh';var h='<button class="cm-cat-tag ch-cat active" onclick="chReset()">'+(isZh?'🌐 全部':'🌐 All')+'</button>';
   CH_HOT.forEach(function(c){
     h+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+chCatLabel(c)+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
   });
