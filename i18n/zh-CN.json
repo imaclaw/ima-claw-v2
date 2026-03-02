@@ -705,7 +705,7 @@
   "cloud.features.title": "☁️ 云端版将支持：",
   "cloud.features": "<div>🌐 <strong>浏览器直接使用",
   "cloud.compare.title": "本地 vs 云端",
-  "cloud.compare": "<tr style=\"border-bottom:1px solid var(--border)\">\n<td style=\"padding:6px 4px;font-weight:600;color:var(--text)\">",
+  "cloud.compare": "<tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:6px 4px;font-weight:600;color:var(--text)\"></td><td style=\"padding:6px 4px;text-align:center;font-weight:600;color:#E8584E\">🖥 本地</td><td style=\"padding:6px 4px;text-align:center;font-weight:600;color:#4A80D4\">☁️ 云端</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:6px 4px\">可用性</td><td style=\"text-align:center\">开机在线</td><td style=\"text-align:center\">7×24h</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:6px 4px\">数据</td><td style=\"text-align:center\">本机</td><td style=\"text-align:center\">云端加密</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:6px 4px\">费用</td><td style=\"text-align:center\">免费</td><td style=\"text-align:center\">月费</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:6px 4px\">安装</td><td style=\"text-align:center\">命令行</td><td style=\"text-align:center\">注册即用</td></tr><tr><td style=\"padding:6px 4px\">本地联动</td><td style=\"text-align:center\">✅ 深度</td><td style=\"text-align:center\">🔗 远程</td></tr>",
   "cloud.tryfirst": "等不及？先试试 <a href=\"javascript:switchMode('local')\" style=\"color:var(--lobster-light)\">本地领养",
   "skill.allinone.title": "IMA 全能创作包 <span style=\"background:#D4403A;color:white;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px\">⭐ 推荐",
   "skill.allinone.desc": "图片+视频+音乐 All-in-One，40+ AI 模型，一个技能覆盖完整创作链路",
