@@ -56,10 +56,10 @@ a{color:var(--lobster-light);text-decoration:none}
 .t-new{background:rgba(46,204,113,0.12);color:var(--green)}
 .t-com{background:rgba(74,158,255,0.12);color:var(--blue)}
 .card .models{font-size:11px;color:var(--text-3);margin-top:5px}
-.feat{background:var(--surface);padding:32px 28px;display:flex;gap:14px;align-items:center}
-.feat .ic{font-size:32px;margin:0;flex-shrink:0}
-.feat .fc{flex:1}
-.feat h3{font-size:24px;margin-bottom:10px}
+.feat{background:var(--surface);padding:32px 28px;display:block}
+.feat .ic{font-size:28px;display:inline-block;vertical-align:middle;margin-right:8px}
+.feat .fc{}
+.feat h3{font-size:24px;margin-bottom:12px}
 .feat p{font-size:15px;margin-bottom:16px;line-height:1.7}
 @media(max-width:600px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.feat{flex-direction:column;text-align:left;align-items:flex-start;gap:0}.feat-main{grid-column:auto}.feat .ic{margin-bottom:8px}}
 .cta{text-align:center;padding:40px 20px 50px}
@@ -120,17 +120,15 @@ body{padding-top:60px}
 </div>
 <div class="hero-grid">
 <div class="card feat feat-main" data-cat="create image video music marketing web" onclick="location.href='../docs/skills/ima-all-in-one/'" style="cursor:pointer">
-<span class="ic"><img src="../mascot.png" alt="Ima Claw" style="width:32px;height:32px"></span>
 <div class="fc">
-<h3><span data-i18n="skills.card.allinone">IMA 全能创作 All-in-One</span></h3>
+<h3><img src="../mascot.png" alt="Ima Claw" style="width:28px;height:28px;vertical-align:middle;margin-right:8px"><span data-i18n="skills.card.allinone">IMA 全能创作 All-in-One</span></h3>
 <p><span data-i18n="skills.card.allinone.desc">图片+视频+音乐，一个技能搞定。集成 40+ AI 模型，覆盖完整创作链路。</span></p>
 <div class="meta"><span class="tag t-off"><span data-i18n="skills.tag.official">官方</span></span><span class="tag t-pop">⭐ <span data-i18n="skills.tag.featured">推荐</span></span></div>
 <div class="models">SeeDream · GPT Image · Midjourney · Wan · Kling · Sora · Google Veo 3 · Suno</div>
 </div></div>
 <div class="card feat feat-main" data-cat="brain web" onclick="location.href='../docs/skills/ima-intelligence/'" style="cursor:pointer;background:var(--surface)">
-<span class="ic">🧠</span>
 <div class="fc">
-<h3><span data-i18n="skills.card.intel">IMA 基础智能 Skill 包</span></h3>
+<h3><span style="font-size:28px;vertical-align:middle;margin-right:8px">🧠</span><span data-i18n="skills.card.intel">IMA 基础智能 Skill 包</span></h3>
 <p><span data-i18n="skills.card.intel.desc">龙虾出厂标配。记忆系统、上下文管理、任务追踪、深度调研——一键激活，让龙虾开箱即智能。</span></p>
 <div class="meta"><span class="tag t-off"><span data-i18n="skills.tag.official2">官方</span></span><span class="tag t-pop">⭐ <span data-i18n="skills.tag.essential">必装</span></span></div>
 <div class="models"><span data-i18n="skills.card.intel.models">记忆系统 · 项目记忆 · 任务追踪 · 深度调研 · 上下文管理</span></div>
