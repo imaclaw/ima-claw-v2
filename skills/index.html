@@ -199,9 +199,9 @@ body{padding-top:60px}
 <div id="ch-hot-cats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
 
 <!-- More categories (collapsed) -->
-<div class="cm-other-cats" style="margin-bottom:16px">
-  <div class="cm-other-title" onclick="this.classList.toggle('open')"><span class="arrow">▶</span> 更多分类</div>
-  <div class="cm-other-grid" id="ch-more-cats"></div>
+<div style="margin-bottom:16px">
+  <button class="cm-cat-tag" onclick="var g=document.getElementById('ch-more-cats');g.style.display=g.style.display==='none'?'flex':'none';this.classList.toggle('active')" style="margin-bottom:8px">📂 更多分类 ▾</button>
+  <div id="ch-more-cats" style="display:none;flex-wrap:wrap;gap:8px"></div>
 </div>
 
 <!-- Search -->
@@ -283,7 +283,7 @@ function chRenderCats(){
   // Other categories
   var h2='';
   CH_OTHER.forEach(function(c){
-    h2+='<div class="cm-ocat" onclick="chFilterCat(null,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span class="cnt">('+c.n+')</span></div>';
+    h2+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
   });
   document.getElementById('ch-more-cats').innerHTML=h2;
 }
