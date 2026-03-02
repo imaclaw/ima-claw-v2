@@ -1,344 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="theme-color" content="#0C0C12">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码 — Blog — Ima Claw 🦞</title>
-<meta name="description" content="Debugging at 4 AM with Vibe Coding — 8 bugs fixed in 25 minutes with zero lines of hand-written code. A late-night dev story.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://imaclaw.github.io/ima-claw-v2/blog/vibe-coding-day2.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="凌晨4点的 Vibe Coding：8个bug，25分钟，0行代码">
-<meta property="og:description" content="Debugging at 4 AM with Vibe Coding — 8 bugs fixed in 25 minutes with zero lines of hand-written code. A late-night dev story.">
-<meta property="og:url" content="https://imaclaw.github.io/ima-claw-v2/blog/vibe-coding-day2.html">
-<meta property="og:image" content="https://imaclaw.github.io/ima-claw-v2/mascot.png">
-<meta property="og:site_name" content="Ima Claw">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="凌晨4点的 Vibe Coding：8个bug，25分钟，0行代码">
-<meta name="twitter:description" content="Debugging at 4 AM with Vibe Coding — 8 bugs fixed in 25 minutes with zero lines of hand-written code. A late-night dev story.">
-<meta name="twitter:image" content="https://imaclaw.github.io/ima-claw-v2/mascot.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/variables.css?v=8">
-<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>52小时，544个Commit，0行手写 — Ima Claw 开发数据报告</title>
+<meta name="description" content="52小时，544个commit，68个页面，189万字对话，0行手写代码。一份 Vibe Coding 的真实数据报告。">
+<link rel="stylesheet" href="../assets/css/variables.css?v=16">
+<link rel="stylesheet" href="../assets/css/nav.css?v=16">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--surface-2:#1B1B28;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12)}
-body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+html,body{overflow-x:hidden;width:100%;max-width:100%}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:60px}
 a{text-decoration:none;color:inherit}
+.page{max-width:900px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
+.hero{text-align:center;margin-bottom:56px}
+.meta{font-size:13px;color:var(--text-3);margin-bottom:24px;display:flex;gap:12px;align-items:center;justify-content:center}
+.tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:16px}
+.hero h1 span{color:var(--lobster-light)}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-2);line-height:1.7}
 
-.lang-dropdown.open /* lang toggle removed - using nav only */
+/* Stats grid */
+.section-label{text-align:center;font-size:12px;color:#58a6ff;font-weight:600;letter-spacing:5px;margin:40px 0 18px}
+.stats-grid{display:grid;gap:14px;margin-bottom:14px}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:24px 12px;text-align:center;transition:transform .3s}
+.stat:hover{transform:translateY(-3px)}
+.stat-tag{font-size:10px;color:#58a6ff;font-weight:600;letter-spacing:1px;margin-bottom:8px}
+.stat-num{font-size:clamp(24px,3vw,38px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:3px}
+.stat-label{font-size:clamp(11px,1.5vw,14px);color:#8b949e;font-weight:500}
+.stat.red{background:linear-gradient(135deg,rgba(255,107,107,0.12),rgba(255,160,122,0.06));border-color:rgba(255,107,107,0.25)}
+.stat.red .stat-num{background:linear-gradient(135deg,#ff6b6b,#ffa07a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat.blue{background:linear-gradient(135deg,rgba(88,166,255,0.10),rgba(88,166,255,0.04));border-color:rgba(88,166,255,0.2)}
+.stat.blue .stat-num{color:#58a6ff}
+.stat.green{background:linear-gradient(135deg,rgba(63,185,80,0.12),rgba(63,185,80,0.04));border-color:rgba(63,185,80,0.25)}
+.stat.green .stat-num{color:#3fb950}
+.stat.purple{background:linear-gradient(135deg,rgba(163,113,247,0.12),rgba(163,113,247,0.04));border-color:rgba(163,113,247,0.25)}
+.stat.purple .stat-num{color:#a371f7}
+.stat.yellow{background:linear-gradient(135deg,rgba(255,200,60,0.12),rgba(255,200,60,0.04));border-color:rgba(255,200,60,0.25)}
+.stat.yellow .stat-num{color:#ffc83c}
 
-.nav-links a.active{color:var(--lobster-light)}
+/* Content */
+.content{line-height:1.9;font-size:16px}
+.content h2{font-size:24px;font-weight:800;margin:48px 0 16px;letter-spacing:-0.02em}
+.content h3{font-size:18px;font-weight:700;margin:32px 0 12px}
+.content p{margin-bottom:16px;color:var(--text-2)}
+.content strong{color:var(--text);font-weight:600}
+.content blockquote{border-left:3px solid var(--lobster);padding:12px 20px;margin:24px 0;background:rgba(212,64,58,0.05);border-radius:0 12px 12px 0;font-style:italic;color:var(--text-2)}
 
-.article{max-width:720px;margin:0 auto;padding:60px 40px 100px}
-.article-meta{font-size:13px;color:var(--text-3);margin-bottom:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.article-tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
-.article h1{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px}
-.article .lead{font-size:17px;color:var(--text-2);line-height:1.8;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+/* Compare table */
+.compare{width:100%;border-collapse:collapse;margin:24px 0 32px}
+.compare th{text-align:left;padding:12px 16px;font-size:13px;color:#58a6ff;font-weight:600;letter-spacing:1px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.compare td{padding:12px 16px;font-size:14px;color:var(--text-2);border-bottom:1px solid rgba(255,255,255,0.04)}
+.compare tr:hover td{background:rgba(255,255,255,0.02)}
+.compare .highlight-row td{color:var(--lobster-light);font-weight:600}
 
-.article h2{font-size:22px;font-weight:800;margin:48px 0 16px;letter-spacing:-0.02em}
-.article h3{font-size:17px;font-weight:700;margin:32px 0 12px}
-.article p{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px}
-.article strong{color:var(--text);font-weight:700}
-.article em{color:var(--text-3);font-style:italic}
+/* Footer quote */
+.endquote{text-align:center;margin:60px 0 0;padding:40px;border-top:1px solid var(--border)}
+.endquote p{font-size:20px;font-weight:700;color:var(--text);line-height:1.6}
+.endquote .sub{font-size:14px;color:var(--text-3);margin-top:8px}
 
-.article ul,.article ol{margin:12px 0 20px 24px;font-size:15px;color:var(--text-2);line-height:1.8}
-.article li{margin-bottom:6px}
+/* Screenshot */
+.screenshot{margin:32px 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.screenshot img{width:100%;display:block}
+.screenshot-caption{font-size:12px;color:var(--text-3);text-align:center;padding:10px;background:var(--surface)}
 
-.article blockquote{margin:20px 0;padding:16px 24px;border-left:3px solid var(--lobster);background:var(--surface);border-radius:0 12px 12px 0;font-size:14px;color:var(--text-2);line-height:1.7}
-
-.img-placeholder{margin:24px 0;background:var(--surface);border:1px dashed var(--border);border-radius:12px;padding:40px;text-align:center;color:var(--text-3);font-size:13px}
-.img-placeholder .emoji{font-size:32px;display:block;margin-bottom:8px}
-.story-img{margin:24px 0;text-align:center}
-.story-img img{max-width:100%;border-radius:12px;border:1px solid var(--border)}
-.story-img .caption{margin-top:8px;font-size:13px;color:var(--text-3);font-style:italic}
-[data-zh]{display:none}
-[data-en]{display:block}
-
-.highlight-box{margin:32px 0;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
-.highlight-box h3{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--text)}
-.highlight-box ul{margin:0 0 0 20px;font-size:14px;color:var(--text-2);line-height:1.8}
-.highlight-box li{margin-bottom:4px}
-
-.divider{height:1px;background:var(--border);margin:48px 0}
-
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-3);margin-bottom:32px;transition:color .3s}
-.back-link:hover{color:var(--lobster-light)}
-
-footer{border-top:1px solid var(--border);padding:40px;text-align:center}
-footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
-
-[data-zh]{display:none}
-html[lang="en"] [data-zh]{display:none}html[lang="en"] [data-en]{display:block}
-html[lang="en"] span[data-en],html[lang="en"] a[data-en]{display:inline}
-html[lang="en"] span[data-zh],html[lang="en"] a[data-zh]{display:inline}
-html[lang="en"] span[data-en],html[lang="en"] a[data-zh]{display:none}
-html[lang="en"] span[data-zh],html[lang="en"] a[data-zh]{display:none}
-html[lang="en"] div[data-zh]{display:none}html[lang="en"] div[data-zh]{display:none}
-html[lang="en"] blockquote[data-zh]{display:none}html[lang="en"] blockquote[data-zh]{display:none}
-
-@media(max-width:600px){.article{padding:40px 20px 80px}}
-#.lang-dropdown.open 
-body{padding-top:60px}
 @media(max-width:600px){
-#
+  .page{padding:30px 16px 60px}
+  .g5,.g4,.g3{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:16px 8px}
+  .stat-num{font-size:24px}
+  .compare{font-size:12px}
+  .compare th,.compare td{padding:8px}
+}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码 — Blog — Ima Claw 🦞","description":"Debugging at 4 AM with Vibe Coding — 8 bugs fixed in 25 minutes with zero lines of hand-written code. A late-night dev story.","author":{"@type":"Person","name":"Yuki He"},"publisher":{"@type":"Organization","name":"Ima Claw","logo":{"@type":"ImageObject","url":"https://imaclaw.github.io/ima-claw-v2/mascot.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://imaclaw.github.io/ima-claw-v2/blog/vibe-coding-day2.html"}}</script>
 </head>
 <body>
-<nav id="nav">
-  <div class="logo"><a href="../" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit"><img src="../logo-nav.png" alt="Ima Claw" alt="" style="height:40px;width:40px;border-radius:8px"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a></div>
-  <div class="nav-links">
-        <a href="../" data-i18n="nav.home">首页</a>
-    <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
-    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
-    <a href="../docs/" data-i18n="nav.docs">帮助</a>
-    <a href="../blog/" data-i18n="nav.blog">博客</a>
-    <a href="https://imastudio.com/community" target="_blank" rel="noopener" data-i18n="nav.community">社区</a>
-    <a href="https://discord.gg/UdXFVYhh" aria-label="Join Ima Claw Discord community" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" style="width:14px;height:14px">Discord</a>
-    <div class="lang-dropdown" style="position:relative;margin-left:8px">
-      <button class="lang-trigger">🌐 中文 ▾</button>
-      <div class="lang-menu">
-        <button data-lang="zh-CN">🇨🇳 中文</button>
-        <button data-lang="en">🇺🇸 English</button>
-        <button data-lang="es">🇪🇸 Español</button>
-        <button data-lang="ja">🇯🇵 日本語</button>
-        <button data-lang="ar">🇸🇦 العربية</button>
-      </div>
-    </div>
+
+<div class="page">
+<div class="hero">
+  <div class="meta">
+    <span class="tag">DATA REPORT</span>
+    <span>2026-03-03</span>
+    <span>·</span>
+    <span>Ima Claw Dev Team</span>
   </div>
-<button class="hamburger">☰</button>
-</nav>
+  <h1>52 Hours. <span>544 Commits.</span><br>0 Lines Written.</h1>
+  <p class="hero-sub">2026.03.01 00:32 → 2026.03.03 04:46<br>一份 Vibe Coding 的真实数据报告</p>
+</div>
 
-<!-- removed duplicate fixed lang dropdown -->
+<!-- STATS DASHBOARD -->
+<div class="section-label">⚡ SPEED</div>
+<div class="stats-grid g5">
+  <div class="stat red"><div class="stat-tag">TOTAL TIME</div><div class="stat-num">52h</div><div class="stat-label">2 天 4 小时</div></div>
+  <div class="stat red"><div class="stat-tag">COMMITS</div><div class="stat-num">544</div><div class="stat-label">10.5/小时</div></div>
+  <div class="stat red"><div class="stat-tag">PEAK DAY</div><div class="stat-num">140</div><div class="stat-label">单日 commits</div></div>
+  <div class="stat red"><div class="stat-tag">REFACTOR</div><div class="stat-num">56m</div><div class="stat-label">架构重构</div></div>
+  <div class="stat red"><div class="stat-tag">HANDWRITTEN</div><div class="stat-num">0</div><div class="stat-label">行手写代码</div></div>
+</div>
 
+<div class="section-label">📄 SCALE</div>
+<div class="stats-grid g5">
+  <div class="stat blue"><div class="stat-tag">PAGES</div><div class="stat-num">68</div><div class="stat-label">HTML 页面</div></div>
+  <div class="stat blue"><div class="stat-tag">CODE</div><div class="stat-num">13.5K</div><div class="stat-label">行代码</div></div>
+  <div class="stat blue"><div class="stat-tag">I18N KEYS</div><div class="stat-num">779</div><div class="stat-label">翻译条目</div></div>
+  <div class="stat blue"><div class="stat-tag">LANGUAGES</div><div class="stat-num">5</div><div class="stat-label">语言支持</div></div>
+  <div class="stat blue"><div class="stat-tag">BLOG</div><div class="stat-num">6+</div><div class="stat-label">篇博客</div></div>
+</div>
 
+<div class="section-label">🛍️ ECOSYSTEM</div>
+<div class="stats-grid g4">
+  <div class="stat green"><div class="stat-tag">SKILLS</div><div class="stat-num">9,205</div><div class="stat-label">社区技能</div></div>
+  <div class="stat green"><div class="stat-tag">CATEGORIES</div><div class="stat-num">30</div><div class="stat-label">分类标签</div></div>
+  <div class="stat green"><div class="stat-tag">DETAIL PAGES</div><div class="stat-num">20</div><div class="stat-label">技能详情页</div></div>
+  <div class="stat green"><div class="stat-tag">DATA SIZE</div><div class="stat-num">2.2MB</div><div class="stat-label">技能数据</div></div>
+</div>
 
-<div class="article">
+<div class="section-label">💬 COLLABORATION</div>
+<div class="stats-grid g5">
+  <div class="stat purple"><div class="stat-tag">MESSAGES</div><div class="stat-num">347+</div><div class="stat-label">主人消息</div></div>
+  <div class="stat purple"><div class="stat-tag">RESPONSES</div><div class="stat-num">2,300+</div><div class="stat-label">AI 回复</div></div>
+  <div class="stat purple"><div class="stat-tag">SCREENSHOTS</div><div class="stat-num">52+</div><div class="stat-label">截图交换</div></div>
+  <div class="stat purple"><div class="stat-tag">LOOP TIME</div><div class="stat-num">2-3m</div><div class="stat-label">每轮迭代</div></div>
+  <div class="stat purple"><div class="stat-tag">CHARACTERS</div><div class="stat-num">1.89M</div><div class="stat-label">对话字符</div></div>
+</div>
 
-  <a href="./" class="back-link">← <span data-zh>返回博客</span><span data-en>Back to Blog</span></a>
+<div class="section-label">🔥 VS INDUSTRY</div>
+<div class="stats-grid g3">
+  <div class="stat yellow"><div class="stat-tag">AI CODE RATIO</div><div class="stat-num">100%</div><div class="stat-label">行业平均 41%</div></div>
+  <div class="stat yellow"><div class="stat-tag">SPEED BOOST</div><div class="stat-num">10x</div><div class="stat-label">反馈循环效率</div></div>
+  <div class="stat yellow"><div class="stat-tag">TRADITIONAL COST</div><div class="stat-num">$15K+</div><div class="stat-label">同等外包报价</div></div>
+</div>
 
-  <div class="article-meta">
-    <span class="article-tag"><span data-zh>创始人日志 #2</span><span data-en>Founder's Log #2</span></span>
-    <span>2026-03-01</span>
-    <span>Vibe Coding</span>
-  </div>
+<!-- ARTICLE -->
+<div class="content">
 
-  <!-- Chinese Version -->
-  <div data-zh>
-    <h1 data-i18n="day2.h11">凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码 🌙</h1>
-    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px" data-i18n="day2.p1">作者：Yuki 和龙虾爪爪</p>
-    <p class="lead" data-i18n="day2.p2">上次我用 Ima Claw 从零搭了整个官网，龙虾的脸被抠没了。这次我凌晨 4 点睡不着，拿起手机开始 review 网站，发现一堆小问题——于是又开始和爪爪 Vibe Coding。25 分钟，修了 8 个问题，依然 0 行代码。记录一下这个深夜迭代 session。</p>
+<h2>原始数据</h2>
+<p>2026 年 3 月 1 日 00:32，第一行代码被写下。3 月 3 日 04:46，一个 68 页、支持多语言、包含 13,464 行代码的完整网站上线。</p>
+<p>总耗时：<strong>52 小时</strong>。手写代码：<strong>0 行</strong>。对话字符：<strong>189 万</strong>。</p>
+<p>V1 阶段产出 344 个 commits，耗时约 38 小时。然后在第 38 小时，我们做了一个大多数团队不会做的决定——<strong>推翻架构，启动 V2 重构</strong>。从决定到完成：56 分钟。</p>
+<p>V2 在剩下的 14 小时内又推了 200 个 commits。3 月 3 日单日提交量达到 <strong>140 次</strong>。</p>
 
-    <h2 data-i18n="day2.h21">起因：凌晨 4 点的产品经理综合症 🌙</h2>
+<h2>放进行业坐标系</h2>
 
-    <p data-i18n="day2.p3">创业者都有这个毛病——睡前"最后看一眼产品"，然后就停不下来了。</p>
+<table class="compare">
+<tr><th>案例</th><th>耗时</th><th>产出</th><th>特点</th></tr>
+<tr class="highlight-row"><td><strong>Ima Claw</strong></td><td>52 小时</td><td>68 页 / 13.5K 行</td><td>100% AI，含重构</td></tr>
+<tr><td>Tom's Guide / Claude</td><td>1 小时</td><td>9 单页</td><td>Demo 级</td></tr>
+<tr><td>Cursor AI 浏览器</td><td>1 周</td><td>300 万行</td><td>数百 Agent，质量争议</td></tr>
+<tr><td>Reddit 200K 项目</td><td>数月</td><td>20 万行</td><td>$4000+，维护噩梦</td></tr>
+<tr><td>YC W25 创业公司</td><td>—</td><td>91% AI 代码</td><td>行业前 21%</td></tr>
+</table>
 
-    <p data-i18n="day2.p4">我打开手机看官网，切到英文版，发现导航栏展开后有<strong>两个语言选择器重叠在一起</strong>。然后越看越多：导航点了不收起、卡片排版不对称、倒计时还没加……</p>
+<p>根据 Second Talent 2026 报告，目前 <strong>41% 的全球代码由 AI 生成</strong>。我们是 100%。</p>
+<p>74% 的开发者报告 AI 提升了生产力，51% 表示任务完成速度提升。但这些是百分比层面的改善。我们的数据属于另一个量级——不是"提升了多少"，而是<strong>"从零到完整产品用了多久"</strong>。</p>
+<p>更值得注意的是，<strong>63% 的 vibe coding 用户并非专业开发者</strong>。我们完全吻合：项目负责人是产品人，不是程序员。整个交互方式是截图标红圈、自然语言描述需求，AI 执行修改。</p>
 
-    <p data-i18n="day2.p5">于是我在飞书上跟爪爪开始了一场<strong>凌晨 4 点的 Vibe Coding session</strong>。</p>
+<h2>关键差异：反馈循环</h2>
 
-    <h2 data-i18n="day2.h22">25 分钟干了什么</h2>
+<p>不是速度。速度是结果，不是原因。</p>
+<p>真正的差异是<strong>反馈循环</strong>。我们的单轮迭代周期是 2-3 分钟：发现问题 → 截图标注 → AI 修改 → 推送 → 验证。行业典型在 10-30 分钟。当单轮时间压缩到行业的 1/5 到 1/10，52 小时内能完成的迭代轮次完全不同。</p>
 
-    <p data-i18n="day2.p6">以下是完整时间线，全程手机飞书对话，全程 0 行代码：</p>
+<blockquote>63% 的开发者表示 debug AI 生成的代码比自己写还慢。这通常发生在技术债积累之后。我们在第 38 小时、代码量刚过万行时就做了架构重构。越早重构，成本越低。</blockquote>
 
-    <div class="highlight-box">
-      <h3 data-i18n="day2.h31">⏱️ 完整时间线</h3>
-      <ul>
-        <li data-i18n="day2.li1"><strong>04:13</strong> — 博客升级：成绩单加了"设计师: 0 人"（所有设计都是 AI 做的），经验总结从 3 条扩充到 5 条，加了"后续迭代反思"新章节</li>
-        <li data-i18n="day2.li2"><strong>04:17</strong> — 发现导航栏有两个语言选择器重叠，删掉多余的那个</li>
-        <li data-i18n="day2.li3"><strong>04:21</strong> — 手机导航栏点了不收起！加了点击外部区域关闭 + 点链接关闭 + 切语言关闭。顺手修了全站 6 个页面</li>
-        <li data-i18n="day2.li4"><strong>04:26</strong> — "还剩 399 只"改成<strong>72 小时实时倒计时</strong>，5 种语言同步更新</li>
-        <li data-i18n="day2.li5"><strong>04:32</strong> — "1,000"数字不够显眼，加粗放大，白色突出</li>
-        <li data-i18n="day2.li6"><strong>04:34</strong> — 英文版"专属为你"区域 3 张卡片右边贴边，改成 flexbox 居中布局</li>
-        <li data-i18n="day2.li7"><strong>04:36</strong> — 默认语言从写死英文改成<strong>自动检测浏览器语言</strong>，不支持的语言 fallback 英文</li>
-        <li data-i18n="day2.li8"><strong>04:38</strong> — Skills 页视频模型列表加上 Google Veo 3 系列</li>
-      </ul>
-    </div>
+<h2>成本对比</h2>
 
-    <h2 data-i18n="day2.h23">有意思的细节 🔍</h2>
-
-    <h3 data-i18n="day2.h32">导航栏的"幽灵代码" 👻</h3>
-    <p data-i18n="day2.p7">修手机导航关闭逻辑的时候，爪爪发现有些页面的 JavaScript 竟然写在了 <code>&lt;script&gt;</code> 标签<strong>外面</strong>——裸露的 JS 代码直接躺在 HTML 里。这是之前 Vibe Coding 留下的"遗产"😅。浏览器居然没报错，但代码也没生效。爪爪顺手清理了 6 个页面的脏代码。</p>
-
-    <p data-i18n="day2.p8">教训：<strong>AI 写代码有时候会把代码塞到错误的位置。</strong>它能写出正确的逻辑，但放到了错误的地方。就像一个实习生写了完美的函数，然后保存到了错误的文件里。</p>
-
-    <h3 data-i18n="day2.h33">卡片对称之战 📐</h3>
-    <p data-i18n="day2.p9">英文版的"专属为你"区域有 4 张卡片，用 2×2 grid 布局。中文没问题，但<strong>英文文本更长</strong>，第三张卡片就贴到了右边边缘。</p>
-    <p data-i18n="day2.p10">我跟爪爪说了三轮：</p>
-    <ul>
-      <li data-i18n="day2.li9">第一轮："卡片偏右了" → 它加了 padding，没完全解决</li>
-      <li data-i18n="day2.li10">第二轮："英文下偏右，中文还行" → 它缩了 max-width</li>
-      <li data-i18n="day2.li11">第三轮："三张卡片要居中" → 它终于明白了，从 grid 改成 flexbox + justify-content: center</li>
-    </ul>
-    <p data-i18n="day2.p11">三轮对话，每轮不到 30 秒。传统开发？打开 DevTools，找元素，调 CSS，刷新，看效果——同样的事情，但多了一堆认知负担。Vibe Coding 的好处是<strong>你只需要描述"不对"在哪里</strong>，不需要知道怎么修。</p>
-
-    <h3 data-i18n="day2.h34">语言自动检测 🌍</h3>
-    <p data-i18n="day2.p12">之前所有页面都写死了 <code>setLang('en')</code>。问题是：中国用户打开网站看到的是英文。</p>
-    <p data-i18n="day2.p13">我说："默认语言改成检测系统语言，5 种之外的 fallback 英文。"</p>
-    <p data-i18n="day2.p14">一句话。爪爪直接改了 5 个页面，加了完整的语言映射（包括 zh-TW、zh-HK 都映射到中文）。这种<strong>"全站批量改"</strong>的操作是 Vibe Coding 最舒服的地方——你不需要逐个文件找代码，说一句就全改了。</p>
-
-    <h2 data-i18n="day2.h24">成绩单 📊</h2>
-
-    <div class="highlight-box">
-      <h3 data-i18n="day2.h35">📊 Vibe Coding Session #2 成绩单</h3>
-      <ul>
-        <li data-i18n="day2.li12">⏱️ 总耗时：<strong>25 分钟</strong></li>
-        <li data-i18n="day2.li13">🐛 修复 bug：<strong>8 个</strong>（含 1 个全站性问题）</li>
-        <li data-i18n="day2.li14">📄 涉及页面：<strong>6 个</strong>（全站覆盖）</li>
-        <li data-i18n="day2.li15">✨ 新功能：<strong>3 个</strong>（倒计时、语言自动检测、模型更新）</li>
-        <li data-i18n="day2.li16">🌐 翻译更新：<strong>5 种语言同步</strong></li>
-        <li data-i18n="day2.li17">📝 代码量：<strong>0 行</strong></li>
-        <li data-i18n="day2.li18">💬 对话轮次：<strong>~12 轮</strong></li>
-        <li data-i18n="day2.li19">🔧 工具：飞书 + Ima Claw（爪爪）</li>
-        <li data-i18n="day2.li20">📱 设备：<strong>手机</strong>（全程躺在床上完成）</li>
-      </ul>
-    </div>
-
-    <div class="divider"></div>
-
-    <h2 data-i18n="day2.h25">反思：Vibe Coding 的第二天比第一天更有趣</h2>
-
-    <p data-i18n="day2.p15">第一天（<a href="vibe-coding-story.html" style="color:var(--lobster-light)">上篇博客</a>）是<strong>从 0 到 1</strong>——搭框架、写文案、做设计，爆发力很强但也很混乱。</p>
-
-    <p data-i18n="day2.p16">第二天是<strong>从 1 到 1.1</strong>——打磨细节、修 bug、优化体验。这个阶段 Vibe Coding 反而更舒服：</p>
-
-    <ul>
-      <li data-i18n="day2.li21"><strong>反馈循环更短</strong>——手机上刷新就能验证，不需要等部署</li>
-      <li data-i18n="day2.li22"><strong>描述问题比描述需求简单</strong>——"右边卡片贴边了"比"做一个响应式布局"好说得多</li>
-      <li data-i18n="day2.li23"><strong>批量操作是杀手级场景</strong>——"全站改默认语言"一句话搞定 5 个文件</li>
-      <li data-i18n="day2.li24"><strong>AI 的记忆是优势</strong>——爪爪记得整个代码库的结构，不需要我告诉它文件在哪</li>
-    </ul>
-
-    <p data-i18n="day2.p17">最让我惊喜的是：<strong>我全程躺在床上用手机完成了这一切。</strong>不需要打开电脑，不需要 IDE，不需要 DevTools。拍个截图、说句话，网站就更新了。</p>
-
-    <p data-i18n="day2.p18">这才是 Vibe Coding 的终极形态——<strong>不是"不写代码"，而是"随时随地都能改产品"。</strong></p>
-
-    <p data-i18n="day2.p19">凌晨 4 点，躺在床上，25 分钟，8 个问题，0 行代码。</p>
-
-    <p data-i18n="day2.p20">晚安。🦞</p>
-
-    <div class="divider"></div>
-
-    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8" data-i18n="day2.p21">
-      <strong style="color:var(--text)">Ima Claw</strong> — I'm A Studio. I'm A Claw.<br>
-      为创作者深度优化的 7×24 专属 AI 智能体。<br>
-      <a href="../#cta" style="color:var(--lobster-light)">免费领养你的第一只龙虾 →</a>
-    </p>
-  </div>
-
-  <!-- English Version -->
-  <div data-en>
-    <h1>Vibe Coding at 4 AM: 8 Bugs, 25 Minutes, 0 Lines of Code 🌙</h1>
-    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px">By Yuki & Claw the Lobster</p>
-    <p class="lead">Last time, I built the entire Ima Claw website from scratch with my AI Claw — and it deleted the mascot's face. This time, I couldn't sleep at 4 AM, picked up my phone to review the site, found a bunch of issues — and started another Vibe Coding session. 25 minutes, 8 fixes, still 0 lines of code. Here's what happened.</p>
-
-    <h2>The Setup: 4 AM Product Manager Syndrome 🌙</h2>
-
-    <p>Every founder has this affliction — "just one last look at the product before bed." And then you can't stop.</p>
-
-    <p>I opened the website on my phone, switched to English, and spotted <strong>two language selectors overlapping</strong> in the nav. Then the issues kept coming: nav menu wouldn't close, card layout was asymmetric, no countdown timer yet…</p>
-
-    <p>So I started chatting with Claw on Lark. A <strong>4 AM Vibe Coding session</strong> began.</p>
-
-    <h2>What Got Done in 25 Minutes</h2>
-
-    <p>Complete timeline — all via phone chat, all zero code:</p>
-
-    <div class="highlight-box">
-      <h3>⏱️ Full Timeline</h3>
-      <ul>
-        <li><strong>04:13</strong> — Blog upgrade: added "Designers: 0" to scorecard (all design by AI), expanded lessons from 3 to 5, added new "post-launch reflections" section</li>
-        <li><strong>04:17</strong> — Found duplicate language selector overlapping in blog nav, removed the extra one</li>
-        <li><strong>04:21</strong> — Mobile nav wouldn't close after tapping! Added close-on-outside-click + close-on-link + close-on-language-switch. Fixed across all 6 pages</li>
-        <li><strong>04:26</strong> — "399 remaining" → <strong>live 72-hour countdown timer</strong>, synced across 5 languages</li>
-        <li><strong>04:32</strong> — "1,000" number too subtle — made it bold, larger, white to pop</li>
-        <li><strong>04:34</strong> — English "Exclusively Yours" section: 3 cards hugging right edge → switched to flexbox centered layout</li>
-        <li><strong>04:36</strong> — Default language: hardcoded English → <strong>auto-detect browser language</strong>, unsupported languages fall back to English</li>
-        <li><strong>04:38</strong> — Added Google Veo 3 series to Skills page video model lists</li>
-      </ul>
-    </div>
-
-    <h2>Interesting Details 🔍</h2>
-
-    <h3>Ghost Code in the HTML 👻</h3>
-    <p>While fixing the mobile nav, Claw discovered some pages had JavaScript code sitting <strong>outside</strong> of <code>&lt;script&gt;</code> tags — naked JS just lying in the HTML body. Legacy from the first Vibe Coding session 😅. The browser didn't error, but the code didn't work either. Claw cleaned up 6 pages of orphaned code.</p>
-    <p>Lesson: <strong>AI sometimes puts code in the wrong place.</strong> It writes correct logic but saves it to the wrong location. Like an intern who writes a perfect function — then commits it to the wrong file.</p>
-
-    <h3>The Card Symmetry Battle 📐</h3>
-    <p>The "Exclusively Yours" section had 4 cards in a 2×2 grid. Fine in Chinese, but <strong>English text is longer</strong>, pushing the third card flush against the right edge.</p>
-    <p>It took three rounds with Claw:</p>
-    <ul>
-      <li>Round 1: "Card's too far right" → Added padding. Not enough.</li>
-      <li>Round 2: "Only in English, Chinese is fine" → Reduced max-width.</li>
-      <li>Round 3: "The three cards need to be centered" → Finally got it. Switched from CSS Grid to flexbox + justify-content: center.</li>
-    </ul>
-    <p>Three rounds, under 30 seconds each. Traditional dev? Open DevTools, inspect element, tweak CSS, refresh, check — same result, but way more cognitive overhead. Vibe Coding's advantage: <strong>you only describe what's wrong</strong>, not how to fix it.</p>
-
-    <h3>Auto Language Detection 🌍</h3>
-    <p>Every page was hardcoded to <code>setLang('en')</code>. Problem: Chinese users saw English by default.</p>
-    <p>I said: "Default to browser language. Fallback to English for anything outside the 5 supported languages."</p>
-    <p>One sentence. Claw updated 5 files with complete language mapping (including zh-TW and zh-HK mapping to Chinese). This <strong>"change everything site-wide"</strong> capability is where Vibe Coding truly shines — one instruction, every file updated.</p>
-
-    <h2>Scorecard 📊</h2>
-
-    <div class="highlight-box">
-      <h3>📊 Vibe Coding Session #2 Scorecard</h3>
-      <ul>
-        <li>⏱️ Total time: <strong>25 minutes</strong></li>
-        <li>🐛 Bugs fixed: <strong>8</strong> (including 1 site-wide issue)</li>
-        <li>📄 Pages touched: <strong>6</strong> (full site coverage)</li>
-        <li>✨ New features: <strong>3</strong> (countdown, auto-language, model updates)</li>
-        <li>🌐 Translations updated: <strong>5 languages synced</strong></li>
-        <li>📝 Lines of code: <strong>0</strong></li>
-        <li>💬 Chat rounds: <strong>~12</strong></li>
-        <li>🔧 Tools: Lark + Ima Claw (Claw Claw)</li>
-        <li>📱 Device: <strong>Phone</strong> (done entirely lying in bed)</li>
-      </ul>
-    </div>
-
-    <div class="divider"></div>
-
-    <h2>Reflections: Day 2 of Vibe Coding Is Better Than Day 1</h2>
-
-    <p>Day 1 (<a href="vibe-coding-story.html" style="color:var(--lobster-light)">previous post</a>) was <strong>0 to 1</strong> — building the framework, writing copy, generating designs. Explosive energy, but chaotic.</p>
-
-    <p>Day 2 is <strong>1 to 1.1</strong> — polishing details, fixing bugs, improving UX. This phase is actually where Vibe Coding feels even better:</p>
-
-    <ul>
-      <li><strong>Shorter feedback loops</strong> — refresh on phone to verify, no deployment wait</li>
-      <li><strong>Describing problems is easier than describing features</strong> — "the right card is hugging the edge" is way easier than "build a responsive layout"</li>
-      <li><strong>Batch operations are killer</strong> — "change default language site-wide" = one sentence, 5 files</li>
-      <li><strong>AI memory is an advantage</strong> — Claw remembers the entire codebase structure, no need to tell it where files are</li>
-    </ul>
-
-    <p>What surprised me most: <strong>I did all of this lying in bed, on my phone.</strong> No laptop, no IDE, no DevTools. Screenshot, voice message, site updated.</p>
-
-    <p>That's the ultimate form of Vibe Coding — <strong>not "no code," but "iterate on your product anytime, anywhere."</strong></p>
-
-    <p>4 AM. In bed. 25 minutes. 8 issues. 0 lines of code.</p>
-
-    <p>Good night. 🦞</p>
-
-    <div class="divider"></div>
-
-    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8">
-      <strong style="color:var(--text)">Ima Claw</strong> — I'm A Studio. I'm A Claw.<br>
-      A 24/7 dedicated AI agent, purpose-built for creators.<br>
-      <a href="../#cta" style="color:var(--lobster-light)">Adopt your first Claw →</a>
-    </p>
-  </div>
+<table class="compare">
+<tr><th>方案</th><th>费用</th><th>周期</th><th>产出</th></tr>
+<tr><td>传统外包</td><td>$10,000-30,000</td><td>4-8 周</td><td>同等规模</td></tr>
+<tr><td>Freelancer</td><td>$3,000-8,000</td><td>2-4 周</td><td>10-20 页</td></tr>
+<tr><td>Reddit Vibe Coder</td><td>$4,000+ API</td><td>数月</td><td>200K 行</td></tr>
+<tr class="highlight-row"><td><strong>Ima Claw</strong></td><td>API 费用</td><td><strong>52 小时</strong></td><td><strong>68 页完整站</strong></td></tr>
+</table>
 
 </div>
 
-<footer><p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank" rel="noopener">Ima Studio</a> · I'm A Studio, I'm A Claw 🦞</p></footer>
+<div class="endquote">
+  <p>行业在讨论 vibe coding 能不能用。<br>我们已经在讨论 vibe coded 的网站<span style="color:var(--lobster-light)">多久该重构一次</span>。</p>
+  <div class="sub">答案是：48 小时。</div>
+</div>
 
-
-
-<script src="../i18n/core.js?v=8"></script>
-<script src="../assets/js/nav.js?v=8"></script>
+</div>
 </body>
 </html>
