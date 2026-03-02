@@ -10,9 +10,9 @@
 </head>
 <body>
 <nav>
-  <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <a href="../../../" class="logo"><img src="logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
   <div class="nav-links">
-    <a href="../../../">首页</a><a href="../../../adopt/" class="nav-adopt">🦞 领养</a><a href="../../../skills/">Skill 市场</a><a href="../../../pricing/">🛒 购买</a><a href="../../../docs/">帮助</a><a href="https://imastudio.com/community" target="_blank">社区</a>
+    <a href="../../../">首页</a><a href="../../../adopt/" class="nav-adopt">🦞 领养</a><a href="../../../skills/">Skill 市场</a><a href="../../../pricing/">🛒 购买</a><a href="../../../docs/">帮助</a><a href="https://imastudio.com/community" target="_blank" rel="noopener">社区</a>
     <div class="lang-dropdown"><button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button><div class="lang-menu"><button data-lang="">🇨🇳 中文</button><button data-lang="">🇺🇸 English</button></div></div>
   </div>
   <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
@@ -33,7 +33,7 @@
 <div class="step"><div class="step-badge">STEP 2</div><h2>安装 signal-cli</h2>
 <p>signal-cli 是 Signal 的命令行客户端，用于接收/发送消息。</p>
 <div class="code-block"><span class="comment"># Ubuntu/Debian</span><br>sudo apt install signal-cli<br><br><span class="comment"># 或使用 Docker</span><br>docker run -v signal_data:/data asamk/signal-cli<br><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
-<div class="tip">💡 详细安装指南请参考 <a href="https://github.com/AsamK/signal-cli" target="_blank" style="color:var(--gold)">signal-cli GitHub</a></div></div>
+<div class="tip">💡 详细安装指南请参考 <a href="https://github.com/AsamK/signal-cli" target="_blank" rel="noopener" style="color:var(--gold)">signal-cli GitHub</a></div></div>
 
 <div class="step"><div class="step-badge">STEP 3</div><h2>注册/链接号码</h2>
 <div class="code-block"><span class="comment"># 注册新号码（会收到短信验证码）</span><br>signal-cli -u +86138xxxxxxxx register<br><br><span class="comment"># 输入验证码</span><br>signal-cli -u +86138xxxxxxxx verify 123456<br><br><span class="comment"># 或者链接已有 Signal 设备（不推荐）</span><br>signal-cli -u +86138xxxxxxxx link<button class="copy-btn" onclick="copyCode(this)">复制</button></div></div>
@@ -62,7 +62,7 @@
 <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">signal-cli 安装失败？<span class="faq-arrow">▾</span></div><div class="faq-a"><p>1. 检查 Java 是否安装（需要 Java 17+）<br>2. 尝试使用 Docker 版本<br>3. 检查系统架构是否支持（ARM 需手动编译）</p></div></div>
 </div>
 
-<div class="bottom-nav"><a href="../../../adopt/" class="btn-back">← 返回领养页</a><a href="https://imastudio.com/community" target="_blank" class="btn-community">💬 遇到问题？加入社区</a></div>
+<div class="bottom-nav"><a href="../../../adopt/" class="btn-back">← 返回领养页</a><a href="https://imastudio.com/community" target="_blank" rel="noopener" class="btn-community">💬 遇到问题？加入社区</a></div>
 <div class="other-channels"><h3>接入其他渠道</h3><div class="channel-row">
 <a href="../telegram/" class="channel-link"><img src="../../../adopt/logos/telegram.svg" alt="">Telegram</a>
 <a href="../whatsapp/" class="channel-link"><img src="../../../adopt/logos/whatsapp.svg" alt="">WhatsApp</a>

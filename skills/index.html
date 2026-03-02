@@ -89,7 +89,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 </head>
 <body>
 <nav>
-  <a href="../" class="logo"><img src="../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <a href="../" class="logo"><img src="logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
   <div class="nav-links">
     <a href="../" data-i18n="nav.home">首页</a>
     <a href="../adopt/" class="nav-adopt" data-i18n="nav.adopt">🦞 领养</a>
@@ -97,7 +97,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
     <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
     <a href="../docs/" data-i18n="nav.docs">帮助</a>
     <a href="../blog/" data-i18n="nav.blog">博客</a>
-    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <a href="https://imastudio.com/community" target="_blank" rel="noopener" data-i18n="nav.community">社区</a>
     <div class="lang-dropdown">
       <button class="lang-trigger">🌐 中文 ▾</button>
       <div class="lang-menu">
@@ -210,10 +210,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 <h2><span data-i18n="skills.dev.title">🛠️ 开发者？发布技能</span></h2>
 <p><span data-i18n="skills.dev.desc">为 Ima Claw 开发技能，提交到官方商店，<br>让所有龙虾更强大。</span></p>
 <a href="submit/" style="display:inline-flex;align-items:center;justify-content:center;padding:0 28px;height:44px;box-sizing:border-box;font-size:14px;font-weight:600;border-radius:10px;line-height:1"><span data-i18n="skills.dev.submit">📦 提交技能</span></a>
-<a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;padding:0 28px;height:44px;box-sizing:border-box;background:#5865F2;color:white;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;line-height:1"><img src="https://cdn.simpleicons.org/discord/white" style="width:14px;height:14px;flex-shrink:0"><span data-i18n="skills.dev.community">开发者社区</span></a>
+<a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;padding:0 28px;height:44px;box-sizing:border-box;background:#5865F2;color:white;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;line-height:1"><img src="https://cdn.simpleicons.org/discord/white" style="width:14px;height:14px;flex-shrink:0"><span data-i18n="skills.dev.community">开发者社区</span></a>
 </section>
 
-<footer class="ft"><p>&copy; 2026 Ima Claw &middot; <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> &middot; <a href="../">&larr; <span data-i18n="skills.footer.back">返回首页</span></a></p></footer>
+<footer class="ft"><p>&copy; 2026 Ima Claw &middot; <a href="https://www.imastudio.com" target="_blank" rel="noopener">ImaStudio</a> &middot; <a href="../">&larr; <span data-i18n="skills.footer.back">返回首页</span></a></p></footer>
 
 <script>
 function filter(cat){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});event.target.closest('.filter-btn').classList.add('active');document.querySelectorAll('.card').forEach(function(c){if(cat==='all'){c.style.display='';return}c.style.display=c.dataset.cat&&c.dataset.cat.includes(cat)?'':'none'})}
