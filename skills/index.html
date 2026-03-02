@@ -185,19 +185,36 @@ body{padding-top:60px}
 </style>
 <div id="community-browse" style="max-width:1100px;margin:40px auto 0;padding:0 20px">
 <div style="border-top:1px solid var(--border);padding-top:40px;margin-bottom:32px">
-<h2 style="font-size:24px;font-weight:900;margin-bottom:6px">🌍 ClawHub 社区技能</h2>
-<p style="color:var(--text-2);font-size:14px;margin-bottom:16px">来自全球开发者的 <span id="ch-total">7,600+</span> 个精选技能，按热度排序</p>
+<h2 style="font-size:24px;font-weight:900;margin-bottom:6px">🌍 社区技能市场</h2>
+<p style="color:var(--text-2);font-size:14px;margin-bottom:16px">来自全球开发者的 <span id="ch-total">7,600+</span> 个技能</p>
 
-<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-  <button class="cm-cat-tag active" onclick="chSort('trending')">🔥 Trending</button>
-  <button class="cm-cat-tag" onclick="chSort('downloads')">📥 Downloads</button>
-  <button class="cm-cat-tag" onclick="chSort('newest')">🆕 Newest</button>
+<!-- Sort buttons -->
+<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+  <button class="cm-cat-tag ch-sort active" onclick="chSortBy('trending',this)">🔥 Trending</button>
+  <button class="cm-cat-tag ch-sort" onclick="chSortBy('downloads',this)">📥 Downloads</button>
+  <button class="cm-cat-tag ch-sort" onclick="chSortBy('newest',this)">🆕 Newest</button>
 </div>
 
+<!-- Hot categories -->
+<div id="ch-hot-cats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"></div>
+
+<!-- More categories (collapsed) -->
+<div class="cm-other-cats" style="margin-bottom:16px">
+  <div class="cm-other-title" onclick="this.classList.toggle('open')"><span class="arrow">▶</span> 更多分类</div>
+  <div class="cm-other-grid" id="ch-more-cats"></div>
+</div>
+
+<!-- Search -->
 <div class="cm-search-box">
-  <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearch(this.value)">
+  <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearchInput()">
 </div>
 
+<!-- Result info -->
+<div class="cm-result-info" id="ch-result-info" style="display:none;margin-bottom:12px">
+  <span class="back" onclick="chReset()" style="cursor:pointer">← 返回</span> <span id="ch-result-text"></span>
+</div>
+
+<!-- Skill grid -->
 <div class="cm-skill-grid" id="ch-skill-grid"></div>
 <div id="ch-load-more" style="text-align:center;margin-top:16px;display:none">
   <button onclick="chLoadMore()" style="padding:10px 28px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;font-size:14px;font-weight:600">加载更多</button>
@@ -206,15 +223,129 @@ body{padding-top:60px}
 </div>
 
 <script>
-var chSkills=[], chFiltered=[], chShown=0, chPerPage=20, chCurrentSort='trending';
+// Category config: hot (shown) + other (collapsed)
+var CH_HOT = [
+  {key:'Image & Video Generation', q:'image video generation', zh:'🎨 图片与视频', n:170},
+  {key:'AI & LLMs', q:'AI LLM', zh:'🤖 AI 与大模型', n:189},
+  {key:'Marketing & Sales', q:'marketing sales', zh:'📣 营销与销售', n:104},
+  {key:'Search & Research', q:'search research', zh:'🔍 搜索与研究', n:346},
+  {key:'Communication', q:'communication chat', zh:'💬 通讯与社交', n:149},
+  {key:'Productivity & Tasks', q:'productivity task', zh:'📋 效率与任务', n:203},
+  {key:'Notes & PKM', q:'notes knowledge', zh:'📝 笔记与知识', n:67},
+  {key:'Data & Analytics', q:'data analytics', zh:'📊 数据与分析', n:41},
+  {key:'Speech & Transcription', q:'speech transcription voice', zh:'🎙️ 语音与转录', n:44},
+  {key:'Media & Streaming', q:'media streaming', zh:'📺 媒体流媒体', n:83}
+];
 
+var CH_OTHER = [
+  {key:'Coding Agents & IDEs', q:'coding IDE agent', zh:'💻 编程与IDE', n:1209},
+  {key:'Web & Frontend Development', q:'web frontend', zh:'🌐 Web 开发', n:928},
+  {key:'DevOps & Cloud', q:'devops cloud', zh:'☁️ DevOps', n:405},
+  {key:'Browser & Automation', q:'browser automation', zh:'🤖 浏览器自动化', n:328},
+  {key:'CLI Utilities', q:'cli command line', zh:'⌨️ 命令行工具', n:184},
+  {key:'Git & GitHub', q:'git github', zh:'🔀 Git/GitHub', n:166},
+  {key:'PDF & Documents', q:'pdf document', zh:'📄 PDF与文档', n:110},
+  {key:'Transportation', q:'transportation travel', zh:'🚗 出行交通', n:109},
+  {key:'Health & Fitness', q:'health fitness', zh:'💪 健康运动', n:87},
+  {key:'Calendar & Scheduling', q:'calendar scheduling', zh:'📅 日历日程', n:55},
+  {key:'Shopping & E-commerce', q:'shopping ecommerce', zh:'🛍️ 购物电商', n:52},
+  {key:'Security & Passwords', q:'security password', zh:'🔐 安全密码', n:53},
+  {key:'Personal Development', q:'personal development growth', zh:'🎯 个人成长', n:51},
+  {key:'Apple Apps & Services', q:'apple macos', zh:'🍎 Apple 生态', n:43},
+  {key:'Smart Home & IoT', q:'smart home iot', zh:'🏠 智能家居', n:42},
+  {key:'Gaming', q:'gaming game', zh:'🎮 游戏', n:36},
+  {key:'Clawdbot Tools', q:'claw bot', zh:'🦞 龙虾工具', n:29},
+  {key:'Self-Hosted & Automation', q:'self hosted automation', zh:'🖥️ 自托管', n:30},
+  {key:'iOS & macOS Development', q:'ios macos development', zh:'📱 iOS/macOS', n:29},
+  {key:'Moltbook', q:'moltbook', zh:'📓 Moltbook', n:45}
+];
+
+var chSkills=[], chFiltered=[], chShown=0, chPerPage=20, chCurrentSort='trending', chActiveCat=null;
+
+// Load local data
 fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(data){
   chSkills=data.skills||[];
-  document.getElementById('ch-total').textContent=chSkills.length+'+';
+  document.getElementById('ch-total').textContent=chSkills.length.toLocaleString()+'+';
+  chRenderCats();
   chApplySort('trending');
 }).catch(function(){
   document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">数据加载失败，请刷新重试</div>';
 });
+
+function chRenderCats(){
+  // Hot categories
+  var h='';
+  CH_HOT.forEach(function(c){
+    h+='<button class="cm-cat-tag ch-cat" onclick="chFilterCat(this,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span style="opacity:0.5;font-size:11px">'+c.n+'</span></button>';
+  });
+  document.getElementById('ch-hot-cats').innerHTML=h;
+
+  // Other categories
+  var h2='';
+  CH_OTHER.forEach(function(c){
+    h2+='<div class="cm-ocat" onclick="chFilterCat(null,\x27'+c.key+'\x27,\x27'+c.q+'\x27)">'+c.zh+' <span class="cnt">('+c.n+')</span></div>';
+  });
+  document.getElementById('ch-more-cats').innerHTML=h2;
+}
+
+function chFilterCat(btn, catKey, query){
+  chActiveCat=catKey;
+  // Filter local data by category
+  var localResults=chSkills.filter(function(s){return s.category===catKey});
+
+  // Also search by query keywords in all data
+  var qLow=query.toLowerCase().split(' ');
+  var searchResults=chSkills.filter(function(s){
+    if(s.category===catKey) return false; // already included
+    var text=((s.displayName||'')+(s.summary||'')+(s.summary_zh||'')).toLowerCase();
+    return qLow.some(function(w){return text.indexOf(w)>=0});
+  });
+
+  chFiltered=localResults.concat(searchResults);
+  chShown=0;
+
+  // Also fetch from ClawHub API for more results
+  fetch('https://clawhub.ai/api/search?q='+encodeURIComponent(query)+'&limit=50')
+    .then(function(r){return r.json()})
+    .then(function(data){
+      var existing=new Set(chFiltered.map(function(s){return s.slug}));
+      (data.results||[]).forEach(function(item){
+        if(!existing.has(item.slug)){
+          chFiltered.push({
+            slug:item.slug,
+            displayName:item.displayName||item.slug,
+            summary:item.summary||'',
+            stats:{},
+            latestVersion:{version:item.version||''},
+            source:'clawhub-live'
+          });
+        }
+      });
+      chRender();
+    })
+    .catch(function(){chRender()});
+
+  // Show immediately with local data
+  chRender();
+
+  // UI updates
+  var catLabel=CH_HOT.find(function(c){return c.key===catKey})||CH_OTHER.find(function(c){return c.key===catKey})||{zh:catKey};
+  document.getElementById('ch-result-info').style.display='block';
+  document.getElementById('ch-result-text').innerHTML=catLabel.zh+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
+  document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
+  if(btn) btn.classList.add('active');
+  document.getElementById('ch-search').value='';
+}
+
+function chSortBy(sort, btn){
+  chActiveCat=null;
+  chApplySort(sort);
+  document.querySelectorAll('.ch-sort').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('ch-search').value='';
+  document.getElementById('ch-result-info').style.display='none';
+}
 
 function chApplySort(sort){
   chCurrentSort=sort;
@@ -227,57 +358,95 @@ function chApplySort(sort){
   chRender();
 }
 
-function chSort(sort){
-  chApplySort(sort);
-  document.querySelectorAll('#community-browse .cm-cat-tag').forEach(function(b){b.classList.remove('active')});
-  event.target.classList.add('active');
-  document.getElementById('ch-search').value='';
-}
-
-function chSearch(q){
-  q=q.trim().toLowerCase();
-  if(!q){chApplySort(chCurrentSort);return}
+function chSearchInput(){
+  var q=document.getElementById('ch-search').value.trim();
+  if(!q){chReset();return}
+  var qLow=q.toLowerCase();
   chFiltered=chSkills.filter(function(s){
-    return s.slug.toLowerCase().indexOf(q)>=0||
-      (s.displayName||'').toLowerCase().indexOf(q)>=0||
-      (s.summary||'').toLowerCase().indexOf(q)>=0;
+    return (s.slug||'').toLowerCase().indexOf(qLow)>=0||
+      (s.displayName||'').toLowerCase().indexOf(qLow)>=0||
+      (s.summary||'').toLowerCase().indexOf(qLow)>=0||
+      (s.summary_zh||'').toLowerCase().indexOf(qLow)>=0;
   });
+
+  // Also fetch from ClawHub API
+  fetch('https://clawhub.ai/api/search?q='+encodeURIComponent(q)+'&limit=50')
+    .then(function(r){return r.json()})
+    .then(function(data){
+      var existing=new Set(chFiltered.map(function(s){return s.slug}));
+      (data.results||[]).forEach(function(item){
+        if(!existing.has(item.slug)){
+          chFiltered.push({
+            slug:item.slug,
+            displayName:item.displayName||item.slug,
+            summary:item.summary||'',
+            stats:{},
+            latestVersion:{version:item.version||''},
+            source:'clawhub-live'
+          });
+        }
+      });
+      chShown=0;
+      chRender();
+      document.getElementById('ch-result-info').style.display='block';
+      document.getElementById('ch-result-text').innerHTML='🔍 '+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
+    })
+    .catch(function(){
+      chShown=0;
+      chRender();
+    });
+
   chShown=0;
   chRender();
+  document.getElementById('ch-result-info').style.display='block';
+  document.getElementById('ch-result-text').innerHTML='🔍 '+chEsc(q)+' <span style="color:var(--text-3)">('+chFiltered.length+')</span>';
+  document.querySelectorAll('.ch-sort,.ch-cat').forEach(function(b){b.classList.remove('active')});
+  chActiveCat=null;
+}
+
+function chReset(){
+  chActiveCat=null;
+  chApplySort(chCurrentSort);
+  document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.ch-sort').forEach(function(b){b.classList.remove('active')});
+  document.querySelector('.ch-sort').classList.add('active');
+  document.getElementById('ch-search').value='';
+  document.getElementById('ch-result-info').style.display='none';
 }
 
 function chRender(){
-  var items=chFiltered.slice(0,chShown+chPerPage);
+  var items=chFiltered.slice(0, chShown+chPerPage);
   chShown=items.length;
-  document.getElementById('ch-skill-grid').innerHTML=items.map(chCard).join('');
+  document.getElementById('ch-skill-grid').innerHTML=items.length?items.map(chCard).join(''):'<div style="text-align:center;padding:20px;color:var(--text-3)">没有找到匹配的技能</div>';
   document.getElementById('ch-load-more').style.display=chShown<chFiltered.length?'block':'none';
 }
 
-function chLoadMore(){chShown+=chPerPage;chRender();}
+function chLoadMore(){chShown+=chPerPage;var items=chFiltered.slice(0,chShown);document.getElementById('ch-skill-grid').innerHTML=items.map(chCard).join('');document.getElementById('ch-load-more').style.display=chShown<chFiltered.length?'block':'none';}
 
 function chCard(s){
-  var st=s.stats||{};var dl=st.downloads||0;
+  var st=s.stats||{};
+  var dl=st.downloads||0;
   var stars=st.stars||0;
   var installs=st.installsCurrent||0;
-  var ver=s.latestVersion?s.latestVersion.version:'';
+  var ver=(s.latestVersion||{}).version||'';
   var dlText=dl>1000?Math.round(dl/1000)+'k':dl;
-  var url='https://clawhub.ai/s/'+s.slug;
+  var url='https://clawhub.ai/s/'+encodeURIComponent(s.slug);
+  var desc=s.summary_zh||s.summary||'';
   return '<a href="'+url+'" target="_blank" rel="noopener" class="cm-skill-card" style="text-decoration:none;display:block">'+
     '<div class="sk-name">'+chEsc(s.displayName||s.slug)+'</div>'+
-    '<div class="sk-desc">'+chEsc(s.summary||'')+'</div>'+
+    '<div class="sk-desc">'+chEsc(desc)+'</div>'+
     '<div class="sk-meta">'+
       '<span style="font-size:11px;color:var(--text-3);display:flex;gap:8px">'+
-        (dl?'<span>📥 '+dlText+'</span>':'')+
-        (stars?'<span>⭐ '+stars+'</span>':'')+
-        (installs?'<span>🔧 '+installs+'</span>':'')+
+        (dl?'<span>\u{1F4E5} '+dlText+'</span>':'')+
+        (stars?'<span>\u2B50 '+stars+'</span>':'')+
+        (installs?'<span>\u{1F527} '+installs+'</span>':'')+
         (ver?'<span style="opacity:0.6">v'+chEsc(ver)+'</span>':'')+
       '</span>'+
-      '<span class="sk-install" onclick="event.preventDefault();chCopy(\x27'+chEsc(s.slug)+'\x27)">📋 复制安装</span>'+
     '</div></a>';
 }
 
-function chCopy(slug){var cmd='clawhub install '+slug;navigator.clipboard.writeText(cmd).then(function(){alert('已复制：\n'+cmd)})}
-function chEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function chEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+</script>
 </script>
 <script src="../i18n/core.js?v=5"></script>
 <script src="../assets/js/nav.js?v=5"></script>
