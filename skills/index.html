@@ -264,6 +264,7 @@ var CH_OTHER = [
   {key:'Moltbook', q:'moltbook', zh:'📓 Moltbook', n:45}
 ];
 
+var CH_LOCAL=new Set(["gog", "summarize", "github", "sonoscli", "weather", "self-improving-agent", "notion", "mcporter", "nano-pdf", "tavily-search", "nano-banana-pro", "model-usage", "obsidian", "openai-whisper", "agent-browser", "skill-creator", "himalaya", "gemini", "blogwatcher", "video-frames"]);
 var chSkills=[], chFiltered=[], chShown=0, chPerPage=20, chCurrentSort='trending', chActiveCat=null;
 
 // Load local data
@@ -434,9 +435,9 @@ function chCard(s){
   var installs=st.installsCurrent||0;
   var ver=(s.latestVersion||{}).version||'';
   var dlText=dl>1000?Math.round(dl/1000)+'k':dl;
-  var url='https://clawhub.ai/s/'+encodeURIComponent(s.slug);
+  var url=CH_LOCAL.has(s.slug)?'s/'+encodeURIComponent(s.slug)+'/':'https://clawhub.ai/s/'+encodeURIComponent(s.slug);
   var desc=s.summary_zh||s.summary||'';
-  return '<a href="'+url+'" target="_blank" rel="noopener" class="cm-skill-card" style="text-decoration:none;display:block">'+
+  var isLocal=CH_LOCAL.has(s.slug);return '<a href="'+url+'"'+(isLocal?'':' target="_blank" rel="noopener"')+' class="cm-skill-card" style="text-decoration:none;display:block">'+
     '<div class="sk-name">'+chEsc(s.displayName||s.slug)+'</div>'+
     '<div class="sk-desc">'+chEsc(desc)+'</div>'+
     '<div class="sk-meta">'+
