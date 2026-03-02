@@ -278,10 +278,10 @@ function chExpandItem(s){return{
 }}
 
 // 首屏：内嵌 Top 30，秒显示
-chSkills=CH_TOP30.map(chExpandItem);console.log('[DEBUG] Top30 loaded, first:',chSkills[0]?.displayName,chSkills.length);
+chSkills=CH_TOP30.map(chExpandItem);
 chRenderCats();
 chRenderSort();
-console.log('[DEBUG] chApplySort trending, chSkills:',chSkills.length);chApplySort('trending');
+chApplySort('trending');
 
 // 后台懒加载全量数据
 function chLoadAll(cb){
@@ -375,11 +375,23 @@ function chFilterCat(btn, catKey, query){
 }
 
 function chSortBy(sort, btn){
-  chActiveCat=null;
-  chApplySort(sort);
+  if(!chActiveCat){
+    // 在"全部"模式下，排序就是重新排序全部数据
+    chApplySort(sort);
+  } else {
+    // 在分类模式下，排序当前过滤结果
+    chCurrentSort=sort;
+    var s=chCurrentSort;
+    chFiltered.sort(function(a,b){
+      if(s==='trending') return ((b.stats||{}).installsCurrent||0)-((a.stats||{}).installsCurrent||0);
+      if(s==='downloads') return ((b.stats||{}).downloads||0)-((a.stats||{}).downloads||0);
+      return (b.createdAt||0)-(a.createdAt||0);
+    });
+    chShown=0;
+    chRender();
+  }
   document.querySelectorAll('.ch-sort-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
-  document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
   document.getElementById('ch-search').value='';
   document.getElementById('ch-result-info').style.display='none';
 }
@@ -452,7 +464,7 @@ function chReset(){
   document.getElementById('ch-result-info').style.display='none';
 }
 
-function chRender(){console.log('[DEBUG] chRender called, chFiltered:',chFiltered.length,'chShown:',chShown);
+function chRender(){
   var items=chFiltered.slice(0, chShown+chPerPage);
   chShown=items.length;
   document.getElementById('ch-skill-grid').innerHTML=items.length?items.map(chCard).join(''):'<div style="text-align:center;padding:20px;color:var(--text-3)">没有找到匹配的技能</div>';
