@@ -117,7 +117,7 @@ a{color:var(--lobster-light);text-decoration:none}
 .cap-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
 .cap-card .icon{font-size:28px;margin-bottom:10px}
 .cap-card h3{font-size:15px;font-weight:700;margin-bottom:6px}
-.cap-card p{font-size:13px;color:var(--text-2)}
+.cap-card p{font-size:15px;color:var(--text-2)}
 @media(max-width:900px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.cap-grid{grid-template-columns:1fr}}
 
@@ -136,9 +136,9 @@ a{color:var(--lobster-light);text-decoration:none}
 .faq-section{margin-bottom:60px}
 .faq-header{text-align:center;margin-bottom:32px}
 .faq-header h2{font-size:24px;font-weight:800;margin-bottom:8px}
-.faq-list{max-width:800px;margin:0 auto}
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--surface)}
-.faq-q{padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.faq-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1100px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:0;overflow:hidden;background:var(--surface)}
+.faq-q{padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center}
 .faq-q:hover{background:rgba(255,255,255,0.02)}
 .faq-q .arrow{transition:transform .2s;color:var(--text-3)}
 .faq-item.open .arrow{transform:rotate(180deg)}
