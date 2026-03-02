@@ -40,3 +40,8 @@ nav{padding:14px 16px}
 .nav-links a:last-child{border-bottom:none}
 .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
 }
+
+/* Hidden languages - uncomment when translations are complete */
+.lang-menu button[data-lang="es"],
+.lang-menu button[data-lang="ja"],
+.lang-menu button[data-lang="ar"]{display:none}
