@@ -150,44 +150,53 @@ body{padding-top:60px}
 </div>
 
 <!-- Community Skills Section -->
-<div style="max-width:1100px;margin:40px auto 0;padding:0 20px">
+<style>
+.cm-search-box{max-width:480px;position:relative;margin-bottom:20px}
+.cm-search-box input{width:100%;padding:12px 16px 12px 40px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.cm-search-box input:focus{border-color:var(--lobster)}
+.cm-search-box::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px}
+.cm-cat-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.cm-cat-tag{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-2);transition:all .2s}
+.cm-cat-tag:hover,.cm-cat-tag.active{background:var(--lobster);border-color:var(--lobster);color:#fff}
+.cm-skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px}
+.cm-skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s}
+.cm-skill-card:hover{border-color:rgba(231,76,60,0.3)}
+.cm-skill-card .sk-name{font-size:15px;font-weight:700;margin-bottom:4px;color:#fff}
+.cm-skill-card .sk-desc{font-size:13px;color:var(--text-2);line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cm-skill-card .sk-meta{display:flex;align-items:center;justify-content:space-between}
+.cm-skill-card .sk-cat{font-size:11px;padding:3px 8px;background:rgba(255,255,255,0.05);border-radius:6px;color:var(--text-3)}
+.cm-skill-card .sk-install{font-size:11px;color:var(--lobster-light);font-weight:600;cursor:pointer}
+.cm-skill-card .sk-install:hover{text-decoration:underline}
+.cm-other-cats{margin-top:24px;border-top:1px solid var(--border);padding-top:20px}
+.cm-other-title{font-size:15px;font-weight:700;color:var(--text-2);cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cm-other-title .arrow{transition:transform .2s;font-size:12px}
+.cm-other-title.open .arrow{transform:rotate(90deg)}
+.cm-other-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.cm-other-title.open+.cm-other-grid{display:grid}
+.cm-other-grid .cm-ocat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;cursor:pointer;transition:all .2s;font-size:13px;font-weight:600}
+.cm-other-grid .cm-ocat:hover{border-color:rgba(231,76,60,0.3)}
+.cm-other-grid .cm-ocat .cnt{font-size:11px;color:var(--text-3);font-weight:400}
+.cm-result-info{display:none;margin-bottom:12px;font-size:14px;color:var(--text-2)}
+.cm-result-info .back{cursor:pointer;color:var(--text-3);margin-right:8px}
+@media(max-width:600px){.cm-skill-grid{grid-template-columns:1fr}}
+</style>
+<div id="community-browse" style="max-width:1100px;margin:40px auto 0;padding:0 20px">
 <div style="border-top:1px solid var(--border);padding-top:40px;margin-bottom:32px">
 <h2 style="font-size:24px;font-weight:900;margin-bottom:6px"><span data-i18n="skills.community.title">🌍 IMA 社区技能市场</span></h2>
 <p style="color:var(--text-2);font-size:14px;margin-bottom:6px"><span data-i18n="skills.community.desc">来自全球开发者的技能，为你的龙虾解锁无限可能</span></p>
-<a href="community/" style="font-size:13px;color:var(--lobster-light);font-weight:500;text-decoration:none;display:inline-block;margin-bottom:20px"><span data-i18n="skills.community.viewall">查看全部 5,000+ 技能 →</span></a>
+<a href="#community-browse" onclick="document.getElementById('cm-search').focus();return false" style="font-size:13px;color:var(--lobster-light);font-weight:500;text-decoration:none;display:inline-block;margin-bottom:20px"><span data-i18n="skills.community.viewall">查看全部 5,000+ 技能 →</span></a>
 
-<!-- All category tags -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px">
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.images">🎨 图片与视频</span> <span style="opacity:0.6">170</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.marketing">📣 营销与销售</span> <span style="opacity:0.6">105</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.ai">🤖 AI 与大模型</span> <span style="opacity:0.6">196</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.search">🔍 搜索与研究</span> <span style="opacity:0.6">350</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.comm">💬 通讯与社交</span> <span style="opacity:0.6">149</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.productivity">📋 效率与任务</span> <span style="opacity:0.6">206</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.notes">📝 笔记与知识</span> <span style="opacity:0.6">71</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.data">📊 数据与分析</span> <span style="opacity:0.6">42</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.speech">🎙️ 语音与转录</span> <span style="opacity:0.6">45</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(212,64,58,0.05);border:1px solid rgba(212,64,58,0.15);color:var(--lobster-light);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.media">📺 媒体流媒体</span> <span style="opacity:0.6">85</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.coding">💻 编程与IDE</span> <span style="opacity:0.6">1222</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.webdev">🌐 Web 开发</span> <span style="opacity:0.6">938</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center">☁️ DevOps <span style="opacity:0.6">408</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.browser">🤖 浏览器自动化</span> <span style="opacity:0.6">335</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.cli">⌨️ 命令行工具</span> <span style="opacity:0.6">186</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center">🔀 Git/GitHub <span style="opacity:0.6">170</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.pdf">📄 PDF与文档</span> <span style="opacity:0.6">111</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.travel">🚗 出行交通</span> <span style="opacity:0.6">110</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.health">💪 健康运动</span> <span style="opacity:0.6">88</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.calendar">📅 日历日程</span> <span style="opacity:0.6">61</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.shopping">🛍️ 购物电商</span> <span style="opacity:0.6">55</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.security">🔐 安全密码</span> <span style="opacity:0.6">54</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.growth">🎯 个人成长</span> <span style="opacity:0.6">51</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center">📓 Moltbook <span style="opacity:0.6">46</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.apple">🍎 Apple 生态</span> <span style="opacity:0.6">43</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.home">🏠 智能家居</span> <span style="opacity:0.6">43</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.gaming">🎮 游戏</span> <span style="opacity:0.6">36</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.claw">🦞 龙虾工具</span> <span style="opacity:0.6">35</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center"><span data-i18n="skills.cat.selfhost">🖥️ 自托管</span> <span style="opacity:0.6">32</span></a>
-  <a href="community/" style="padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);border:1px solid var(--border);color:var(--text-2);text-decoration:none;display:flex;justify-content:space-between;align-items:center">📱 iOS/macOS <span style="opacity:0.6">29</span></a>
+<div class="cm-search-box">
+  <input type="text" id="cm-search" placeholder="搜索技能名称或描述..." oninput="cmSearch()">
+</div>
+
+<div class="cm-cat-tags" id="cm-cat-tags"></div>
+<div class="cm-result-info" id="cm-result-info"><span class="back" onclick="cmReset()">←</span> <span id="cm-result-text"></span></div>
+<div class="cm-skill-grid" id="cm-skill-grid"></div>
+
+<div class="cm-other-cats">
+  <div class="cm-other-title" onclick="this.classList.toggle('open')"><span class="arrow">▶</span> 更多分类</div>
+  <div class="cm-other-grid" id="cm-other-grid"></div>
 </div>
 
 </div>
@@ -207,6 +216,114 @@ body{padding-top:60px}
 <script>
 function filter(cat){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});event.target.closest('.filter-btn').classList.add('active');document.querySelectorAll('.card').forEach(function(c){if(cat==='all'){c.style.display='';return}c.style.display=c.dataset.cat&&c.dataset.cat.includes(cat)?'':'none'})}
 
+// Community skills browser
+var CM_PRIORITY=[
+  {key:'Image & Video Generation',icon:'🎨',zh:'图片与视频'},
+  {key:'Marketing & Sales',icon:'📣',zh:'营销与销售'},
+  {key:'AI & LLMs',icon:'🤖',zh:'AI 与大模型'},
+  {key:'Search & Research',icon:'🔍',zh:'搜索与研究'},
+  {key:'Communication',icon:'💬',zh:'通讯与社交'},
+  {key:'Productivity & Tasks',icon:'📋',zh:'效率与任务'},
+  {key:'Notes & PKM',icon:'📝',zh:'笔记与知识'},
+  {key:'Data & Analytics',icon:'📊',zh:'数据与分析'},
+  {key:'Speech & Transcription',icon:'🎙️',zh:'语音与转录'},
+  {key:'Media & Streaming',icon:'📺',zh:'媒体与流媒体'}
+];
+var CM_OTHER={
+  'Coding Agents & IDEs':{icon:'💻',zh:'编程与IDE'},'Web & Frontend Development':{icon:'🌐',zh:'Web 开发'},
+  'DevOps & Cloud':{icon:'☁️',zh:'DevOps'},'Browser & Automation':{icon:'🤖',zh:'浏览器自动化'},
+  'CLI Utilities':{icon:'⌨️',zh:'命令行工具'},'Git & GitHub':{icon:'🔀',zh:'Git/GitHub'},
+  'PDF & Documents':{icon:'📄',zh:'PDF与文档'},'Transportation':{icon:'🚗',zh:'出行交通'},
+  'Health & Fitness':{icon:'💪',zh:'健康运动'},'Calendar & Scheduling':{icon:'📅',zh:'日历日程'},
+  'Shopping & E-commerce':{icon:'🛍️',zh:'购物电商'},'Security & Passwords':{icon:'🔐',zh:'安全密码'},
+  'Personal Development':{icon:'🎯',zh:'个人成长'},'Apple Apps & Services':{icon:'🍎',zh:'Apple 生态'},
+  'Smart Home & IoT':{icon:'🏠',zh:'智能家居'},'Gaming':{icon:'🎮',zh:'游戏'},
+  'Clawdbot Tools':{icon:'🦞',zh:'龙虾工具'},'Self-Hosted & Automation':{icon:'🖥️',zh:'自托管'},
+  'iOS & macOS Development':{icon:'📱',zh:'iOS/macOS'},'Moltbook':{icon:'📓',zh:'Moltbook'}
+};
+var cmSkills=[],cmCatCounts={},cmActiveCat=null;
+
+fetch('community-skills.json').then(function(r){return r.json()}).then(function(data){
+  cmSkills=data.skills||[];
+  cmSkills.forEach(function(s){var c=s.category||'Other';cmCatCounts[c]=(cmCatCounts[c]||0)+1});
+  cmRenderTags();cmRenderFeatured();cmRenderOtherCats();
+}).catch(function(){
+  document.getElementById('cm-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">数据加载失败，请刷新重试</div>';
+});
+
+function cmRenderTags(){
+  var h='<button class="cm-cat-tag active" onclick="cmReset()">全部</button>';
+  CM_PRIORITY.forEach(function(c){
+    h+='<button class="cm-cat-tag" onclick="cmFilterCat(\''+c.key+'\',this)">'+c.icon+' '+c.zh+' <span style="opacity:0.5;font-size:11px">'+(cmCatCounts[c.key]||0)+'</span></button>';
+  });
+  document.getElementById('cm-cat-tags').innerHTML=h;
+}
+
+function cmRenderFeatured(){
+  var featured=[];
+  CM_PRIORITY.forEach(function(c){
+    var sk=cmSkills.filter(function(s){return s.category===c.key});
+    featured=featured.concat(sk.slice(0,2));
+  });
+  document.getElementById('cm-skill-grid').innerHTML=featured.slice(0,20).map(cmCard).join('');
+  document.getElementById('cm-result-info').style.display='none';
+}
+
+function cmRenderOtherCats(){
+  var pKeys=CM_PRIORITY.map(function(c){return c.key});
+  var h='';
+  Object.keys(cmCatCounts).sort(function(a,b){return cmCatCounts[b]-cmCatCounts[a]}).forEach(function(cat){
+    if(pKeys.indexOf(cat)>=0)return;
+    var info=CM_OTHER[cat]||{icon:'📦',zh:cat};
+    h+='<div class="cm-ocat" onclick="cmFilterCat(\''+cat.replace(/'/g,"\\'")+'\')">'+info.icon+' '+info.zh+' <span class="cnt">('+cmCatCounts[cat]+')</span></div>';
+  });
+  document.getElementById('cm-other-grid').innerHTML=h;
+}
+
+function cmFilterCat(cat,btn){
+  var skills=cmSkills.filter(function(s){return s.category===cat});
+  var info=CM_PRIORITY.find(function(c){return c.key===cat})||CM_OTHER[cat]||{zh:cat,icon:'📦'};
+  document.getElementById('cm-skill-grid').innerHTML=skills.slice(0,50).map(cmCard).join('');
+  document.getElementById('cm-result-info').style.display='block';
+  document.getElementById('cm-result-text').innerHTML=info.icon+' '+info.zh+' <span style="color:var(--text-3)">('+skills.length+')</span>';
+  document.querySelectorAll('.cm-cat-tag').forEach(function(b){b.classList.remove('active')});
+  if(btn)btn.classList.add('active');
+  document.getElementById('cm-search').value='';
+  cmActiveCat=cat;
+}
+
+function cmSearch(){
+  var q=document.getElementById('cm-search').value.trim().toLowerCase();
+  if(!q){cmReset();return}
+  var results=cmSkills.filter(function(s){
+    return s.name.toLowerCase().indexOf(q)>=0||(s.description_zh||s.description||'').toLowerCase().indexOf(q)>=0;
+  });
+  document.getElementById('cm-skill-grid').innerHTML=results.slice(0,50).map(cmCard).join('');
+  document.getElementById('cm-result-info').style.display='block';
+  document.getElementById('cm-result-text').innerHTML='🔍 搜索结果 <span style="color:var(--text-3)">('+results.length+')</span>';
+  document.querySelectorAll('.cm-cat-tag').forEach(function(b){b.classList.remove('active')});
+  cmActiveCat=null;
+}
+
+function cmReset(){
+  cmRenderFeatured();
+  document.querySelectorAll('.cm-cat-tag').forEach(function(b){b.classList.remove('active')});
+  var first=document.querySelector('.cm-cat-tag');if(first)first.classList.add('active');
+  document.getElementById('cm-search').value='';
+  cmActiveCat=null;
+}
+
+function cmCard(s){
+  var catInfo=CM_PRIORITY.find(function(c){return c.key===s.category})||CM_OTHER[s.category]||{zh:s.category_zh||s.category};
+  return '<div class="cm-skill-card"><div class="sk-name">'+cmEsc(s.name)+'</div>'+
+    '<div class="sk-desc">'+cmEsc(s.description_zh||s.description||'')+'</div>'+
+    '<div class="sk-meta"><span class="sk-cat">'+(s.category_zh||catInfo.zh||s.category)+'</span>'+
+    '<span class="sk-install" onclick="cmCopy(\''+cmEsc(s.name)+'\')">📋 安装</span></div></div>';
+}
+
+function cmCopy(name){var cmd='npx clawhub@latest install '+name;navigator.clipboard.writeText(cmd).then(function(){alert('已复制安装命令：\n'+cmd)})}
+function cmEsc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+</script>
 <script src="../i18n/core.js?v=5"></script>
 <script src="../assets/js/nav.js?v=5"></script>
 </body>
