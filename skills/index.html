@@ -209,13 +209,7 @@ body{padding-top:60px}
 </div>
 
 <!-- Sort buttons -->
-<div style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px">
-  <span style="font-size:12px;color:var(--text-3);margin-left:4px" data-i18n="skills.community.sort">排序：</span>
-  <button class="ch-sort-btn active" onclick="chSortBy('trending',this)">🔥 热门</button>
-  <button class="ch-sort-btn" onclick="chSortBy('downloads',this)">📥 下载</button>
-  <button class="ch-sort-btn" onclick="chSortBy('newest',this)">🆕 最新</button>
-</div>
-
+<div id="ch-sort-bar" style="display:flex;gap:12px;margin-bottom:16px;align-items:center;padding-top:4px"></div>
 <!-- Result info -->
 <div class="cm-result-info" id="ch-result-info" style="display:none;margin-bottom:12px">
   <span class="back" onclick="chReset()" style="cursor:pointer">← 返回</span> <span id="ch-result-text"></span>
