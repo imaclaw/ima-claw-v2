@@ -275,6 +275,7 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
   chSkills=data.skills||[];
   document.getElementById('ch-total').textContent=chSkills.length.toLocaleString()+'+';
   chRenderCats();
+  chRenderSort();
   chApplySort('trending');
 }).catch(function(){
   document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">数据加载失败，请刷新重试</div>';
@@ -295,7 +296,15 @@ function chRenderCats(){
   document.getElementById('ch-more-cats').innerHTML=h2;
 }
 // Re-render cats on language change
-window.addEventListener('langChanged',function(){chRenderCats()});
+function chRenderSort(){
+  var isZh=chGetLang()==='zh';
+  document.getElementById('ch-sort-bar').innerHTML=
+    '<span style="font-size:12px;color:var(--text-3);margin-left:4px">'+(isZh?'排序：':'Sort:')+' </span>'+
+    '<button class="ch-sort-btn'+(chCurrentSort==='trending'?' active':'')+'" onclick="chSortBy(\x27trending\x27,this)">'+(isZh?'🔥 热门':'🔥 Trending')+'</button>'+
+    '<button class="ch-sort-btn'+(chCurrentSort==='downloads'?' active':'')+'" onclick="chSortBy(\x27downloads\x27,this)">'+(isZh?'📥 下载':'📥 Downloads')+'</button>'+
+    '<button class="ch-sort-btn'+(chCurrentSort==='newest'?' active':'')+'" onclick="chSortBy(\x27newest\x27,this)">'+(isZh?'🆕 最新':'🆕 Newest')+'</button>';
+}
+window.addEventListener('langChanged',function(){chRenderCats();chRenderSort()});
 
 function chFilterCat(btn, catKey, query){
   chActiveCat=catKey;
