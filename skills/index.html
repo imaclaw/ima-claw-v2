@@ -278,10 +278,10 @@ function chExpandItem(s){return{
 }}
 
 // 首屏：内嵌 Top 30，秒显示
-chSkills=CH_TOP30.map(chExpandItem);
+chSkills=CH_TOP30.map(chExpandItem);console.log('[DEBUG] Top30 loaded, first:',chSkills[0]?.displayName,chSkills.length);
 chRenderCats();
 chRenderSort();
-chApplySort('trending');
+console.log('[DEBUG] chApplySort trending, chSkills:',chSkills.length);chApplySort('trending');
 
 // 后台懒加载全量数据
 function chLoadAll(cb){
@@ -452,7 +452,7 @@ function chReset(){
   document.getElementById('ch-result-info').style.display='none';
 }
 
-function chRender(){
+function chRender(){console.log('[DEBUG] chRender called, chFiltered:',chFiltered.length,'chShown:',chShown);
   var items=chFiltered.slice(0, chShown+chPerPage);
   chShown=items.length;
   document.getElementById('ch-skill-grid').innerHTML=items.length?items.map(chCard).join(''):'<div style="text-align:center;padding:20px;color:var(--text-3)">没有找到匹配的技能</div>';
