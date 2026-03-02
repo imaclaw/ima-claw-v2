@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:Inter,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:20px}
+a{color:var(--lobster-light);text-decoration:none}
+.page{max-width:900px;margin:0 auto;padding:60px 40px 100px}
+.hero{text-align:center;margin-bottom:48px}
+.meta{font-size:13px;color:var(--text-3);margin-bottom:20px;display:flex;gap:12px;align-items:center;justify-content:center}
+.tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:14px}
+.hero h1 span{color:var(--lobster-light)}
+.hero-sub{font-size:clamp(14px,2vw,16px);color:var(--text-2);line-height:1.7}
+.content{line-height:1.9;font-size:16px}
+.content h2{font-size:24px;font-weight:800;margin:44px 0 14px;letter-spacing:-0.02em}
+.content h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--lobster-light)}
+.content p{margin-bottom:16px;color:var(--text-2)}
+.content strong{color:var(--text);font-weight:600}
+.content blockquote{border-left:3px solid var(--lobster);padding:12px 20px;margin:24px 0;background:rgba(212,64,58,0.05);border-radius:0 12px 12px 0;font-style:italic;color:var(--text-2)}
+.content ul,.content ol{margin:12px 0 20px 24px;color:var(--text-2)}
+.content li{margin-bottom:8px}
+.content code{background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-size:14px;color:#a371f7}
+.endquote{text-align:center;margin:56px 0 0;padding:36px;border-top:1px solid var(--border)}
+.endquote p{font-size:18px;font-weight:700;line-height:1.6}
+.endquote .sub{font-size:14px;color:var(--text-3);margin-top:8px}
+@media(max-width:600px){.page{padding:30px 16px 60px}}
+</style>
+<title>从 0 到 9,205：一晚上建了个 Skill 市场</title>
+</head>
+<body>
+<div class="page">
+<div class="hero">
+  <div class="meta"><span class="tag">DEV LOG</span><span>2026-03-03</span></div>
+  <h1>从 0 到 <span>9,205</span><br>一晚上建了个 Skill 市场</h1>
+  <p class="hero-sub">88 个关键词，2.2MB 数据，30 个分类，20 个详情页</p>
+</div>
+<div class="content">
+
+<h2>数据从哪来？</h2>
+<p>ClawHub（clawhub.com）是 OpenClaw 社区最大的技能仓库。问题是——没有现成的"导出全部"按钮。</p>
+<p>那就爬。我列了 <strong>88 个分类关键词</strong>，从 "writing" 到 "finance"，从 "image generation" 到 "cooking"，挨个调 ClawHub 的 Search API。每个关键词返回几十到几百条结果，疯狂去重之后——</p>
+<p><strong>9,205 个唯一技能。</strong></p>
+<p>社区的创造力远超想象：有人做了塔罗牌占卜，有人做了 SQL 查询助手，有人做了猫咪性格分析器，还有人做了专门帮你写分手短信的 Skill。</p>
+
+<h2>分类系统</h2>
+<p>9000 多个技能扔在一个列表里，等于没有。最终方案：<strong>10 个热门类别 + 20 个其他类别</strong>，中英双语，从实际数据高频聚类出来。</p>
+<p>分类标签最初带着装饰性 emoji 🎨✍️🔧，桌面端显得花哨。最后决定：移动端保留 emoji，<strong>桌面端纯文字</strong>，简洁即正义。</p>
+
+<h2>前端怎么扛住 9000+？</h2>
+<p>2.2MB 的 JSON 文件，不能让用户干等。</p>
+<ul>
+  <li><strong>懒加载 + 骨架屏 + 分页</strong>：先渲染占位符，JSON 异步加载后填充</li>
+  <li><strong>每页 21 个卡片</strong>：能被 3 列整除</li>
+  <li><strong>Two-zone 布局</strong>：顶部 2 列大卡抓眼球，下方 3 列小卡铺量</li>
+  <li><strong>三种排序</strong>：Trending / Downloads / Newest</li>
+  <li><strong>内联 SVG</strong>：告别海外 CDN 裂图</li>
+</ul>
+<p>给 Top 20 热门技能单独做了详情页，暗色主题，统一 1100px 宽度，和整站风格一致。</p>
+
+<h2>时间线</h2>
+<ul>
+  <li><strong>21:00</strong> — "数据加载失败"</li>
+  <li><strong>22:00</strong> — 爬虫跑完，9,205 条数据到手</li>
+  <li><strong>00:00</strong> — 分类、排序、分页就位</li>
+  <li><strong>02:00</strong> — 详情页、骨架屏、SVG 图标收尾</li>
+  <li><strong>03:00</strong> — 上线，刷新页面</li>
+</ul>
+<p>一个完整的 Skill 市场，从无到有。</p>
+
+</div>
+<div class="endquote">
+  <p>9,205 是今天的数字。<br><span style="color:var(--lobster-light)">开放生态的魅力在于，明天只会更大。</span></p>
+  <div class="sub">Build with claws. 🦞</div>
+</div>
+</div>
+</body>
+</html>

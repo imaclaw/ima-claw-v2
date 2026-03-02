@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:Inter,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:20px}
+a{color:var(--lobster-light);text-decoration:none}
+.page{max-width:900px;margin:0 auto;padding:60px 40px 100px}
+.hero{text-align:center;margin-bottom:48px}
+.meta{font-size:13px;color:var(--text-3);margin-bottom:20px;display:flex;gap:12px;align-items:center;justify-content:center}
+.tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:14px}
+.hero h1 span{color:var(--lobster-light)}
+.hero-sub{font-size:clamp(14px,2vw,16px);color:var(--text-2);line-height:1.7}
+.content{line-height:1.9;font-size:16px}
+.content h2{font-size:24px;font-weight:800;margin:44px 0 14px;letter-spacing:-0.02em}
+.content h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--lobster-light)}
+.content p{margin-bottom:16px;color:var(--text-2)}
+.content strong{color:var(--text);font-weight:600}
+.content blockquote{border-left:3px solid var(--lobster);padding:12px 20px;margin:24px 0;background:rgba(212,64,58,0.05);border-radius:0 12px 12px 0;font-style:italic;color:var(--text-2)}
+.content ul,.content ol{margin:12px 0 20px 24px;color:var(--text-2)}
+.content li{margin-bottom:8px}
+.content code{background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-size:14px;color:#a371f7}
+.endquote{text-align:center;margin:56px 0 0;padding:36px;border-top:1px solid var(--border)}
+.endquote p{font-size:18px;font-weight:700;line-height:1.6}
+.endquote .sub{font-size:14px;color:var(--text-3);margin-top:8px}
+@media(max-width:600px){.page{padding:30px 16px 60px}}
+</style>
+<title>i18n 地狱逃生记 — 48 页多语言网站的血泪史</title>
+</head>
+<body>
+<div class="page">
+<div class="hero">
+  <div class="meta"><span class="tag">LESSONS</span><span>2026-03-03</span></div>
+  <h1>i18n <span>地狱</span>逃生记</h1>
+  <p class="hero-sub">3 套翻译打架，16 次缓存 bump，1 次白屏事故</p>
+</div>
+<div class="content">
+
+<blockquote>"能跑就行"是技术债最甜的毒药。</blockquote>
+
+<h2>三个平行宇宙</h2>
+<p>接手时网站有 <strong>3 套互相打架的翻译系统</strong>。首页用内联 JS 对象，Adopt 页有自己的翻译逻辑，子页面各写各的 <code>setLang()</code>。风格迥异，互不相识。</p>
+<p>结果：切换语言，页面上半截中文下半截英文。赛博双语角。</p>
+
+<h2>救赎：core.js + JSON</h2>
+<p>方案很简单：</p>
+<ul>
+  <li><strong><code>core.js</code></strong>（≈30 行）：全站唯一翻译引擎</li>
+  <li><strong>JSON 集中存储</strong>：<code>zh-CN.json</code>、<code>en.json</code>，779 个 key</li>
+  <li><strong>HTML 零硬编码</strong>：所有文字只写 <code>data-i18n="key"</code></li>
+  <li><strong>语言检测优先级</strong>：localStorage → URL ?lang= → 浏览器语言 → 默认 zh-CN</li>
+</ul>
+<p>架构很优雅。但迁移过程，是血泪史。</p>
+
+<h2>五大血泪坑</h2>
+
+<h3>🕳️ 缓存地狱</h3>
+<p>改了 JSON，刷新——没变。强刷——没变。清缓存——变了。换台电脑——又没变。唯一解法：每次改翻译手动 bump <code>?v=N</code>。从 v=1 一路到 <strong>v=16</strong>。</p>
+
+<h3>🕳️ Emoji 覆盖惨案</h3>
+<p><code>data-i18n</code> 用 <code>innerHTML</code> 替换内容，连外面的 emoji 和 SVG 一起吃掉了。解法：<strong>图标放在 <code>data-i18n</code> 元素外面</strong>，物理隔离。</p>
+
+<h3>🕳️ localStorage Key 精神分裂</h3>
+<p><code>core.js</code> 读 <code>'imaclaw-lang'</code>，社区页面读 <code>'lang'</code>。首页切了中文，跳到社区页——又变英文。一个网站，两个灵魂。</p>
+
+<h3>🕳️ 9 个文件默认语言写反</h3>
+<p>9 个 HTML 写了 <code>data-lang="en"</code> 应该是 <code>"zh-CN"</code>。批量 sed 五秒修复，但找到问题花了两小时。</p>
+
+<h3>🕳️ JSON 截断白屏</h3>
+<p>手动编辑时截断了文件尾部。<code>JSON.parse()</code> 报错，整页空白。没有 fallback，就是白。</p>
+
+<h2>给所有做多语言的人</h2>
+<ol>
+  <li><strong>i18n 架构从第一天统一</strong>——"先凑合后面改"的代价是十倍</li>
+  <li><strong>翻译文件必须带缓存版本号</strong>——<code>?v=N</code> 是你最好的朋友</li>
+  <li><strong>Emoji/图标和翻译文字物理隔离</strong>——innerHTML 是贪吃蛇</li>
+  <li><strong>48 页 × 5 语言 = 240 个变体</strong>——不可能手动测</li>
+</ol>
+
+</div>
+<div class="endquote">
+  <p>779 个 key，16 次 bump，9 个写反，1 次白屏。<br><span style="color:var(--lobster-light)">0 次放弃（好吧，至少 3 次）。</span></p>
+  <div class="sub">希望你永远不需要这篇文章。但如果需要了——祝好运 🫡</div>
+</div>
+</div>
+</body>
+</html>
