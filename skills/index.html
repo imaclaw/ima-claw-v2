@@ -154,6 +154,9 @@ body{padding-top:60px}
 
 <!-- Community Skills Section -->
 <style>
+.ch-sort-btn{padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:none;background:transparent;color:var(--text-3);transition:all .2s;font-weight:500}
+.ch-sort-btn:hover{color:var(--text)}
+.ch-sort-btn.active{background:rgba(255,255,255,0.08);color:var(--text);font-weight:600}
 .cm-search-box{max-width:480px;position:relative;margin-bottom:20px}
 .cm-search-box input{width:100%;padding:12px 16px 12px 40px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
 .cm-search-box input:focus{border-color:var(--lobster)}
@@ -188,11 +191,9 @@ body{padding-top:60px}
 <h2 style="font-size:24px;font-weight:900;margin-bottom:6px">🌍 社区技能市场</h2>
 <p style="color:var(--text-2);font-size:14px;margin-bottom:16px">来自全球开发者的 <span id="ch-total">7,600+</span> 个技能</p>
 
-<!-- Sort buttons -->
-<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-  <button class="cm-cat-tag ch-sort active" onclick="chSortBy('trending',this)">🔥 Trending</button>
-  <button class="cm-cat-tag ch-sort" onclick="chSortBy('downloads',this)">📥 Downloads</button>
-  <button class="cm-cat-tag ch-sort" onclick="chSortBy('newest',this)">🆕 Newest</button>
+<!-- Search -->
+<div class="cm-search-box" style="margin-bottom:16px">
+  <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearchInput()">
 </div>
 
 <!-- Hot categories -->
@@ -204,9 +205,12 @@ body{padding-top:60px}
   <div id="ch-more-cats" style="display:none;flex-wrap:wrap;gap:8px"></div>
 </div>
 
-<!-- Search -->
-<div class="cm-search-box">
-  <input type="text" id="ch-search" placeholder="Search skills by name or description..." oninput="chSearchInput()">
+<!-- Sort buttons -->
+<div style="display:flex;gap:12px;margin-bottom:12px;align-items:center">
+  <span style="font-size:12px;color:var(--text-3)">排序：</span>
+  <button class="ch-sort-btn active" onclick="chSortBy('trending',this)">🔥 热门</button>
+  <button class="ch-sort-btn" onclick="chSortBy('downloads',this)">📥 下载</button>
+  <button class="ch-sort-btn" onclick="chSortBy('newest',this)">🆕 最新</button>
 </div>
 
 <!-- Result info -->
@@ -340,7 +344,7 @@ function chFilterCat(btn, catKey, query){
 function chSortBy(sort, btn){
   chActiveCat=null;
   chApplySort(sort);
-  document.querySelectorAll('.ch-sort').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.ch-sort-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
   document.getElementById('ch-search').value='';
@@ -408,7 +412,7 @@ function chReset(){
   chActiveCat=null;
   chApplySort(chCurrentSort);
   document.querySelectorAll('.ch-cat').forEach(function(b){b.classList.remove('active')});
-  document.querySelectorAll('.ch-sort').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.ch-sort-btn').forEach(function(b){b.classList.remove('active')});
   document.querySelector('.ch-sort').classList.add('active');
   document.getElementById('ch-search').value='';
   document.getElementById('ch-result-info').style.display='none';
