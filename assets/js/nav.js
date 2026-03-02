@@ -34,7 +34,7 @@
   document.addEventListener('click', function (e) {
     var nav = document.querySelector('.nav-links');
     var ham = document.querySelector('.hamburger');
-    if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== ham) {
+    if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== ham && !e.target.closest('.lang-dropdown')) {
       nav.classList.remove('open');
     }
   });
