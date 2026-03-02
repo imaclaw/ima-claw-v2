@@ -203,7 +203,7 @@ var allSkills = [];
 var catCounts = {};
 
 // Load data
-fetch('community-skills.json')
+fetch('../community-skills.json')
 .then(r => r.json())
 .then(function(data) {
   allSkills = data.skills || [];
