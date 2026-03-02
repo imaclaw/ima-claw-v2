@@ -537,7 +537,7 @@
   "day2.li22": "<strong>Describing problems is easier than describing features</strong> — \"the right card is hugging the edge\" is way easier than \"build a responsive layout\"",
   "day2.li23": "<strong>Batch operations are killer</strong> — \"change default language site-wide\" = one sentence, 5 files",
   "day2.li24": "<strong>AI memory is an advantage</strong> — Claw remembers the entire codebase structure, no need to tell it where files are",
-  "adopt.title": "Adopt Your Baby Claw",
+  "adopt.title": "Adopt Your <span class=\"highlight\">Baby Claw</span>",
   "adopt.subtitle": "Choose a way to start adopting your AI Claw companion.",
   "bubble.adopt": "Master, come adopt me! ❤️",
   "bubble.cta": "Book Now →",

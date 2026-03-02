@@ -35,7 +35,8 @@ a{text-decoration:none;color:inherit}
 .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(212,64,58,0.06) 0%,transparent 60%);pointer-events:none}
 .lobster{animation:float 3s ease-in-out infinite;margin-bottom:-24px;margin-top:0}
 @keyframes popIn{0%{opacity:0;transform:scale(0.5)}50%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:var(--lobster-light);margin-bottom:8px;margin-top:-56px}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:white;margin-bottom:8px;margin-top:-56px}
+.hero h1 .highlight{color:var(--lobster-light)}
 .hero .sub{color:var(--text-2);font-size:18px;max-width:800px;margin:0 auto 8px}
 .hero .tiny{color:#555;font-size:13px}
 
@@ -177,7 +178,7 @@ a{text-decoration:none;color:inherit}
 <div style="width:7px;height:7px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50%;margin-left:12px;margin-top:2px"></div>
 </div>
 </div>
-<h1 data-i18n="adopt.title">领养你的 Baby 小龙虾</h1>
+<h1 data-i18n="adopt.title">领养你的 <span class="highlight">Baby 小龙虾</span></h1>
 <p class="sub" data-i18n="adopt.subtitle">选择一种方式，开始领养你的专属 AI 龙虾伙伴。</p>
 </section>
 
