@@ -24,8 +24,8 @@
 <meta name="twitter:description" content="Ima Claw Skill Store — AI-powered skills for image generation, video creation, music composition, and more.">
 <meta name="twitter:image" content="https://imaclaw.github.io/ima-claw-v2/mascot.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/variables.css?v=7">
-<link rel="stylesheet" href="../assets/css/nav.css?v=7">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
 <style>
 :root{--bg:#0a0a0f;--surface:#111118;--surface-2:#1a1a22;--border:#222;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--yellow:#f2c744;--green:#2ecc71;--blue:#4a9eff}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -222,7 +222,7 @@ body{padding-top:60px}
 </div>
 
 <!-- Skill grid -->
-<div class="cm-skill-grid" id="ch-skill-grid"></div>
+<div class="cm-skill-grid" id="ch-skill-grid"><div style="text-align:center;padding:40px;color:var(--text-3)">⏳ 加载中...</div></div>
 <div id="ch-load-more" style="text-align:center;margin-top:16px;display:none">
   <button onclick="chLoadMore()" style="padding:10px 28px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;font-size:14px;font-weight:600" data-i18n="skills.community.loadmore">加载更多</button>
 </div>
@@ -282,8 +282,9 @@ fetch('clawhub-skills.json').then(function(r){return r.json()}).then(function(da
   }});
   document.getElementById('ch-total').textContent=chSkills.length.toLocaleString()+'+';
   chApplySort('trending');
-}).catch(function(){
-  document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-3)">'+(chGetLang()==='zh'?'数据加载失败，请刷新重试':'Failed to load. Please refresh.')+'</div>';
+}).catch(function(e){
+  console.error('ClawHub data load error:', e);
+  document.getElementById('ch-skill-grid').innerHTML='<div style="text-align:center;padding:40px;color:var(--text-3)">'+(chGetLang()==='zh'?'⚠️ 数据加载失败，请刷新重试':'⚠️ Failed to load. Please refresh.')+'</div>';
 });
 
 function chGetLang(){return(localStorage.getItem('imaclaw-lang')||'zh-CN').startsWith('zh')?'zh':'en'}
@@ -473,7 +474,7 @@ function chCard(s){
 function chEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 </script>
 </script>
-<script src="../i18n/core.js?v=7"></script>
-<script src="../assets/js/nav.js?v=7"></script>
+<script src="../i18n/core.js?v=8"></script>
+<script src="../assets/js/nav.js?v=8"></script>
 </body>
 </html>

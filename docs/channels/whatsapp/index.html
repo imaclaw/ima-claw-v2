@@ -5,8 +5,8 @@
 <meta name="theme-color" content="#0C0C12">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Connect WhatsApp - Ima Claw</title>
-<link rel="stylesheet" href="../../../assets/css/variables.css?v=7">
-<link rel="stylesheet" href="../../../assets/css/nav.css?v=7">
+<link rel="stylesheet" href="../../../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../../../assets/css/nav.css?v=8">
 <style>
 :root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--gold:#f2c744;--green:#2ecc71;--blue:#3498db}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -220,7 +220,7 @@ a{text-decoration:none;color:inherit}
 function copyCode(btn){var block=btn.parentElement;var text=block.textContent.replace('复制','').replace('已复制!','').trim();navigator.clipboard.writeText(text);btn.textContent='已复制!';btn.style.background='var(--green)';btn.style.color='#fff';setTimeout(function(){btn.textContent='复制';btn.style.background='';btn.style.color=''},1500)}
 document.addEventListener('click',function(e){document.querySelectorAll('.lang-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')});var nav=document.querySelector('.nav-links');var ham=document.querySelector('.hamburger');if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}});
 </script>
-<script src="../../../i18n/core.js?v=7"></script>
-<script src="../../../assets/js/nav.js?v=7"></script>
+<script src="../../../i18n/core.js?v=8"></script>
+<script src="../../../assets/js/nav.js?v=8"></script>
 </body>
 </html>
