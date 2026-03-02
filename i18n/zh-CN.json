@@ -699,7 +699,7 @@
   "cloud.info": "<div><span style=\"color:#4A80D4\">✅</span> 7×24 小时在线，永不关机</div><div><span style=\"color:#4A80D4\">✅</span> 零配置，注册即用</div><div><span style=\"color:#4A80D4\">✅</span> IMA 托管运维，安全扫描</div><div><span style=\"color:#4A80D4\">✅</span> 企业级备份，多设备同步</div><div><span style=\"color:#4A80D4\">✅</span> 自动更新，最新能力</div>",
   "cloud.promo": "🔥 限时福利：云端领养限量免费内测名额开放中！",
   "cloud.promo.sub": "填写表单预约名额，开放时第一时间通知你",
-  "cloud.cta": "免费预约",
+  "cloud.cta": "📋 免费预约",
   "cloud.coming": "云端领养即将推出",
   "cloud.desc": "你的龙虾将 7×24 小时跑在云端，随时随地为你服务。<br>\n不需要安装，不需要命令行，注册即用。",
   "cloud.features.title": "☁️ 云端版将支持：",
@@ -777,5 +777,5 @@
   "skills.filter.image": "图片",
   "skills.filter.video": "视频",
   "skills.filter.music": "音乐",
-  "cloud.discord": "加入社区"
+  "cloud.discord": "🎮 加入社区"
 }

@@ -553,7 +553,7 @@
   "cloud.title": "☁️ Cloud — Your Claw lives in the cloud, always ready",
   "cloud.info": "<div><span style=\"color:#4A80D4\">✅</span> 24/7 online, never offline</div><div><span style=\"color:#4A80D4\">✅</span> Zero config, sign up and go</div><div><span style=\"color:#4A80D4\">✅</span> IMA managed, security scanned</div><div><span style=\"color:#4A80D4\">✅</span> Enterprise backup, multi-device sync</div><div><span style=\"color:#4A80D4\">✅</span> Auto updates, latest capabilities</div>",
   "cloud.coming": "Cloud Adoption Coming Soon",
-  "cloud.cta": "Book Beta Access",
+  "cloud.cta": "📋 Book Beta",
   "cloud.compare.title": "Local vs Cloud",
   "cloud.features.title": "☁️ Cloud version will support:",
   "cloud.promo": "🔥 Limited offer: Free cloud beta spots available now!",
@@ -777,5 +777,5 @@
   "skills.filter.image": "Image",
   "skills.filter.video": "Video",
   "skills.filter.music": "Music",
-  "cloud.discord": "Join Community"
+  "cloud.discord": "🎮 Join Community"
 }
