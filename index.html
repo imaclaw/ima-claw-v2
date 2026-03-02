@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ima Claw 龙虾 — All-in-One AI Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden;width:100%;scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar{display:none}
+:root{
+  --lobster:#D4403A;--lobster-light:#E8584E;--lobster-glow:rgba(212,64,58,0.15);
+  --blue:#8BA4C4;--yellow:#F2C744;
+  --bg:#0C0C12;--surface:#13131D;--surface-2:#1B1B28;--surface-3:#242435;
+  --text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);
+  --gradient:linear-gradient(135deg,#D4403A 0%,#E8584E 40%,#F2C744 100%);
+}
+body{font-family:'Inter',-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* Language toggle */
+.lang-dropdown{display:inline-block}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-trigger:hover{border-color:var(--lobster)}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
+
+/* Navigation - minimal like Ima Claw */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav.scrolled{background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.nav-cta{padding:8px 18px;border-radius:8px;background:var(--lobster);color:#fff;font-size:13px;font-weight:600;transition:all .3s}
+.nav-cta:hover{background:var(--lobster-light)}
+
+/* Hero - centered like Ima Claw but with mascot */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 40px 48px;text-align:center;max-width:1100px;margin:0 auto;width:100%}
+/* Ambient glow */
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(212,64,58,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-mascot{margin-bottom:24px;position:relative;z-index:1}
+.hero-mascot img{width:clamp(120px,10vw,140px);height:clamp(120px,10vw,140px);object-fit:contain;filter:drop-shadow(0 20px 40px rgba(212,64,58,0.3));animation:float 4s ease-in-out infinite}
+
+@keyframes btn-glow{0%,100%{box-shadow:0 0 8px rgba(231,76,60,0.3),0 0 24px rgba(231,76,60,0.1)}50%{box-shadow:0 0 16px rgba(231,76,60,0.5),0 0 48px rgba(231,76,60,0.2)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-title{font-size:clamp(30px,5vw,64px);font-weight:900;line-height:1.05;letter-spacing:-0.04em;margin-bottom:24px;position:relative;z-index:1}
+.hero-subtitle{font-size:clamp(11px,1vw,13px);font-weight:600;color:var(--lobster-light);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:14px}
+.hero-desc{font-size:clamp(13px,1.2vw,16px);color:var(--text-2);line-height:1.5;max-width:900px;margin:0 auto 6px}
+/* Channel badges */
+.channels{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap;margin-bottom:14px}
+.hero-private{margin:14px auto 18px;display:flex;gap:8px;justify-content:center;flex-wrap:nowrap}
+.hero-private .hp-item{padding:clamp(8px,0.8vw,12px) clamp(16px,1.5vw,24px);background:rgba(212,64,58,0.08);border:1px solid rgba(212,64,58,0.2);border-radius:10px;font-size:clamp(13px,1.1vw,16px);color:var(--accent);font-weight:600;text-align:center;white-space:nowrap}
+
+.wf-layout{display:flex;align-items:center;gap:clamp(24px,4vw,60px);max-width:1100px;margin:0 auto}
+.wf-img{flex:1;min-width:0}
+.wf-img img{width:100%;border-radius:16px;display:block}
+.wf-text{flex:1;text-align:left;min-width:0}
+
+.hero-byline{font-size:13px;color:var(--text-3);margin-bottom:8px;letter-spacing:0.02em}
+.private{padding:80px 40px;text-align:center;max-width:1100px;margin:0 auto}
+.priv-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;max-width:960px;margin:40px auto 0;padding:0 40px;text-align:left}
+.priv-box{padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:16px;width:calc(33.333% - 20px);min-width:220px;flex-shrink:1}
+.priv-box h3{font-size:18px;margin-bottom:12px;font-weight:700}
+.priv-box p{font-size:14px;color:var(--text-2);line-height:1.7}
+.plat-icons{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.plat-icons span{padding:8px 16px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:600}
+@media(max-width:700px){.priv-grid{flex-direction:column;align-items:stretch;padding:0}.priv-box{width:100%}}
+.ch{padding:6px 14px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-size:12px;color:var(--text-3);font-weight:500;transition:all .3s}
+.ch:hover{border-color:var(--lobster);color:var(--lobster-light)}
+/* Announcement pill like Ima Claw */
+.announce{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;border-radius:100px;background:var(--surface);border:1px solid var(--border);margin-bottom:28px;font-size:13px;color:var(--text-2);transition:all .3s;cursor:pointer}
+.announce:hover{border-color:var(--border-hover)}
+.announce .badge{padding:3px 10px;border-radius:100px;background:var(--lobster);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.02em}
+.announce .arrow{color:var(--text-3)}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;transition:all .3s;border:none;display:inline-flex;align-items:center;gap:10px;letter-spacing:0.02em}
+.btn-primary{background:var(--lobster);color:#fff;animation:btn-glow 2.5s ease-in-out infinite;transition:transform .2s}
+.btn-primary:hover{background:var(--lobster-light);transform:scale(1.05);box-shadow:0 6px 24px rgba(212,64,58,0.4)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--border-hover);background:var(--surface)}
+
+/* Sections */
+section{padding:clamp(80px,8vw,120px) clamp(40px,5vw,80px);position:relative;text-align:center}
+.sec-header{text-align:center;margin-bottom:48px}
+.sec-label{font-size:14px;font-weight:600;color:var(--lobster-light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px}
+.sec-header h2{font-size:clamp(32px,4.5vw,56px);font-weight:800;letter-spacing:-0.03em;margin-bottom:12px}
+.sec-header p{font-size:clamp(16px,1.4vw,20px);color:var(--text-2);max-width:600px;margin:0 auto}
+
+/* Features grid */
+.features{background:var(--bg)}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1100px;margin:0 auto}
+.f-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(16px,2vw,32px);transition:all .4s;position:relative;overflow:hidden;text-align:left}
+.f-card:hover{border-color:rgba(212,64,58,0.15);background:var(--surface-2);transform:translateY(-2px)}
+.f-card .icon{font-size:clamp(24px,2vw,32px);margin-bottom:12px;display:block}
+.f-card h3{font-size:clamp(14px,1.4vw,22px);font-weight:700;margin-bottom:8px;letter-spacing:-0.01em}
+.f-card p{font-size:clamp(12px,1.2vw,17px);color:var(--text-2);line-height:1.6}
+
+/* Skill Store - like ClawHub cards */
+.skills{background:var(--surface)}
+.sk-grid{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto 48px}
+.sk-tag{padding:8px 18px;border-radius:100px;background:var(--surface-2);border:1px solid var(--border);font-size:13px;color:var(--text-2);font-weight:500;display:flex;align-items:center;gap:6px;transition:all .3s;cursor:default}
+.sk-tag:hover{border-color:var(--lobster);color:var(--lobster-light)}
+.sk-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--lobster);flex-shrink:0}
+/* Install command box like ClawHub */
+.install-box{max-width:520px;margin:0 auto;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;font-family:'SF Mono','Fira Code',monospace;font-size:14px;color:var(--text-2)}
+.install-box code{color:var(--text)}
+.install-box .copy{padding:6px 12px;border-radius:6px;background:var(--lobster);color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+
+/* Workflow */
+.wf-circle{position:relative;width:clamp(300px,50vw,420px);height:clamp(300px,50vw,420px);margin:0 auto}
+.wf-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;opacity:0.7}
+.wf-node{position:absolute;text-align:center;width:90px;margin-left:-45px;margin-top:-45px}
+.wf-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px;border:2px solid}
+.wf-n1{top:8%;left:50%}.wf-n1 .wf-icon{border-color:#D4403A;background:rgba(212,64,58,0.1)}
+.wf-n2{top:35%;left:92%}.wf-n2 .wf-icon{border-color:#F2C744;background:rgba(242,199,68,0.1)}
+.wf-n3{top:78%;left:76%}.wf-n3 .wf-icon{border-color:#D4403A;background:rgba(212,64,58,0.1)}
+.wf-n4{top:78%;left:24%}.wf-n4 .wf-icon{border-color:#F2C744;background:rgba(242,199,68,0.1)}
+.wf-n5{top:35%;left:8%}.wf-n5 .wf-icon{border-color:#D4403A;background:rgba(212,64,58,0.1)}
+.wf-name{font-size:13px;color:var(--text);font-weight:600;white-space:nowrap}
+.wf-arrows{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.workflow{background:var(--bg)}
+.wf-track{display:flex;flex-wrap:wrap;max-width:900px;margin:0 auto;gap:16px;justify-content:center}
+.wf-track::before{display:none}
+.wf-step{flex:0 0 calc(33.3% - 16px);text-align:center;padding:24px 16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;position:relative;transition:all .3s}
+.wf-step:hover{border-color:var(--lobster);transform:translateY(-4px)}
+.wf-ico{font-size:40px;margin-bottom:12px;display:block}
+.wf-num{width:28px;height:28px;border-radius:50%;background:var(--surface-2);border:1.5px solid var(--lobster);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin:0 auto 12px;position:relative;z-index:1}
+.wf-step:nth-child(2) .wf-num{border-color:var(--blue)}
+.wf-step:nth-child(3) .wf-num{border-color:var(--yellow)}
+.wf-step h3{font-size:15px;font-weight:700;margin-bottom:14px}
+.wf-step p{font-size:12px;color:var(--text-3);line-height:1.5}
+
+/* Showcase */
+.showcase{background:var(--surface)}
+.sh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto}
+.sh-card{border-radius:14px;aspect-ratio:16/10;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:all .4s}
+a.sh-card{text-decoration:none;color:inherit}
+.sh-card:hover{border-color:rgba(212,64,58,0.2);transform:translateY(-2px)}
+.sh-card .ico{font-size:48px;opacity:0.5}
+.sh-card .lbl{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.7))}
+.sh-card .lbl span{font-size:13px;font-weight:600}
+
+/* CTA */
+.cta-end{background:var(--bg);text-align:center;position:relative}
+.cta-end::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,var(--lobster-glow) 0%,transparent 70%);pointer-events:none}
+.cta-end h2{font-size:clamp(32px,4.5vw,56px);font-weight:800;margin-bottom:14px;letter-spacing:-0.02em;position:relative}
+.cta-end p{font-size:16px;color:var(--text-2);margin-bottom:32px;position:relative}
+
+/* Footer */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:40px;text-align:center}
+footer p{color:var(--text-3);font-size:12px}
+footer a{color:var(--lobster-light)}
+
+/* Responsive */
+@media(max-width:900px){.f-grid,.sh-grid{grid-template-columns:1fr 1fr}}
+
+.wf-layout{display:flex;align-items:center;gap:clamp(24px,4vw,60px);max-width:1100px;margin:0 auto}
+.wf-img{flex:1;min-width:0}
+.wf-img img{width:100%;border-radius:16px;display:block}
+.wf-text{flex:1;text-align:left;min-width:0}
+
+.mbr{display:none}
+@media(max-width:600px){.mbr{display:block}.f-grid,.sh-grid{grid-template-columns:1fr 1fr}section{padding:72px 20px}.hero{padding:80px 20px 25px;min-height:100vh}.hero-mascot{margin-bottom:20px;margin-top:60px}.hero-mascot img{width:140px;height:140px}.hero-title{font-size:34px;margin-bottom:4px;letter-spacing:0.08em;line-height:1.3}.hero-subtitle{letter-spacing:0.25em}.hero-desc{letter-spacing:0.1em}.hero-byline{letter-spacing:0.06em;line-height:1.8!important}.cta-row{margin-top:32px}.hero-subtitle{font-size:12px;margin-bottom:14px;letter-spacing:0.1em}.hero-desc{font-size:14px;margin-bottom:14px;line-height:1.6}.hero-byline{font-size:12px;margin-bottom:4px}.channels{margin-bottom:16px;gap:6px}.channels .ch{padding:5px 12px;font-size:11px}.announce{margin-bottom:8px;font-size:12px;padding:6px 14px}.wf-track{flex-direction:column;gap:12px}.wf-step{flex:0 0 auto}.wf-layout{flex-direction:column;gap:16px}.wf-text{text-align:center}}
+
+/* i18n */
+
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+@media(max-width:768px){
+nav{padding:14px 16px}
+.hamburger{display:block}
+.nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.nav-links.open{display:flex!important}
+.nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+.nav-links a:last-child{border-bottom:none}
+.nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo"><img src="logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></div>
+  <div class="nav-links">
+        <a href="./" data-i18n="nav.home">首页</a>
+    <a href="adopt/" class="nav-adopt" data-i18n="nav.adopt">🦞 领养</a>
+    <a href="skills/" data-i18n="nav.skills">Skill 市场</a>
+    <a href="pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="docs/" data-i18n="nav.docs">帮助</a>
+    <a href="blog/" data-i18n="nav.blog">博客</a>
+    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img src="https://cdn.simpleicons.org/discord/5865F2" style="width:14px;height:14px">Discord</a>
+    <div class="lang-dropdown" style="position:relative;margin-left:8px">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh-CN')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('ja')">🇯🇵 日本語</button>
+        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+      </div>
+    </div>
+  </div>
+<button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-mascot"><img src="mascot.png" alt="Ima Claw"></div>
+  <div class="hero-subtitle">
+    I'M A STUDIO. I'M A CLAW.
+    </div>
+  <h1 class="hero-title" data-i18n="hero.title">我是一只龙虾，<br class="mbr">我为创作者而生。</h1>
+  <div class="hero-byline" style="font-size:clamp(13px,1.2vw,17px);color:var(--text-2);margin-top:10px;line-height:1.4" data-i18n="hero.byline"><img src="icons/ima.png" style="width:16px;height:16px;vertical-align:-3px;border-radius:3px"> ImaStudio 出品 · 专为<b style="color:var(--lobster-light);font-size:1.2em">创作者</b>深度优化的多模态 AI 智能体</div>
+  <div class="hero-desc" data-i18n="hero.desc">一只龙虾，搞定全链路创作。</div>
+  <div class="hero-private">
+    <div class="hp-item" data-i18n="badge.cloud">☁️ 7×24 云端在线</div>
+    <div class="hp-item" data-i18n="badge.train">🧬 可训练进化</div>
+    <div class="hp-item" data-i18n="badge.yours">💎 只属于你</div>
+  </div>
+  <div class="channels">
+    <a href="docs/channels/whatsapp/" class="ch" style="text-decoration:none;color:inherit"><img src="https://cdn.simpleicons.org/whatsapp/25D366" style="width:14px;height:14px;vertical-align:-2px"> WhatsApp</a><a href="docs/channels/telegram/" class="ch" style="text-decoration:none;color:inherit"><img src="https://cdn.simpleicons.org/telegram/26A5E4" style="width:14px;height:14px;vertical-align:-2px"> Telegram</a><a href="docs/channels/discord/" class="ch" style="text-decoration:none;color:inherit"><img src="https://cdn.simpleicons.org/discord/5865F2" style="width:14px;height:14px;vertical-align:-2px"> Discord</a><a href="docs/channels/feishu/" class="ch" style="text-decoration:none;color:inherit"><img src="icons/feishu.png" style="width:14px;height:14px;vertical-align:-2px;border-radius:2px"> 飞书 Lark</a>
+  </div>
+  <a href="skills/" class="announce" style="text-decoration:none">
+    <span class="badge">NEW</span>
+    <span data-i18n="announce">Skill 应用商店上线 — 安全审核，即装即用</span><span class="arrow">→</span>
+  </a>
+  <div class="cta-row" style="flex-direction:column;align-items:center">
+    <a href="adopt/" class="btn btn-primary" style="padding:12px 52px 16px;font-size:18px;text-decoration:none;display:inline-block" data-i18n="cta.adopt" data-i18n="cta.adopt">💙 免费领养</a>
+    <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:0.02em" data-i18n="cta.limit">🔥 限量 <b style="color:#fff;font-size:15px">1,000</b> 只，<b style="color:var(--lobster-light)" class="countdown-timer"></b> 后开放领取</p>
+<div style="display:flex;gap:20px;justify-content:center;margin-top:14px"><a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:var(--text-2);font-size:13px;text-decoration:none;font-weight:500">📋 抢先预约</a><span style="color:#333">|</span><a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:var(--text-2);font-size:13px;text-decoration:none;font-weight:500"><img src="https://cdn.simpleicons.org/discord/7289da" style="width:14px;height:14px"> 加入社区</a></div>
+
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="sec-header">
+    <div class="sec-label" data-i18n="feat.label">核心能力</div>
+    <h2 data-i18n="feat.title">创作者需要的一切<br>都在这只龙虾里</h2>
+    <p data-i18n="feat.desc">社媒 · 视频 · 影视 · 设计 · 音乐 · 写作 · 全模型集成</p></div>
+  <div class="f-grid">
+    <div class="f-card"><span class="icon">🧠</span><h3 data-i18n="f.wf">智能工作流</h3><p data-i18n="f.wf.desc">不只是单张图、单条视频——龙虾能编排复杂创作流程。多镜头短片、连续剧情、分镜脚本，自动拆解任务、逐步执行、拼接成片。</p></div>
+    <div class="f-card"><span class="icon">💎</span><h3 data-i18n="f.personal">懂你的个性化创作</h3><p data-i18n="f.personal.desc">龙虾会记住你的审美偏好、常用风格、品牌调性。用得越多，它越懂你——自动形成专属于你的个性化创作工作流，不再重复调教。</p></div>
+    <div class="f-card"><span class="icon">🛒</span><h3 data-i18n="f.ecom">电商广告 & 商品素材</h3><p data-i18n="f.ecom.desc">商品主图、场景图、广告视频、带货短片——输入商品图，龙虾自动生成全套电商素材，直接投放。</p></div>
+    <div class="f-card"><span class="icon">🎨</span><h3 data-i18n="f.img">AI 图片生成</h3><p data-i18n="f.img.desc">Nano Banana 2 · Nano Banana 2 · Midjourney · SeeDream 4.5 · DALL-E · Imagen 4 等 10+ 模型。文生图、图生图，一句话出图。</p></div>
+    <div class="f-card"><span class="icon">🎬</span><h3 data-i18n="f.video">AI 视频制作</h3><p data-i18n="f.video.desc">Wan · Kling · Sora · Veo 等 20+ 模型。广告片、短剧、MV，分钟级交付。</p></div>
+    <div class="f-card"><span class="icon">🎵</span><h3 data-i18n="f.music">AI 音乐创作</h3><p data-i18n="f.music.desc">Suno · DouBao 模型。歌曲、BGM、音效，自定义风格人声。</p></div>
+    <div class="f-card"><span class="icon">📱</span><h3 data-i18n="f.social">社媒内容灵感</h3><p data-i18n="f.social.desc">小红书、Twitter、LinkedIn、Instagram——自动追热点、生成爆款文案，配图配视频一条龙。</p></div>
+    <div class="f-card"><span class="icon">🚀</span><h3 data-i18n="f.publish">社媒一键发布</h3><p data-i18n="f.publish.desc">打通多平台发布通道。内容生成后直接推送到小红书、Twitter、公众号，排期管理全自动。</p></div>
+    <div class="f-card"><span class="icon">🌐</span><h3 data-i18n="f.web">网站 & 设计</h3><p data-i18n="f.web.desc">搭建个人网站、工作室主页、海报、Banner，对话即设计。</p></div>
+    <div class="f-card f-more" style="border-color:rgba(242,199,68,0.15);background:linear-gradient(135deg,var(--surface) 0%,rgba(242,199,68,0.03) 100%)"><span class="icon">✨</span><h3 data-i18n="f.more">更多技能，等你养成</h3><p data-i18n="f.more.desc">龙虾的边界由你来定义。教它新技能、安装新 Skill、训练专属工作流——你的想象力就是它的上限。每只龙虾都是独一无二的。</p></div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="sec-header">
+    <div class="sec-label" data-i18n="sk.label">生态系统</div>
+    <h2 data-i18n="sk.title">Skill 应用商店</h2>
+    <p data-i18n="sk.desc">安全审核 · 即装即用 · 无需操心配置</p></div>
+  <div class="sk-grid">
+    <div class="sk-tag" data-i18n="sk.img">图片生成</div>
+    <div class="sk-tag" data-i18n="sk.video">视频制作</div>
+    <div class="sk-tag" data-i18n="sk.music">音乐创作</div>
+    <div class="sk-tag" data-i18n="sk.research">深度研究</div>
+    <div class="sk-tag" data-i18n="sk.doc">文档写作</div>
+    <div class="sk-tag" data-i18n="sk.social">社媒灵感</div>
+    <div class="sk-tag" data-i18n="sk.publish">社媒发布</div>
+    <div class="sk-tag" data-i18n="sk.xhs">小红书</div>
+    <div class="sk-tag">Twitter/X</div>
+    <div class="sk-tag" data-i18n="sk.wechat">公众号</div>
+    <div class="sk-tag" data-i18n="sk.calendar">内容日历</div>
+    <div class="sk-tag" data-i18n="sk.more">更多…</div>
+  </div>
+  <div class="install-box" style="flex-direction:column;gap:12px;text-align:center;padding:24px 32px;margin-top:32px">
+    <div style="font-size:16px;font-weight:700;color:var(--text)" data-i18n="sk.install">⚡ 即装即用，无需配置</div>
+    <div style="font-size:13px;color:var(--text-2)" data-i18n="sk.install.desc">无需安装 SDK、无需写代码、无需命令行。所有 Skill 安全审核，一键安装即可使用。</div>
+    <a href="skills/" class="btn btn-primary" style="margin-top:8px;padding:clamp(14px,1.2vw,18px) clamp(36px,3vw,48px);font-size:clamp(15px,1.3vw,20px)" data-i18n="feat.browse">⚡ 浏览全部 Skills</a>
+  </div>
+</section>
+
+<section class="workflow" id="workflow">
+  <div class="sec-header">
+    <div class="sec-label" data-i18n="wf.label">养成闭环</div>
+    <h2 data-i18n="wf.title">对话即创作<br>反馈即进化</h2>
+  </div>
+  <div class="wf-circle">
+    <div class="wf-center"><img src="mascot.png" style="width:clamp(80px,12vw,120px);height:auto;filter:drop-shadow(0 0 20px rgba(212,64,58,0.3))"></div>
+    <div class="wf-node wf-n1"><div class="wf-icon">💡</div><div class="wf-name" data-i18n="wf.s1">描述想法</div></div>
+    <div class="wf-node wf-n2"><div class="wf-icon">🎨</div><div class="wf-name" data-i18n="wf.s2">龙虾创作</div></div>
+    <div class="wf-node wf-n3"><div class="wf-icon">🚀</div><div class="wf-name" data-i18n="wf.s3">即时交付</div></div>
+    <div class="wf-node wf-n4"><div class="wf-icon">💬</div><div class="wf-name" data-i18n="wf.s4">反馈训练</div></div>
+    <div class="wf-node wf-n5"><div class="wf-icon">🧬</div><div class="wf-name" data-i18n="wf.s5">龙虾进化</div></div>
+    <svg class="wf-arrows" viewBox="0 0 400 400">
+      <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#D4403A"/></marker>
+      <marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#F2C744"/></marker></defs>
+      <path d="M 230,68 A 140,140 0 0 1 332,175" fill="none" stroke="#D4403A" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M 340,230 A 140,140 0 0 1 270,340" fill="none" stroke="#F2C744" stroke-width="2" marker-end="url(#ah2)"/>
+      <path d="M 220,350 A 140,140 0 0 1 130,340" fill="none" stroke="#D4403A" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M 80,290 A 140,140 0 0 1 60,175" fill="none" stroke="#F2C744" stroke-width="2" marker-end="url(#ah2)"/>
+      <path d="M 90,120 A 140,140 0 0 1 170,65" fill="none" stroke="#D4403A" stroke-width="2" marker-end="url(#ah)"/>
+    </svg>
+  </div>
+</section>
+
+<section class="showcase" id="showcase">
+  <div class="sec-header">
+    <div class="sec-label" data-i18n="sc.label">案例</div>
+    <h2 data-i18n="sc.title">创作者在用 Ima Claw 做什么</h2>
+    <p>来自 <a href="https://www.imastudio.com/community" target="_blank" style="color:var(--accent);text-decoration:none">ImaStudio 社区</a> 的真实创作</p></div>
+  <div class="sh-grid">
+    <a class="sh-card" href="https://www.imastudio.com/community/collection/57" target="_blank" style="background:url(showcase/shorts.png) center/cover no-repeat"><div class="lbl" data-i18n="sc.films">AI 短片合集</div></a>
+    <a class="sh-card" href="https://www.imastudio.com/community/collection/142" target="_blank" style="background:url(showcase/commercial.jpg) center/cover no-repeat"><div class="lbl">AI 广告片</div></a>
+    <a class="sh-card" href="https://www.imastudio.com/community/collection/88" target="_blank" style="background:url(showcase/mv.png) center/cover no-repeat"><div class="lbl">AI MV</div></a>
+    <a class="sh-card" href="https://www.imastudio.com/event/activity/campaign/detail/22" target="_blank" style="background:url(showcase/nano-banana.png) center/cover no-repeat"><div class="lbl">Nano Banana 2 图片合集</div></a>
+    <a class="sh-card" href="https://www.imastudio.com/gaic" target="_blank" style="border-color:rgba(242,199,68,0.3);background:url(showcase/gaic.png) center/cover no-repeat"><div class="lbl">创作挑战赛 · $20,000 大奖</div></a>
+    <a class="sh-card" href="https://www.imastudio.com/community" target="_blank" style="background:url(showcase/community.png) center/cover no-repeat"><div class="lbl" data-i18n="sc.more">更多创作 →</div></a>
+  </div>
+</section>
+
+<section class="private">
+  <div class="sec-header">
+    <div class="sec-label" data-i18n="priv.label">私人专属</div>
+    <h2 data-i18n="priv.title">7×24 只为你服务<br>你的专属龙虾</h2>
+    <p data-i18n="priv.desc">不是共享工具——是一只跑在云端的私人龙虾。你训练它、进化它，它只听你的。</p></div>
+  <div class="priv-grid">
+    <div class="priv-box">
+      <h3 data-i18n="priv.cloud">☁️ 7×24 云端在线</h3>
+      <p data-i18n="priv.cloud.desc">你的龙虾跑在云端，永不宕机、永不休息。凌晨三点发消息，它秒回；出差路上一句话，活儿就干完了。</p></div>
+    <div class="priv-box">
+      <h3 data-i18n="priv.data">💎 只属于你</h3>
+      <p data-i18n="priv.data.desc">独立云实例，数据完全私有。对话记忆、创作偏好、工作流程，不与任何人共享，只属于你。</p></div>
+    <div class="priv-box">
+      <h3 data-i18n="priv.train">🧬 训练你自己的龙虾</h3>
+      <p data-i18n="priv.train.desc">教它你的写作风格、审美偏好、品牌调性。用得越多，它越像你的分身。你在进化，它也在进化。</p></div>
+    <div class="priv-box">
+      <h3 data-i18n="priv.multi">📱 随身多平台</h3>
+      <p data-i18n="priv.multi.desc">在你已有的聊天工具里直接使用，无需下载新 App。通勤用 WhatsApp，办公用飞书，团队用 Discord。</p><div class="plat-icons">
+        <span><img src="https://cdn.simpleicons.org/whatsapp/25D366" style="width:13px;height:13px;vertical-align:-2px"> WhatsApp</span><span><img src="https://cdn.simpleicons.org/telegram/26A5E4" style="width:13px;height:13px;vertical-align:-2px"> Telegram</span><span><img src="https://cdn.simpleicons.org/discord/5865F2" style="width:13px;height:13px;vertical-align:-2px"> Discord</span><span><img src="icons/feishu.png" style="width:13px;height:13px;vertical-align:-2px;border-radius:2px"> 飞书 Lark</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-end" id="cta">
+  <h2 data-i18n="final.title">I'm A Studio. I'm A Claw.<br>你呢？</h2>
+  <p data-i18n="final.desc">领养你的第一只创作智能体龙虾 🦞</p><div class="cta-row" style="flex-direction:column;align-items:center;justify-content:center">
+    <a href="adopt/" class="btn btn-primary" style="padding:12px 52px 16px;font-size:18px;text-decoration:none;display:inline-block" data-i18n="cta.adopt">💙 免费领养</a>
+    <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:0.02em" data-i18n="cta.limit">🔥 限量 <b style="color:#fff;font-size:15px">1,000</b> 只，<b style="color:var(--lobster-light)" class="countdown-timer"></b> 后开放领取</p>
+    <a href="#" style="color:var(--text-3);font-size:clamp(13px,1.1vw,16px);margin-top:8px;text-decoration:none" data-i18n="footer.contact">联系我们 →</a>
+  </div>
+</section>
+
+<footer>
+<div style="max-width:600px;margin:0 auto 24px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px">
+  <div style="text-align:center;margin-bottom:16px">
+    <div style="display:flex;align-items:center;justify-content:center;gap:24px"><img src="icons/yuki-v4.jpg" style="width:80px;height:80px;border-radius:50%;border:2px solid var(--border);object-fit:cover" alt="Yuki He"><span style="font-size:22px;color:var(--text-3);font-weight:300">&amp;</span><img src="icons/logo-circle.jpg" style="width:80px;height:80px;border-radius:50%;border:2px solid var(--border);object-fit:cover" alt="Ima Claw"></div>
+    <div style="font-size:16px;font-weight:600;color:#fff;margin-top:10px">Yuki He</div>
+    <div style="font-size:12px;color:var(--text-2);margin-top:2px">Founder & CEO @ JOYME & ImaStudio</div>
+    <div style="margin-top:8px;display:flex;justify-content:center;gap:12px">
+      <a href="https://x.com/Yuki26856052" target="_blank" style="color:var(--text-2);text-decoration:none;font-size:12px;display:flex;align-items:center;gap:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="#aaa"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> @Yuki</a>
+      <a href="https://www.linkedin.com/in/yuki-he-018b46161/" target="_blank" style="color:var(--text-2);text-decoration:none;font-size:12px;display:flex;align-items:center;gap:4px"><img src="icons/linkedin.png" style="width:14px;height:14px"> LinkedIn</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--border);padding-top:16px">
+    <p style="font-size:clamp(14px,1.3vw,17px);color:var(--text-2);line-height:1.8;margin:0;text-align:center;font-style:italic" data-i18n="footer.quote">
+      "这个网站是我用 <b style="color:var(--lobster-light);font-style:normal">Ima Claw</b> 通过 Vibe Coding 生成的，全程零代码。左上角那只龙虾 logo？AI 抠图翻车把它的脸删了，又给它补了一张脸回来——结果变得超级可爱搞笑。我们决定留着它三个月。"
+      </p>
+    <div style="text-align:center;margin-top:12px"><a href="blog/vibe-coding-story.html" style="color:var(--lobster-light);font-size:13px" data-i18n="footer.story">阅读完整故事 →</a></div>
+  </div>
+</div>
+<div style="display:flex;justify-content:center;align-items:center;gap:16px;margin-bottom:16px">
+  <a href="https://x.com/ImaStudio_ai" target="_blank" style="color:var(--text-2);text-decoration:none;font-size:12px;display:flex;align-items:center;gap:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#aaa"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> @ImaStudio_ai</a>
+  <a href="https://www.linkedin.com/company/imastudioai" target="_blank" style="color:var(--text-2);text-decoration:none;font-size:12px;display:flex;align-items:center;gap:4px"><img src="icons/linkedin.png" style="width:16px;height:16px"> ImaStudio</a>
+  <a href="https://www.imastudio.com" target="_blank" style="color:var(--text-2);text-decoration:none;font-size:12px;display:flex;align-items:center;gap:4px"><img src="icons/ima.png" style="width:16px;height:16px;border-radius:3px"> imastudio.com</a>
+</div>
+<p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> 出品· I'm A Studio, I'm A Claw 🦞 · <a href="https://github.com/openclaw/openclaw" target="_blank">Built on OpenClaw</a></p></footer>
+
+<script src="i18n.js?v=20260301b"></script>
+<script src="app.js"></script>
+<script>
+/* Close lang dropdown when clicking outside */
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".lang-dropdown")){
+    document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")});
+  }
+});
+</script>
+</body>
+</html>

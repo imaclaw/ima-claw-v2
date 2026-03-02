@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="220" viewBox="0 0 360 220">
+  <rect width="360" height="220" rx="12" fill="#1a1a24"/>
+  <!-- Header -->
+  <rect width="360" height="48" fill="#2a2a36"/>
+  <text x="20" y="30" font-size="15" font-weight="bold" fill="white" font-family="Arial">飞书开放平台</text>
+  <text x="280" y="30" font-size="12" fill="#3370FF" font-family="Arial">应用管理</text>
+  <!-- Create button -->
+  <rect x="20" y="64" width="140" height="36" rx="6" fill="#3370FF"/>
+  <text x="90" y="87" text-anchor="middle" font-size="13" font-weight="600" fill="white" font-family="Arial">+ 创建企业自建应用</text>
+  <polygon points="170,82 160,77 160,87" fill="#f2c744"/>
+  <text x="176" y="86" font-size="11" fill="#f2c744" font-family="Arial">← 点击创建</text>
+  <!-- Modal -->
+  <rect x="60" y="114" width="240" height="90" rx="10" fill="#2a2a36" stroke="#3a3a46" stroke-width="1"/>
+  <text x="80" y="140" font-size="13" fill="white" font-family="Arial">应用名称</text>
+  <rect x="80" y="148" width="200" height="30" rx="4" fill="#1a1a24" stroke="#3a3a46" stroke-width="1"/>
+  <text x="92" y="168" font-size="12" fill="#3370FF" font-family="Arial">我的 Ima 龙虾</text>
+</svg>

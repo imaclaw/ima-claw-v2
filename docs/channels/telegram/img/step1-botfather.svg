@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200" viewBox="0 0 360 200">
+  <rect width="360" height="200" rx="12" fill="#17212B"/>
+  <!-- Header -->
+  <rect width="360" height="48" fill="#1C2733"/>
+  <circle cx="32" cy="24" r="16" fill="#5BA0D0"/>
+  <text x="32" y="28" text-anchor="middle" font-size="14" fill="white" font-family="Arial">🤖</text>
+  <text x="56" y="21" font-size="14" font-weight="bold" fill="white" font-family="Arial">BotFather</text>
+  <text x="56" y="36" font-size="11" fill="#6C7883" font-family="Arial">bot · online</text>
+  <!-- Verified badge -->
+  <circle cx="120" cy="17" r="7" fill="#3390EC"/>
+  <text x="120" y="21" text-anchor="middle" font-size="9" fill="white" font-family="Arial">✓</text>
+  <!-- Message bubble -->
+  <rect x="20" y="62" width="260" height="70" rx="10" fill="#2B5278"/>
+  <text x="32" y="82" font-size="12" fill="#E1E3E6" font-family="Arial">I can help you create and manage</text>
+  <text x="32" y="98" font-size="12" fill="#E1E3E6" font-family="Arial">Telegram bots. Type /help for a list</text>
+  <text x="32" y="114" font-size="12" fill="#E1E3E6" font-family="Arial">of commands.</text>
+  <text x="264" y="126" font-size="9" fill="#6C7883" font-family="Arial">12:00</text>
+  <!-- Input bar -->
+  <rect x="10" y="155" width="340" height="36" rx="18" fill="#1C2733" stroke="#2B3945" stroke-width="1"/>
+  <text x="28" y="177" font-size="13" fill="#6C7883" font-family="Arial">Message @BotFather...</text>
+  <!-- Search hint -->
+  <rect x="100" y="148" width="160" height="24" rx="12" fill="#3390EC" opacity="0.9"/>
+  <text x="180" y="164" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="Arial">搜索 @BotFather</text>
+</svg>

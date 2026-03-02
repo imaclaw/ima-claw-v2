@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>接入 Telegram - Ima Claw</title>
+<style>
+:root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--gold:#f2c744;--green:#2ecc71;--blue:#3498db}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* === SHARED NAV CSS === */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+.lang-dropdown{display:inline-block;position:relative}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
+@media(max-width:768px){
+  nav{padding:14px 16px}
+  .hamburger{display:block}
+  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex!important}
+  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === END SHARED NAV CSS === */
+
+/* Tutorial layout */
+.tutorial{max-width:720px;margin:0 auto;padding:90px 20px 60px}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);margin-bottom:32px}
+.breadcrumb a{color:var(--text-2);transition:color .2s}
+.breadcrumb a:hover{color:var(--lobster-light)}
+.breadcrumb .sep{color:var(--text-3)}
+
+/* Header */
+.tut-header{display:flex;align-items:center;gap:20px;margin-bottom:32px}
+.tut-icon{width:64px;height:64px;border-radius:16px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tut-icon img{width:40px;height:40px}
+.tut-meta h1{font-size:28px;font-weight:800;margin-bottom:6px}
+.tut-tags{display:flex;gap:8px}
+.tut-tag{padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600}
+.tag-easy{background:rgba(46,204,113,0.15);color:var(--green)}
+.tag-time{background:rgba(242,199,68,0.12);color:var(--gold)}
+.tag-free{background:rgba(52,152,219,0.15);color:var(--blue)}
+
+/* Info box */
+.info-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:32px}
+.info-box h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-list{list-style:none}
+.info-list li{font-size:14px;color:var(--text-2);padding:4px 0;display:flex;align-items:center;gap:8px}
+.info-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:12px}
+
+/* Steps */
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px;position:relative}
+.step-badge{position:absolute;top:-11px;left:24px;background:var(--lobster);color:#fff;font-size:12px;font-weight:800;padding:3px 14px;border-radius:20px}
+.step h2{font-size:18px;font-weight:700;margin:8px 0 12px}
+.step p{color:var(--text-2);font-size:14px;margin-bottom:12px}
+.step .highlight{color:var(--gold);font-weight:600}
+
+/* Code block */
+.code-block{background:#0d0d12;border:1px solid #2a2a35;border-radius:10px;padding:14px 18px;font-family:'SF Mono','Fira Code',monospace;font-size:13px;color:var(--green);position:relative;overflow-x:auto;margin:12px 0}
+.code-block .comment{color:var(--text-3)}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer}
+.copy-btn:hover{background:#2a2a35;color:#fff}
+
+/* Screenshot placeholder */
+.screenshot{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:40px;text-align:center;margin:16px 0;color:var(--text-3);font-size:13px}
+
+/* Tip */
+.tip{background:rgba(242,199,68,0.06);border:1px solid rgba(242,199,68,0.15);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--gold);margin:16px 0}
+.tip strong{color:var(--gold)}
+
+/* Warning */
+.warning{background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.15);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--lobster-light);margin:16px 0}
+
+/* Success */
+.success-box{background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.15);border-radius:14px;padding:24px;text-align:center;margin:24px 0}
+.success-box .emoji{font-size:48px;margin-bottom:12px}
+.success-box h3{font-size:18px;color:var(--green);margin-bottom:8px}
+.success-box p{color:var(--text-2);font-size:14px}
+
+/* FAQ */
+.faq{margin-top:40px}
+.faq h2{font-size:20px;font-weight:700;margin-bottom:16px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:16px 20px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface-2)}
+.faq-a{padding:0 20px 16px;font-size:13px;color:var(--text-2);display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-arrow{transition:transform .2s;color:var(--text-3)}
+
+/* Bottom nav */
+.bottom-nav{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.btn-back{padding:12px 24px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-back:hover{border-color:var(--border-hover);color:var(--text)}
+.btn-community{padding:12px 24px;background:var(--lobster);color:#fff;font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-community:hover{background:var(--lobster-light)}
+
+/* Other channels */
+.other-channels{margin-top:40px;padding-top:32px;border-top:1px solid var(--border)}
+.other-channels h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.channel-row{display:flex;gap:10px;flex-wrap:wrap}
+.channel-link{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-2);transition:all .2s}
+.channel-link:hover{border-color:var(--lobster);color:var(--text)}
+.channel-link img{width:20px;height:20px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../../../">首页</a>
+    <a href="../../../adopt/" class="nav-adopt">🦞 领养</a>
+    <a href="../../../skills/">Skill 市场</a>
+    <a href="../../../pricing/">🛒 购买</a>
+    <a href="../../../docs/">帮助</a>
+    <a href="https://imastudio.com/community" target="_blank">社区</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+
+<div class="tutorial">
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../../../adopt/">领养龙虾</a>
+  <span class="sep">›</span>
+  <a href="../../../adopt/#step-channel">接入渠道</a>
+  <span class="sep">›</span>
+  <span style="color:var(--text)">Telegram</span>
+</div>
+
+<!-- Header -->
+<div class="tut-header">
+  <div class="tut-icon"><img src="../../../adopt/logos/telegram.svg" alt="Telegram"></div>
+  <div class="tut-meta">
+    <h1>接入 Telegram</h1>
+    <div class="tut-tags">
+      <span class="tut-tag tag-easy">⭐ 简单</span>
+      <span class="tut-tag tag-time">⏱ 约 2 分钟</span>
+      <span class="tut-tag tag-free">💰 免费</span>
+    </div>
+  </div>
+</div>
+
+<!-- Prerequisites -->
+<div class="info-box">
+  <h3>📋 前置条件</h3>
+  <ul class="info-list">
+    <li>已安装 Telegram（手机或电脑端均可）</li>
+    <li>已完成 Ima Claw 安装（<a href="../../../adopt/" style="color:var(--lobster-light)">还没装？去领养 →</a>）</li>
+    <li>无需付费，无需信用卡</li>
+  </ul>
+</div>
+
+<!-- Step 1 -->
+<div class="step">
+  <div class="step-badge">STEP 1</div>
+  <h2>找到 @BotFather</h2>
+  <p>打开 Telegram，在搜索栏输入 <span class="highlight">@BotFather</span>，点击进入对话。</p>
+  <p>BotFather 是 Telegram 官方的机器人管理工具，所有 Bot 都通过它创建。</p>
+  
+  <div class="tip">💡 认准官方标识：名字旁边有蓝色 ✓ 认证徽标的才是真的 BotFather。</div>
+
+  <div class="screenshot"><img src="img/step1-botfather.svg" alt="搜索 BotFather" style="width:100%;border-radius:10px"></div>
+</div>
+
+<!-- Step 2 -->
+<div class="step">
+  <div class="step-badge">STEP 2</div>
+  <h2>创建你的 Bot</h2>
+  <p>在 BotFather 对话中，发送以下命令：</p>
+  
+  <div class="code-block">
+    /newbot
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+
+  <p>BotFather 会问你两个问题：</p>
+  <p><strong>1. Bot 的显示名称</strong> — 你希望在聊天中显示的名字，比如 <span class="highlight">我的龙虾</span> 或 <span class="highlight">My Claw</span></p>
+  <p><strong>2. Bot 的用户名</strong> — 必须以 <code>bot</code> 结尾，比如 <span class="highlight">my_lobster_bot</span></p>
+
+  <div class="screenshot"><img src="img/step2-newbot.svg" alt="创建 Bot" style="width:100%;border-radius:10px"></div>
+</div>
+
+<!-- Step 3 -->
+<div class="step">
+  <div class="step-badge">STEP 3</div>
+  <h2>拿到 Bot Token</h2>
+  <p>创建成功后，BotFather 会返回一段 Token，格式类似：</p>
+  
+  <div class="code-block">
+    <span class="comment"># 你的 Bot Token（示例）</span><br>
+    7123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+
+  <div class="warning">⚠️ 这个 Token 是你 Bot 的密钥，不要分享给任何人！如果泄露了，可以在 BotFather 中用 /revoke 命令重新生成。</div>
+</div>
+
+<!-- Step 4 -->
+<div class="step">
+  <div class="step-badge">STEP 4</div>
+  <h2>填入龙虾配置</h2>
+  <p>回到你的终端，在 Ima Claw 安装目录下编辑配置文件：</p>
+
+  <div class="code-block">
+    <span class="comment"># 方式一：如果安装向导还在运行，直接粘贴 Token</span><br><br>
+    <span class="comment"># 方式二：手动编辑配置文件</span><br>
+    nano ~/.openclaw/openclaw.json
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+
+  <p>找到 <code>channels</code> 部分，添加 Telegram 配置：</p>
+
+  <div class="code-block">
+    {<br>
+    &nbsp;&nbsp;"channels": {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"telegram": {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"enabled": true,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"token": "<span style="color:var(--gold)">你的Bot Token粘贴在这里</span>"<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp;}<br>
+    }
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+
+  <p>保存后，重启 Ima Claw：</p>
+
+  <div class="code-block">
+    openclaw gateway restart
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+</div>
+
+<!-- Step 5 -->
+<div class="step">
+  <div class="step-badge">STEP 5</div>
+  <h2>验证连接 ✅</h2>
+  <p>打开 Telegram，搜索你刚创建的 Bot 用户名，发一条消息：</p>
+  
+  <div class="code-block" style="text-align:center;font-size:16px;color:var(--text)">
+    嘿，你好！你是谁？
+  </div>
+
+  <p>如果龙虾回复了你，说明一切就绪！🎉</p>
+</div>
+
+<!-- Success -->
+<div class="success-box">
+  <div class="emoji"><img src="../../../logo-nav.png" style="width:64px;height:64px;display:inline-block;vertical-align:middle">🎉</div>
+  <h3>恭喜！你的 Ima 龙虾已上线 Telegram</h3>
+  <p>现在可以随时随地用 Telegram 和你的 Ima 龙虾对话了</p>
+</div>
+
+<!-- Tips -->
+<div class="tip">💡 <strong>进阶设置：</strong>你还可以配置群聊模式（让龙虾加入群组）、设置管理员白名单、自定义触发词等。详见 <a href="../../../docs/" style="color:var(--gold)">完整文档 →</a></div>
+
+<!-- FAQ -->
+<div class="faq">
+  <h2>❓ 常见问题</h2>
+  
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      Bot 创建成功了但龙虾没回复？
+      <span class="faq-arrow">▾</span>
+    </div>
+    <div class="faq-a">
+      <p>检查以下几点：</p>
+      <p>1. Token 是否正确粘贴（没有多余空格）</p>
+      <p>2. Ima Claw 是否已重启（<code>openclaw gateway restart</code>）</p>
+      <p>3. 查看日志：<code>openclaw gateway logs</code> 找报错信息</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      可以让多个人用同一个 Bot 吗？
+      <span class="faq-arrow">▾</span>
+    </div>
+    <div class="faq-a">
+      <p>可以！默认情况下任何人都可以和你的 Bot 对话。如果想限制只有特定用户可用，在配置中添加 <code>allowFrom</code> 白名单。</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      可以把 Bot 加到群组里吗？
+      <span class="faq-arrow">▾</span>
+    </div>
+    <div class="faq-a">
+      <p>可以！把 Bot 邀请进群后，默认只在被 @提及 时回复。你也可以在配置中设置 <code>groupPolicy</code> 来调整群聊行为。</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      Token 泄露了怎么办？
+      <span class="faq-arrow">▾</span>
+    </div>
+    <div class="faq-a">
+      <p>在 BotFather 中发送 <code>/revoke</code>，选择你的 Bot，会生成新 Token。旧 Token 立即失效。然后更新配置文件并重启。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom nav -->
+<div class="bottom-nav">
+  <a href="../../../adopt/" class="btn-back">← 返回领养页</a>
+  <a href="https://imastudio.com/community" target="_blank" class="btn-community">💬 遇到问题？加入社区</a>
+</div>
+
+<!-- Other channels -->
+<div class="other-channels">
+  <h3>接入其他渠道</h3>
+  <div class="channel-row">
+    <a href="../whatsapp/" class="channel-link"><img src="../../../adopt/logos/whatsapp.svg" alt="">WhatsApp</a>
+    <a href="../discord/" class="channel-link"><img src="../../../adopt/logos/discord.svg" alt="">Discord</a>
+    <a href="../feishu/" class="channel-link"><img src="../../../adopt/logos/feishu.png" alt="">飞书</a>
+    <a href="../signal/" class="channel-link"><img src="../../../adopt/logos/signal.svg" alt="">Signal</a>
+    <a href="../imessage/" class="channel-link"><img src="../../../adopt/logos/imessage.svg" alt="">iMessage</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+function copyCode(btn) {
+  var block = btn.parentElement;
+  var text = block.textContent.replace('复制','').replace('已复制!','').trim();
+  navigator.clipboard.writeText(text);
+  btn.textContent = '已复制!';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#fff';
+  setTimeout(function(){ btn.textContent = '复制'; btn.style.background = ''; btn.style.color = ''; }, 1500);
+}
+
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.lang-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+  var nav = document.querySelector('.nav-links');
+  var ham = document.querySelector('.hamburger');
+  if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== ham) {
+    nav.classList.remove('open');
+  }
+});
+</script>
+
+</body>
+</html>

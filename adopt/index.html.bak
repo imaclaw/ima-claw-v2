@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>免费领养你的龙虾 🦞 - Ima Claw</title>
+<style>
+:root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#D4403A;--lobster-light:#E8584E;--gold:#f2c744;--green:#E8584E;--blue:#4A80D4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+.lang-dropdown{display:inline-block}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-trigger:hover{border-color:var(--lobster)}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(212,64,58,0.1);color:var(--lobster-light)}
+@media(max-width:768px){
+  nav{padding:14px 16px}
+  .hamburger{display:block}
+  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex!important}
+  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+
+/* Hero */
+.hero{text-align:center;padding:80px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(212,64,58,0.06) 0%,transparent 60%);pointer-events:none}
+.lobster{animation:float 3s ease-in-out infinite;margin-bottom:-40px;margin-top:80px}
+@keyframes popIn{0%{opacity:0;transform:scale(0.5)}50%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-12px) rotate(-3deg)}75%{transform:translateY(-6px) rotate(2deg)}}
+.hero h1{font-size:clamp(24px,5vw,36px);font-weight:900;color:var(--lobster-light);margin-bottom:12px}
+.hero .sub{color:var(--text-2);font-size:16px;max-width:520px;margin:0 auto 8px}
+.hero .tiny{color:#555;font-size:13px}
+
+/* Steps */
+.steps{max-width:720px;margin:0 auto;padding:20px 20px 60px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:20px;position:relative}
+.step-num{position:absolute;top:-12px;left:24px;background:var(--lobster);color:#fff;font-size:13px;font-weight:800;padding:4px 14px;border-radius:20px}
+.step h2{font-size:20px;margin:8px 0 12px;font-weight:700}
+.step p{color:var(--text-2);font-size:14px;margin-bottom:16px}
+.step .time{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:12px;font-weight:600;margin-bottom:12px}
+
+/* Code box */
+.code-box{background:#0d0d12;border:1px solid #2a2a35;border-radius:10px;padding:14px 18px;font-family:'SF Mono','Fira Code','Cascadia Code',monospace;font-size:14px;color:var(--green);position:relative;overflow-x:auto;margin:12px 0}
+.code-box .label{color:#555;font-size:11px;margin-bottom:6px;font-family:-apple-system,sans-serif}
+.code-box code{display:block;white-space:pre;user-select:all}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:inherit}
+.copy-btn:hover{background:#2a2a35;color:#fff}
+.copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* Platform tabs */
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tab{padding:6px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);transition:all .2s}
+.tab.active{background:var(--lobster);color:#fff;border-color:var(--lobster)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Checklist */
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 0;font-size:14px;color:var(--text-2);display:flex;align-items:flex-start;gap:10px}
+.checklist li::before{content:'✅';flex-shrink:0}
+
+/* Provider cards */
+.providers{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+.provider{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;font-size:13px;transition:all .2s}
+.provider:hover{border-color:var(--gold);transform:translateY(-2px)}
+.provider .icon{font-size:28px;margin-bottom:6px;display:flex;justify-content:center;align-items:center;height:40px}
+.provider .icon img{width:36px;height:36px;object-fit:contain}
+.provider .name{font-weight:600;color:var(--text)}
+.provider .tag{font-size:11px;color:var(--text-2);margin-top:4px}
+.provider-details{margin:16px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.pd{font-size:13px;color:var(--text-2);line-height:1.8;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.pd:last-child{border-bottom:none}
+.pd-name{color:var(--text);font-weight:600}
+
+/* Skills showcase */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.skill-card{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;font-size:13px}
+.skill-card .emoji{font-size:24px;margin-bottom:6px}
+.skill-card .title{font-weight:600;color:var(--text);margin-bottom:4px}
+.skill-card .desc{color:var(--text-2);font-size:12px}
+
+/* CTA */
+.cta-section{text-align:center;padding:40px 20px 60px;background:linear-gradient(180deg,transparent,rgba(212,64,58,0.03))}
+.cta-section h2{font-size:24px;margin-bottom:12px}
+.cta-section p{color:var(--text-2);margin-bottom:24px}
+.btn-start{display:inline-block;padding:14px 48px;background:linear-gradient(135deg,var(--lobster),#c0392b);color:#fff;font-size:16px;font-weight:700;border-radius:12px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,64,58,0.3)}
+
+/* Tips */
+.tip{background:rgba(242,199,68,0.06);border:1px solid rgba(242,199,68,0.15);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--gold);margin:12px 0}
+.tip strong{color:#f2c744}
+
+/* Back link */
+.back{display:block;text-align:center;color:var(--lobster);text-decoration:none;font-size:14px;padding:20px}
+.back:hover{text-decoration:underline}
+
+/* FAQ */
+.faq{max-width:720px;margin:0 auto;padding:0 20px 40px}
+.faq h2{text-align:center;font-size:22px;margin-bottom:24px}
+.faq-item{border-bottom:1px solid var(--border);padding:16px 0}
+.faq-q{font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'▸';transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(90deg)}
+.faq-a{color:var(--text-2);font-size:14px;padding-top:10px;display:none}
+.faq-item.open .faq-a{display:block}
+
+@media(max-width:480px){.step{padding:20px 18px}.code-box{font-size:12px}}
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt=""><div class="logo-text">Ima <b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../" data-i18n="nav.home">首页</a>
+    <a href="./" class="nav-adopt" data-i18n="nav.adopt" data-i18n="nav.adopt">🦞 领养</a>
+    <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
+    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="../docs/" data-i18n="nav.docs">帮助</a>
+    <a href="../blog/" data-i18n="nav.blog">博客</a>
+    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('ja')">🇯🇵 日本語</button>
+        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="lobster" style="position:relative;display:inline-block;margin-left:-20px">
+<img src="baby-lobster.png" style="width:300px;height:300px;object-fit:contain" alt="Baby Lobster">
+<div style="position:absolute;top:-30px;right:-60px;animation:popIn 0.6s ease 1s both;z-index:5">
+<div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);padding:10px 16px;border-radius:20px;font-size:14px;max-width:300px;font-weight:600;color:white;line-height:1.6;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2)">
+<div data-i18n="bubble.adopt">主人，快来领养我吧！❤️</div>
+<a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" style="display:inline-block;margin-top:8px;background:var(--lobster);color:white;padding:5px 16px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none"data-i18n="bubble.cta">预约领养 →</a>
+</div>
+<div style="width:12px;height:12px;background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);border-radius:50%;margin-left:20px;margin-top:-2px"></div>
+<div style="width:7px;height:7px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50%;margin-left:12px;margin-top:2px"></div>
+</div>
+</div>
+<h1 data-i18n="adopt.title">领养你的 Baby 小龙虾</h1>
+<p class="sub" data-i18n="adopt.subtitle">选择一种方式，开始领养你的专属 AI 龙虾伙伴。</p>
+</section>
+
+<!-- Adopt Mode Selection -->
+<section class="adopt-modes" style="max-width:700px;margin:0 auto 0;padding:0 20px">
+
+<!-- Tabs -->
+<div style="display:flex;gap:0;border-radius:12px;overflow:visible;border:1px solid var(--border);margin-bottom:0">
+<div id="mode-local" onclick="switchMode('local')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(232,88,78,0.3)">
+<div style="font-size:24px;margin-bottom:4px">💻</div>
+<div style="font-size:15px;font-weight:700;color:var(--text)" data-i18n="tab.local">本地领养</div>
+<div style="font-size:11px;color:#E8584E;margin-top:2px" data-i18n="tab.local.sub">免费 · 立即可用</div>
+</div>
+<div style="width:1px;background:var(--border)"></div>
+<div id="mode-cloud" onclick="switchMode('cloud')" style="flex:1;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);opacity:0.4;position:relative;overflow:visible">
+<div style="position:absolute;top:-1px;right:-1px;background:var(--lobster);color:white;font-size:11px;font-weight:700;padding:4px 10px 4px 12px;border-radius:0 12px 0 8px;line-height:1;letter-spacing:0.5px;z-index:2">⭐推荐</div>
+<div style="font-size:24px;margin-bottom:4px">☁️</div>
+<div style="font-size:15px;font-weight:700;color:var(--text)" data-i18n="tab.cloud">云端领养</div>
+<div style="font-size:11px;color:#4A80D4;margin-top:2px" data-i18n="tab.cloud.sub">即将推出 · 7×24h 在线</div>
+</div>
+</div>
+
+<!-- Content area with visual connection to tabs -->
+<div id="steps-local" style="padding:16px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid var(--lobster);border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(212,64,58,0.03) 0%,transparent 120px)">
+
+<!-- Local info panel -->
+<div style="margin-bottom:20px;padding:14px 16px;background:rgba(212,64,58,0.04);border:1px solid rgba(212,64,58,0.12);border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.8">
+<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px" data-i18n="local.title">🖥 本地领养 — 你的龙虾住在你的电脑里</div>
+<span style="color:#E8584E">✅</span> 永久免费，无需付费<br>
+<span style="color:#E8584E">✅</span> 与本地文件、终端、浏览器深度联动<br>
+<span style="color:#E8584E">✅</span> 开源透明，自由定制<br>
+<span style="color:#e67e22">⚠️</span> 电脑关机则离线，需要保持开机运行<br>
+<span style="color:#e67e22">⚠️</span> 需要命令行操作，上手门槛较高<br>
+<span style="color:#e67e22">⚠️</span> Skill 安装需自行维护，开放生态存在安全风险<br>
+<span style="color:#e67e22">⚠️</span> 没有托管运维，系统维护全靠自己
+</div>
+
+
+<!-- Step 1: Install -->
+<div class="step">
+<span class="step-num">STEP 1</span>
+<div class="time">⏱ 约 30 秒</div>
+<h2 data-i18n="step1.title">一行命令，安装 Ima Claw</h2>
+<p>打开终端（Terminal），粘贴下面的命令回车即可。脚本会自动检测环境、安装 Node.js（如果没有的话）、然后启动配置向导。</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(this,'install','mac')">🍎 macOS / Linux</div>
+  <div class="tab" onclick="switchTab(this,'install','win')">🪟 Windows</div>
+</div>
+
+<div id="install-mac" class="tab-content active">
+<div class="code-box">
+<div class="label">Terminal</div>
+<code>curl -fsSL https://openclaw.ai/install.sh | bash</code>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
+</div>
+</div>
+
+<div id="install-win" class="tab-content">
+<div class="code-box">
+<div class="label">PowerShell（管理员）</div>
+<code>iwr -useb https://openclaw.ai/install.ps1 | iex</code>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
+</div>
+<div class="tip">💡 <strong>Windows 用户建议：</strong>先安装 <a href="https://learn.microsoft.com/en-us/windows/wsl/install" style="color:var(--gold)">WSL2</a>，然后在 WSL 里用 macOS/Linux 的命令安装，体验更丝滑。</div>
+</div>
+</div>
+
+<!-- Step 2: API Key -->
+<div class="step">
+<span class="step-num">STEP 2</span>
+<div class="time">⏱ 约 1 分钟</div>
+<h2 id="step-ai">给龙虾一个大脑 🧠</h2>
+<p>Ima Claw 已封装 30+ AI 模型，只需一个 <strong>ImaStudio 账号</strong>即可全部使用。</p>
+<div style="margin:12px 0 16px;padding:14px 16px;background:rgba(212,64,58,0.06);border:1px solid rgba(212,64,58,0.15);border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><span style="font-size:13px;color:var(--text-2)">💡 注册 ImaStudio 账号，获取 ImaClaw API Key，即可使用全部 30+ 模型</span><a href="https://www.imastudio.com" target="_blank" style=";background:var(--lobster);color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">免费注册 ImaStudio →</a></div>
+<p style="font-size:13px;color:var(--text-3);margin-bottom:12px">点击任意模型查看详情：</p>
+
+<div class="providers">
+  <a href="../docs/models/google/" class="provider"><div class="icon"><img src="logos/google.svg" alt="Google"></div><div class="name">Google</div><div class="tag">Gemini 2.5 Pro</div></a>
+  <a href="../docs/models/anthropic/" class="provider"><div class="icon"><img src="logos/anthropic.svg" alt="Anthropic"></div><div class="name">Anthropic</div><div class="tag">Claude Sonnet · Opus</div></a>
+  <a href="../docs/models/qwen/" class="provider"><div class="icon"><img src="logos/qwen.svg" alt="千问"></div><div class="name">阿里千问</div><div class="tag">Qwen-Max · Qwen-Plus</div></a>
+  <a href="../docs/models/kimi/" class="provider"><div class="icon"><img src="logos/moonshot.svg" alt="Moonshot"></div><div class="name">Kimi</div><div class="tag">Kimi K2.5</div></a>
+  <a href="../docs/models/minimax/" class="provider"><div class="icon"><img src="logos/minimax.svg" alt="MiniMax"></div><div class="name">MiniMax</div><div class="tag">MiniMax-Text-01</div></a>
+  <a href="../docs/models/openai/" class="provider"><div class="icon"><img src="logos/openai.svg" alt="OpenAI"></div><div class="name">OpenAI</div><div class="tag">GPT-4o · o3</div></a>
+  <a href="../docs/models/aws-bedrock/" class="provider"><div class="icon"><img src="logos/aws.svg" alt="AWS Bedrock"></div><div class="name">AWS Bedrock</div><div class="tag">Claude · Llama</div></a>
+  <div class="provider"><div class="icon"><img src="logos/more.svg" alt="更多"></div><div class="name">更多...</div><div class="tag">20+ 供应商</div></div>
+</div>
+
+
+
+<div class="provider-details">
+  <div class="pd"><span class="pd-name">🔑 统一接入</span> — 所有模型通过 ImaClaw 统一封装，只需一个 ImaStudio 账号和 ImaClaw API Key 即可使用全部 30+ 模型，无需逐个注册</div>
+  <div class="pd"><span class="pd-name">🟢 Google Gemini</span> — Gemini 2.5 Pro/Flash，强大的多模态能力</div>
+  <div class="pd"><span class="pd-name">🟠 Anthropic Claude</span> — Claude Sonnet/Opus，深度推理与长文本</div>
+  <div class="pd"><span class="pd-name">🟣 阿里千问 Qwen</span> — Qwen-Max/Plus，中文能力强</div>
+  <div class="pd"><span class="pd-name">🌙 Kimi K2.5</span> — 长上下文，中英文均衡</div>
+  <div class="pd"><span class="pd-name">🔵 MiniMax</span> — MiniMax-Text-01，超长上下文</div>
+  <div class="pd"><span class="pd-name">⚫ OpenAI</span> — GPT-4o/o3，业界标杆</div>
+  <div class="pd"><span class="pd-name">🟡 AWS Bedrock</span> — Claude/Llama via AWS，企业级稳定</div>
+</div>
+</div>
+
+<!-- Step 3: Connect -->
+<div class="step">
+<span class="step-num">STEP 3</span>
+<div class="time">⏱ 约 1 分钟</div>
+<h2 id="step-channel">把龙虾带回你的聊天 💬</h2>
+<p>安装完成后，配置向导会引导你把龙虾连到你常用的聊天工具。它支持：</p>
+
+<div class="providers">
+  <a href="../docs/channels/telegram/" class="provider"><div class="icon"><img src="logos/telegram.svg" alt="Telegram"></div><div class="name">Telegram</div><div class="tag">推荐 · 最简单</div></a>
+  <a href="../docs/channels/whatsapp/" class="provider"><div class="icon"><img src="logos/whatsapp.svg" alt="WhatsApp"></div><div class="name">WhatsApp</div><div class="tag">扫码即连</div></a>
+  <a href="../docs/channels/discord/" class="provider"><div class="icon"><img src="logos/discord.svg" alt="Discord"></div><div class="name">Discord</div><div class="tag">Bot 模式</div></a>
+  <a href="../docs/channels/feishu/" class="provider"><div class="icon"><img src="logos/feishu.png" alt="飞书"></div><div class="name">飞书</div><div class="tag">企业版</div></a>
+  <a href="../docs/channels/signal/" class="provider" style="opacity:0.6"><div class="icon"><img src="logos/signal.svg" alt="Signal"></div><div class="name">Signal</div><div class="tag" style="color:var(--text-3)">进阶 · 需自行配置</div></a>
+  <a href="../docs/channels/imessage/" class="provider" style="opacity:0.6"><div class="icon"><img src="logos/imessage.svg" alt="iMessage"></div><div class="name">iMessage</div><div class="tag" style="color:var(--text-3)">进阶 · 需 macOS</div></a>
+</div>
+
+<p style="font-size:13px;color:var(--text-2);margin-top:12px">也可以跳过这步，先用网页 / 终端界面聊天，随时再连接。</p>
+</div>
+
+<!-- Step 4: Done! -->
+<div class="step" style="border-color:rgba(212,64,58,0.3);background:linear-gradient(135deg,var(--surface),rgba(212,64,58,0.03))">
+<span class="step-num" style="background:var(--green)">🎉 DONE</span>
+<h2>开始和你的龙虾对话！</h2>
+<p>恭喜！你的龙虾已经醒了。试试跟它说：</p>
+
+<div class="code-box" style="background:#0d120d;border-color:rgba(232,88,78,0.3)">
+<div class="label">跟龙虾说的第一句话</div>
+<code>"嘿，你好！你是谁？我是你的新主人 😊"</code>
+</div>
+
+<p style="font-size:14px;color:var(--text-2)">它会自我介绍、了解你、然后问你想叫它什么名字。每只龙虾都是独一无二的——养出你自己的风格！</p>
+
+<div class="tip">🎯 <strong>第一次聊天的灵感：</strong><br>
+• "帮我写一封催客户的英文邮件，语气委婉但有压力"<br>
+• "搜一下今天 AI 领域有什么大新闻"<br>
+• "帮我生成一张赛博朋克风格的龙虾图片"<br>
+• "我要做一个产品发布的社媒文案，帮我想 5 个版本"</div>
+</div>
+
+
+</div>
+
+<div id="steps-cloud" style="display:none;padding:16px;margin-top:0;box-sizing:border-box;overflow:hidden;border:1px solid var(--border);border-top:3px solid #4A80D4;border-radius:0 0 12px 12px;background:linear-gradient(180deg,rgba(58,108,190,0.03) 0%,transparent 120px)">
+
+<!-- Cloud info panel -->
+<div style="margin-bottom:20px;padding:14px 16px;background:rgba(58,108,190,0.04);border:1px solid rgba(58,108,190,0.12);border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.8">
+<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px" data-i18n="cloud.title">☁️ 云端领养 — 你的龙虾住在云上，随时待命</div>
+<span style="color:#4A80D4">✅</span> 7×24 小时在线，永不关机，随时随地服务<br>
+<span style="color:#4A80D4">✅</span> 零配置，注册即用，无需命令行<br>
+<span style="color:#4A80D4">✅</span> IMA 托管运维，Skill 安全扫描，省心安全<br>
+<span style="color:#4A80D4">✅</span> 企业级数据备份，多设备无缝同步<br>
+<span style="color:#4A80D4">✅</span> 自动更新，持续获得最新能力<br>
+<div style="margin-top:12px;padding:16px;background:linear-gradient(135deg,rgba(212,64,58,0.08) 0%,rgba(58,108,190,0.08) 100%);border:1px solid rgba(212,64,58,0.2);border-radius:10px;text-align:center"><div style="color:var(--lobster-light);font-size:13px;margin-bottom:4px">🔥 限时福利：云端领养限量免费内测名额开放中！</div><div style="color:var(--text-2);font-size:12px;margin-bottom:12px">填写表单预约名额，开放时第一时间通知你</div><a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" style="display:inline-block;background:var(--lobster);color:white;padding:10px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none" data-i18n="cloud.cta">📋 免费预约内测</a></div>
+</div>
+<div style="text-align:center;padding:20px 0">
+
+<div style="margin-bottom:20px"><img src="baby-lobster.png" style="width:160px;height:160px;object-fit:contain" alt="Baby Lobster"></div>
+
+<h2 style="font-size:24px;color:var(--lobster-light);margin-bottom:12px" data-i18n="cloud.coming">云端领养即将推出</h2>
+
+<p style="color:var(--text-2);font-size:15px;line-height:1.8;margin-bottom:24px">
+你的龙虾将 7×24 小时跑在云端，随时随地为你服务。<br>
+不需要安装，不需要命令行，注册即用。
+</p>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:left;margin-bottom:24px">
+<h3 style="color:var(--text);font-size:16px;margin-bottom:12px">☁️ 云端版将支持：</h3>
+<div style="font-size:14px;color:var(--text-2);line-height:2">
+<div>🌐 <strong>浏览器直接使用</strong> — 打开网页就能和龙虾对话</div>
+<div>📱 <strong>多设备同步</strong> — 手机、电脑、平板无缝切换</div>
+<div>⏰ <strong>7×24 在线</strong> — 定时任务、消息转发、后台处理全天候</div>
+<div>🔐 <strong>数据安全</strong> — 企业级加密存储，自动备份</div>
+<div>⚡ <strong>一键接入</strong> — 连接 Telegram、Discord、飞书等所有渠道</div>
+<div>🧠 <strong>记忆永存</strong> — 对话记忆、偏好设置永不丢失</div>
+</div>
+</div>
+
+
+<div style="margin-top:24px;padding:16px;background:var(--surface);border-radius:12px;border:1px solid var(--border);font-size:12px">
+<h3 style="color:var(--text);font-size:14px;margin-bottom:10px;text-align:center">本地 vs 云端</h3>
+<table style="width:100%;border-collapse:collapse;color:var(--text-2)">
+<tr style="border-bottom:1px solid var(--border)">
+<td style="padding:6px 4px;font-weight:600;color:var(--text)"></td>
+<td style="padding:6px 4px;text-align:center;font-weight:600;color:#E8584E">🖥 本地</td>
+<td style="padding:6px 4px;text-align:center;font-weight:600;color:#4A80D4">☁️ 云端</td>
+</tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 4px">可用性</td><td style="text-align:center">开机在线</td><td style="text-align:center">7×24h</td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 4px">数据</td><td style="text-align:center">本机</td><td style="text-align:center">云端加密</td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 4px">费用</td><td style="text-align:center">免费</td><td style="text-align:center">月费</td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 4px">安装</td><td style="text-align:center">命令行</td><td style="text-align:center">注册即用</td></tr>
+<tr><td style="padding:6px 4px">本地联动</td><td style="text-align:center">✅ 深度</td><td style="text-align:center">🔗 远程</td></tr>
+</table>
+</div>
+
+<p style="color:var(--text-3);font-size:13px;margin-top:16px">等不及？先试试 <a href="javascript:switchMode('local')" style="color:var(--lobster-light)">本地领养</a>，3 分钟就能用！</p>
+
+</div>
+</div>
+</section>
+
+<!-- Skills showcase -->
+<section class="steps">
+<h2 style="text-align:center;margin-bottom:24px;font-size:22px" data-i18n="skills.title">🎯 IMA 龙虾出场就会的技能</h2>
+<div class="skills-grid">
+  <div class="skill-card" onclick="location.href='../docs/skills/ima-all-in-one/'" style="cursor:pointer;grid-column:1/-1;background:linear-gradient(135deg,var(--surface-2) 0%,rgba(212,64,58,0.08) 100%);border-color:rgba(212,64,58,0.3);padding:18px"><div class="emoji">🦞</div><div class="title" style="font-size:16px">IMA 全能创作包 <span style="background:#D4403A;color:white;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px">⭐ 推荐</span></div><div class="desc">图片+视频+音乐 All-in-One，40+ AI 模型，一个技能覆盖完整创作链路</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/ima-intelligence/'" style="cursor:pointer;grid-column:1/-1;background:linear-gradient(135deg,var(--surface-2) 0%,rgba(58,108,190,0.08) 100%);border-color:rgba(58,108,190,0.3);padding:18px"><div class="emoji">🧠</div><div class="title" style="font-size:16px">IMA 基础智能包 <span style="background:#4A80D4;color:white;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px">⭐ 必装</span></div><div class="desc">记忆系统 · 任务追踪 · 深度调研 · 上下文管理，龙虾出厂标配</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/ima-image/'" style="cursor:pointer"><div class="emoji">🎨</div><div class="title">IMA 图片生成</div><div class="desc">10+ 模型，SeeDream 4.5 · Midjourney · Imagen 4，文生图/图生图</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/ima-video/'" style="cursor:pointer"><div class="emoji">🎬</div><div class="title">IMA 视频制作</div><div class="desc">20+ 模型，Wan 2.6 · Kling 2.1 · Sora · Veo 3.1，分钟级交付</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/ima-music/'" style="cursor:pointer"><div class="emoji">🎵</div><div class="title">IMA 音乐创作</div><div class="desc">Suno · DouBao GenBGM · GenSong，自定义风格和人声</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/video-guide/'" style="cursor:pointer"><div class="emoji">📖</div><div class="title">视频创作指南</div><div class="desc">AI 视频经验库：运镜控制、提示词优化、模型选型</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/seedance/'" style="cursor:pointer"><div class="emoji">💃</div><div class="title">Seedance 2.0</div><div class="desc">ByteDance 视频生成，1.5 Pro 含音频</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/nano-banana/'" style="cursor:pointer"><div class="emoji">🍌</div><div class="title">Nano Banana 2</div><div class="desc">Gemini 图片生成，支持 1K/2K/4K</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/xhs-creator/'" style="cursor:pointer"><div class="emoji">📕</div><div class="title">小红书创作</div><div class="desc">笔记撰写 + 封面生成 + 一键发布</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/xhs-analytics/'" style="cursor:pointer"><div class="emoji">📊</div><div class="title">小红书分析</div><div class="desc">热点追踪、舆情分析、竞品监控</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/twitter/'" style="cursor:pointer"><div class="emoji">🐦</div><div class="title">Twitter / X</div><div class="desc">搜索 + 发布 + 互动分析，一站式</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/linkedin-writer/'" style="cursor:pointer"><div class="emoji">💼</div><div class="title">LinkedIn Writer</div><div class="desc">写出像真人的 LinkedIn 帖子</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/wechat-publisher/'" style="cursor:pointer"><div class="emoji">💚</div><div class="title">微信公众号</div><div class="desc">Markdown 一键发公众号草稿箱</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/deep-research/'" style="cursor:pointer"><div class="emoji">🧠</div><div class="title">深度研究</div><div class="desc">AI Researcher + Gemini 深度研究，结构化分析报告</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/seo-writer/'" style="cursor:pointer"><div class="emoji">🔍</div><div class="title">SEO Writer</div><div class="desc">搜索引擎 + 读者双优化长文</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/humanizer/'" style="cursor:pointer"><div class="emoji">🧑</div><div class="title">AI 文本人性化</div><div class="desc">去除 AI 痕迹，让文字更自然</div></div>
+  <div class="skill-card" onclick="location.href='../docs/skills/feishu-calendar/'" style="cursor:pointer"><div class="emoji">📅</div><div class="title">飞书日历</div><div class="desc">查询、创建、修改日历事件</div></div>
+  <div class="skill-card"><div class="emoji">🌤️</div><div class="title">天气查询</div><div class="desc">实时天气和预报，免 API Key</div></div>
+  <div class="skill-card"><div class="emoji">🌐</div><div class="title">网页搜索 & 分析</div><div class="desc">实时联网搜索，深度研究，竞品分析</div></div>
+  <div class="skill-card"><div class="emoji">🧩</div><div class="title">200+ 扩展 Skill</div><div class="desc">ClawHub 技能市场，一键安装新能力</div></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+<h2 data-i18n="faq.title">❓ 常见问题</h2>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">真的免费吗？</div>
+<div class="faq-a">Ima Claw 本身完全免费开源。你需要自己提供 AI 模型的 API Key（大部分供应商有免费额度）。龙虾跑在你自己的电脑上，数据也在你自己手里。</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">需要什么样的电脑？</div>
+<div class="faq-a">只要能跑 Node.js 就行——MacBook、Windows 笔记本、Linux 服务器、甚至树莓派都可以。不需要 GPU，因为 AI 推理跑在云端（通过你的 API Key）。</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">和 ChatGPT 有什么区别？</div>
+<div class="faq-a">ChatGPT 是个聊天窗口。龙虾是你的<strong>私人 AI 助手</strong>——它能记住你、自动执行任务、连接你的工具（日历、邮件、社媒）、24 小时待命，还能学会你教它的任何新技能。</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">数据安全吗？</div>
+<div class="faq-a">龙虾跑在你自己的机器上，数据不经过任何第三方服务器。它的记忆、对话历史、你的文件全部存在本地。你可以随时查看、删除、导出。</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">IMA Studio 的技能需要额外付费吗？</div>
+<div class="faq-a">IMA Studio 的图片、视频、音乐生成走积分制，注册就送免费积分。搭配龙虾使用，一句话就能生成专业级内容。<a href="https://imastudio.com" style="color:var(--gold)" target="_blank">了解 IMA Studio →</a></div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('open')">
+<div class="faq-q">遇到问题怎么办？</div>
+<div class="faq-a">加入 <a href="https://imastudio.com/community" style="color:var(--gold)" target="_blank">IMA 社区</a> 提问，或者查看 <a href="../docs/" style="color:var(--gold)" target="_blank">Ima Claw 文档</a>。龙虾的开发者和用户社区非常活跃！</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<h2>准备好了吗？</h2>
+<p>打开终端，复制这行命令，你的龙虾 30 秒后就到 🦞</p>
+<div class="code-box" style="max-width:520px;margin:0 auto 24px;text-align:left">
+<code>curl -fsSL https://openclaw.ai/install.sh | bash</code>
+<button class="copy-btn" onclick="copyCode(this)">复制</button>
+</div>
+<a href="../docs/" class="btn-start" target="_blank">📖 查看完整文档</a>
+</section>
+
+<a href="../" class="back">← 回到首页</a>
+
+<script>
+function switchMode(mode) {
+  var local = document.getElementById('steps-local');
+  var cloud = document.getElementById('steps-cloud');
+  var modeLocal = document.getElementById('mode-local');
+  var modeCloud = document.getElementById('mode-cloud');
+  if (mode === 'cloud') {
+    local.style.display = 'none';
+    cloud.style.display = 'block';
+    modeLocal.style.background = 'var(--surface)';
+    modeLocal.style.opacity = '0.4';
+    modeCloud.style.background = 'rgba(74,128,212,0.3)';
+    modeCloud.style.opacity = '1';
+  } else {
+    local.style.display = 'block';
+    cloud.style.display = 'none';
+    modeLocal.style.background = 'rgba(232,88,78,0.3)';
+    modeLocal.style.opacity = '1';
+    modeCloud.style.background = 'var(--surface)';
+    modeCloud.style.opacity = '0.4';
+  }
+  var stepsLocal = document.getElementById('steps-local');
+  var stepsCloud = document.getElementById('steps-cloud');
+  if (stepsLocal) stepsLocal.style.background = mode === 'local' ? 'linear-gradient(180deg,rgba(212,64,58,0.03) 0%,transparent 120px)' : '';
+  if (stepsCloud) stepsCloud.style.background = mode === 'cloud' ? 'linear-gradient(180deg,rgba(58,108,190,0.03) 0%,transparent 120px)' : '';
+}
+function notifyCloud() {
+  var email = document.getElementById('cloud-email').value;
+  if (email && email.includes('@')) {
+    document.getElementById('cloud-msg').style.display = 'block';
+    document.getElementById('cloud-email').value = '';
+  }
+}
+function switchTab(el, group, id) {
+  el.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const parent = el.closest('.step');
+  parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  parent.querySelector('#' + group + '-' + id).classList.add('active');
+}
+
+function copyCode(btn) {
+  const code = btn.parentElement.querySelector('code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '已复制 ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+
+<script>
+document.addEventListener('click',function(e){
+  var nav=document.querySelector('.nav-links');
+  var ham=document.querySelector('.hamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open')});
+});
+</script>
+
+<script>
+var ADOPT_I18N = {
+en: {
+  "adopt.title": "Adopt Your Baby Lobster",
+  "adopt.subtitle": "Choose a way to start adopting your AI lobster companion.",
+  "bubble.adopt": "Master, come adopt me! ❤️",
+  "bubble.cta": "Book Now →",
+  "tab.local": "Local",
+  "tab.local.sub": "Free · Ready Now",
+  "tab.cloud": "Cloud",
+  "tab.cloud.sub": "Coming Soon · 24/7 Online",
+  "tab.recommend": "⭐ Pick",
+  "local.title": "🖥 Local — Your lobster lives on your computer",
+  "cloud.title": "☁️ Cloud — Your lobster lives in the cloud, always ready",
+  "cloud.coming": "Cloud Adoption Coming Soon",
+  "cloud.cta": "📋 Book Beta Access",
+  "skills.title": "🎯 Skills Your Lobster Knows Out of the Box",
+  "faq.title": "❓ FAQ",
+  "adopt.sub1": "3 minutes to install. 0 lines of code. Free forever.",
+  "adopt.sub2": "All you need is a computer and an API Key.",
+  "adopt.platforms": "macOS · Linux · Windows (WSL2) · Raspberry Pi · Cloud · All platforms",
+  "step1.title": "One Command, Install Ima Claw",
+  "step1.desc": "Open Terminal, paste the command below and hit Enter. The script auto-detects your environment, installs Node.js (if needed), and launches the config wizard.",
+  "step2.title": "Give Your Lobster a Brain",
+  "step2.desc": "During setup, paste your AI provider API Key. This is the brain of your lobster — which model you choose determines its personality.",
+  "step3.title": "Connect Your Chat",
+  "step3.desc": "Choose your preferred messaging platform. Your lobster will be available wherever you chat.",
+  "step4.title": "Start Creating!",
+  "step4.desc": "Open your chat app and say hi to your lobster. It's ready to create images, videos, music, manage social media — whatever you need.",
+  "nav.home": "Home", "nav.adopt": "🦞 Adopt", "nav.skills": "Skills", "nav.pricing": "🛒 Store", "nav.docs": "Docs", "nav.blog": "Blog", "nav.community": "Community"
+},
+ja: {
+  "adopt.title": "AI クリエイティブロブスターを迎えよう",
+  "adopt.sub1": "3分でインストール。コード不要。永久無料。",
+  "adopt.sub2": "必要なのはパソコンとAPI Keyだけ。",
+  "nav.home": "ホーム", "nav.skills": "スキル", "nav.pricing": "🛒 購入", "nav.docs": "ヘルプ", "nav.blog": "ブログ"
+},
+es: {
+  "adopt.title": "Adopta Tu Baby Langosta",
+  "adopt.subtitle": "Elige una forma de adoptar a tu compañero langosta IA.",
+  "bubble.adopt": "¡Amo, ven a adoptarme! ❤️",
+  "bubble.cta": "Reservar →",
+  "tab.local": "Local",
+  "tab.local.sub": "Gratis · Disponible Ya",
+  "tab.cloud": "Nube",
+  "tab.cloud.sub": "Próximamente · 24/7 Online",
+  "tab.recommend": "⭐ Top",
+  "local.title": "🖥 Local — Tu langosta vive en tu computadora",
+  "cloud.title": "☁️ Nube — Tu langosta vive en la nube, siempre lista",
+  "cloud.coming": "Adopción en la Nube Próximamente",
+  "cloud.cta": "📋 Reservar Acceso Beta",
+  "skills.title": "🎯 Habilidades que Tu Langosta Ya Tiene",
+  "faq.title": "❓ Preguntas Frecuentes",
+  "adopt.sub1": "3 minutos. 0 líneas de código. Gratis para siempre.",
+  "adopt.sub2": "Solo necesitas una computadora y una API Key.",
+  "adopt.platforms": "macOS · Linux · Windows (WSL2) · Raspberry Pi · Nube · Todas las plataformas",
+  "step1.title": "Un Comando, Instala Ima Claw",
+  "step1.desc": "Abre la Terminal, pega el comando y presiona Enter. El script detecta tu entorno, instala Node.js (si falta) e inicia el asistente.",
+  "step2.title": "Dale un Cerebro a Tu Langosta",
+  "step2.desc": "Durante la configuración, pega tu API Key. Este es el cerebro de tu langosta — el modelo que elijas define su personalidad.",
+  "step3.title": "Conecta Tu Chat",
+  "step3.desc": "Elige tu plataforma de mensajería preferida. Tu langosta estará donde tú chatees.",
+  "step4.title": "¡A Crear!",
+  "step4.desc": "Abre tu app de chat y saluda a tu langosta. Puede crear imágenes, videos, música, gestionar redes — lo que necesites.",
+  "nav.home": "Inicio", "nav.adopt": "🦞 Adoptar", "nav.skills": "Skills", "nav.pricing": "🛒 Tienda", "nav.docs": "Ayuda", "nav.blog": "Blog", "nav.community": "Comunidad"
+},
+ar: {
+  "adopt.title": "تبنَّ جراد بحر ذكي للإبداع",
+  "adopt.sub1": "٣ دقائق للتثبيت. بدون كود. مجاني للأبد.",
+  "adopt.sub2": "كل ما تحتاجه هو حاسوب ومفتاح API.",
+  "nav.home": "الرئيسية", "nav.skills": "المهارات", "nav.pricing": "🛒 المتجر", "nav.docs": "المساعدة", "nav.blog": "المدونة"
+}
+};
+
+var _zhStore = {};
+function setLang(l) {
+  var isZh = l==='zh'||l==='zh-CN';
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(!_zhStore[k]) _zhStore[k] = el.innerHTML;
+    if(isZh) { el.innerHTML = _zhStore[k]; }
+    else if(ADOPT_I18N[l]&&ADOPT_I18N[l][k]) { el.innerHTML = ADOPT_I18N[l][k]; }
+    else if(ADOPT_I18N['en']&&ADOPT_I18N['en'][k]) { el.innerHTML = ADOPT_I18N['en'][k]; }
+  });
+  var m={'zh':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
+  var t=document.querySelector('.lang-trigger');
+  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
+  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
+  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
+}
+// Auto-detect
+(function(){var l=navigator.language||'en';var m={'zh':'zh','zh-CN':'zh','zh-TW':'zh','zh-HK':'zh','en':'en','es':'es','ja':'ja','ar':'ar'};setLang(m[l]||m[l.split('-')[0]]||'en')})();
+</script>
+</body>
+</html>

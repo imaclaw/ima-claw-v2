@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="220" viewBox="0 0 360 220">
+  <rect width="360" height="220" rx="12" fill="#1a1a24"/>
+  <!-- Header -->
+  <rect width="360" height="48" fill="#2a2a36"/>
+  <text x="20" y="30" font-size="15" font-weight="bold" fill="white" font-family="Arial">我的 Ima 龙虾 — 应用能力</text>
+  <!-- Sidebar -->
+  <rect x="0" y="48" width="80" height="172" fill="#2a2a36"/>
+  <text x="10" y="72" font-size="10" fill="#888" font-family="Arial">凭证与基础</text>
+  <rect x="4" y="78" width="72" height="20" rx="4" fill="rgba(51,112,255,0.2)"/>
+  <text x="10" y="92" font-size="10" fill="#3370FF" font-family="Arial">应用能力</text>
+  <text x="10" y="112" font-size="10" fill="#888" font-family="Arial">权限管理</text>
+  <!-- Bot capability card -->
+  <rect x="100" y="62" width="240" height="70" rx="8" fill="#2a2a36" stroke="#3a3a46" stroke-width="1"/>
+  <text x="120" y="86" font-size="16" fill="white" font-family="Arial">🤖 机器人</text>
+  <text x="120" y="106" font-size="11" fill="#888" font-family="Arial">接收消息、发送消息、群组交互</text>
+  <rect x="260" y="80" width="60" height="26" rx="4" fill="#3370FF"/>
+  <text x="290" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="white" font-family="Arial">开启</text>
+  <!-- Credentials -->
+  <text x="100" y="156" font-size="12" fill="#888" font-family="Arial">App ID</text>
+  <rect x="100" y="162" width="240" height="24" rx="4" fill="#1a1a24" stroke="#3a3a46" stroke-width="1"/>
+  <text x="110" y="179" font-size="11" fill="#2ecc71" font-family="monospace">cli_a5xxxxxxxxxxxxxxxxx</text>
+  <text x="100" y="204" font-size="12" fill="#888" font-family="Arial">App Secret</text>
+</svg>

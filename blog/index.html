@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Blog — Ima Claw 🦞</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.blog-header{text-align:center;padding:100px 40px 40px}
+.blog-header h1{font-size:clamp(32px,4vw,48px);font-weight:900;letter-spacing:-0.03em;margin-bottom:12px}
+.blog-header p{font-size:17px;color:var(--text-2)}
+.posts{max-width:800px;margin:0 auto;padding:20px 40px 100px}
+.post-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(24px,3vw,40px);margin-bottom:20px;transition:all .3s}
+.post-card:hover{border-color:rgba(212,64,58,0.2);transform:translateY(-2px)}
+.post-meta{font-size:12px;color:var(--text-3);margin-bottom:12px;display:flex;gap:12px;align-items:center}
+.post-tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
+.post-card h2{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.3}
+.post-card p{font-size:15px;color:var(--text-2);line-height:1.7}
+.read-more{display:inline-block;margin-top:14px;font-size:13px;color:var(--lobster-light);font-weight:600}
+footer{border-top:1px solid var(--border);padding:40px;text-align:center}
+footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
+@media(max-width:600px){.blog-header{padding:80px 20px 30px}.blog-header h1{font-size:32px}.posts{padding:20px 20px 80px}.nav-links{display:none}}
+.nav-cta{background:#D4403A!important;color:#fff!important;padding:7px 18px;border-radius:20px;font-weight:700;font-size:12px!important}
+
+body{padding-top:60px}
+@media(max-width:600px){
+}
+/* Nav */
+@media(max-width:768px){
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === SHARED NAV CSS === */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+.lang-dropdown{display:inline-block;position:relative}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-trigger:hover{border-color:var(--lobster)}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
+@media(max-width:768px){
+  nav{padding:14px 16px}
+  .hamburger{display:block}
+  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex!important}
+  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === END SHARED NAV CSS === */
+</style>
+</head>
+<body>
+<nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../" data-i18n="nav.home">首页</a>
+    <a href="../adopt/" class="nav-adopt" data-i18n="nav.adopt">🦞 领养</a>
+    <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
+    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="../docs/" data-i18n="nav.docs">帮助</a>
+    <a href="../blog/" data-i18n="nav.blog">博客</a>
+    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('ja')">🇯🇵 日本語</button>
+        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+
+<div class="blog-header">
+  <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px">
+    <img src="../icons/yuki-v4.jpg" style="width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);object-fit:cover">
+    <span style="font-size:28px;color:var(--text-3);font-weight:300">&</span>
+    <img src="../logo-nav.png" style="width:80px;height:80px;border-radius:12px;filter:drop-shadow(0 0 16px rgba(212,64,58,0.3))">
+  </div>
+  <h1 data-i18n="blog.title">Yuki & Claw 搞事日记</h1>
+  <p data-i18n="blog.subtitle" style="max-width:380px;margin:8px auto 0;text-align:center">我和我的龙虾一起造产品，<br>翻车了就笑一笑，然后继续。</p>
+</div>
+
+<div class="posts">
+  <a href="release-v1.html" class="post-card" style="border-color:rgba(212,64,58,0.15);background:linear-gradient(135deg,var(--surface),rgba(212,64,58,0.03))">
+    <div class="post-meta">
+      <span class="post-tag">Release Note</span>
+      <span class="post-tag" style="background:rgba(46,204,113,0.1);color:#2ecc71">v1.0</span>
+      <span>2026-03-02</span>
+    </div>
+    <h2 data-i18n="blog.title.release">"你能做网站吗？" —— 于是有了134万字，和一个网站。</h2>
+    <p data-i18n="blog.desc.release">26小时 · 45个页面 · 12,616行代码 · 295次提交 · 0行手写代码。一个产品经理的一句话，一只 AI 龙虾的全力以赴。</p>
+    <span class="read-more" data-i18n="blog.readmore">查看发版记录 →</span>
+  </a>
+
+  <a href="vibe-coding-collaboration.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Vibe Coding</span>
+      <span class="post-tag" style="background:rgba(46,204,113,0.1);color:#2ecc71" data-i18n="blog.tag.guide">实用指南</span>
+      <span>2026-03-02</span>
+      <span data-i18n="blog.log4">创始人日志 #4</span>
+    </div>
+    <h2 data-i18n="blog.title.collab">Vibe Coding 协作指南：当老板不懂代码，AI 不懂"那个东西"</h2>
+    <p data-i18n="blog.desc.collab">24小时连续开发，光按钮对齐就改了5轮。凌晨1点我让 AI 写了一份协作手册——截图标注法、10个必知术语、缓存对策、确认规则。适用于所有用 AI 做网站的人。</p>
+    <span class="read-more" data-i18n="blog.readmore">阅读全文 →</span>
+  </a>
+
+  <a href="dev-log-day1.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Dev Log</span>
+      <span>2026-03-02</span>
+      <span data-i18n="blog.log3">创始人日志 #3</span>
+    </div>
+    <h2 data-i18n="blog.title.devlog">🦞 龙虾不眠夜：24小时开发日志</h2>
+    <p data-i18n="blog.desc.devlog">凌晨1点，老板还在手机上截图画圈，龙虾还在疯狂 git push。60+ 次提交、5 轮按钮对齐、1 个 CSS 变量失踪案——这是 Ima Claw 团队（1人+1龙虾）的真实24小时。</p>
+    <span class="read-more" data-i18n="blog.readmore">阅读全文 →</span>
+  </a>
+
+  <a href="vibe-coding-day2.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Vibe Coding</span>
+      <span>2026-03-01</span>
+      <span data-i18n="blog.log2">创始人日志 #2</span>
+    </div>
+    <h2 data-i18n="blog.title2">凌晨 4 点的 Vibe Coding：8 个 bug，25 分钟，0 行代码</h2>
+    <p data-i18n="blog.desc2">睡不着就开始改产品。手机上截图、说话，25 分钟修了 8 个问题——全程躺在床上完成。这才是 Vibe Coding 的终极形态。</p>
+    <span class="read-more" data-i18n="blog.readmore">阅读全文 →</span>
+  </a>
+
+  <a href="vibe-coding-story.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Vibe Coding</span>
+      <span>2026-02-28</span>
+      <span data-i18n="blog.log1">创始人日志 #1</span>
+    </div>
+    <h2 data-i18n="blog.title1">我用 Ima Claw 做了这个网站，它把龙虾的脸抠没了</h2>
+    <p data-i18n="blog.desc1">2小时，0行代码，一只经历了存在主义危机的龙虾。这是 Ima Claw 创始人用自家产品 Vibe Coding 造官网的真实故事——包含所有翻车现场。</p>
+    <span class="read-more" data-i18n="blog.readmore">阅读全文 →</span>
+  </a>
+</div>
+
+<div style="text-align:center;margin:32px auto;padding:20px;background:rgba(88,101,242,0.1);border:1px solid rgba(88,101,242,0.3);border-radius:12px;max-width:480px"><div style="font-size:15px;font-weight:600;color:white;margin-bottom:8px" data-i18n="blog.community.title">🦞 加入 Ima Claw 社区</div><div style="font-size:13px;color:#a0a0a0;margin-bottom:12px" data-i18n="blog.community.desc">和其他龙虾主人交流，获取最新动态、技能分享和帮助</div><a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:#5865F2;color:white;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none"><img src="https://cdn.simpleicons.org/discord/white" style="width:16px;height:16px"><span data-i18n="blog.community.btn">加入 Discord</span></a></div>
+<footer><p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">ImaStudio</a> · I'm A Studio, I'm A Claw 🦞</p></footer>
+
+<script src="../i18n-sub.js?v=20260301b"></script>
+<script>
+// Close mobile nav on outside click
+document.addEventListener('click',function(e){
+  var nav=document.querySelector('.nav-links');
+  var ham=document.querySelector('.hamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}
+  document.querySelectorAll('.lang-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')});
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open')});
+});
+</script>
+<script>
+var _zhStore={};
+var NAV_I18N={en:{"nav.home":"Home","nav.adopt":"🦞 Adopt","nav.skills":"Skills","nav.pricing":"🛒 Store","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community",
+"blog.title":"Yuki & Claw Chronicles",
+"blog.subtitle":"Building products with my lobster.<br>When things break, we laugh and keep going.",
+"blog.title.release":"\"Can you build a website?\" — And so came 1.34M words, and a website.",
+"blog.desc.release":"26 hours · 45 pages · 12,616 lines of code · 295 commits · 0 hand-written lines. One PM's question, one AI lobster's full commitment.",
+"blog.tag.guide":"Guide",
+"blog.log4":"Founder's Log #4",
+"blog.title.collab":"Vibe Coding Collaboration Guide: When the Boss Can't Code, and AI Can't Read Minds",
+"blog.desc.collab":"24 hours of non-stop dev, 5 rounds just to align buttons. At 1 AM I had the AI write a collaboration handbook — screenshot markup, 10 essential terms, cache strategies, confirmation rules. For anyone building websites with AI.",
+"blog.log3":"Founder's Log #3",
+"blog.title.devlog":"🦞 Lobster All-Nighter: 24-Hour Dev Log",
+"blog.desc.devlog":"At 1 AM, the boss is still circling screenshots on her phone, the lobster is still pushing to git. 60+ commits, 5 rounds of button alignment, 1 missing CSS variable — the real 24 hours of Ima Claw team (1 human + 1 lobster).",
+"blog.log2":"Founder's Log #2",
+"blog.title2":"4 AM Vibe Coding: 8 Bugs, 25 Minutes, 0 Lines of Code",
+"blog.desc2":"Couldn't sleep, started fixing the product. Screenshots and voice on my phone — 8 issues fixed in 25 minutes, all from bed. This is the ultimate form of Vibe Coding.",
+"blog.readmore":"Read More →",
+"blog.log1":"Founder's Log #1",
+"blog.title1":"I Built This Site with Ima Claw. It Deleted the Claw's Face.",
+"blog.desc1":"2 hours, 0 lines of code, one lobster having an existential crisis. The real story of Vibe Coding a website with our own product — including every crash and burn.",
+"blog.community.title":"🦞 Join the Ima Claw Community",
+"blog.community.desc":"Connect with other Claw owners, get updates, share skills and get help",
+"blog.community.btn":"Join Discord"
+}};
+function setLang(l){
+  try{localStorage.setItem("imaclaw-lang",l)}catch(e){}
+  var isZh=l==="zh"||l==="zh-CN";
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var k=el.getAttribute("data-i18n");
+    if(!_zhStore[k])_zhStore[k]=el.innerHTML;
+    if(isZh){el.innerHTML=_zhStore[k]}
+    else if(NAV_I18N["en"]&&NAV_I18N["en"][k]){el.innerHTML=NAV_I18N["en"][k]}
+  });
+  var m={"zh":"🇨🇳 中文","en":"🇺🇸 EN","es":"🇪🇸 ES","ja":"🇯🇵 JA","ar":"🇸🇦 AR"};
+  var t=document.querySelector(".lang-trigger");
+  if(t)t.textContent="🌐 "+(m[l]||l)+" ▾";
+  document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")});
+}
+(function(){try{var l=localStorage.getItem("imaclaw-lang");if(l&&l!=="zh"&&l!=="zh-CN")setTimeout(function(){setLang(l)},50)}catch(e){}})();
+document.addEventListener("click",function(){document.querySelectorAll(".lang-dropdown").forEach(function(d){d.classList.remove("open")})});
+</script>
+</body>
+</html>

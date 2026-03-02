@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kimi (Moonshot) - Ima Claw</title>
+<style>
+:root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#e74c3c;--lobster-light:#ff6b5b;--gold:#f2c744;--green:#2ecc71;--blue:#3498db}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* === SHARED NAV CSS === */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+.lang-dropdown{display:inline-block;position:relative}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
+@media(max-width:768px){
+  nav{padding:14px 16px}
+  .hamburger{display:block}
+  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex!important}
+  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === END SHARED NAV CSS === */
+
+/* Tutorial layout */
+.tutorial{max-width:720px;margin:0 auto;padding:90px 20px 60px}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);margin-bottom:32px}
+.breadcrumb a{color:var(--text-2);transition:color .2s}
+.breadcrumb a:hover{color:var(--lobster-light)}
+.breadcrumb .sep{color:var(--text-3)}
+
+/* Header */
+.tut-header{display:flex;align-items:center;gap:20px;margin-bottom:32px}
+.tut-icon{width:64px;height:64px;border-radius:16px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tut-icon img{width:40px;height:40px}
+.tut-meta h1{font-size:28px;font-weight:800;margin-bottom:6px}
+.tut-tags{display:flex;gap:8px}
+.tut-tag{padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600}
+.tag-easy{background:rgba(46,204,113,0.15);color:var(--green)}
+.tag-time{background:rgba(242,199,68,0.12);color:var(--gold)}
+.tag-free{background:rgba(52,152,219,0.15);color:var(--blue)}
+
+/* Info box */
+.info-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:32px}
+.info-box h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-list{list-style:none}
+.info-list li{font-size:14px;color:var(--text-2);padding:4px 0;display:flex;align-items:center;gap:8px}
+.info-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:12px}
+
+/* Steps */
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px;position:relative}
+.step-badge{position:absolute;top:-11px;left:24px;background:var(--lobster);color:#fff;font-size:12px;font-weight:800;padding:3px 14px;border-radius:20px}
+.step h2{font-size:18px;font-weight:700;margin:8px 0 12px}
+.step p{color:var(--text-2);font-size:14px;margin-bottom:12px}
+.step .highlight{color:var(--gold);font-weight:600}
+
+/* Code block */
+.code-block{background:#0d0d12;border:1px solid #2a2a35;border-radius:10px;padding:14px 18px;font-family:'SF Mono','Fira Code',monospace;font-size:13px;color:var(--green);position:relative;overflow-x:auto;margin:12px 0}
+.code-block .comment{color:var(--text-3)}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer}
+.copy-btn:hover{background:#2a2a35;color:#fff}
+
+/* Screenshot placeholder */
+.screenshot{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:40px;text-align:center;margin:16px 0;color:var(--text-3);font-size:13px}
+
+/* Tip */
+.tip{background:rgba(242,199,68,0.06);border:1px solid rgba(242,199,68,0.15);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--gold);margin:16px 0}
+.tip strong{color:var(--gold)}
+
+/* Warning */
+.warning{background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.15);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--lobster-light);margin:16px 0}
+
+/* Success */
+.success-box{background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.15);border-radius:14px;padding:24px;text-align:center;margin:24px 0}
+.success-box .emoji{font-size:48px;margin-bottom:12px}
+.success-box h3{font-size:18px;color:var(--green);margin-bottom:8px}
+.success-box p{color:var(--text-2);font-size:14px}
+
+/* FAQ */
+.faq{margin-top:40px}
+.faq h2{font-size:20px;font-weight:700;margin-bottom:16px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:16px 20px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface-2)}
+.faq-a{padding:0 20px 16px;font-size:13px;color:var(--text-2);display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-arrow{transition:transform .2s;color:var(--text-3)}
+
+/* Bottom nav */
+.bottom-nav{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.btn-back{padding:12px 24px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-back:hover{border-color:var(--border-hover);color:var(--text)}
+.btn-community{padding:12px 24px;background:var(--lobster);color:#fff;font-size:14px;font-weight:600;border-radius:10px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-community:hover{background:var(--lobster-light)}
+
+/* Other channels */
+.other-channels{margin-top:40px;padding-top:32px;border-top:1px solid var(--border)}
+.other-channels h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.channel-row{display:flex;gap:10px;flex-wrap:wrap}
+.channel-link{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-2);transition:all .2s}
+.channel-link:hover{border-color:var(--lobster);color:var(--text)}
+.channel-link img{width:20px;height:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../../../">首页</a>
+    <a href="../../../adopt/" class="nav-adopt">🦞 领养</a>
+    <a href="../../../skills/">Skill 市场</a>
+    <a href="../../../pricing/">🛒 购买</a>
+    <a href="../../../docs/">帮助</a>
+    <a href="https://imastudio.com/community" target="_blank">社区</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+<div class="tutorial">
+
+<div class="breadcrumb">
+<a href="../../../adopt/">领养龙虾</a><span class="sep">›</span>
+<a href="../../../adopt/#step-ai">AI 模型</a><span class="sep">›</span>
+<span style="color:var(--text)">Kimi (Moonshot)</span></div>
+
+<div class="tut-header">
+<div class="tut-icon"><img src="../../../adopt/logos/moonshot.svg" alt="Kimi (Moonshot)"></div>
+<div class="tut-meta"><h1>使用 Kimi (Moonshot)</h1>
+<div class="tut-tags">
+<span class="tut-tag tag-easy">⭐ 简单</span>
+<span class="tut-tag tag-time">⏱ 约 2 分钟</span>
+<span class="tut-tag tag-free">🔑 ImaClaw</span>
+</div></div></div>
+
+<div class="tip">💡 <strong>Ima Claw 已封装所有模型。</strong>你不需要单独去 Kimi (Moonshot) 注册账号或获取 API Key。只需一个 <strong>ImaClaw 账号</strong>，即可使用包括 Kimi (Moonshot) 在内的所有 30+ 模型。</div>
+
+<div class="info-box"><h3>📋 前置条件</h3>
+<ul class="info-list">
+<li>已完成 Ima Claw 安装（<a href="../../../adopt/" style="color:var(--lobster-light)">还没装？去领养 →</a>）</li>
+<li><a href="https://www.imastudio.com" target="_blank" style="color:var(--lobster-light)">ImaStudio 账号</a>（<a href="https://www.imastudio.com" target="_blank" style="color:var(--gold)">点击注册，免费 →</a>）</li>
+</ul></div>
+
+<div class="step"><div class="step-badge">STEP 1</div>
+<h2>注册 ImaStudio 账号</h2>
+<p>访问 <a href="https://www.imastudio.com" target="_blank" style="color:var(--gold)">imastudio.com</a>，点击注册。支持邮箱和 Google 账号快速注册。</p>
+<p>注册完全<span class="highlight">免费</span>，无需信用卡。</p>
+</div>
+
+<div class="step"><div class="step-badge">STEP 2</div>
+<h2>获取 ImaClaw API Key</h2>
+<p>登录后进入 <span class="highlight">Settings → API Keys</span>，点击创建新 Key。</p>
+<p>复制你的 API Key，格式类似：</p>
+<div class="code-block"><span class="comment"># 你的 ImaClaw API Key（示例）</span><br>imaclaw_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+<div class="warning">⚠️ API Key 只显示一次，请立即复制保存。如果丢失，可以删除旧 Key 重新创建。</div>
+</div>
+
+<div class="step"><div class="step-badge">STEP 3</div>
+<h2>填入龙虾配置</h2>
+<p>编辑配置文件，填入你的 ImaClaw API Key：</p>
+<div class="code-block">nano ~/.openclaw/openclaw.json<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+<p>在配置文件中设置：</p>
+<div class="code-block">{<br>&nbsp;&nbsp;"ai": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"provider": "imaclaw",<br>&nbsp;&nbsp;&nbsp;&nbsp;"apiKey": "<span style="color:var(--gold)">你的 ImaClaw API Key</span>"<br>&nbsp;&nbsp;}<br>}<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+<p>保存后重启：</p>
+<div class="code-block">openclaw gateway restart<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+</div>
+
+<div class="step"><div class="step-badge">STEP 4</div>
+<h2>选择模型并验证</h2>
+<p>配置完成后，你可以在对话中随时切换模型。给龙虾发一条消息测试：</p>
+<div class="code-block" style="text-align:center;font-size:16px;color:var(--text)">嘿，你好！你是谁？</div>
+<p>如果龙虾回复了你，说明一切就绪！🎉</p>
+<p>想切换到 Kimi (Moonshot)？直接告诉龙虾：</p>
+<div class="code-block" style="text-align:center;font-size:14px;color:var(--text)">帮我切换到 Kimi (Moonshot)</div>
+</div>
+
+<div class="success-box">
+<div class="emoji"><img src="../../../logo-nav.png" style="width:64px;height:64px;display:inline-block;vertical-align:middle">🎉</div>
+<h3>恭喜！你的 Ima 龙虾已连接 Kimi (Moonshot)</h3>
+<p>通过 ImaClaw，你可以随时切换使用所有 30+ 模型</p></div>
+
+<div class="info-box"><h3>📦 Kimi (Moonshot) 可用模型</h3>
+<p style="color:var(--text-2);font-size:14px">Kimi K2.5、Moonshot V1</p>
+<p style="color:var(--text-3);font-size:12px;margin-top:8px">所有模型通过 ImaClaw 统一调用，无需单独配置。</p></div>
+
+<div class="faq"><h2>❓ 常见问题</h2>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">需要去 Kimi (Moonshot) 官网注册吗？<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p>不需要！Ima Claw 通过 ImaClaw 封装了所有模型。你只需要 ImaStudio 账号和 API Key，就能使用包括 Kimi (Moonshot) 在内的 30+ 模型。</p></div></div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">怎么切换不同的模型？<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p>直接在对话中告诉龙虾"切换到 XXX 模型"即可。也可以在配置文件中设置默认模型。</p></div></div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">ImaClaw 怎么计费？<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p>ImaClaw 提供免费额度供体验。超出后按用量计费，费用在 ImaStudio 后台统一结算。具体价格见 <a href="../../../pricing/" style="color:var(--lobster-light)">定价页面</a>。</p></div></div>
+</div>
+
+<div class="bottom-nav">
+<a href="../../../adopt/" class="btn-back">← 返回领养页</a>
+<a href="https://imastudio.com/community" target="_blank" class="btn-community">💬 遇到问题？加入社区</a></div>
+
+<div class="other-channels"><h3>查看其他模型</h3>
+<div class="channel-row"><a href="../google/" class="channel-link"><img src="../../../adopt/logos/google.svg" alt="">Google Gemini</a>
+<a href="../anthropic/" class="channel-link"><img src="../../../adopt/logos/anthropic.svg" alt="">Anthropic Claude</a>
+<a href="../qwen/" class="channel-link"><img src="../../../adopt/logos/qwen.svg" alt="">阿里千问 Qwen</a>
+<a href="../minimax/" class="channel-link"><img src="../../../adopt/logos/minimax.svg" alt="">MiniMax</a>
+<a href="../openai/" class="channel-link"><img src="../../../adopt/logos/openai.svg" alt="">OpenAI</a>
+<a href="../aws-bedrock/" class="channel-link"><img src="../../../adopt/logos/aws.svg" alt="">AWS Bedrock</a></div></div>
+
+</div>
+<script>
+function copyCode(btn) {
+  var block = btn.parentElement;
+  var text = block.textContent.replace('复制','').replace('已复制!','').trim();
+  navigator.clipboard.writeText(text);
+  btn.textContent = '已复制!';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#fff';
+  setTimeout(function(){ btn.textContent = '复制'; btn.style.background = ''; btn.style.color = ''; }, 1500);
+}
+
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.lang-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+  var nav = document.querySelector('.nav-links');
+  var ham = document.querySelector('.hamburger');
+  if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== ham) {
+    nav.classList.remove('open');
+  }
+});
+</script>
+</body></html>

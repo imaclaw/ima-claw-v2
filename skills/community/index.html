@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>社区技能市场 — Ima Claw</title>
+<style>
+:root{--bg:#0a0a0f;--surface:#12121a;--surface-2:#1a1a24;--border:#222;--text:#e8e8e8;--text-2:#a0a0a0;--text-3:#666;--lobster:#D4403A;--lobster-light:#E8584E;--gold:#f2c744;--blue:#4A80D4;--green:#2ecc71;--purple:#9b59b6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding-top:60px;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800}
+.logo img{width:32px;height:32px}
+.logo b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500}
+.nav-links a{color:var(--text-2);transition:color .2s}
+.nav-links a:hover{color:var(--lobster-light)}
+.nav-links .active{color:var(--lobster-light)}
+
+/* Hero */
+.hero{text-align:center;padding:48px 20px 32px}
+.breadcrumb{font-size:13px;color:var(--text-3);margin-bottom:16px}
+.breadcrumb a{color:var(--text-2)}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:900;margin-bottom:8px}
+.hero h1 .accent{color:var(--lobster-light)}
+.hero .desc{color:var(--text-2);font-size:15px;max-width:500px;margin:0 auto 20px}
+.hero .stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.hero .stat{text-align:center}
+.hero .stat .num{font-size:28px;font-weight:900;color:var(--lobster-light)}
+.hero .stat .label{font-size:12px;color:var(--text-3)}
+
+/* Search */
+.search-box{max-width:480px;margin:0 auto;position:relative}
+.search-box input{width:100%;padding:12px 16px 12px 40px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.search-box input:focus{border-color:var(--lobster)}
+.search-box::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px}
+
+/* Category Sections */
+.section{max-width:1100px;margin:0 auto;padding:0 20px 40px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.section-title{font-size:20px;font-weight:800;display:flex;align-items:center;gap:8px}
+.section-title .count{font-size:13px;color:var(--text-3);font-weight:400}
+.section-more{font-size:13px;color:var(--lobster-light);font-weight:500}
+
+/* Priority Category Cards */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.cat-card:hover{border-color:rgba(212,64,58,0.3);transform:translateY(-2px)}
+.cat-card .cat-icon{font-size:28px;margin-bottom:8px}
+.cat-card .cat-name{font-size:15px;font-weight:700;margin-bottom:2px}
+.cat-card .cat-count{font-size:12px;color:var(--text-3)}
+.cat-card.highlight{border-color:rgba(212,64,58,0.2);background:linear-gradient(135deg,var(--surface) 0%,rgba(212,64,58,0.04) 100%)}
+
+/* Skill Grid */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s}
+.skill-card:hover{border-color:rgba(212,64,58,0.3)}
+.skill-card .sk-name{font-size:15px;font-weight:700;margin-bottom:4px;color:#fff}
+.skill-card .sk-desc{font-size:13px;color:var(--text-2);line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.skill-card .sk-meta{display:flex;align-items:center;justify-content:space-between}
+.skill-card .sk-cat{font-size:11px;padding:3px 8px;background:rgba(255,255,255,0.05);border-radius:6px;color:var(--text-3)}
+.skill-card .sk-install{font-size:11px;color:var(--lobster-light);font-weight:600;cursor:pointer}
+.skill-card .sk-install:hover{text-decoration:underline}
+
+/* Other Categories Collapse */
+.other-cats{margin-top:32px;border-top:1px solid var(--border);padding-top:24px}
+.other-cats-title{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--text-2);cursor:pointer;display:flex;align-items:center;gap:8px}
+.other-cats-title .arrow{transition:transform .2s;font-size:12px}
+.other-cats-title.open .arrow{transform:rotate(90deg)}
+.other-cats-grid{display:none}
+.other-cats-title.open + .other-cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+
+/* Back to top */
+.back-link{text-align:center;padding:24px 20px 40px}
+.back-link a{color:var(--text-3);font-size:13px}
+
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--text-3);font-size:14px}
+
+/* Mobile */
+@media(max-width:600px){
+  nav{padding:12px 16px}
+  .nav-links{display:none}
+  .hero h1{font-size:26px}
+  .hero .stats{gap:16px}
+  .hero .stat .num{font-size:22px}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .section-header{flex-direction:column;align-items:flex-start}
+}
+
+/* Footer */
+.ft{text-align:center;padding:24px 20px;border-top:1px solid var(--border);color:var(--text-3);font-size:12px}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="../../" class="logo"><img src="../../mascot.png" alt="ImaClaw"> Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:4px">by ImaStudio</span></a>
+<div class="nav-links">
+  <a href="../../adopt/">🦞 领养</a>
+  <a href="../" class="active">Skill 市场</a>
+  <a href="../../pricing/">价格</a>
+  <a href="../../docs/">文档</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="breadcrumb"><a href="../">Skill 市场</a> / 社区技能</div>
+<h1>🌍 IMA 社区技能<span class="accent">市场</span></h1>
+<p class="desc">来自全球开发者的 5,000+ 技能，为你的龙虾解锁无限可能</p>
+<div class="stats">
+  <div class="stat"><div class="num" id="total-count">—</div><div class="label">技能总数</div></div>
+  <div class="stat"><div class="num" id="cat-count">—</div><div class="label">分类</div></div>
+  
+</div>
+<div class="search-box">
+  <input type="text" id="search" placeholder="搜索技能名称或描述..." oninput="searchSkills()">
+</div>
+</section>
+
+<!-- Priority Categories -->
+<div class="section" id="priority-cats">
+<div class="section-header">
+  <div class="section-title">⭐ 推荐分类</div>
+</div>
+<div class="cat-grid" id="cat-grid"></div>
+</div>
+
+<!-- Search Results (hidden by default) -->
+<div class="section" id="search-results" style="display:none">
+<div class="section-header">
+  <div class="section-title">🔍 搜索结果 <span class="count" id="result-count"></span></div>
+</div>
+<div class="skill-grid" id="result-grid"></div>
+</div>
+
+<!-- Featured Skills by Category -->
+<div class="section" id="featured-section">
+<div class="section-header">
+  <div class="section-title">🔥 热门技能</div>
+</div>
+<div class="skill-grid" id="featured-grid"></div>
+</div>
+
+<!-- Other Categories -->
+<div class="section">
+<div class="other-cats">
+  <div class="other-cats-title" onclick="this.classList.toggle('open')">
+    <span class="arrow">▶</span> 更多分类
+  </div>
+  <div class="other-cats-grid" id="other-cats-grid"></div>
+</div>
+</div>
+
+<div class="back-link">
+  <a href="../">← 返回 Skill 市场</a> · <a href="../../">首页</a>
+</div>
+
+<div class="ft">
+© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">ImaStudio</a>
+</div>
+
+<script>
+// Priority categories (related to our business)
+var PRIORITY_CATS = [
+  {key: 'Image & Video Generation', icon: '🎨', zh: '图片与视频生成'},
+  {key: 'Marketing & Sales', icon: '📣', zh: '营销与销售'},
+  {key: 'AI & LLMs', icon: '🤖', zh: 'AI 与大模型'},
+  {key: 'Search & Research', icon: '🔍', zh: '搜索与研究'},
+  {key: 'Communication', icon: '💬', zh: '通讯与社交'},
+  {key: 'Productivity & Tasks', icon: '📋', zh: '效率与任务'},
+  {key: 'Notes & PKM', icon: '📝', zh: '笔记与知识管理'},
+  {key: 'Data & Analytics', icon: '📊', zh: '数据与分析'},
+  {key: 'Speech & Transcription', icon: '🎙️', zh: '语音与转录'},
+  {key: 'Media & Streaming', icon: '📺', zh: '媒体与流媒体'}
+];
+
+var OTHER_CAT_MAP = {
+  'Coding Agents & IDEs': {icon: '💻', zh: '编程与IDE'},
+  'Web & Frontend Development': {icon: '🌐', zh: 'Web 前端开发'},
+  'DevOps & Cloud': {icon: '☁️', zh: 'DevOps 与云'},
+  'Browser & Automation': {icon: '🤖', zh: '浏览器与自动化'},
+  'CLI Utilities': {icon: '⌨️', zh: '命令行工具'},
+  'Git & GitHub': {icon: '🔀', zh: 'Git 与 GitHub'},
+  'PDF & Documents': {icon: '📄', zh: 'PDF 与文档'},
+  'Transportation': {icon: '🚗', zh: '出行与交通'},
+  'Health & Fitness': {icon: '💪', zh: '健康与运动'},
+  'Calendar & Scheduling': {icon: '📅', zh: '日历与日程'},
+  'Shopping & E-commerce': {icon: '🛍️', zh: '购物与电商'},
+  'Security & Passwords': {icon: '🔐', zh: '安全与密码'},
+  'Personal Development': {icon: '🎯', zh: '个人成长'},
+  'Apple Apps & Services': {icon: '🍎', zh: 'Apple 生态'},
+  'Smart Home & IoT': {icon: '🏠', zh: '智能家居'},
+  'Gaming': {icon: '🎮', zh: '游戏'},
+  'Clawdbot Tools': {icon: '🦞', zh: '龙虾工具'},
+  'Self-Hosted & Automation': {icon: '🖥️', zh: '自托管与自动化'},
+  'iOS & macOS Development': {icon: '📱', zh: 'iOS/macOS 开发'},
+  'Moltbook': {icon: '📓', zh: 'Moltbook'}
+};
+
+var allSkills = [];
+var catCounts = {};
+
+// Load data
+fetch('community-skills.json')
+.then(r => r.json())
+.then(function(data) {
+  allSkills = data.skills || [];
+  document.getElementById('total-count').textContent = allSkills.length.toLocaleString();
+  
+  // Count categories
+  allSkills.forEach(function(s) {
+    var cat = s.category || 'Other';
+    catCounts[cat] = (catCounts[cat] || 0) + 1;
+  });
+  document.getElementById('cat-count').textContent = Object.keys(catCounts).length;
+  
+  renderPriorityCats();
+  renderFeatured();
+  renderOtherCats();
+})
+.catch(function() {
+  document.getElementById('featured-grid').innerHTML = '<div class="loading">数据加载失败，请刷新重试</div>';
+});
+
+function renderPriorityCats() {
+  var html = '';
+  PRIORITY_CATS.forEach(function(c) {
+    var count = catCounts[c.key] || 0;
+    html += '<div class="cat-card highlight" onclick="filterByCat(\'' + c.key + '\')">' +
+      '<div class="cat-icon">' + c.icon + '</div>' +
+      '<div class="cat-name">' + c.zh + '</div>' +
+      '<div class="cat-count">' + count + ' 个技能</div></div>';
+  });
+  document.getElementById('cat-grid').innerHTML = html;
+}
+
+function renderFeatured() {
+  // Show first 12 skills from priority categories
+  var featured = [];
+  PRIORITY_CATS.forEach(function(c) {
+    var skills = allSkills.filter(function(s) { return s.category === c.key; });
+    featured = featured.concat(skills.slice(0, 2));
+  });
+  document.getElementById('featured-grid').innerHTML = featured.slice(0, 12).map(renderSkillCard).join('');
+}
+
+function renderOtherCats() {
+  var html = '';
+  var priorityKeys = PRIORITY_CATS.map(function(c) { return c.key; });
+  Object.keys(catCounts).sort(function(a, b) { return catCounts[b] - catCounts[a]; }).forEach(function(cat) {
+    if (priorityKeys.indexOf(cat) >= 0) return;
+    var info = OTHER_CAT_MAP[cat] || {icon: '📦', zh: cat};
+    html += '<div class="cat-card" onclick="filterByCat(\'' + cat + '\')">' +
+      '<div class="cat-icon">' + info.icon + '</div>' +
+      '<div class="cat-name">' + info.zh + '</div>' +
+      '<div class="cat-count">' + catCounts[cat] + ' 个技能</div></div>';
+  });
+  document.getElementById('other-cats-grid').innerHTML = html;
+}
+
+function renderSkillCard(s) {
+  var catInfo = PRIORITY_CATS.find(function(c) { return c.key === s.category; }) || OTHER_CAT_MAP[s.category] || {zh: s.category, icon: '📦'};
+  return '<div class="skill-card">' +
+    '<div class="sk-name">' + escHtml(s.name) + '</div>' +
+    '<div class="sk-desc">' + escHtml(s.description || '') + '</div>' +
+    '<div class="sk-meta">' +
+      '<span class="sk-cat">' + (catInfo.zh || s.category) + '</span>' +
+      '<span class="sk-install" onclick="copyInstall(\'' + s.name + '\')">📋 安装</span>' +
+    '</div></div>';
+}
+
+function filterByCat(cat) {
+  var skills = allSkills.filter(function(s) { return s.category === cat; });
+  var catInfo = PRIORITY_CATS.find(function(c) { return c.key === cat; }) || OTHER_CAT_MAP[cat] || {zh: cat};
+  document.getElementById('search-results').style.display = 'block';
+  document.getElementById('result-count').textContent = '(' + skills.length + ')';
+  document.getElementById('result-grid').innerHTML = skills.slice(0, 50).map(renderSkillCard).join('');
+  document.getElementById('priority-cats').style.display = 'none';
+  document.getElementById('featured-section').style.display = 'none';
+  document.getElementById('search').value = '';
+  
+  // Add back button
+  document.querySelector('#search-results .section-title').innerHTML = 
+    '<span onclick="resetView()" style="cursor:pointer;color:var(--text-3);margin-right:8px">←</span> ' +
+    (catInfo.icon || '') + ' ' + (catInfo.zh || cat) + ' <span class="count">(' + skills.length + ')</span>';
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function searchSkills() {
+  var q = document.getElementById('search').value.trim().toLowerCase();
+  if (!q) { resetView(); return; }
+  var results = allSkills.filter(function(s) {
+    return s.name.toLowerCase().indexOf(q) >= 0 || (s.description || '').toLowerCase().indexOf(q) >= 0;
+  });
+  document.getElementById('search-results').style.display = 'block';
+  document.getElementById('priority-cats').style.display = 'none';
+  document.getElementById('featured-section').style.display = 'none';
+  document.querySelector('#search-results .section-title').innerHTML = 
+    '🔍 搜索结果 <span class="count">(' + results.length + ')</span>';
+  document.getElementById('result-grid').innerHTML = results.slice(0, 50).map(renderSkillCard).join('');
+}
+
+function resetView() {
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('priority-cats').style.display = 'block';
+  document.getElementById('featured-section').style.display = 'block';
+  document.getElementById('search').value = '';
+}
+
+function copyInstall(name) {
+  var cmd = 'npx clawhub@latest install ' + name;
+  navigator.clipboard.writeText(cmd).then(function() {
+    alert('已复制安装命令：\n' + cmd);
+  });
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

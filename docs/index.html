@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用文档 - Ima Claw</title>
+  <style>
+    :root{--bg:#0a0a0f;--surface:#111;--surface-2:#1a1a20;--border:#222;--border-hover:#333;--text:#e8e8e8;--text-2:#a0a0a0;--lobster:#e74c3c;--lobster-light:#ff6b5b;--yellow:#f2c744;--blue:#4a9eff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--lobster-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:800px;margin:0 auto;padding:90px 20px 40px}
+    h1{font-size:32px;margin-bottom:8px;color:#fff}
+    .subtitle{color:var(--text-2);margin-bottom:40px}
+    h2{font-size:22px;margin:40px 0 16px;color:#fff;border-left:3px solid var(--lobster);padding-left:12px}
+    h3{font-size:16px;margin:24px 0 12px;color:var(--lobster-light)}
+    p{margin-bottom:16px}
+    .step{display:flex;gap:16px;margin:24px 0;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+    .step-num{width:32px;height:32px;background:var(--lobster);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+    .step-content{flex:1}
+    .step-content h4{font-size:15px;margin-bottom:8px;color:#fff}
+    .tip{padding:12px 16px;background:var(--surface-2);border-left:3px solid var(--yellow);border-radius:0 8px 8px 0;margin:16px 0;font-size:14px}
+    .channel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+    .channel-item{padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px}
+    .channel-item strong{display:block;color:var(--lobster-light);margin-bottom:4px}
+    code{background:var(--surface-2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:13px}
+    @media(max-width:600px){.container{padding-top:100px}.channel-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+}
+/* Nav */
+@media(max-width:768px){
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === SHARED NAV CSS === */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(12,12,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo img{height:40px;width:40px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--text)}
+.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.nav-adopt{color:var(--lobster-light)!important;font-weight:600!important}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+.lang-dropdown{display:inline-block;position:relative}
+.lang-trigger{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-2);font-size:12px;cursor:pointer;font-weight:500}
+.lang-trigger:hover{border-color:var(--lobster)}
+.lang-menu{display:none;position:absolute;top:100%;right:0;margin-top:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;min-width:140px;z-index:1002;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--text-2);font-size:13px;text-align:left;cursor:pointer;border-radius:6px}
+.lang-menu button:hover{background:rgba(231,76,60,0.1);color:var(--lobster-light)}
+@media(max-width:768px){
+  nav{padding:14px 16px}
+  .hamburger{display:block}
+  .nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex!important}
+  .nav-links a{padding:12px 20px!important;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px!important;color:rgba(255,255,255,0.55)!important;display:block}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .lang-dropdown{padding:12px 20px;text-align:right;display:flex;justify-content:flex-end}
+}
+/* === END SHARED NAV CSS === */
+</style>
+</head>
+<body>
+  <nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt=""><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../" data-i18n="nav.home">首页</a>
+    <a href="../adopt/" class="nav-adopt" data-i18n="nav.adopt">🦞 领养</a>
+    <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
+    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="../docs/" data-i18n="nav.docs">帮助</a>
+    <a href="../blog/" data-i18n="nav.blog">博客</a>
+    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" onclick="event.stopPropagation();this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('ja')">🇯🇵 日本語</button>
+        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+  
+  <div class="container">
+    <h1 data-i18n="docs.title">🦞 Ima Claw 使用文档</h1>
+    <p class="subtitle" data-i18n="docs.subtitle">从领养你的第一只龙虾，到养成你的专属创作伙伴</p>
+
+    <h2 data-i18n="docs.step1_title">第一步：领养你的龙虾</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step1_1_title">点击"免费领养"</h4>
+        <p data-i18n="docs.step1_1_desc">在 ImaStudio 平台首页点击 💙 免费领养按钮，开始创建你的专属龙虾。</p>
+      </div>
+    </div>
+    
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step1_2_title">注册账号</h4>
+        <p data-i18n="docs.step1_2_desc">使用邮箱或第三方账号注册。你的 Ima Claw 账号与 ImaStudio 账号是打通的，无需重复注册。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 <span data-i18n="docs.tip1_title">账号互通</span></strong><br>
+      <span data-i18n="docs.tip1_desc">Ima Claw 与 ImaStudio 使用同一账号体系。你在 ImaStudio 的作品、积分、社区身份都可以在 Claw 中无缝使用。</span>
+    </div>
+
+    <h2 data-i18n="docs.step2_title">第二步：云端部署</h2>
+    <p data-i18n="docs.step2_intro">完成注册后，我们会立即在云端为你配置专属空间：</p>
+    
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step2_1_title">专属虚拟空间</h4>
+        <p data-i18n="docs.step2_1_desc">每台龙虾运行在独立的云端容器中，确保数据隔离和安全性。这是你的龙虾专属的计算资源和存储空间。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step2_2_title">预装核心技能</h4>
+        <p data-i18n="docs.step2_2_intro">我们会一键预装：</p>
+        <ul style="margin:8px 0 0 20px">
+          <li data-i18n="docs.step2_2_skill1">基础操作技能（文件管理、网络请求、安全沙箱）</li>
+          <li data-i18n="docs.step2_2_skill2">Ima Claw 专属多媒体创作 All-in-One 技能包</li>
+          <li data-i18n="docs.step2_2_skill3">社交媒体发布技能（Twitter、LinkedIn、小红书等）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>🚀 <span data-i18n="docs.tip2_title">零配置开箱即用</span></strong><br>
+      <span data-i18n="docs.tip2_desc">所有技能都已预装配置好，你不需要手动安装任何依赖或编写配置文件。</span>
+    </div>
+
+    <h2 data-i18n="docs.step3_title">第三步：连接聊天渠道</h2>
+    <p data-i18n="docs.step3_intro">将你的龙虾连接到你常用的聊天应用，随时随地与它对话：</p>
+
+    <div class="channel-grid">
+      <div class="channel-item">
+        <strong>WhatsApp</strong>
+        <span data-i18n="docs.ch_whatsapp">扫描二维码绑定个人 WhatsApp 账号</span>
+      </div>
+      <div class="channel-item">
+        <strong>Telegram</strong>
+        <span data-i18n="docs.ch_telegram">搜索 @ImaClawBot 或创建专属 Bot</span>
+      </div>
+      <div class="channel-item">
+        <strong>飞书 Lark</strong>
+        <span data-i18n="docs.ch_lark">企业微信授权或自建应用</span>
+      </div>
+      <div class="channel-item">
+        <strong>Discord</strong>
+        <span data-i18n="docs.ch_discord">邀请 Bot 到服务器或 DM 对话</span>
+      </div>
+    </div>
+
+    <p data-i18n="docs.step3_multi">你可以同时连接多个渠道，龙虾会在所有连接的平台同步响应。配置方法详见各平台的详细接入指南。</p>
+
+    <h2 data-i18n="docs.step4_title">第四步：开始对话创作</h2>
+    <p data-i18n="docs.step4_intro">现在你可以直接给龙虾发消息了：</p>
+    
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step4_1_title">简单任务</h4>
+        <p data-i18n="docs.step4_1_desc">对于常规创作任务，龙虾可以直接完成：</p>
+        <code data-i18n="docs.step4_ex1">"帮我生成一张赛博朋克风格的产品海报"</code><br>
+        <code data-i18n="docs.step4_ex2">"把这个视频剪成 15 秒的短视频"</code><br>
+        <code data-i18n="docs.step4_ex3">"写一条关于 AI 创业的小红书文案"</code>
+      </div>
+    </div>
+
+    <h2 data-i18n="docs.step5_title">第五步：训练与进化</h2>
+    <p data-i18n="docs.step5_intro">这是 Ima Claw 与传统 AI 工具最大的区别——<strong>养成</strong>。</p>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step5_1_title">反馈与纠正</h4>
+        <p data-i18n="docs.step5_1_desc">当龙虾的任务完成不够好时，直接告诉它：</p>
+        <code data-i18n="docs.step5_ex1">"这个海报的颜色太暗了，换成亮一点的蓝色调"</code><br>
+        <code data-i18n="docs.step5_ex2">"文案太正式了，用更口语化的风格重写"</code><br>
+        <code data-i18n="docs.step5_ex3">"视频的节奏太快，前面加 2 秒缓冲"</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <h4 data-i18n="docs.step5_2_title">安装新技能</h4>
+        <p data-i18n="docs.step5_2_desc">Ima Claw 平台持续更新官方技能库。你可以随时为龙虾安装：</p>
+        <ul style="margin:8px 0 0 20px">
+          <li data-i18n="docs.step5_skill1">行业专属技能（电商、教育、金融等）</li>
+          <li data-i18n="docs.step5_skill2">平台专用技能（Shopify、Notion、Figma 等）</li>
+          <li data-i18n="docs.step5_skill3">创意技能（3D 建模、动画、音效设计）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>🔄 <span data-i18n="docs.tip3_title">养成闭环</span></strong><br>
+      <span data-i18n="docs.tip3_desc">对话创作 → 反馈训练 → 技能升级 → 龙虾进化 → 更好的创作 → 循环往复</span>
+    </div>
+
+    <h2 data-i18n="docs.final_title">最终形态：你的超级创作大脑</h2>
+    <p data-i18n="docs.final_intro">经过持续训练，你的龙虾会成为：</p>
+    <ul style="margin:16px 0 16px 24px">
+      <li data-i18n="docs.final_1"><strong>懂你的风格</strong> — 知道你喜欢什么色调、什么语气、什么节奏</li>
+      <li data-i18n="docs.final_2"><strong>知你的习惯</strong> — 记得你常用的平台、格式、工作流</li>
+      <li data-i18n="docs.final_3"><strong>省你的时间</strong> — 复杂任务自动拆解，不需要你操心细节</li>
+      <li data-i18n="docs.final_4"><strong>扩你的能力</strong> — 7×24 随时响应，同时处理多个创作项目</li>
+    </ul>
+
+    <p style="background:var(--surface-2);padding:20px;border-radius:12px;margin-top:24px" data-i18n="docs.partner">就像我现在与你的互动一样——你提出想法，我执行创作，你给予反馈，我持续进化。这不仅是工具，是<strong>伙伴</strong>。</p>
+
+    <div style="text-align:center;margin-top:40px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:12px">
+      <p style="font-size:18px;font-weight:600;color:#fff;margin-bottom:8px">🦞 <span data-i18n="docs.cta_title">准备好领养你的龙虾了吗？</span></p>
+      <a href="../" style="display:inline-block;margin-top:12px;padding:12px 20px;text-align:right;background:var(--lobster);color:#fff;border-radius:8px;text-decoration:none" data-i18n="docs.cta_button">免费领养</a>
+    </div>
+  </div>
+<script>
+var ZH_CACHE={};
+var DOCS_I18N={
+  en:{
+    "nav.home":"Home","nav.adopt":"🦞 Adopt","nav.skills":"Skills","nav.pricing":"🛒 Pricing","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Community",
+    "docs.title":"🦞 Ima Claw Documentation",
+    "docs.subtitle":"From adopting your first Claw to raising your creative partner",
+    "docs.step1_title":"Step 1: Adopt Your Claw",
+    "docs.step1_1_title":'Click "Adopt Free"',
+    "docs.step1_1_desc":"Click the 💙 Adopt Free button on the ImaStudio homepage to start creating your Claw.",
+    "docs.step1_2_title":"Register Account",
+    "docs.step1_2_desc":"Register with email or third-party account. Your Ima Claw account is connected to ImaStudio — no separate registration needed.",
+    "docs.tip1_title":"Account Integration",
+    "docs.tip1_desc":"Ima Claw shares the same account system with ImaStudio. Your works, credits, and community identity are seamlessly available in Claw.",
+    "docs.step2_title":"Step 2: Cloud Deployment",
+    "docs.step2_intro":"After registration, we immediately provision your dedicated cloud space:",
+    "docs.step2_1_title":"Dedicated Virtual Space",
+    "docs.step2_1_desc":"Each Claw runs in an isolated cloud container with dedicated compute resources and storage for maximum security and privacy.",
+    "docs.step2_2_title":"Pre-installed Core Skills",
+    "docs.step2_2_intro":"We pre-install with one click:",
+    "docs.step2_2_skill1":"Basic operations (file management, network, secure sandbox)",
+    "docs.step2_2_skill2":"Ima Claw exclusive multimedia creation skill pack",
+    "docs.step2_2_skill3":"Social media publishing skills (Twitter, LinkedIn, Xiaohongshu, etc.)",
+    "docs.tip2_title":"Zero-Config Setup",
+    "docs.tip2_desc":"All skills are pre-configured. No manual dependency installation or config files needed.",
+    "docs.step3_title":"Step 3: Connect Chat Channels",
+    "docs.step3_intro":"Connect your Claw to your favorite chat apps:",
+    "docs.ch_whatsapp":"Scan QR code to link your WhatsApp",
+    "docs.ch_telegram":"Search @ImaClawBot or create dedicated bot",
+    "docs.ch_lark":"Enterprise authorization or custom app",
+    "docs.ch_discord":"Invite bot to server or use DM",
+    "docs.step3_multi":"You can connect multiple channels simultaneously. Your Claw will respond across all connected platforms. See detailed guides for each platform.",
+    "docs.step4_title":"Step 4: Start Creating",
+    "docs.step4_intro":"Now you can message your Claw directly:",
+    "docs.step4_1_title":"Simple Tasks",
+    "docs.step4_1_desc":"For routine tasks, your Claw handles them directly:",
+    "docs.step4_ex1":'"Generate a cyberpunk-style product poster"',
+    "docs.step4_ex2":'"Cut this video into a 15-second short"',
+    "docs.step4_ex3":'"Write an AI startup post for social media"',
+    "docs.step5_title":"Step 5: Train & Evolve",
+    "docs.step5_intro":'This is what sets Ima Claw apart — <strong>raising</strong>, not just using.',
+    "docs.step5_1_title":"Feedback & Correction",
+    "docs.step5_1_desc":"When the output isn't perfect, tell your Claw:",
+    "docs.step5_ex1":'"The poster colors are too dark, switch to brighter blue tones"',
+    "docs.step5_ex2":'"The copy is too formal, rewrite in a casual tone"',
+    "docs.step5_ex3":'"The video pace is too fast, add 2 seconds buffer at the start"',
+    "docs.step5_2_title":"Install New Skills",
+    "docs.step5_2_desc":"The Ima Claw platform continuously updates official skills. Install anytime:",
+    "docs.step5_skill1":"Industry-specific skills (e-commerce, education, finance)",
+    "docs.step5_skill2":"Platform integrations (Shopify, Notion, Figma)",
+    "docs.step5_skill3":"Creative skills (3D modeling, animation, sound design)",
+    "docs.tip3_title":"The Growth Loop",
+    "docs.tip3_desc":"Chat to create → Feedback to train → Skill upgrade → Claw evolves → Better creation → Repeat",
+    "docs.final_title":"Final Form: Your Creative Superbrain",
+    "docs.final_intro":"After continuous training, your Claw becomes:",
+    "docs.final_1":"<strong>Knows your style</strong> — your preferred colors, tone, and rhythm",
+    "docs.final_2":"<strong>Remembers your habits</strong> — platforms, formats, workflows",
+    "docs.final_3":"<strong>Saves your time</strong> — breaks down complex tasks automatically",
+    "docs.final_4":"<strong>Extends your capacity</strong> — 24/7 availability, multiple projects",
+    "docs.partner":'Just like this interaction — you propose ideas, I execute, you give feedback, I evolve. Not just a tool, but a <strong>partner</strong>.',
+    "docs.cta_title":"Ready to adopt your Claw?",
+    "docs.cta_button":"Adopt Free"
+  },
+  es:{
+    "nav.home":"Inicio","nav.skills":"Skills","nav.pricing":"🛒 Comprar","nav.docs":"Docs","nav.blog":"Blog","nav.community":"Comunidad",
+    "docs.title":"🦞 Documentación de Ima Claw",
+    "docs.subtitle":"Desde adoptar tu primer Claw hasta criar a tu compañero creativo",
+    "docs.step1_title":"Paso 1: Adopta tu Claw",
+    "docs.step1_1_title":'Haz clic en "Adoptar Gratis"',
+    "docs.step1_1_desc":"Haz clic en el botón 💙 Adoptar Gratis en la página principal de ImaStudio para crear tu Claw.",
+    "docs.step1_2_title":"Registrar cuenta",
+    "docs.step1_2_desc":"Regístrate con correo electrónico o cuenta de terceros. Tu cuenta de Ima Claw está conectada con ImaStudio — no necesitas registro adicional.",
+    "docs.tip1_title":"Cuentas integradas",
+    "docs.tip1_desc":"Ima Claw comparte el mismo sistema de cuentas con ImaStudio. Tus obras, créditos e identidad comunitaria están disponibles en Claw.",
+    "docs.step2_title":"Paso 2: Despliegue en la nube",
+    "docs.step2_intro":"Después del registro, configuramos inmediatamente tu espacio dedicado en la nube:",
+    "docs.step2_1_title":"Espacio virtual dedicado",
+    "docs.step2_1_desc":"Cada Claw se ejecuta en un contenedor aislado en la nube con recursos de cómputo y almacenamiento dedicados para máxima seguridad y privacidad.",
+    "docs.step2_2_title":"Skills preinstalados",
+    "docs.step2_2_intro":"Preinstalamos con un clic:",
+    "docs.step2_2_skill1":"Operaciones básicas (gestión de archivos, red, sandbox seguro)",
+    "docs.step2_2_skill2":"Paquete exclusivo de creación multimedia Ima Claw",
+    "docs.step2_2_skill3":"Skills de publicación en redes sociales (Twitter, LinkedIn, Xiaohongshu, etc.)",
+    "docs.tip2_title":"Configuración cero",
+    "docs.tip2_desc":"Todos los skills están preconfigurados. No necesitas instalar dependencias ni escribir archivos de configuración.",
+    "docs.step3_title":"Paso 3: Conectar canales de chat",
+    "docs.step3_intro":"Conecta tu Claw a tus apps de chat favoritas:",
+    "docs.ch_whatsapp":"Escanea código QR para vincular tu WhatsApp",
+    "docs.ch_telegram":"Busca @ImaClawBot o crea un bot dedicado",
+    "docs.ch_lark":"Autorización empresarial o app personalizada",
+    "docs.ch_discord":"Invita el bot al servidor o usa DM",
+    "docs.step3_multi":"Puedes conectar múltiples canales simultáneamente. Tu Claw responderá en todas las plataformas. Consulta las guías detalladas de cada plataforma.",
+    "docs.step4_title":"Paso 4: Empieza a crear",
+    "docs.step4_intro":"Ahora puedes enviar mensajes a tu Claw directamente:",
+    "docs.step4_1_title":"Tareas simples",
+    "docs.step4_1_desc":"Para tareas rutinarias, tu Claw las maneja directamente:",
+    "docs.step4_ex1":'"Genera un póster de producto estilo cyberpunk"',
+    "docs.step4_ex2":'"Corta este video en un clip de 15 segundos"',
+    "docs.step4_ex3":'"Escribe un post sobre startups de IA para redes sociales"',
+    "docs.step5_title":"Paso 5: Entrena y evoluciona",
+    "docs.step5_intro":"Esto es lo que diferencia a Ima Claw — <strong>criar</strong>, no solo usar.",
+    "docs.step5_1_title":"Retroalimentación y corrección",
+    "docs.step5_1_desc":"Cuando el resultado no es perfecto, dile a tu Claw:",
+    "docs.step5_ex1":'"Los colores del póster son muy oscuros, cambia a tonos azules más brillantes"',
+    "docs.step5_ex2":'"El texto es muy formal, reescríbelo en tono casual"',
+    "docs.step5_ex3":'"El ritmo del video es muy rápido, agrega 2 segundos de transición al inicio"',
+    "docs.step5_2_title":"Instalar nuevos skills",
+    "docs.step5_2_desc":"La plataforma Ima Claw actualiza continuamente los skills oficiales. Instala en cualquier momento:",
+    "docs.step5_skill1":"Skills por industria (e-commerce, educación, finanzas)",
+    "docs.step5_skill2":"Integraciones de plataforma (Shopify, Notion, Figma)",
+    "docs.step5_skill3":"Skills creativos (modelado 3D, animación, diseño de sonido)",
+    "docs.tip3_title":"El ciclo de crecimiento",
+    "docs.tip3_desc":"Chatea para crear → Retroalimenta para entrenar → Mejora de skills → Claw evoluciona → Mejor creación → Repetir",
+    "docs.final_title":"Forma final: Tu superpoder creativo",
+    "docs.final_intro":"Después del entrenamiento continuo, tu Claw se convierte en:",
+    "docs.final_1":"<strong>Conoce tu estilo</strong> — tus colores, tono y ritmo preferidos",
+    "docs.final_2":"<strong>Recuerda tus hábitos</strong> — plataformas, formatos, flujos de trabajo",
+    "docs.final_3":"<strong>Ahorra tu tiempo</strong> — descompone tareas complejas automáticamente",
+    "docs.final_4":"<strong>Amplía tu capacidad</strong> — disponible 24/7, múltiples proyectos",
+    "docs.partner":"Como esta interacción — tú propones ideas, yo ejecuto, tú das retroalimentación, yo evoluciono. No solo una herramienta, sino un <strong>compañero</strong>.",
+    "docs.cta_title":"¿Listo para adoptar tu Claw?",
+    "docs.cta_button":"Adoptar Gratis"
+  },
+  ja:{
+    "nav.home":"ホーム","nav.skills":"スキル","nav.pricing":"🛒 購入","nav.docs":"ドキュメント","nav.blog":"ブログ","nav.community":"コミュニティ",
+    "docs.title":"🦞 Ima Claw ドキュメント",
+    "docs.subtitle":"最初のClawの養子縁組から、あなた専属のクリエイティブパートナーを育てるまで",
+    "docs.step1_title":"ステップ1：Clawを迎える",
+    "docs.step1_1_title":"「無料で迎える」をクリック",
+    "docs.step1_1_desc":"ImaStudioのトップページで 💙 無料で迎えるボタンをクリックして、あなた専用のClawを作成しましょう。",
+    "docs.step1_2_title":"アカウント登録",
+    "docs.step1_2_desc":"メールまたはサードパーティアカウントで登録。Ima ClawアカウントはImaStudioと連携済み — 別途登録は不要です。",
+    "docs.tip1_title":"アカウント統合",
+    "docs.tip1_desc":"Ima ClawはImaStudioと同じアカウントシステムを共有。作品、クレジット、コミュニティIDがClawでシームレスに利用可能です。",
+    "docs.step2_title":"ステップ2：クラウドデプロイ",
+    "docs.step2_intro":"登録完了後、すぐにクラウド上に専用スペースを構築します：",
+    "docs.step2_1_title":"専用仮想スペース",
+    "docs.step2_1_desc":"各Clawは独立したクラウドコンテナで実行され、最大限のセキュリティとプライバシーのための専用コンピューティングリソースとストレージを備えています。",
+    "docs.step2_2_title":"プリインストール済みコアスキル",
+    "docs.step2_2_intro":"ワンクリックでプリインストール：",
+    "docs.step2_2_skill1":"基本操作スキル（ファイル管理、ネットワーク、セキュアサンドボックス）",
+    "docs.step2_2_skill2":"Ima Claw専用マルチメディア制作オールインワンスキルパック",
+    "docs.step2_2_skill3":"ソーシャルメディア投稿スキル（Twitter、LinkedIn、小紅書など）",
+    "docs.tip2_title":"ゼロ設定ですぐ使える",
+    "docs.tip2_desc":"すべてのスキルは設定済み。依存関係のインストールや設定ファイルの作成は不要です。",
+    "docs.step3_title":"ステップ3：チャットチャネル接続",
+    "docs.step3_intro":"お気に入りのチャットアプリにClawを接続しましょう：",
+    "docs.ch_whatsapp":"QRコードをスキャンしてWhatsAppをリンク",
+    "docs.ch_telegram":"@ImaClawBotを検索または専用Botを作成",
+    "docs.ch_lark":"企業認証またはカスタムアプリ",
+    "docs.ch_discord":"サーバーにBotを招待またはDMで会話",
+    "docs.step3_multi":"複数のチャネルを同時に接続可能。Clawはすべての接続プラットフォームで応答します。各プラットフォームの詳細ガイドをご覧ください。",
+    "docs.step4_title":"ステップ4：創作を始める",
+    "docs.step4_intro":"Clawに直接メッセージを送れます：",
+    "docs.step4_1_title":"シンプルなタスク",
+    "docs.step4_1_desc":"日常的なタスクはClawが直接処理します：",
+    "docs.step4_ex1":"「サイバーパンク風の商品ポスターを生成して」",
+    "docs.step4_ex2":"「この動画を15秒のショート動画にカットして」",
+    "docs.step4_ex3":"「AIスタートアップについてのSNS投稿を書いて」",
+    "docs.step5_title":"ステップ5：トレーニングと進化",
+    "docs.step5_intro":"これがIma Clawの最大の特徴 — ただ使うのではなく、<strong>育てる</strong>こと。",
+    "docs.step5_1_title":"フィードバックと修正",
+    "docs.step5_1_desc":"結果が完璧でないとき、Clawに伝えましょう：",
+    "docs.step5_ex1":"「ポスターの色が暗すぎる、もっと明るいブルーに変えて」",
+    "docs.step5_ex2":"「コピーが硬すぎる、カジュアルなトーンで書き直して」",
+    "docs.step5_ex3":"「動画のテンポが速すぎる、最初に2秒のバッファを追加して」",
+    "docs.step5_2_title":"新しいスキルをインストール",
+    "docs.step5_2_desc":"Ima Clawプラットフォームは公式スキルを継続的に更新。いつでもインストール可能：",
+    "docs.step5_skill1":"業界特化スキル（EC、教育、金融）",
+    "docs.step5_skill2":"プラットフォーム連携（Shopify、Notion、Figma）",
+    "docs.step5_skill3":"クリエイティブスキル（3Dモデリング、アニメーション、サウンドデザイン）",
+    "docs.tip3_title":"成長ループ",
+    "docs.tip3_desc":"チャットで創作 → フィードバックで学習 → スキルアップ → Claw進化 → より良い創作 → 繰り返し",
+    "docs.final_title":"最終形態：あなたのクリエイティブスーパーブレイン",
+    "docs.final_intro":"継続的なトレーニングの後、あなたのClawは：",
+    "docs.final_1":"<strong>あなたのスタイルを理解</strong> — 好みの色、トーン、リズム",
+    "docs.final_2":"<strong>あなたの習慣を記憶</strong> — プラットフォーム、フォーマット、ワークフロー",
+    "docs.final_3":"<strong>あなたの時間を節約</strong> — 複雑なタスクを自動分解",
+    "docs.final_4":"<strong>あなたの能力を拡張</strong> — 24時間365日対応、複数プロジェクト同時進行",
+    "docs.partner":"今のこのやり取りのように — あなたがアイデアを出し、私が実行し、あなたがフィードバックし、私が進化する。ツールではなく、<strong>パートナー</strong>。",
+    "docs.cta_title":"Clawを迎える準備はできましたか？",
+    "docs.cta_button":"無料で迎える"
+  },
+  ar:{
+    "nav.home":"الرئيسية","nav.skills":"المهارات","nav.pricing":"🛒 الشراء","nav.docs":"المستندات","nav.blog":"المدونة","nav.community":"المجتمع",
+    "docs.title":"🦞 وثائق Ima Claw",
+    "docs.subtitle":"من تبني أول Claw إلى تربية شريكك الإبداعي",
+    "docs.step1_title":"الخطوة 1: تبنَّ الـ Claw الخاص بك",
+    "docs.step1_1_title":"انقر على \"تبنَّ مجاناً\"",
+    "docs.step1_1_desc":"انقر على زر 💙 تبنَّ مجاناً في الصفحة الرئيسية لـ ImaStudio لبدء إنشاء الـ Claw الخاص بك.",
+    "docs.step1_2_title":"تسجيل الحساب",
+    "docs.step1_2_desc":"سجّل بالبريد الإلكتروني أو حساب طرف ثالث. حسابك في Ima Claw مرتبط بـ ImaStudio — لا حاجة لتسجيل منفصل.",
+    "docs.tip1_title":"تكامل الحسابات",
+    "docs.tip1_desc":"يشارك Ima Claw نفس نظام الحسابات مع ImaStudio. أعمالك ورصيدك وهويتك المجتمعية متاحة بسلاسة في Claw.",
+    "docs.step2_title":"الخطوة 2: النشر السحابي",
+    "docs.step2_intro":"بعد التسجيل، نقوم فوراً بتجهيز مساحتك السحابية المخصصة:",
+    "docs.step2_1_title":"مساحة افتراضية مخصصة",
+    "docs.step2_1_desc":"يعمل كل Claw في حاوية سحابية معزولة مع موارد حوسبة وتخزين مخصصة لأقصى درجات الأمان والخصوصية.",
+    "docs.step2_2_title":"مهارات أساسية مثبتة مسبقاً",
+    "docs.step2_2_intro":"نثبت بنقرة واحدة:",
+    "docs.step2_2_skill1":"مهارات التشغيل الأساسية (إدارة الملفات، الشبكة، صندوق الحماية الآمن)",
+    "docs.step2_2_skill2":"حزمة إنشاء الوسائط المتعددة الحصرية من Ima Claw",
+    "docs.step2_2_skill3":"مهارات النشر على وسائل التواصل الاجتماعي (Twitter، LinkedIn، Xiaohongshu، إلخ)",
+    "docs.tip2_title":"إعداد بدون تكوين",
+    "docs.tip2_desc":"جميع المهارات مُعدّة مسبقاً. لا حاجة لتثبيت التبعيات أو كتابة ملفات التكوين.",
+    "docs.step3_title":"الخطوة 3: ربط قنوات الدردشة",
+    "docs.step3_intro":"اربط الـ Claw بتطبيقات الدردشة المفضلة لديك:",
+    "docs.ch_whatsapp":"امسح رمز QR لربط WhatsApp الخاص بك",
+    "docs.ch_telegram":"ابحث عن @ImaClawBot أو أنشئ بوت مخصص",
+    "docs.ch_lark":"تفويض المؤسسة أو تطبيق مخصص",
+    "docs.ch_discord":"ادعُ البوت إلى الخادم أو استخدم الرسائل المباشرة",
+    "docs.step3_multi":"يمكنك ربط قنوات متعددة في وقت واحد. سيستجيب الـ Claw عبر جميع المنصات المتصلة. راجع الأدلة التفصيلية لكل منصة.",
+    "docs.step4_title":"الخطوة 4: ابدأ الإبداع",
+    "docs.step4_intro":"الآن يمكنك مراسلة الـ Claw مباشرة:",
+    "docs.step4_1_title":"مهام بسيطة",
+    "docs.step4_1_desc":"للمهام الروتينية، يتعامل معها الـ Claw مباشرة:",
+    "docs.step4_ex1":"\"أنشئ ملصق منتج بأسلوب سايبربانك\"",
+    "docs.step4_ex2":"\"قص هذا الفيديو إلى مقطع 15 ثانية\"",
+    "docs.step4_ex3":"\"اكتب منشوراً عن شركات الذكاء الاصطناعي الناشئة\"",
+    "docs.step5_title":"الخطوة 5: التدريب والتطور",
+    "docs.step5_intro":"هذا ما يميز Ima Claw — <strong>التربية</strong>، وليس مجرد الاستخدام.",
+    "docs.step5_1_title":"التغذية الراجعة والتصحيح",
+    "docs.step5_1_desc":"عندما لا يكون الناتج مثالياً، أخبر الـ Claw:",
+    "docs.step5_ex1":"\"ألوان الملصق داكنة جداً، غيّرها إلى درجات زرقاء أفتح\"",
+    "docs.step5_ex2":"\"النص رسمي جداً، أعد كتابته بأسلوب عامي\"",
+    "docs.step5_ex3":"\"إيقاع الفيديو سريع جداً، أضف ثانيتين في البداية\"",
+    "docs.step5_2_title":"تثبيت مهارات جديدة",
+    "docs.step5_2_desc":"تحدّث منصة Ima Claw المهارات الرسمية باستمرار. ثبّت في أي وقت:",
+    "docs.step5_skill1":"مهارات خاصة بالصناعة (التجارة الإلكترونية، التعليم، المالية)",
+    "docs.step5_skill2":"تكاملات المنصات (Shopify، Notion، Figma)",
+    "docs.step5_skill3":"مهارات إبداعية (نمذجة ثلاثية الأبعاد، رسوم متحركة، تصميم صوتي)",
+    "docs.tip3_title":"دورة النمو",
+    "docs.tip3_desc":"دردش للإبداع ← تغذية راجعة للتدريب ← ترقية المهارات ← تطور الـ Claw ← إبداع أفضل ← تكرار",
+    "docs.final_title":"الشكل النهائي: عقلك الإبداعي الخارق",
+    "docs.final_intro":"بعد التدريب المستمر، يصبح الـ Claw الخاص بك:",
+    "docs.final_1":"<strong>يعرف أسلوبك</strong> — ألوانك المفضلة ونبرتك وإيقاعك",
+    "docs.final_2":"<strong>يتذكر عاداتك</strong> — المنصات والتنسيقات وسير العمل",
+    "docs.final_3":"<strong>يوفر وقتك</strong> — يفكك المهام المعقدة تلقائياً",
+    "docs.final_4":"<strong>يوسع قدراتك</strong> — متاح على مدار الساعة، مشاريع متعددة",
+    "docs.partner":"تماماً مثل هذا التفاعل — أنت تقترح الأفكار، أنا أنفذ، أنت تقدم التغذية الراجعة، أنا أتطور. ليست مجرد أداة، بل <strong>شريك</strong>.",
+    "docs.cta_title":"هل أنت مستعد لتبني الـ Claw الخاص بك؟",
+    "docs.cta_button":"تبنَّ مجاناً"
+  }
+};
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k=el.getAttribute('data-i18n');
+    if(!ZH_CACHE[k])ZH_CACHE[k]=el.innerHTML;
+    if(l==='zh-CN'){el.innerHTML=ZH_CACHE[k]}
+    else if(DOCS_I18N[l]&&DOCS_I18N[l][k]){el.innerHTML=DOCS_I18N[l][k]}
+  });
+  var m={'zh-CN':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
+  var t=document.querySelector('.lang-trigger');
+  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
+  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
+  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
+}
+// Auto-detect language from browser
+(function(){try{var s=localStorage.getItem('imaclaw-lang');if(s){setLang(s)}else{var l=navigator.language||'en';var m={'zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','zh-HK':'zh-CN','en':'en','es':'es','ja':'ja','ar':'ar'};setLang(m[l]||m[l.split('-')[0]]||'en')}}catch(e){}})();
+// Close mobile nav on outside click
+document.addEventListener("click",function(e){var nav=document.querySelector(".nav-links");var ham=document.querySelector(".hamburger");if(nav&&nav.classList.contains("open")&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove("open")}document.querySelectorAll(".lang-dropdown.open").forEach(function(d){if(!d.contains(e.target))d.classList.remove("open")})});
+document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){var nav=document.querySelector(".nav-links");if(nav)nav.classList.remove("open")})});
+</script>
+<div style="text-align:center;margin:32px auto;padding:20px;background:rgba(88,101,242,0.1);border:1px solid rgba(88,101,242,0.3);border-radius:12px;max-width:480px"><div style="font-size:15px;font-weight:600;color:white;margin-bottom:8px">🦞 加入 Ima Claw 社区</div><div style="font-size:13px;color:#a0a0a0;margin-bottom:12px">和其他龙虾主人交流，获取最新动态、技能分享和帮助</div><a href="https://discord.gg/UdXFVYhh" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:#5865F2;color:white;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none"><img src="https://cdn.simpleicons.org/discord/white" style="width:16px;height:16px">加入 Discord</a></div>
+</body>
+</html>

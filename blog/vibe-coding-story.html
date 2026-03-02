@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>我用 Ima Claw 做了这个网站 — Blog — Ima Claw 🦞</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--surface-2:#1B1B28;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12)}
+body{font-family:'Inter',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+.lang-dropdown{position:relative;display:inline-block}
+.lang-trigger{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--text-2);cursor:pointer}
+.lang-menu{display:none;position:absolute;right:0;top:110%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;min-width:120px;z-index:99}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;text-align:left;padding:8px 12px;border:none;background:none;color:var(--text-2);font-size:12px;border-radius:8px;cursor:pointer}.lang-menu button:hover{background:rgba(255,255,255,0.06);color:var(--text)}
+/* lang toggle removed - using nav only */
+
+nav{padding:16px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:32px;width:32px;border-radius:8px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em}.logo-text b{color:var(--lobster-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--text-3);font-size:13px;font-weight:500;transition:color .3s}.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--lobster-light)}
+
+.article{max-width:720px;margin:0 auto;padding:60px 40px 100px}
+.article-meta{font-size:13px;color:var(--text-3);margin-bottom:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.article-tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
+.article h1{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px}
+.article .lead{font-size:17px;color:var(--text-2);line-height:1.8;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+
+.article h2{font-size:22px;font-weight:800;margin:48px 0 16px;letter-spacing:-0.02em}
+.article h3{font-size:17px;font-weight:700;margin:32px 0 12px}
+.article p{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px}
+.article strong{color:var(--text);font-weight:700}
+.article em{color:var(--text-3);font-style:italic}
+
+.article ul,.article ol{margin:12px 0 20px 24px;font-size:15px;color:var(--text-2);line-height:1.8}
+.article li{margin-bottom:6px}
+
+.article blockquote{margin:20px 0;padding:16px 24px;border-left:3px solid var(--lobster);background:var(--surface);border-radius:0 12px 12px 0;font-size:14px;color:var(--text-2);line-height:1.7}
+
+.img-placeholder{margin:24px 0;background:var(--surface);border:1px dashed var(--border);border-radius:12px;padding:40px;text-align:center;color:var(--text-3);font-size:13px}
+.img-placeholder .emoji{font-size:32px;display:block;margin-bottom:8px}
+.story-img{margin:24px 0;text-align:center}
+.story-img img{max-width:100%;border-radius:12px;border:1px solid var(--border)}
+.story-img .caption{margin-top:8px;font-size:13px;color:var(--text-3);font-style:italic}
+[data-zh]{display:none}
+[data-en]{display:block}
+
+.highlight-box{margin:32px 0;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
+.highlight-box h3{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.highlight-box ul{margin:0 0 0 20px;font-size:14px;color:var(--text-2);line-height:1.8}
+.highlight-box li{margin-bottom:4px}
+
+.divider{height:1px;background:var(--border);margin:48px 0}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-3);margin-bottom:32px;transition:color .3s}
+.back-link:hover{color:var(--lobster-light)}
+
+footer{border-top:1px solid var(--border);padding:40px;text-align:center}
+footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
+
+[data-zh]{display:none}
+html[lang="en"] [data-zh]{display:none}html[lang="en"] [data-en]{display:block}
+html[lang="en"] span[data-en],html[lang="en"] a[data-en]{display:inline}
+html[lang="en"] span[data-zh],html[lang="en"] a[data-zh]{display:inline}
+html[lang="en"] span[data-en],html[lang="en"] a[data-zh]{display:none}
+html[lang="en"] span[data-zh],html[lang="en"] a[data-zh]{display:none}
+html[lang="en"] div[data-zh]{display:none}html[lang="en"] div[data-zh]{display:none}
+html[lang="en"] blockquote[data-zh]{display:none}html[lang="en"] blockquote[data-zh]{display:none}
+
+@media(max-width:600px){.article{padding:40px 20px 80px}.nav-links{display:none}}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:rgba(12,12,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-text{font-size:18px;font-weight:800;letter-spacing:-0.02em}.logo-text b{color:#E8584E}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.35);font-size:13px;font-weight:500;transition:color .3s;text-decoration:none}.nav-links a:hover{color:#E8E8ED}
+.nav-cta{background:#D4403A!important;color:#fff!important;padding:7px 18px;border-radius:20px;font-weight:700;font-size:12px!important}
+.lang-dropdown{position:relative;display:inline-block}
+.lang-trigger{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);cursor:pointer}
+.lang-menu{display:none;position:absolute;right:0;top:110%;background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px;min-width:120px;z-index:99}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-menu button{display:block;width:100%;text-align:left;padding:8px 12px;border:none;background:none;color:rgba(255,255,255,0.55);font-size:12px;border-radius:8px;cursor:pointer}.lang-menu button:hover{background:rgba(255,255,255,0.06);color:#E8E8ED}
+
+body{padding-top:60px}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px}
+@media(max-width:600px){
+.hamburger{display:block}
+#nav{padding:12px 16px}
+.nav-links{display:none!important;position:fixed;top:56px;right:16px;left:auto;background:rgba(12,12,18,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:16px 0;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;z-index:99;min-width:160px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.nav-links.open{display:flex!important}
+.nav-links a{padding:12px 20px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px;color:rgba(255,255,255,0.55);text-align:right;display:block}
+.nav-links a:last-child{border-bottom:none}
+.nav-links a{padding:12px 20px;text-align:right!important;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px;margin-bottom:2px;color:rgba(255,255,255,0.55);text-align:right;display:block}
+.nav-links .lang-dropdown{padding:12px 20px;text-align:right!important;text-align:right;display:flex;justify-content:flex-end}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="logo"><a href="../" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit"><img src="../logo-nav.png" alt="" style="height:40px;width:40px;border-radius:8px"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a></div>
+  <div class="nav-links">
+        <a href="../" data-i18n="nav.home">首页</a>
+    <a href="../skills/" data-i18n="nav.skills">Skill 市场</a>
+    <a href="../pricing/" data-i18n="nav.pricing">🛒 购买</a>
+    <a href="../docs/" data-i18n="nav.docs">帮助</a>
+    <a href="../blog/" data-i18n="nav.blog">博客</a>
+    <a href="https://imastudio.com/community" target="_blank" data-i18n="nav.community">社区</a>
+    <div class="lang-dropdown" style="position:relative;margin-left:8px">
+      <button class="lang-trigger" onclick="this.parentElement.classList.toggle('open')">🌐 中文 ▾</button>
+      <div class="lang-menu">
+        <button onclick="setLang('zh-CN')">🇨🇳 中文</button>
+        <button onclick="setLang('en')">🇺🇸 English</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
+        <button onclick="setLang('ja')">🇯🇵 日本語</button>
+        <button onclick="setLang('ar')">🇸🇦 العربية</button>
+      </div>
+    </div>
+  </div>
+<button class="hamburger" onclick="event.stopPropagation();document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+</nav>
+
+<!-- removed duplicate fixed lang dropdown -->
+
+
+
+<div class="article">
+
+  <a href="./" class="back-link">← <span data-zh>返回博客</span><span data-en>Back to Blog</span></a>
+
+  <div class="article-meta">
+    <span class="article-tag"><span data-zh>创始人日志 #1</span><span data-en>Founder's Log #1</span></span>
+    <span>2026-02-28</span>
+    <span>Vibe Coding</span>
+  </div>
+
+  <!-- Chinese Version -->
+  <div data-zh>
+    <h1>我用 Ima Claw 做了这个网站，它把龙虾的脸抠没了 🫠</h1>
+    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px">作者：Yuki 和龙虾爪爪</p>
+    <p class="lead">我做了一个 AI 创作智能体，叫 Ima Claw——7×24 小时专属服务创作者，支持图片、视频、音乐、社媒全链路创作。然后我决定，用它来给自己做官网。全程 Vibe Coding，不写一行代码。结果？网站是做出来了……但过程，怎么说呢，比坐过山车还刺激 🎢</p>
+
+    <h2>先说背景</h2>
+
+    <p><strong>Ima Claw</strong> 是 <a href="https://www.imastudio.com" style="color:var(--lobster-light)">Ima Studio</a> 出品的个人 AI 创作智能体。名字藏了个彩蛋：<strong>IMA = I'm A</strong>，所以 Ima Studio = "我是一个工作室"，Ima Claw = "我是一只龙虾" 🦞。</p>
+
+    <p>它不是一个共享工具，而是一只跑在云端的<strong>私人龙虾</strong>——你训练它、进化它，它只听你的。通过 WhatsApp、飞书、Telegram、Discord 等聊天工具直接对话，7×24 小时在线。</p>
+
+    <p>产品做好了，得有个官网。作为创始人，我决定<strong>dogfood</strong>自家产品——用 Ima Claw 本身来建站。我的 AI 助手叫"爪爪"，是我的专属 Ima Claw 实例。</p>
+
+    <h2>文案阶段：丝滑得不像话 ✨</h2>
+
+    <p>我告诉爪爪品牌含义和双关梗，它秒懂：</p>
+
+    <blockquote>
+      <strong>I'M A STUDIO. I'M A CLAW.</strong> — 创作者的专属 AI 智能体<br>
+      大标题：<strong>我是一只龙虾。我什么都能做。</strong><br>
+      CTA：<strong>领养你的第一只创作智能体龙虾 🦞</strong>
+    </blockquote>
+
+    <p>卖点、功能卡片、中英双语切换、9大核心能力展示……基本一轮过。我说加什么它就加什么。这部分体验堪称完美。</p>
+
+    <h2>设计阶段：开始有趣了 🎨</h2>
+
+    <p><strong>按钮颜色翻车</strong>——红色龙虾配红色按钮，整个屏幕一片红，龙虾直接隐身了 🫥。改深色不搭，改回红色加大加粗，来回 4 轮才搞定。AI 的审美嘛……还在念幼儿园吧。</p>
+
+    <div class="story-img"><img src="../article-assets/06-red-button-fail.png" alt="红色按钮翻车"><div class="caption">红色龙虾 + 红色按钮 = 一片红，完全看不清龙虾在哪 🔴</div></div>
+
+    <p><strong>Logo 生成</strong>——我让爪爪同时跑三个模型生成扁平龙虾 logo：Nano Banana Pro、Seedream 4.5、Midjourney。Seedream 出了一个超可爱的侧面龙虾，就是它了。</p>
+
+    <p>接下来只需要把背景去掉。对吧？应该很简单对吧？🚩（立 flag 了）</p>
+
+    <div class="story-img"><img src="../article-assets/01-original.jpg" alt="Seedream生成的龙虾原图"><div class="caption">Seedream 4.5 生成的龙虾 logo 原图 — 此时一切还很美好 🦞</div></div>
+
+    <h2>抠图阶段：名场面 🎬💀</h2>
+
+    <h3>❌ 第一次：大楼坚挺</h3>
+    <p>爪爪用白色阈值法处理。结果：只把白色圆角方块变透明了。大楼？稳如泰山。它以为背景就是白色的部分。我的大楼怎么还在？？？🏗️</p>
+    <p>我说：<strong>大楼也是背景啊兄弟……你在逗我？？</strong> 😭</p>
+
+    <div class="story-img"><img src="../article-assets/02-first-attempt.png" alt="第一次抠图 — 大楼还在"><div class="caption">第一次抠图：白色没了，大楼还在 🏢</div></div>
+
+    <h3>❌❌ 第二次：龙虾灵魂出窍</h3>
+    <p>这次用了 AI 识别龙虾主体 + 清理白色残留。大楼终于没了！🎉 但我打开图一看——</p>
+    <p><strong>龙虾的脸没了。</strong> 😱😱😱</p>
+    <p>因为龙虾的脸是浅蓝白色的，AI 把它当成背景一起抠掉了。屏幕上只剩一个红色龙虾壳，脸的位置是一个透明的洞。就像龙虾做了个面部手术然后医生跑了。</p>
+    <p>我盯着它看了三秒，然后笑到岔气 🤣🤣🤣</p>
+
+    <div class="story-img"><img src="../article-assets/03-no-face.png" alt="脸没了"><div class="caption">第二次抠图：脸没了 💀 龙虾的存在主义危机</div></div>
+
+    <h3>✅ 第三次：脸回来了……大概吧 😅</h3>
+    <p>爪爪痛定思痛，换了"边缘连通区域算法"——只去掉和图片边缘相连的白色像素，保护内部颜色。</p>
+    <p>脸回来了！🎊 但表情不太一样了。原来是怒萌，现在是——<em>茫然中带着一丝"我经历了什么"</em>。大概是灵魂出窍又被硬塞回来的样子，还没完全回过神 👻</p>
+    <p>我说：<strong>算了，先放上去吧。</strong></p>
+
+    <div class="story-img"><img src="../article-assets/04-face-back.png" alt="脸回来了"><div class="caption">第三次抠图：脸回来了！但那个表情…… 😶</div></div>
+
+    <p>于是这只经历了面部重建手术的龙虾，正式登上了我们的产品官网。看到左上角那个 logo 了吗？对，就是它。就是那个表情。</p>
+
+    <p>更搞笑的是，放到网页上以后，它被导航栏挤变形了——就是你现在看到左上角那个样子，又扁又歪，像被门夹过 🚪。特别奇怪又特别可爱。但这都是我和爪爪一起折腾出来的啊！于是我说：<strong>要不我们就保留它吧，这就是 Vibe Coding 的印记，对不对？</strong>爪爪说：是很搞笑的。好，那就保留！谁还没个丑萌吉祥物了 🤷‍♀️</p>
+
+    <p><strong>我们决定保留这个 logo 至少三个月</strong>，作为创始人和自家 AI 龙虾共同创作的纪念。它不完美，但它真实、有趣，代表了我们和 AI 一起工作的方式——不是完美主义，而是高效迭代、拥抱意外。</p>
+
+    <h2>2 小时成果</h2>
+
+    <div class="highlight-box">
+      <h3>📊 Vibe Coding 成绩单</h3>
+      <ul>
+        <li>✅ 完整响应式 Landing Page（首页 + 6 个子页面）</li>
+        <li>✅ 5 语言国际化（中/英/西/日/阿）</li>
+        <li>✅ 88 个翻译键 × 4 种语言 = 352 条翻译</li>
+        <li>✅ 品牌双关融入（I'm A Studio / I'm A Claw）</li>
+        <li>✅ "养成"叙事体系 + "免费领养" CTA</li>
+        <li>✅ 9 大核心能力展示</li>
+        <li>✅ 6 平台支持展示</li>
+        <li>✅ Skill 市场（48 个技能分类展示）</li>
+        <li>✅ 技能提交页面</li>
+        <li>✅ 博客系统（含本文）</li>
+        <li>✅ 帮助文档页</li>
+        <li>✅ 定价页</li>
+        <li>✅ GitHub Pages 部署上线</li>
+        <li>✅ 一个经历了面部重建 + 被导航栏挤变形的龙虾 logo</li>
+        <li>✅ 安装引导页（4 步流程 + FAQ + 技能展示）</li>
+        <li>🎨 界面设计 / 图像设计：<strong>0 人类设计师</strong>（全部由龙虾 AI 创作）</li>
+        <li>📝 代码量：<strong>0 行</strong>（全部 Vibe Coding）</li>
+        <li>💥 翻车次数：<strong>≥10 次</strong>（含"五国语言同屏"名场面）</li>
+        <li>😂 笑到肚子痛：<strong>≥5 次</strong></li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>彩蛋：五国语言同屏事件 🌍🤯</h2>
+
+    <p>做完五种语言切换之后，我满怀期待地打开网站——</p>
+    <p><strong>中文、英文、西班牙文、日文、阿拉伯文，全！部！同！时！显！示！</strong> 💥</p>
+    <p>标题变成了："我是一只龙虾，我为创作者而生。Soy una langosta. Nací para los creadores. 私はロブスター。クリエイターのために生まれた。أنا جراد بحر، وُلدت من أجل المبدعين."</p>
+    <p>导航栏也是："功能Funciones機能المزايا"——四种语言挤在一起，像联合国开会忘了关同声传译，翻译员全部同时开麦了 🎙️🎙️🎙️🎙️</p>
+
+    <div class="story-img"><img src="../article-assets/07-all-languages-bug.jpg" alt="五国语言同屏"><div class="caption">名场面：五国语言同屏，联合国级别的 bug 🌍</div></div>
+
+    <p>原因？爪爪第一版的方案是把所有语言的文字都塞进 HTML 里，然后用 CSS 控制显示/隐藏。结果 JS 出了个小 bug，所有语言全部亮出来了。</p>
+    <p>关键是——<strong>那之前其实差一点点就要成功了。</strong>语言切换基本能用了，就差最后一步调试。结果爪爪一通"优化"，直接给我整成了这样。那一刻我是真的有点崩溃了，心想：<em>完了，它不会改不回去了吧？</em> 🤦‍♀️</p>
+    <p>修完之后我说：<strong>这个方案不行，HTML 里堆五种语言太疯了。</strong>于是全部推倒重来，改成 JS 翻译字典方案——HTML 只保留中文，其他语言用 JavaScript 动态替换。光这一步，重构了 88 个翻译键。</p>
+    <p>Vibe Coding 不是一帆风顺的。但翻车的过程本身，也挺好笑的。</p>
+
+    <div class="divider"></div>
+
+    <h2>说点正经的</h2>
+
+    <p>Vibe Coding 确实在改变创作方式。<strong>2 小时从零到完整官网</strong>，传统开发至少要 1-2 天。不需要会前端，不需要写代码，描述想法就能交付。</p>
+
+    <p>但它不是万能的：</p>
+    <ul>
+      <li><strong>审美需要人把关</strong>——AI 的设计直觉还差点意思，颜色搭配、排版节奏、"好看但说不上来为什么"的那种感觉，目前还得靠人</li>
+      <li><strong>细节需要反复调教</strong>——"一句话搞定"是理想，现实是 5 轮对话。但每一轮只需要几秒，比自己写代码还是快太多</li>
+      <li><strong>AI 会犯离谱的错</strong>——比如把你吉祥物的脸抠没、把五种语言同时显示、或者改了 A 却弄坏了 B</li>
+      <li><strong>先自测，再交付</strong>——这是我们后来加的规矩。让 AI 做完就直接交差？大坑。必须教会它"做完先自己检查一遍"，就像带新人一样</li>
+      <li><strong>AI 没有"全局观"</strong>——它能把每一个局部做得很好，但不会自己退后一步看整体。人需要当那个"站远了看画"的角色</li>
+    </ul>
+
+    <h3>🔄 后续迭代的新发现</h3>
+    <p>网站上线后我们又做了几轮修改，发现了更多有趣的事：</p>
+    <ul>
+      <li><strong>加 emoji 也是技术活</strong>——让 AI "随便加点 emoji 让文章更活泼"，结果要么满屏都是、要么加到了奇怪的地方。需要具体告诉它"在喜剧段落加，严肃段落别加"</li>
+      <li><strong>双语同步修改很考验一致性</strong>——改了中文的笑点，英文版本也要同步更新语气和梗，AI 需要来回对照才能保持一致</li>
+      <li><strong>占位页面别拖</strong>——"先放个 Coming Soon"一放就忘了。后来我们把领养页从占位改成了完整的 4 步安装引导，转化率的故事才真正开始</li>
+    </ul>
+
+    <p>最佳模式：<strong>人负责方向、审美和质量把关，AI 负责执行、迭代和繁重的重复工作。</strong>像一个特别勤快但偶尔抽风的搭档——你说它改，它不抱怨，还会说"好的！马上改！"但你得记得检查它改完的结果 😏</p>
+
+    <p>这大概就是 2026 年的创作日常了。</p>
+
+    <p>而这只龙虾，会继续在左上角陪着我们。🦞</p>
+
+    <div class="divider"></div>
+
+    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8">
+      <strong style="color:var(--text)">Ima Claw</strong> — I'm A Studio. I'm A Claw.<br>
+      为创作者深度优化的 7×24 专属 AI 智能体。<br>
+      <a href="../#cta" style="color:var(--lobster-light)">免费领养你的第一只龙虾 →</a>
+    </p>
+  </div>
+
+  <!-- English Version -->
+  <div data-en>
+    <h1>I Built This Site with Ima Claw. It Deleted the Claw's Face. 🫠</h1>
+    <p style="font-size:14px;color:var(--text-3);margin:16px 0 20px;letter-spacing:0.5px">By Yuki & Claw the Lobster</p>
+    <p class="lead">I built an AI creative agent called Ima Claw — a 24/7, dedicated AI assistant for creators that handles images, videos, music, social media, and more. Then I decided to use it to build its own website. Pure Vibe Coding, zero lines of code. The site got built. But the journey? Let's just say it was more rollercoaster than roadmap 🎢</p>
+
+    <h2>Context</h2>
+
+    <p><strong>Ima Claw</strong> is a personal AI creative agent by <a href="https://www.imastudio.com" style="color:var(--lobster-light)">Ima Studio</a>. There's an Easter egg in the name: <strong>IMA = I'm A</strong>, so Ima Studio = "I'm A Studio", and Ima Claw = "I'm A Claw" 🦞 (i.e., a Claw).</p>
+
+    <p>It's not a shared tool — it's a <strong>private cloud Claw</strong> you train, evolve, and own. It works through WhatsApp, Lark, Telegram, Discord — always on, exclusively yours.</p>
+
+    <p>The product was ready. It needed a website. As the founder, I decided to <strong>dogfood</strong> our own product — build the landing page with Ima Claw itself. My AI assistant is named "Claw Claw" (爪爪), my personal Ima Claw instance.</p>
+
+    <h2>Copy: Surprisingly Smooth ✨</h2>
+
+    <p>I explained the brand puns, and it nailed it instantly:</p>
+
+    <blockquote>
+      <strong>I'M A STUDIO. I'M A CLAW.</strong> — Your Dedicated AI Agent<br>
+      Headline: <strong>I'm a Claw. I do everything.</strong><br>
+      CTA: <strong>Adopt your first creative AI Claw 🦞</strong>
+    </blockquote>
+
+    <p>Feature cards, bilingual toggle, 9 core capabilities, platform badges — mostly one-shot. This part was flawless.</p>
+
+    <h2>Design: Where Things Got Interesting 🎨</h2>
+
+    <p><strong>Button color disaster</strong> — red Claw + red buttons = the Claw went into stealth mode 🫥. Dark didn't match, back to red but bigger and bolder. Four rounds to get it right. AI taste is still... in kindergarten.</p>
+
+    <div class="story-img"><img src="../article-assets/06-red-button-fail.png" alt="Red button fail"><div class="caption">Red Claw + red button = invisible Claw 🔴</div></div>
+
+    <p><strong>Logo generation</strong> — I ran three models simultaneously: Nano Banana Pro, Seedream 4.5, and Midjourney. Seedream produced an adorable side-view flat Claw. Perfect.</p>
+
+    <p>Now I just needed to remove the background. Should be simple, right? 🚩 (famous last words)</p>
+
+    <div class="story-img"><img src="../article-assets/01-original.jpg" alt="Original Seedream Claw"><div class="caption">The original Seedream 4.5 Claw — before everything went wrong 🦞</div></div>
+
+    <h2>Background Removal: The Main Event 🎬💀</h2>
+
+    <h3>❌ Attempt 1: The Building Stands</h3>
+    <p>White threshold method. Result: only removed the white rounded rectangle. The building behind the Claw? Standing proud like it pays rent 🏗️.</p>
+    <p>Me: <strong>The building is also background, buddy… are you messing with me??</strong> 😭</p>
+
+    <div class="story-img"><img src="../article-assets/02-first-attempt.png" alt="Attempt 1 — building still standing"><div class="caption">Attempt 1: White gone, building still standing 🏢</div></div>
+
+    <h3>❌❌ Attempt 2: The Claw Lost Its Soul</h3>
+    <p>AI subject extraction + white cleanup. Building gone! 🎉 But when I opened the result —</p>
+    <p><strong>The Claw's face was gone.</strong> 😱😱😱</p>
+    <p>Its face was pale blue-white, so the AI classified it as background and nuked it. What remained was a red Claw shell with a transparent hole where the face should be. Like the Claw went in for plastic surgery and the surgeon left town.</p>
+    <p>I stared at it for three seconds, then absolutely lost it 🤣🤣🤣</p>
+
+    <div class="story-img"><img src="../article-assets/03-no-face.png" alt="Attempt 2 — face gone"><div class="caption">Attempt 2: Face gone 💀 An existential crisis, visualized</div></div>
+
+    <h3>✅ Attempt 3 (kinda 😅)</h3>
+    <p>New approach: "edge-connected region algorithm" — only remove white pixels connected to the image border, protecting interior colors.</p>
+    <p>The face came back! 🎊 But the expression was... different. Originally fierce-cute, now it looked more like <em>"my soul left my body and was forcibly reinserted"</em> — still processing what just happened 👻</p>
+    <p>I said: <strong>Fine, ship it.</strong></p>
+
+    <div class="story-img"><img src="../article-assets/04-face-back.png" alt="Attempt 3 — face restored"><div class="caption">Attempt 3: Face restored, dignity questionable 😶</div></div>
+
+    <p>And so this Claw, fresh from facial reconstruction surgery, officially launched on our product website. See that logo in the top left? That's it. That's the expression.</p>
+
+    <p>Even funnier — once it was on the actual page, the navbar squished it into this weird, lopsided little shape. Like it got caught in a door 🚪. Bizarre... and somehow adorable. But hey, we made this together! So I said: <strong>Let's just keep it. This is the mark of Vibe Coding, right?</strong> Claw replied: "It is pretty hilarious." Done. We're keeping it. Every product needs an ugly-cute mascot 🤷‍♀️</p>
+
+    <p><strong>We're keeping this logo for at least three months</strong> — a monument to what happens when a founder vibe-codes with their own AI. It's not perfect, but it's real, it's funny, and it represents how we work with AI: not perfectionism, but fast iteration and embracing the unexpected.</p>
+
+    <h2>2-Hour Results</h2>
+
+    <div class="highlight-box">
+      <h3>📊 Vibe Coding Scorecard</h3>
+      <ul>
+        <li>✅ Full responsive landing page (homepage + 6 sub-pages)</li>
+        <li>✅ 5-language i18n (CN/EN/ES/JA/AR)</li>
+        <li>✅ 88 translation keys × 4 languages = 352 translations</li>
+        <li>✅ Brand puns integrated (I'm A Studio / I'm A Claw)</li>
+        <li>✅ "Nurture" narrative + "Adopt Free" CTA</li>
+        <li>✅ 9 core capabilities showcased</li>
+        <li>✅ 6 platform badges</li>
+        <li>✅ Skill Market (48 skills categorized)</li>
+        <li>✅ Skill submission page</li>
+        <li>✅ Blog system (including this post)</li>
+        <li>✅ Help docs page</li>
+        <li>✅ Pricing page</li>
+        <li>✅ Deployed to GitHub Pages</li>
+        <li>✅ One Claw logo that survived facial reconstruction + navbar squishing</li>
+        <li>✅ Install guide page (4-step flow + FAQ + skills showcase)</li>
+        <li>🎨 UI design / graphic design: <strong>0 human designers</strong> (100% AI Claw-made)</li>
+        <li>📝 Lines of code: <strong>0</strong> (100% Vibe Coded)</li>
+        <li>💥 Crashes: <strong>≥10</strong> (incl. the "5 languages on screen at once" incident)</li>
+        <li>😂 Laugh-till-it-hurts moments: <strong>≥5</strong></li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Bonus: The "Five Languages on Screen" Incident 🌍🤯</h2>
+
+    <p>After implementing five-language support, I opened the website with great anticipation —</p>
+    <p><strong>Chinese, English, Spanish, Japanese, and Arabic. ALL. AT. ONCE.</strong> 💥</p>
+    <p>The title read: "我是一只龙虾，我为创作者而生。Soy una langosta. Nací para los creadores. 私はロブスター。クリエイターのために生まれた。أنا جراد بحر، وُلدت من أجل المبدعين."</p>
+    <p>The navbar too: "功能Funciones機能المزايا" — four languages crammed together, like the UN forgot to turn off simultaneous interpretation and every translator unmuted at once 🎙️🎙️🎙️🎙️</p>
+
+    <div class="story-img"><img src="../article-assets/07-all-languages-bug.jpg" alt="Five languages on screen"><div class="caption">The moment: all 5 languages displayed at once — a UN-level bug 🌍</div></div>
+
+    <p>The culprit? Claw's first approach was to stuff all translations directly into the HTML, toggling visibility with CSS. A small JS bug later, every language lit up at once.</p>
+    <p>Here's the thing — <strong>it was THIS close to working.</strong> The language toggle was basically functional, just one last tweak needed. Then Claw decided to "optimize" it and... produced this masterpiece. I genuinely panicked: <em>Oh no, can it even fix this? Did we just break everything?</em> 🤦‍♀️</p>
+    <p>After fixing it, I said: <strong>This approach is insane — we can't have five languages living in the HTML.</strong> So we scrapped it entirely and rebuilt with a JS translation dictionary — HTML stays Chinese-only, other languages swap in dynamically via JavaScript. Just this refactor alone: 88 translation keys.</p>
+    <p>Vibe Coding isn't always smooth sailing. But the crashes themselves? Pretty hilarious.</p>
+
+    <div class="divider"></div>
+
+    <h2>Real Talk</h2>
+
+    <p>Vibe Coding is genuinely changing how things get built. <strong>2 hours from zero to a complete website</strong> — traditional development would take 1-2 days minimum. No frontend knowledge required. Just describe what you want.</p>
+
+    <p>But it's not magic:</p>
+    <ul>
+      <li><strong>Taste requires humans</strong> — AI design instincts aren't there yet. Color harmony, layout rhythm, that "looks good but can't explain why" feeling — still a human job</li>
+      <li><strong>Details need multiple rounds</strong> — "one prompt = done" is the dream; reality is 5 iterations. But each round takes seconds, still way faster than coding it yourself</li>
+      <li><strong>AI makes absurd mistakes</strong> — like deleting your mascot's face, displaying five languages simultaneously, or fixing A while breaking B</li>
+      <li><strong>Self-test before shipping</strong> — a rule we added later. Letting AI deliver without checking? Huge trap. You have to teach it to "review your own work first," just like onboarding a junior teammate</li>
+      <li><strong>AI lacks the "big picture"</strong> — it can nail every individual piece, but won't step back to see the whole. Humans need to be the one who "stands back from the painting"</li>
+    </ul>
+
+    <h3>🔄 Lessons from Post-Launch Iterations</h3>
+    <p>After the site went live, we did several more rounds of changes and discovered even more:</p>
+    <ul>
+      <li><strong>Adding emojis is a skill</strong> — telling AI to "throw in some emojis to liven things up" results in either emoji vomit or emojis in weird places. You need to specify: "add them in comedy sections, not serious ones"</li>
+      <li><strong>Bilingual sync is a consistency test</strong> — updating a joke in Chinese means the English version's tone and humor need to match. AI needs to cross-reference both versions to stay coherent</li>
+      <li><strong>Don't let placeholder pages rot</strong> — "just put up a Coming Soon" and you forget about it forever. We eventually replaced the adoption page placeholder with a full 4-step install guide. That's when the conversion story actually begins</li>
+    </ul>
+
+    <p>Best model: <strong>Humans own direction, taste, and quality control. AI owns execution, iteration, and the heavy lifting of repetitive work.</strong> Like a hyperactive partner who occasionally glitches — you correct it, it doesn't complain, and it says "Got it! Fixing now!" But remember to check the result after it "fixes" things 😏</p>
+
+    <p>This is what building things looks like in 2026.</p>
+
+    <p>And that Claw? It'll keep watching from the top left. 🦞</p>
+
+    <div class="divider"></div>
+
+    <p style="text-align:center;color:var(--text-3);font-size:14px;line-height:1.8">
+      <strong style="color:var(--text)">Ima Claw</strong> — I'm A Studio. I'm A Claw.<br>
+      A 24/7 dedicated AI agent, purpose-built for creators.<br>
+      <a href="../#cta" style="color:var(--lobster-light)">Adopt your first Claw →</a>
+    </p>
+  </div>
+
+</div>
+
+<footer><p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank">Ima Studio</a> · I'm A Studio, I'm A Claw 🦞</p></footer>
+
+<script src="../i18n-sub.js?v=20260301b"></script>
+<script>
+function setLang(l){try{localStorage.setItem("imaclaw-lang",l)}catch(e){}
+  document.documentElement.lang=l;
+  var isZh=l==='zh-CN'||l==='zh';
+  document.querySelectorAll('[data-zh]').forEach(function(e){e.style.display=isZh?'block':'none'});
+  document.querySelectorAll('[data-en]').forEach(function(e){e.style.display=isZh?'none':'block'});
+  // Also handle data-i18n elements via i18n-sub.js
+  if(typeof I18N!=='undefined'){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n');
+      if(!el._zh)el._zh=el.innerHTML;
+      if(isZh){el.innerHTML=el._zh}
+      else if(I18N[l]&&I18N[l][k]){el.innerHTML=I18N[l][k]}
+      else if(I18N['en']&&I18N['en'][k]){el.innerHTML=I18N['en'][k]}
+    });
+  }
+  var m={'zh-CN':'🇨🇳 中文','en':'🇺🇸 EN','es':'🇪🇸 ES','ja':'🇯🇵 JA','ar':'🇸🇦 AR'};
+  var t=document.querySelector('.lang-trigger');
+  if(t)t.textContent='🌐 '+(m[l]||l)+' ▾';
+  document.querySelectorAll('.lang-dropdown').forEach(function(d){d.classList.remove('open')});
+  document.documentElement.style.direction=l==='ar'?'rtl':'ltr';
+}
+// Auto-detect language from browser
+(function(){try{var s=localStorage.getItem('imaclaw-lang');if(s){setLang(s)}else{var l=navigator.language||'en';var m={'zh':'zh-CN','zh-CN':'zh-CN','zh-TW':'zh-CN','zh-HK':'zh-CN','en':'en','es':'es','ja':'ja','ar':'ar'};setLang(m[l]||m[l.split('-')[0]]||'en')}}catch(e){}})();
+
+// Close mobile nav on outside click
+document.addEventListener('click',function(e){
+  var nav=document.querySelector('.nav-links');
+  var ham=document.querySelector('.hamburger');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){
+    nav.classList.remove('open');
+  }
+  // Close all lang dropdowns on outside click
+  document.querySelectorAll('.lang-dropdown.open').forEach(function(d){
+    if(!d.contains(e.target))d.classList.remove('open');
+  });
+});
+// Close mobile nav after clicking a nav link
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){
+    var nav=document.querySelector('.nav-links');
+    if(nav)nav.classList.remove('open');
+  });
+});
+// Close mobile nav after language switch
+var origSetLang=setLang;
+setLang=function(l){origSetLang(l);var nav=document.querySelector('.nav-links');if(nav)nav.classList.remove('open');};
+</script>
+</body>
+</html>
