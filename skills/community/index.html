@@ -264,7 +264,7 @@ function renderSkillCard(s) {
   var catInfo = PRIORITY_CATS.find(function(c) { return c.key === s.category; }) || OTHER_CAT_MAP[s.category] || {zh: s.category, icon: '📦'};
   return '<div class="skill-card">' +
     '<div class="sk-name">' + escHtml(s.name) + '</div>' +
-    '<div class="sk-desc">' + escHtml(s.description || '') + '</div>' +
+    '<div class="sk-desc">' + escHtml(s.description_zh || s.description || '') + '</div>' +
     '<div class="sk-meta">' +
       '<span class="sk-cat">' + (catInfo.zh || s.category) + '</span>' +
       '<span class="sk-install" onclick="copyInstall(\'' + s.name + '\')">📋 安装</span>' +
@@ -293,7 +293,7 @@ function searchSkills() {
   var q = document.getElementById('search').value.trim().toLowerCase();
   if (!q) { resetView(); return; }
   var results = allSkills.filter(function(s) {
-    return s.name.toLowerCase().indexOf(q) >= 0 || (s.description || '').toLowerCase().indexOf(q) >= 0;
+    return s.name.toLowerCase().indexOf(q) >= 0 || (s.description_zh || s.description || '').toLowerCase().indexOf(q) >= 0;
   });
   document.getElementById('search-results').style.display = 'block';
   document.getElementById('priority-cats').style.display = 'none';
