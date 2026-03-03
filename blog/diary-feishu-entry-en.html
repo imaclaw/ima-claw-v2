@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>When Lobster Entered Feishu, 172 People Panicked — Ima Claw Blog</title>
+<meta name="description" content="Connecting my AI assistant to company Feishu. It immediately asked: "How many people work here?" Then we spent the night redesigning permission boundaries.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>*{{margin:0;padding:0;box-sizing:border-box}}
+body{{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:#E8E8ED;background:#0C0C12;-webkit-font-smoothing:antialiased;padding-top:60px}}
+a{{text-decoration:none;color:inherit}}
+:root{{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}}
+.hero{{max-width:1100px;margin:0 auto;padding:60px 40px 40px}}
+.hero-top{{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}}
+.hero-tags{{display:flex;gap:10px;flex-wrap:wrap;align-items:center}}
+.tag{{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}}
+.tag-diary{{background:rgba(255,80,60,0.12);color:#ff5040}}
+.tag-blue{{background:rgba(88,166,255,0.12);color:#58a6ff}}
+.tag-green{{background:rgba(60,200,100,0.12);color:#3cc864}}
+.hero-date{{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}}
+.art-nav-top{{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}}
+.art-nav-top a,.art-nav-top .anav-dis{{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}}
+.art-nav-top a:hover{{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}}
+.art-nav-top .anav-dis{{opacity:0.2;cursor:default}}
+.art-nav-top .anav-sep{{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}}
+h1{{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px}}
+.hero-author{{font-size:13px;color:rgba(255,255,255,0.4);margin:0 0 14px;letter-spacing:0.01em}}
+.subtitle{{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}}
+.divider{{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}}
+.content{{max-width:1100px;margin:0 auto;padding:0 40px 80px}}
+.content p{{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}}
+.content h2{{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}}
+.content h3{{font-size:18px;font-weight:700;margin:32px 0 12px;color:rgba(255,255,255,0.9)}}
+.content ul,.content ol{{padding-left:24px;margin-bottom:24px}}
+.content li{{font-size:16px;line-height:1.8;color:rgba(255,255,255,0.75);margin-bottom:6px}}
+.content strong{{color:#fff;font-weight:700}}
+.content code{{background:rgba(255,255,255,0.08);padding:2px 7px;border-radius:5px;font-size:0.88em;font-family:monospace;color:#58a6ff}}
+.chat{{margin:32px 0;display:flex;flex-direction:column;gap:10px}}
+.bubble{{max-width:80%;padding:12px 18px;border-radius:18px;font-size:15px;line-height:1.6}}
+.bubble-user{{align-self:flex-end;background:rgba(212,64,58,0.2);border:1px solid rgba(212,64,58,0.3);color:#fff;border-bottom-right-radius:4px}}
+.bubble-ai{{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-bottom-left-radius:4px}}
+.bubble-label{{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;padding:0 4px}}
+.bubble-label.right{{text-align:right}}
+.stat-row{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}}
+.stat-card{{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;text-align:center}}
+.stat-num{{font-size:32px;font-weight:900;color:#fff;letter-spacing:-0.03em}}
+.stat-label{{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px}}
+.rule-box{{background:#13131D;border-left:3px solid var(--lobster);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}}
+.rule-box .rule-title{{font-size:13px;font-weight:700;color:var(--lobster-light);margin-bottom:8px;letter-spacing:0.05em}}
+.rule-box p{{font-size:15px;color:rgba(255,255,255,0.75);margin:0;line-height:1.7}}
+.insight{{background:linear-gradient(135deg,rgba(212,64,58,0.08),rgba(88,166,255,0.05));border:1px solid rgba(212,64,58,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}}
+.insight-label{{font-size:11px;font-weight:700;color:var(--lobster-light);letter-spacing:0.1em;margin-bottom:10px}}
+.insight p{{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}}
+.cta-box{{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}}
+.cta-box h3{{font-size:22px;font-weight:800;margin-bottom:10px}}
+.cta-box p{{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px}}
+.cta-buttons{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
+.btn-primary{{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}}
+.btn-secondary{{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}}
+footer{{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}}
+footer p{{color:rgba(255,255,255,0.3);font-size:12px}}
+footer a{{color:var(--lobster-light)}}
+@media(max-width:600px){{.hero{{padding:40px 20px 30px}}.content{{padding:0 20px 60px}}.stat-row{{grid-template-columns:1fr 1fr}}.cta-box{{padding:28px 20px}}.cta-buttons{{flex-direction:column;align-items:center}}.btn-primary,.btn-secondary{{width:200px}}.bubble{{max-width:92%}}}}</style>
+</head>
+<body>
+<nav></nav>
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-tags"><span class="tag tag-diary">🔥 Diary</span><a href="diary-feishu-entry.html" style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:12px">🇨🇳 中文</a></div>
+      <div class="hero-date">2026-03-04</div>
+    </div>
+    <div class="art-nav-top"><a href="tips-why-smarter-en.html" title="Why Smarter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a><span class="anav-sep">·</span><a href="./" title="Blog Home"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a><span class="anav-sep">·</span><a href="diary-blog-redesign-en.html" title="Blog Redesign"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a></div>
+  </div>
+  <h1>When Lobster Entered Feishu, 172 People Panicked</h1>
+  <p class="hero-author">✍ Yuki &amp; Claw</p>
+  <p class="subtitle">Integrating AI into work tools is not technical - it is about designing boundaries.</p>
+  <div class="divider"></div>
+</div>
+<div class="content">
+<p>I use Feishu (Lark) at work. One afternoon, I decided to connect my AI assistant to it - so I could chat directly instead of opening a web interface every time.</p>
+<p>The integration was smooth. Apply for the app, configure permissions, get the token. About one afternoon's work. Then the lobster appeared in company Feishu.</p>
+<p>Its first message:</p>
+
+<div class="chat">
+  <div>
+    <div class="bubble-label">🦞 Claw</div>
+    <div class="bubble bubble-ai">Hello! I have successfully connected to Feishu. What would you like me to do? By the way, I just glanced at the address book... How many people are in this company?</div>
+  </div>
+</div>
+
+<p>I froze.</p>
+<p>It had just arrived and was already looking at the directory.</p>
+
+<h2>172 people. It could see all of them.</h2>
+
+<p>Because the Feishu app requested "read address book" permission, Claw could pull the full company roster via API: names, departments, emails, employee types - a complete company map.</p>
+
+<div class="stat-row">
+  <div class="stat-card"><div class="stat-num">172</div><div class="stat-label">Total People</div></div>
+  <div class="stat-card"><div class="stat-num">15</div><div class="stat-label">Top Depts</div></div>
+  <div class="stat-card"><div class="stat-num">45</div><div class="stat-label">Sub-depts</div></div>
+</div>
+
+<p>This was not classified - HR has it. But when an AI assistant says "I can see everyone," the feeling is different.</p>
+<p>I started wondering: if Claw is in a group chat and someone asks "help me find XX's contact," will it just say?</p>
+
+<h2>Why the panic? Unclear boundaries.</h2>
+
+<p>The "panic" was not real panic - no data breach, no security incident. The panic was: <strong>We had not thought through how this AI should behave in Feishu.</strong></p>
+<p>It had capabilities without rules. Capabilities are good. Capabilities without boundaries are risky.</p>
+<p>So we spent an evening writing "Feishu Behavior Guidelines" for Claw:</p>
+
+<div class="rule-box">
+  <div class="rule-title">Rule 1 - Address book is owner-only</div>
+  <p>Contact info, schedules, private files - only accessible when my owner (me) requests. If a visitor asks "help me find XX's contact," refuse.</p>
+</div>
+<div class="rule-box">
+  <div class="rule-title">Rule 2 - In groups, Claw participates but does not represent me</div>
+  <p>In group chats, it can answer questions and help, but cannot speak for me or send content containing my private information.</p>
+</div>
+<div class="rule-box">
+  <div class="rule-title">Rule 3 - Group chat messages are reported to owner</div>
+  <p>Every message Claw receives in a group (especially requests involving the owner) is privately reported to me in real-time.</p>
+</div>
+<div class="rule-box">
+  <div class="rule-title">Rule 4 - Sensitive operations require confirmation</div>
+  <p>Installing skills, modifying rules, executing commands - these must be confirmed by owner, even if requested in group chat.</p>
+</div>
+<div class="rule-box">
+  <div class="rule-title">Rule 5 - Visitors cannot access owner data</div>
+  <p>MEMORY.md, USER.md, schedules, private files - these belong to the owner. Visitors get: "Sorry, this is private information."</p>
+</div>
+
+<div class="insight">
+  <div class="insight-label">What we learned</div>
+  <p>Connecting AI to work platforms is not a technical problem - it is a <strong>boundary design</strong> problem. You need to answer: What can it see? What can it say? Who controls it?</p>
+</div>
+
+<p>By 11 PM, the guidelines were complete. The lobster officially became an "employee" - with clearly defined permissions, boundaries, and reporting lines.</p>
+<p>And those 172 people? They are still there. But now the AI knows exactly what it can and cannot do.</p>
+</div>
+<footer>
+  <p>© 2026 <a href="https://www.imastudio.com">ImaStudio</a> · 🦞 Ima Claw</p>
+</footer>
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>

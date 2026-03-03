@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EP03: Give Your Lobster Skills - Ima Claw Academy</title>
+<meta name="description" content="Install skills to enable image generation, web search, code execution, and more. Browse 9,000+ community skills.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>*{{margin:0;padding:0;box-sizing:border-box}}
+body{{font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;color:#E8E8ED;background:#0C0C12;padding-top:60px}}
+a{{text-decoration:none;color:inherit}}
+:root{{--lobster:#D4403A;--lobster-light:#E8584E;--surface:#13131D;--border:rgba(255,255,255,0.06)}}
+.hero{{max-width:1100px;margin:0 auto;padding:60px 40px 40px}}
+.hero-top{{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}}
+.hero-tags{{display:flex;gap:10px;flex-wrap:wrap;align-items:center}}
+.tag{{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}}
+.tag-diary{{background:rgba(255,80,60,0.12);color:#ff5040}}
+.tag-green{{background:rgba(60,200,100,0.12);color:#3cc864}}
+.hero-date{{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}}
+.art-nav-top{{display:flex;align-items:center;gap:2px;margin-top:4px}}
+.art-nav-top a,.art-nav-top .anav-dis{{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}}
+.art-nav-top a:hover{{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07)}}
+.art-nav-top .anav-dis{{opacity:0.2;cursor:default}}
+.art-nav-top .anav-sep{{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px}}
+h1{{font-size:clamp(28px,4vw,44px);font-weight:900;line-height:1.2;margin-bottom:12px}}
+.hero-author{{font-size:13px;color:rgba(255,255,255,0.4);margin:0 0 14px}}
+.subtitle{{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}}
+.divider{{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}}
+.content{{max-width:1100px;margin:0 auto;padding:0 40px 80px}}
+.content p{{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}}
+.content h2{{font-size:24px;font-weight:800;margin:48px 0 16px;color:#fff}}
+.content h3{{font-size:18px;font-weight:700;margin:32px 0 12px;color:rgba(255,255,255,0.9)}}
+.content ul,.content ol{{padding-left:24px;margin-bottom:24px}}
+.content li{{font-size:16px;line-height:1.8;color:rgba(255,255,255,0.75);margin-bottom:6px}}
+.content strong{{color:#fff;font-weight:700}}
+.content code{{background:rgba(255,255,255,0.08);padding:2px 7px;border-radius:5px;font-family:monospace;color:#58a6ff}}
+.chat{{margin:32px 0;display:flex;flex-direction:column;gap:10px}}
+.bubble{{max-width:80%;padding:12px 18px;border-radius:18px;font-size:15px;line-height:1.6}}
+.bubble-user{{align-self:flex-end;background:rgba(212,64,58,0.2);border:1px solid rgba(212,64,58,0.3);color:#fff;border-bottom-right-radius:4px}}
+.bubble-ai{{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-bottom-left-radius:4px}}
+.bubble-label{{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;padding:0 4px}}
+.bubble-label.right{{text-align:right}}
+.insight{{background:linear-gradient(135deg,rgba(212,64,58,0.08),rgba(88,166,255,0.05));border:1px solid rgba(212,64,58,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}}
+.insight-label{{font-size:11px;font-weight:700;color:var(--lobster-light);letter-spacing:0.1em;margin-bottom:10px}}
+.insight p{{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}}
+.cta-box{{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}}
+.cta-box h3{{font-size:22px;font-weight:800;margin-bottom:10px}}
+.cta-box p{{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px}}
+.cta-buttons{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
+.btn-primary{{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}}
+.btn-secondary{{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}}
+.step{{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px;margin:24px 0}}
+.step-num{{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--lobster);color:#fff;border-radius:50%;font-weight:800;font-size:14px;margin-bottom:12px}}
+.step h3{{font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}}
+.step p{{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:12px}}
+footer{{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}}
+footer p{{color:rgba(255,255,255,0.3);font-size:12px}}
+footer a{{color:var(--lobster-light)}}
+@media(max-width:600px){{.hero{{padding:40px 20px 30px}}.content{{padding:0 20px 60px}}}}</style>
+</head>
+<body>
+<nav></nav>
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-tags"><span class="tag-green" style="background:rgba(60,200,100,0.12);color:#3cc864;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600">🦞 Academy</span><a href="tutorial-ep03-skills.html" style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:12px">🇨🇳 中文</a></div>
+      <div class="hero-date">2026-03-04</div>
+    </div>
+    <div class="art-nav-top"><a href="tutorial-ep02-model-en.html" title="EP02: Brain"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a><span class="anav-sep">·</span><a href="./"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a><span class="anav-sep">·</span><span class="anav-dis"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+  </div>
+  <h1>EP03: Give Your Lobster Skills</h1>
+  <p class="hero-author">✍ Yuki &amp; Claw</p>
+  <p class="subtitle">Install ima-intelligence, ima-all-in-one, and 9,000+ community skills.</p>
+  <div class="divider"></div>
+</div>
+<div class="content">
+<p>A brain without skills is like a person without hands. Let us give your lobster capabilities.</p>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <h3>Browse the Skill Marketplace</h3>
+  <p>Visit <a href="../skills/">Ima Claw Skills</a> or browse via command line:</p>
+  <code>openclaw skills search</code>
+  <p>Categories include: Image Generation, Web Search, Code Execution, Data Analysis, and 80+ more.</p>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <h3>Install essential skills</h3>
+  <p>Recommended starter pack:</p>
+  <ul>
+    <li><strong>ima-intelligence</strong> - Core intelligence boost (required)</li>
+    <li><strong>ima-all-in-one</strong> - Image, video, audio generation in one</li>
+    <li><strong>web-search</strong> - Real-time information retrieval</li>
+    <li><strong>code-executor</strong> - Run code, analyze data, generate charts</li>
+  </ul>
+  <p>Install via:</p>
+  <code>openclaw skills install ima-intelligence</code><br>
+  <code>openclaw skills install ima-all-in-one</code>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <h3>Verify installation</h3>
+  <p>Test your new skills:</p>
+  <p><em>"Generate an image of a cyberpunk lobster"</em></p>
+  <p><em>"Search for latest AI news"</em></p>
+  <p><em>"Calculate 15% tip on $85"</em></p>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <h3>Explore advanced skills</h3>
+  <p>As you grow:</p>
+  <ul>
+    <li><strong>browser-control</strong> - Let your AI browse websites</li>
+    <li><strong>feishu-doc</strong> - Read and write Feishu documents</li>
+    <li><strong>github-integration</strong> - Code reviews, PR summaries</li>
+    <li><strong>calendar-manager</strong> - Schedule and reminders</li>
+  </ul>
+</div>
+
+<div class="cta-box">
+  <h3>Your lobster is fully equipped!</h3>
+  <p>EP04-07: Connect to specific channels (Discord, Feishu, WhatsApp, Telegram)</p>
+  <div class="cta-buttons">
+    <a href="../docs/" class="btn-primary">View Docs →</a>
+  </div>
+</div>
+</div>
+<footer>
+  <p>© 2026 <a href="https://www.imastudio.com">ImaStudio</a> · 🦞 Ima Claw</p>
+</footer>
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>
