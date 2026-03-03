@@ -113,6 +113,9 @@ tr:first-child td{color:var(--text)}
 .ss-content{flex:1}
 .ss-label{font-size:14px;color:var(--text-2);margin-bottom:12px;line-height:1.6}
 .ss-img-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);max-width:600px;margin:0 auto}
+.img-mobile{display:none}
+.img-desktop{display:block}
+@media(max-width:600px){.img-mobile{display:block}.img-desktop{display:none}}
 .ss-img-wrap img{width:100%;display:block}
 .ss-arrow{text-align:center;color:var(--text-3);font-size:20px;margin:4px 0}
 @media(max-width:600px){.ss-img-wrap{max-width:100%}}
@@ -196,7 +199,8 @@ tr:first-child td{color:var(--text)}
     <div class="ss-content">
       <div class="ss-label">打开 <a href="https://www.imastudio.com" target="_blank" rel="noopener">imastudio.com</a>，登录后点击右上角<strong>头像图标</strong></div>
       <div class="ss-img-wrap">
-        <img src="images/ima-step1-home.jpg" alt="ImaStudio首页，点击右上角设置图标" loading="lazy">
+        <img class="img-desktop" src="images/ima-step1-home.jpg" alt="ImaStudio首页 PC版" loading="lazy">
+        <img class="img-mobile" src="images/ima-step1-home-mobile.jpg" alt="ImaStudio首页 手机版" loading="lazy">
       </div>
     </div>
   </div>
@@ -206,7 +210,8 @@ tr:first-child td{color:var(--text)}
     <div class="ss-content">
       <div class="ss-label">弹出下拉菜单，点击 <strong>Settings</strong></div>
       <div class="ss-img-wrap">
-        <img src="images/ima-step2-settings.jpg" alt="点击Settings菜单" loading="lazy">
+        <img class="img-desktop" src="images/ima-step2-settings.jpg" alt="Settings菜单 PC版" loading="lazy">
+        <img class="img-mobile" src="images/ima-step2-settings-mobile.jpg" alt="Settings菜单 手机版" loading="lazy">
       </div>
     </div>
   </div>
@@ -216,7 +221,8 @@ tr:first-child td{color:var(--text)}
     <div class="ss-content">
       <div class="ss-label">左侧导航选 <strong>API Keys</strong>，点右上角 <strong>+ New Key</strong> 生成密钥，点复制图标保存到剪贴板</div>
       <div class="ss-img-wrap">
-        <img src="images/ima-step3-apikey.jpg" alt="API Keys页面，点复制" loading="lazy">
+        <img class="img-desktop" src="images/ima-step3-apikey.jpg" alt="API Keys PC版" loading="lazy">
+        <img class="img-mobile" src="images/ima-step3-apikey-mobile.jpg" alt="API Keys 手机版" loading="lazy">
       </div>
     </div>
   </div>
