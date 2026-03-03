@@ -102,6 +102,17 @@ tr:first-child td{color:var(--text)}
 .next-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
 .next-content p{font-size:14px;color:var(--text-2);margin:0}
 @media(max-width:600px){.page{padding:28px 18px 60px}.step{flex-direction:column;gap:14px}.skill-showcase{grid-template-columns:1fr}.ima-hero .bundled{flex-direction:column;align-items:center}.cta-buttons{flex-direction:column;align-items:stretch}.next-box{flex-direction:column;text-align:center}}
+
+/* Screenshot steps */
+.screenshot-steps{margin:20px 0}
+.ss-step{display:flex;gap:16px;align-items:flex-start;padding:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;margin:8px 0}
+.ss-num{width:32px;height:32px;border-radius:50%;background:var(--lobster);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;margin-top:2px}
+.ss-content{flex:1}
+.ss-label{font-size:14px;color:var(--text-2);margin-bottom:12px;line-height:1.6}
+.ss-img-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);max-width:260px}
+.ss-img-wrap img{width:100%;display:block}
+.ss-arrow{text-align:center;color:var(--text-3);font-size:20px;margin:4px 0}
+@media(max-width:600px){.ss-img-wrap{max-width:100%}}
 </style>
 </head>
 <body>
@@ -156,28 +167,45 @@ tr:first-child td{color:var(--text)}
 
 <h2>Step 1 <span>注册并获取API Key</span></h2>
 
-<div class="step">
-  <div class="step-num">1</div>
-  <div class="step-content">
-    <h4>访问 IMA Studio 官网</h4>
-    <p>打开 <a href="https://www.imastudio.com" target="_blank" rel="noopener"><strong>www.imastudio.com</strong></a></p>
-    <p>点击右上角「<strong>注册</strong>」按钮，用手机号或邮箱完成注册。</p>
+<p style="color:var(--text-2);font-size:14px;margin-bottom:8px">只需3步，跟着截图走：</p>
+
+<div class="screenshot-steps">
+  <div class="ss-step">
+    <div class="ss-num">1</div>
+    <div class="ss-content">
+      <div class="ss-label">打开 <a href="https://www.imastudio.com" target="_blank" rel="noopener">imastudio.com</a>，右上角点击<strong>头像 / 齿轮图标</strong></div>
+      <div class="ss-img-wrap">
+        <img src="images/ima-step1-home.jpg" alt="IMA Studio首页，点击右上角设置图标" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="ss-arrow">↓</div>
+  <div class="ss-step">
+    <div class="ss-num">2</div>
+    <div class="ss-content">
+      <div class="ss-label">弹出菜单中点击 <strong>Settings</strong></div>
+      <div class="ss-img-wrap">
+        <img src="images/ima-step2-settings.jpg" alt="点击Settings菜单" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="ss-arrow">↓</div>
+  <div class="ss-step">
+    <div class="ss-num">3</div>
+    <div class="ss-content">
+      <div class="ss-label">进入 <strong>API Keys</strong> 页面，点右侧<strong>复制图标</strong>，Key就在剪贴板里了</div>
+      <div class="ss-img-wrap">
+        <img src="images/ima-step3-apikey.jpg" alt="API Keys页面，点复制" loading="lazy">
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="step">
-  <div class="step-num">2</div>
-  <div class="step-content">
-    <h4>获取 API Key</h4>
-    <p>登录后，进入个人中心 → 「<strong>API Key</strong>」</p>
-    <p>点「<strong>创建新的Key</strong>」，复制那串字符——这就是你的密钥。</p>
-    <div class="terminal">
-      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">你的 API Key</span></div>
-      <div class="terminal-body">
-        <span class="success">ima_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br>
-        <span class="output">（妥善保管，不要泄露给别人）</span>
-      </div>
-    </div>
+<div class="terminal" style="margin-top:20px">
+  <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">你的 API Key（格式参考）</span></div>
+  <div class="terminal-body">
+    <span class="success">ima_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><br>
+    <span class="output">⚠️ 妥善保管，不要截图发给别人</span>
   </div>
 </div>
 
