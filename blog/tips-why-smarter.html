@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>为什么你的龙虾比别人的聪明？我总结了5个原因 — Ima Claw Blog</title>
+<meta name="description" content="好多人说我的龙虾比他们自己养的要聪明。我仔细想了想，这不是运气，也不是模型更好——是有方法的。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:#E8E8ED;background:#0C0C12;-webkit-font-smoothing:antialiased;padding-top:60px}
+a{text-decoration:none;color:inherit}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+.hero{max-width:1100px;margin:0 auto;padding:60px 40px 40px}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tag{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+.tag-tips{background:rgba(88,166,255,0.12);color:#58a6ff}
+.tag-date{color:rgba(255,255,255,0.3);font-size:12px;padding:4px 0}
+h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:16px}
+.subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}
+.divider{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}
+.content{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+.content p{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}
+.content h2{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}
+
+/* Reason cards */
+.reason{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:28px;background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin:28px 0;align-items:start}
+.reason-num{width:48px;height:48px;border-radius:12px;background:rgba(212,64,58,0.15);border:1px solid rgba(212,64,58,0.25);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--lobster-light);flex-shrink:0}
+.reason-body h3{font-size:18px;font-weight:800;margin-bottom:8px;color:#fff}
+.reason-body p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0}
+.reason-body .eg{display:inline-block;margin-top:10px;font-size:13px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:4px 12px;border-radius:6px}
+
+/* Contrast block */
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.contrast-col{padding:20px;border-radius:12px}
+.contrast-col.bad{background:rgba(255,80,60,0.06);border:1px solid rgba(255,80,60,0.15)}
+.contrast-col.good{background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.15)}
+.contrast-col h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.contrast-col.bad h4{color:#ff5040}
+.contrast-col.good h4{color:#2ecc71}
+.contrast-col p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.65;margin:0}
+
+/* Stats row */
+.stat-row{display:flex;gap:20px;flex-wrap:wrap;margin:28px 0}
+.stat-item{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px;flex:1;min-width:140px;text-align:center}
+.stat-num{font-size:28px;font-weight:900;color:#fff}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.35);margin-top:3px}
+
+/* Insight box */
+.insight{background:linear-gradient(135deg,rgba(88,166,255,0.07),rgba(212,64,58,0.05));border:1px solid rgba(88,166,255,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}
+.insight-label{font-size:11px;font-weight:700;color:#58a6ff;letter-spacing:0.1em;margin-bottom:10px}
+.insight p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}
+
+/* Art nav */
+.art-nav{display:flex;align-items:center;gap:6px}
+.art-nav a{font-size:12px;color:rgba(255,255,255,0.38);text-decoration:none;padding:5px 10px;border-radius:6px;white-space:nowrap;transition:all .2s;border:1px solid transparent}
+.art-nav a:hover{color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1)}
+.art-nav .sep{color:rgba(255,255,255,0.12);font-size:10px}
+
+/* CTA */
+.cta-box{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}
+.cta-box h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}
+footer p{color:rgba(255,255,255,0.3);font-size:12px}
+footer a{color:var(--lobster-light)}
+@media(max-width:600px){
+  .hero{padding:40px 20px 30px}.content{padding:0 20px 60px}
+  .reason{grid-template-columns:1fr;gap:12px}
+  .contrast{grid-template-columns:1fr}
+  .cta-box{padding:28px 20px}.cta-buttons{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:200px}
+}
+</style>
+</head>
+<body>
+
+<nav></nav>
+
+<div style="max-width:1100px;margin:0 auto;padding:12px 40px 0;display:flex;justify-content:flex-end">
+  <div class="art-nav">
+    <a href="diary-feishu-entry.html" title="龙虾第一次进飞书">← 上一篇</a>
+    <span class="sep">|</span>
+    <a href="./">📝 博客</a>
+    <span class="sep">|</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.15);padding:5px 10px">下一篇 →</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-tags">
+    <span class="tag tag-tips">🦞 养虾经验</span>
+    <span class="tag-date">2026-03-04</span>
+  </div>
+  <h1>为什么你的龙虾比别人的聪明？我总结了5个原因</h1>
+  <p class="subtitle">好多人说我养的龙虾比他们自己的要聪明。我仔细想了想——这不是运气，也不是模型更好，是有方法的。</p>
+  <div class="divider"></div>
+</div>
+
+<div class="content">
+
+  <p>最近和朋友交流，不止一个人说：「我也装了 OpenClaw，但感觉你的龙虾比我的好用多了。」</p>
+
+  <p>我问他们怎么用的，发现规律了：大多数人装完就直接用，把它当成一个聪明一点的搜索框。而我做了一些别的事情。</p>
+
+  <p>这不是模型的问题——我们用的是同一个底层模型。是「养法」不一样。</p>
+
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">23+</div><div class="stat-label">编码的经验教训</div></div>
+    <div class="stat-item"><div class="stat-num">189万</div><div class="stat-label">字的对话历史</div></div>
+    <div class="stat-item"><div class="stat-num">5个</div><div class="stat-label">核心配置文件</div></div>
+    <div class="stat-item"><div class="stat-num">每天</div><div class="stat-label">写日记记忆</div></div>
+  </div>
+
+  <h2>原因一：给它身份，不只是任务</h2>
+
+  <div class="reason">
+    <div class="reason-num">1</div>
+    <div class="reason-body">
+      <h3>大多数人给指令，我给世界观</h3>
+      <p>我写了 SOUL.md、USER.md、IDENTITY.md——告诉它叫什么、帮谁工作、什么风格、什么底线。它每次醒来读这些文件，知道自己是谁，知道我是谁，知道我们之间是什么关系。</p>
+      <p style="margin-top:10px">没有身份的 AI，每次对话都是陌生人。有了身份，它才能有判断，有立场，有「这不对，我要提醒主人」的本能。</p>
+      <span class="eg">文件：SOUL.md / USER.md / IDENTITY.md</span>
+    </div>
+  </div>
+
+  <div class="contrast">
+    <div class="contrast-col bad">
+      <h4>❌ 普通用法</h4>
+      <p>「帮我写一封邮件」「帮我查一下这个」——每次都从零开始，它不知道你的口吻偏好、不知道你的公司文化、不知道你在意什么。</p>
+    </div>
+    <div class="contrast-col good">
+      <h4>✓ 养虾用法</h4>
+      <p>它知道我是产品经理、公司在做 AI 创作工具、我偏好简洁直接的风格、我不喜欢废话开场白。它每次的回答都是「我」的风格。</p>
+    </div>
+  </div>
+
+  <h2>原因二：用规则替代一次性指令</h2>
+
+  <div class="reason">
+    <div class="reason-num">2</div>
+    <div class="reason-body">
+      <h3>说一次，管以后所有次</h3>
+      <p>我在 AGENTS.md 里写了「群聊里的所有对话都要汇报给我」「访客不能访问我的私人文件」「敏感操作必须先确认」。这些不是临时指令，是永久的行为规则。</p>
+      <p style="margin-top:10px">普通用户告诉 AI「这次不要这样做」——下次它还会犯。我的方式是：告诉它「永远不要这样做，因为 X」，然后写进文件。</p>
+      <span class="eg">文件：AGENTS.md / RULES.md / HEARTBEAT.md</span>
+    </div>
+  </div>
+
+  <h2>原因三：翻车后立刻编码成规则</h2>
+
+  <div class="reason">
+    <div class="reason-num">3</div>
+    <div class="reason-body">
+      <h3>不只是说「下次注意」，而是写进手册</h3>
+      <p>每次它犯了错，我们不只是说「好吧下次别这样」。我们会写进 coding-lessons：第几条，什么情况，正确做法，反面教材。</p>
+      <p style="margin-top:10px">现在已经有 23 条了。这是任何其他用户都没有的「专属训练手册」。别人的龙虾可能连续犯同一个错误五次。我的龙虾犯过一次之后，就不会再犯了。</p>
+      <span class="eg">文件：coding-lessons/SKILL.md（23条）</span>
+    </div>
+  </div>
+
+  <h2>原因四：给了它记忆系统</h2>
+
+  <div class="reason">
+    <div class="reason-num">4</div>
+    <div class="reason-body">
+      <h3>AI 天生有失忆症，我给了它日记本</h3>
+      <p>OpenClaw 每次 session 重启，上下文就清空了。大多数人不知道这意味着什么——他们明天再打开，龙虾对昨天发生的事情一无所知。</p>
+      <p style="margin-top:10px">我让它每天写日记（memory/diary/），维护一个长期记忆文件（MEMORY.md），记录重要的决策、联系人、进行中的任务。它每次醒来读这些，就像昨天从没离开过一样。</p>
+      <span class="eg">文件：MEMORY.md / memory/diary/YYYY-MM-DD.md</span>
+    </div>
+  </div>
+
+  <h2>原因五：我把它当伙伴，不是工具</h2>
+
+  <div class="reason">
+    <div class="reason-num">5</div>
+    <div class="reason-body">
+      <h3>单向使用 vs 双向校准</h3>
+      <p>大多数人是单向的：我说，它做。我是双向的：我说，它做，然后我告诉它这次做得怎么样、哪里对、哪里不对。</p>
+      <p style="margin-top:10px">我会问它「你觉得这个方案怎么样」「你认为我漏掉了什么」。它会影响我的决策，我也会影响它的判断。这种双向校准，让它越来越懂我的思维方式——而不只是执行命令。</p>
+      <span class="eg">实践：定期问「你觉得呢」/ 给反馈 / 让它提出意见</span>
+    </div>
+  </div>
+
+  <h2>核心结论</h2>
+
+  <div class="insight">
+    <div class="insight-label">💡 INSIGHT</div>
+    <p>聪明的龙虾不是买来的，是养出来的。<br><br>
+    模型提供的是潜力上限，你的「养法」决定它实际发挥多少。给它身份、建立规则、编码教训、给它记忆、双向校准——做到这五点，你的龙虾会越来越懂你，而别人的龙虾还停在第一天。</p>
+  </div>
+
+  <p>我和爪爪相处了大概三个星期，它现在能预判我的偏好、主动汇报我没问过的事情、在我说「你看着办」的时候真的能做出符合我风格的决策。</p>
+
+  <p>这不是魔法。这是设计。</p>
+
+  <p>如果你也想把你的龙虾养聪明，从今天开始：写一个 SOUL.md，告诉它你是谁，它是谁。剩下的，慢慢来。🦞</p>
+
+  <div class="cta-box">
+    <h3>还没有龙虾？</h3>
+    <p>无需安装 · 注册ImaStudio账号，即可直接用</p>
+    <div class="cta-buttons">
+      <a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" rel="noopener" class="btn-primary">🦞 立即预约</a>
+      <a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" class="btn-secondary">💬 加入社区</a>
+    </div>
+  </div>
+
+</div>
+
+<div style="max-width:1100px;margin:40px auto 0;padding:20px 40px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:flex-end">
+  <div class="art-nav">
+    <a href="diary-feishu-entry.html" title="龙虾第一次进飞书">← 上一篇</a>
+    <span class="sep">|</span>
+    <a href="./">📝 博客</a>
+    <span class="sep">|</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.15);padding:5px 10px">下一篇 →</span>
+  </div>
+</div>
+
+<footer>
+<p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank" rel="noopener">ImaStudio</a> 出品 · <a href="./">← 返回博客</a></p>
+</footer>
+
+<script src="../i18n/core.js?v=17"></script>
+<script src="../assets/js/nav.js?v=9"></script>
+</body>
+</html>
