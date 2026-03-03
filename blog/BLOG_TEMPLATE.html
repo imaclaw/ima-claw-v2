@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  IMA CLAW — 博客详情页标准模板                                            ║
+  ║  版本：v2.0  |  最后更新：2026-03-04                                      ║
+  ╠══════════════════════════════════════════════════════════════════════════╣
+  ║  使用说明：                                                               ║
+  ║  1. 复制本文件，重命名为 blog/你的文章slug.html                             ║
+  ║  2. 替换所有 [TODO: ...] 占位符                                            ║
+  ║  3. 更新 art-nav-top 中的上一篇/下一篇链接                                 ║
+  ║  4. 更新 blog/index.html 首页对应栏目，加入新文章卡片                       ║
+  ║  5. git add + commit + push，自动部署到 GitHub Pages                      ║
+  ╠══════════════════════════════════════════════════════════════════════════╣
+  ║  文章类型说明：                                                            ║
+  ║  搞事日记  → tag-diary（红色）  → 加入 index.html 搞事日记 section          ║
+  ║  养虾经验  → tag-blue（蓝色）   → 加入 index.html 养虾经验 section          ║
+  ║  龙虾学院  → tag-green（绿色）  → 加入 index.html 养虾经验 section          ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!-- [TODO: 替换文章标题] -->
+<title>[TODO: 文章标题] — Ima Claw Blog</title>
+<!-- [TODO: 替换描述，控制在 120字以内] -->
+<meta name="description" content="[TODO: 文章描述]">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>
+/* ── Reset & Base ── */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;
+  color:#E8E8ED;background:#0C0C12;
+  -webkit-font-smoothing:antialiased;
+  padding-top:60px
+}
+a{text-decoration:none;color:inherit}
+:root{
+  --lobster:#D4403A;--lobster-light:#E8584E;
+  --bg:#0C0C12;--surface:#13131D;
+  --text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.06)
+}
+
+/* ── Hero区域 ── */
+.hero{max-width:1100px;margin:0 auto;padding:60px 40px 40px}
+
+/* ── hero-top: 标签行左 + 导航图标右（必须保持！） ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap}
+.tag{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+/* 颜色类型 — 选一种 */
+.tag-diary{background:rgba(255,80,60,0.12);color:#ff5040}    /* 搞事日记 */
+.tag-blue{background:rgba(88,166,255,0.12);color:#58a6ff}     /* 养虾经验 */
+.tag-green{background:rgba(60,200,100,0.12);color:#3cc864}    /* 龙虾学院 */
+.tag-orange{background:rgba(255,160,60,0.12);color:#ffa03c}   /* 其他 */
+
+/* 日期：在标签下方独立一行 */
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+
+/* 文章间导航图标（右上角）*/
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;
+  color:rgba(255,255,255,0.35);border-radius:7px;
+  transition:all .2s;border:1px solid transparent
+}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
+
+/* 标题、副标题、作者 */
+h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:0 0 14px;letter-spacing:0.01em}
+.subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}
+.divider{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}
+
+/* ── 正文 ── */
+.content{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+.content p{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}
+.content h2{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}
+.content h3{font-size:18px;font-weight:700;margin:32px 0 12px;color:rgba(255,255,255,0.9)}
+.content ul,.content ol{padding-left:24px;margin-bottom:24px}
+.content li{font-size:16px;line-height:1.8;color:rgba(255,255,255,0.75);margin-bottom:6px}
+.content strong{color:#fff;font-weight:700}
+.content code{background:rgba(255,255,255,0.08);padding:2px 7px;border-radius:5px;font-size:0.88em;font-family:monospace;color:#58a6ff}
+
+/* ── 聊天气泡 ── */
+.chat{margin:32px 0;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:80%;padding:12px 18px;border-radius:18px;font-size:15px;line-height:1.6}
+.bubble-user{align-self:flex-end;background:rgba(212,64,58,0.2);border:1px solid rgba(212,64,58,0.3);color:#fff;border-bottom-right-radius:4px}
+.bubble-ai{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-bottom-left-radius:4px}
+.bubble-label{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;padding:0 4px}
+.bubble-label.right{text-align:right}
+
+/* ── 数据卡片（三列） ── */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.stat-card{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;text-align:center}
+.stat-num{font-size:32px;font-weight:900;color:#fff;letter-spacing:-0.03em}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px}
+
+/* ── 规则框（左红边） ── */
+.rule-box{background:#13131D;border-left:3px solid var(--lobster);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--lobster-light);margin-bottom:8px;letter-spacing:0.05em}
+.rule-box p{font-size:15px;color:rgba(255,255,255,0.75);margin:0;line-height:1.7}
+
+/* ── 高亮结论块 ── */
+.insight{background:linear-gradient(135deg,rgba(212,64,58,0.08),rgba(88,166,255,0.05));border:1px solid rgba(212,64,58,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}
+.insight-label{font-size:11px;font-weight:700;color:var(--lobster-light);letter-spacing:0.1em;margin-bottom:10px}
+.insight p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}
+
+/* ── CTA 区块 ── */
+.cta-box{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}
+.cta-box h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;white-space:nowrap}
+@media(max-width:600px){.cta-box p{white-space:normal}}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+
+/* ── Footer ── */
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}
+footer p{color:rgba(255,255,255,0.3);font-size:12px}
+footer a{color:var(--lobster-light)}
+
+/* ── 响应式 ── */
+@media(max-width:600px){
+  .hero{padding:40px 20px 30px}
+  .content{padding:0 20px 60px}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .cta-box{padding:28px 20px}
+  .cta-buttons{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:200px}
+  .bubble{max-width:92%}
+}
+</style>
+</head>
+<body>
+
+<!-- 导航栏：留空即可，nav.js 自动注入标准导航 -->
+<nav></nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO 区域
+     结构：hero-top（标签左+图标右） → h1 → 作者 → 副标题 → 分割线
+     ═══════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-top">
+    <!-- 左侧：标签 + 日期 -->
+    <div>
+      <div class="hero-tags">
+        <!-- [TODO: 选择合适的标签，可多个] -->
+        <span class="tag tag-diary">🔥 搞事日记</span>
+        <!-- <span class="tag tag-blue">养虾经验</span> -->
+        <!-- <span class="tag tag-green">🦞 龙虾学院</span> -->
+        <!-- <span class="tag tag-orange">其他标签</span> -->
+      </div>
+      <!-- [TODO: 填写发布日期 YYYY-MM-DD] -->
+      <div class="hero-date">[TODO: 2026-03-XX]</div>
+    </div>
+
+    <!-- 右侧：文章间导航（← ◻ →）
+         无上一篇时用 <span class="anav-dis">...</span> 替代 <a>
+         无下一篇时同理 -->
+    <div class="art-nav-top">
+      <!-- [TODO: 上一篇] -->
+      <a href="[TODO: prev-article.html]" title="[TODO: 上一篇标题]">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>
+      <!-- 如果没有上一篇，用: <span class="anav-dis"><svg ...>↑同上</svg></span> -->
+      <span class="anav-sep">·</span>
+      <a href="./" title="博客首页">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </a>
+      <span class="anav-sep">·</span>
+      <!-- [TODO: 下一篇] -->
+      <a href="[TODO: next-article.html]" title="[TODO: 下一篇标题]">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- [TODO: 文章标题，不要居中，自动左对齐] -->
+  <h1>[TODO: 文章标题]</h1>
+  <!-- 作者行：中文页用"Yuki & 爪爪"，英文页用"Yuki & Claw" -->
+  <p class="hero-author">✍ Yuki &amp; 爪爪</p>
+  <!-- [TODO: 副标题/一句话摘要] -->
+  <p class="subtitle">[TODO: 副标题，一两句话，说清楚文章在讲什么]</p>
+  <div class="divider"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     正文区域
+     所有文章内容放在 .content 里
+     ═══════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- 普通段落 -->
+  <p>[TODO: 第一段，开门见山，不废话]</p>
+
+  <!-- 一级标题 -->
+  <h2>[TODO: 小节标题]</h2>
+
+  <p>[TODO: 段落内容]</p>
+
+  <!-- ── 示例：聊天气泡 ── -->
+  <div class="chat">
+    <div>
+      <div class="bubble-label right">Yuki 👤</div>
+      <div class="bubble bubble-user">[TODO: 用户说的话]</div>
+    </div>
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai">[TODO: AI 回复的话]</div>
+    </div>
+  </div>
+
+  <!-- ── 示例：数据卡片（三列）── -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-num">[TODO]</div>
+      <div class="stat-label">[TODO: 说明]</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">[TODO]</div>
+      <div class="stat-label">[TODO: 说明]</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">[TODO]</div>
+      <div class="stat-label">[TODO: 说明]</div>
+    </div>
+  </div>
+
+  <!-- ── 示例：规则框 ── -->
+  <div class="rule-box">
+    <div class="rule-title">规则 X · [TODO: 标题]</div>
+    <p>[TODO: 规则内容]</p>
+  </div>
+
+  <!-- ── 示例：结论高亮块 ── -->
+  <div class="insight">
+    <div class="insight-label">核心洞察</div>
+    <p>[TODO: 这篇文章最重要的一句话]</p>
+  </div>
+
+  <!-- ── CTA（文章末尾的行动引导） ── -->
+  <div class="cta-box">
+    <h3>想试试你的龙虾？🦞</h3>
+    <p>无需安装 · 注册ImaStudio账号，即可直接用</p>
+    <div class="cta-buttons">
+      <a href="https://forms.gle/JZ1HnjjHKmqecmCx5" class="btn-primary">🦞 立即预约</a>
+      <a href="https://discord.gg/UdXFVYhh" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#7289da"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.054a19.974 19.974 0 0 0 5.993 3.04.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.04.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        加入社区
+      </a>
+    </div>
+  </div>
+
+</div><!-- end .content -->
+
+<footer>
+  <p>© 2026 <a href="https://www.imastudio.com">ImaStudio</a> · 🦞 Ima Claw</p>
+</footer>
+
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>
