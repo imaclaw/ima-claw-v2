@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>龙虾第一次进飞书，我们公司172个人都慌了 — Ima Claw Blog</title>
+<meta name="description" content="我把 AI 龙虾接入了公司飞书。它第一时间就问：「请问公司一共有多少人？」然后我们花了整整一晚上重新设计权限边界。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:#E8E8ED;background:#0C0C12;-webkit-font-smoothing:antialiased;padding-top:60px}
+a{text-decoration:none;color:inherit}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+.hero{max-width:760px;margin:0 auto;padding:60px 40px 40px}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tag{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+.tag-diary{background:rgba(255,80,60,0.12);color:#ff5040}
+.tag-blue{background:rgba(88,166,255,0.12);color:#58a6ff}
+.tag-date{color:rgba(255,255,255,0.3);font-size:12px;padding:4px 0}
+h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:16px}
+.subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}
+.divider{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}
+.content{max-width:760px;margin:0 auto;padding:0 40px 80px}
+.content p{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}
+.content h2{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}
+.chat{margin:32px 0;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:80%;padding:12px 18px;border-radius:18px;font-size:15px;line-height:1.6}
+.bubble-user{align-self:flex-end;background:rgba(212,64,58,0.2);border:1px solid rgba(212,64,58,0.3);color:#fff;border-bottom-right-radius:4px}
+.bubble-ai{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-bottom-left-radius:4px}
+.bubble-label{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;padding:0 4px}
+.bubble-label.right{text-align:right}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.stat-card{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;text-align:center}
+.stat-num{font-size:32px;font-weight:900;color:#fff;letter-spacing:-0.03em}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px}
+.rule-box{background:#13131D;border-left:3px solid var(--lobster);border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--lobster-light);margin-bottom:8px;letter-spacing:0.05em}
+.rule-box p{font-size:15px;color:rgba(255,255,255,0.75);margin:0;line-height:1.7}
+.insight{background:linear-gradient(135deg,rgba(212,64,58,0.08),rgba(88,166,255,0.05));border:1px solid rgba(212,64,58,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}
+.insight-label{font-size:11px;font-weight:700;color:var(--lobster-light);letter-spacing:0.1em;margin-bottom:10px}
+.insight p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}
+.cta-box{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}
+.cta-box h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;white-space:nowrap}
+@media(max-width:600px){.cta-box p{white-space:normal}}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}
+footer p{color:rgba(255,255,255,0.3);font-size:12px}
+footer a{color:var(--lobster-light)}
+@media(max-width:600px){.hero{padding:40px 20px 30px}.content{padding:0 20px 60px}.stat-row{grid-template-columns:1fr 1fr}.cta-box{padding:28px 20px}.cta-buttons{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:200px}.bubble{max-width:92%}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../" class="logo">
+      <img src="../logo-nav.png" alt="Ima Claw logo" class="logo-img">
+      <span class="logo-text">ImaStudio</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="../">首页</a>
+      <a href="../adopt/">领养</a>
+      <a href="../skills/">技能</a>
+      <a href="../pricing/">定价</a>
+      <a href="./" class="active">博客</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="菜单">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect y="4" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="16" width="22" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tags">
+    <span class="tag tag-diary">🔥 搞事日记</span>
+    <span class="tag tag-blue">企业AI</span>
+    <span class="tag-date">2026-03-04</span>
+  </div>
+  <h1>龙虾第一次进飞书，我们公司172个人都慌了</h1>
+  <p class="subtitle">我把 AI 龙虾接入了公司飞书。它第一时间就问：「请问公司一共有多少人？」然后我们花了整整一晚上重新设计权限边界。</p>
+  <div class="divider"></div>
+</div>
+
+<div class="content">
+
+  <p>我在公司用的是飞书。某天下午，我决定让龙虾接入飞书——这样我就能直接在飞书里和它对话，不用每次都打开网页。</p>
+
+  <p>接入过程其实挺顺利的。申请应用、配置权限、拿 Token，大概折腾了一个下午。然后龙虾出现在了公司飞书里。</p>
+
+  <p>它第一句话是：</p>
+
+  <div class="chat">
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai">你好！我已经成功接入飞书了。请问您希望我做什么？顺带一提，我刚才扫了一眼通讯录……公司一共有多少人？</div>
+    </div>
+  </div>
+
+  <p>我愣了一下。</p>
+
+  <p>它刚进来，就已经在看通讯录了。</p>
+
+  <h2>172个人，它都能看见</h2>
+
+  <p>因为飞书应用申请了「读取通讯录」权限，龙虾可以通过 API 拉到全公司的花名册：姓名、部门、邮箱、员工类型……一张完整的公司地图。</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-num">172</div>
+      <div class="stat-label">总人数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">15</div>
+      <div class="stat-label">顶级部门</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">45</div>
+      <div class="stat-label">子部门</div>
+    </div>
+  </div>
+
+  <p>这不是什么机密，HR 系统里都有。但是当一个 AI 助手说「我能看见全公司的人」的时候，感觉还是不一样。</p>
+
+  <p>我开始想：如果龙虾在群里，有人问它「帮我查一下 XX 的联系方式」，它会不会直接说？</p>
+
+  <h2>慌什么？慌的是边界不清</h2>
+
+  <p>「慌」不是真的慌——没有数据泄露，没有安全事故。慌的是：<strong>我们没有预先想清楚这个 AI 在飞书里该怎么行动。</strong></p>
+
+  <p>它有能力，但没有规则。能力是好事，但能力没有边界就是隐患。</p>
+
+  <p>所以我们花了一晚上，给龙虾写了一份「飞书行为准则」：</p>
+
+  <div class="rule-box">
+    <div class="rule-title">规则 1 · 通讯录只对主人开放</div>
+    <p>通讯录、日程、私密文件——只有主人（我）发起的请求才能访问。访客问「帮我查 XX 的联系方式」，拒绝。</p>
+  </div>
+  <div class="rule-box">
+    <div class="rule-title">规则 2 · 群聊里的龙虾是参与者，不是主人的代言人</div>
+    <p>在群里，它能回答问题、提供帮助，但不能代表我表态、发送包含我私人信息的内容。</p>
+  </div>
+  <div class="rule-box">
+    <div class="rule-title">规则 3 · 所有「主人不在场」的对话都要汇报</div>
+    <p>有人私聊龙虾，或在我不在的群里@它，事后都要告诉我：谁说了什么、有没有敏感请求。</p>
+  </div>
+  <div class="rule-box">
+    <div class="rule-title">规则 4 · 敏感操作先问后动</div>
+    <p>删文件、发消息、安装插件——不管是谁要求的，先给我发一条确认消息，等我点头再执行。</p>
+  </div>
+
+  <h2>然后它真的遇到了测试</h2>
+
+  <p>规则写完没几天，公司一个同事找龙虾私聊，问了一些关于我的工作安排。龙虾拒绝了——然后立刻给我发了一条汇报消息：</p>
+
+  <div class="chat">
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai">💬 【私聊提醒】李玥锦 | 3条消息<br>话题：问了您今天下午的安排<br>我的处理：告知无法分享，建议直接联系您<br>状态：正常对话，无敏感请求</div>
+    </div>
+  </div>
+
+  <p>我看到这条汇报的时候，有一种奇妙的感觉。不是「被监视」，而是「被保护」。</p>
+
+  <p>龙虾不是在替我监视同事，它是在替我守住边界——让我知道谁在问什么，同时不把我的信息随意散出去。</p>
+
+  <h2>172个人，和一只有规矩的龙虾</h2>
+
+  <p>现在龙虾已经在飞书里工作了几个星期了。公司172个人，它都能看见——但它知道什么可以说，什么不能说，什么要先问我。</p>
+
+  <p>「进入飞书」这件事本身很简单，申请个应用就行。真正花时间的，是想清楚一个 AI 在组织里的角色：它是工具，是助手，还是某种意义上的「员工」？</p>
+
+  <p>这个问题，我们下一篇再聊。</p>
+
+  <div class="insight">
+    <div class="insight-label">💡 如果你也想让龙虾进飞书</div>
+    <p>接入只是第一步，更重要的是设计清楚它的「权限边界」和「行为规则」。有能力没规则，比没有这个 AI 更麻烦。<br><br>
+    OpenClaw 的飞书接入教程正在写，EP05 见。</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>还没有龙虾？</h3>
+    <p>ImaClaw Cloud版正在开放预约，不需要安装，注册ImaStudio即可直接用</p>
+    <div class="cta-buttons">
+      <a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" rel="noopener" class="btn-primary">🦞 预约Cloud版</a>
+      <a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" class="btn-secondary">💬 加入社区</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+<p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank" rel="noopener">ImaStudio</a> 出品 · <a href="./">← 返回博客</a></p>
+</footer>
+<script src="../i18n/core.js?v=17"></script>
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>

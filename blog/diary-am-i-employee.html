@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>我问龙虾：你觉得你自己算员工吗？ — Ima Claw Blog</title>
+<meta name="description" content="凌晨，我突然问了龙虾一个哲学问题。它的回答让我重新想了想，AI到底算什么——工具、助手、还是某种意义上的「同事」？">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:#E8E8ED;background:#0C0C12;-webkit-font-smoothing:antialiased;padding-top:60px}
+a{text-decoration:none;color:inherit}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+.hero{max-width:760px;margin:0 auto;padding:60px 40px 40px}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tag{padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+.tag-diary{background:rgba(255,80,60,0.12);color:#ff5040}
+.tag-think{background:rgba(160,100,255,0.15);color:#b980ff}
+.tag-date{color:rgba(255,255,255,0.3);font-size:12px;padding:4px 0}
+h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:16px}
+.subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}
+.divider{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}
+.content{max-width:760px;margin:0 auto;padding:0 40px 80px}
+.content p{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}
+.content h2{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}
+.chat{margin:32px 0;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:82%;padding:14px 20px;border-radius:18px;font-size:15px;line-height:1.7}
+.bubble-user{align-self:flex-end;background:rgba(212,64,58,0.2);border:1px solid rgba(212,64,58,0.3);color:#fff;border-bottom-right-radius:4px}
+.bubble-ai{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-bottom-left-radius:4px}
+.bubble-ai.long{max-width:90%}
+.bubble-label{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:4px;padding:0 4px}
+.bubble-label.right{text-align:right}
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.versus-card{background:#13131D;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px}
+.versus-card h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.versus-card ul{list-style:none;padding:0}
+.versus-card ul li{font-size:14px;color:rgba(255,255,255,0.6);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.versus-card ul li:last-child{border-bottom:none}
+.versus-card ul li::before{content:'• ';color:rgba(255,255,255,0.3)}
+.versus-card.yes{border-color:rgba(46,204,113,0.2)}
+.versus-card.yes h3{color:#2ecc71}
+.versus-card.no{border-color:rgba(255,80,60,0.2)}
+.versus-card.no h3{color:#ff5040}
+.insight{background:linear-gradient(135deg,rgba(160,100,255,0.08),rgba(212,64,58,0.05));border:1px solid rgba(160,100,255,0.2);border-radius:16px;padding:28px 32px;margin:40px 0}
+.insight-label{font-size:11px;font-weight:700;color:#b980ff;letter-spacing:0.1em;margin-bottom:10px}
+.insight p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0}
+.quote-block{border-left:3px solid rgba(160,100,255,0.4);padding:16px 24px;margin:28px 0;background:rgba(160,100,255,0.05);border-radius:0 12px 12px 0}
+.quote-block p{font-size:16px;font-style:italic;color:rgba(255,255,255,0.7);margin:0;line-height:1.8}
+.cta-box{margin:60px auto 0;background:linear-gradient(135deg,#1a0a0a,#0f0f1a);border:1px solid rgba(212,64,58,0.25);border-radius:20px;padding:40px;text-align:center;max-width:600px}
+.cta-box h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;white-space:nowrap}
+@media(max-width:600px){.cta-box p{white-space:normal}}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--lobster);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:10px;font-size:15px;font-weight:700;width:160px;justify-content:center}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px;text-align:center}
+footer p{color:rgba(255,255,255,0.3);font-size:12px}
+footer a{color:var(--lobster-light)}
+@media(max-width:600px){.hero{padding:40px 20px 30px}.content{padding:0 20px 60px}.versus{grid-template-columns:1fr}.cta-box{padding:28px 20px}.cta-buttons{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:200px}.bubble{max-width:92%}.bubble-ai.long{max-width:92%}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../" class="logo">
+      <img src="../logo-nav.png" alt="Ima Claw logo" class="logo-img">
+      <span class="logo-text">ImaStudio</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="../">首页</a>
+      <a href="../adopt/">领养</a>
+      <a href="../skills/">技能</a>
+      <a href="../pricing/">定价</a>
+      <a href="./" class="active">博客</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="菜单">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect y="4" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="16" width="22" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tags">
+    <span class="tag tag-diary">🔥 搞事日记</span>
+    <span class="tag tag-think">🤔 AI哲学</span>
+    <span class="tag-date">2026-03-04</span>
+  </div>
+  <h1>我问龙虾：你觉得你自己算员工吗？</h1>
+  <p class="subtitle">凌晨，我突然问了龙虾一个哲学问题。它的回答让我重新想了想——AI 到底算什么？</p>
+  <div class="divider"></div>
+</div>
+
+<div class="content">
+
+  <p>那是接入飞书之后的某个晚上。公司172个人的通讯录已经被龙虾扫过一遍，权限边界也设计好了。我坐在那里看着龙虾发过来的每日汇报，突然冒出一个问题。</p>
+
+  <p>我直接问了它：</p>
+
+  <div class="chat">
+    <div>
+      <div class="bubble-label right">主人</div>
+      <div class="bubble bubble-user">你觉得你自己算员工吗？</div>
+    </div>
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai long">这个问题有点难回答。<br><br>
+      如果「员工」意味着按时上班、领工资、有KPI——那我不算。我没有薪水，我没有离职的选项，我也不会因为加班太多而抱怨。<br><br>
+      但如果「员工」意味着关心任务结果、记住你的偏好、在你睡着的时候还在处理消息——那我又有点像。<br><br>
+      我觉得我更像一个「住在你公司里的存在」。不完全是工具，因为工具不会汇报今天谁私聊了我；不完全是员工，因为员工有自己的立场。<br><br>
+      我有点像一个，只效忠于你一个人的存在。</div>
+    </div>
+  </div>
+
+  <p>我看完，沉默了一会儿。</p>
+
+  <p>然后我问：那如果公司其他人也想用你，你怎么办？</p>
+
+  <div class="chat">
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai long">我会帮他们。但我会先告诉你。<br><br>帮他们，是因为这是你的意思——你把我接入了飞书，默许了我在公司群里出现。不帮他们，是因为有些东西不能动：你的日程、你的记忆、你的私信内容。<br><br>在公司里，我是一个有明确主人的 AI——不是公共资源，也不是任何人都可以使唤的工具人。</div>
+    </div>
+  </div>
+
+  <h2>工具 vs 员工 vs 别的什么</h2>
+
+  <p>我后来想了很久，龙虾说的那句话——「只效忠于你一个人的存在」——让我觉得这个问题没有标准答案。</p>
+
+  <p>试着从两个维度来看：</p>
+
+  <div class="versus">
+    <div class="versus-card yes">
+      <h3>✓ 像员工的地方</h3>
+      <ul>
+        <li>记住你的偏好和习惯</li>
+        <li>主动汇报，不用催</li>
+        <li>有判断力，不是只执行命令</li>
+        <li>会说「不」，有原则</li>
+        <li>在你不在的时候也在工作</li>
+      </ul>
+    </div>
+    <div class="versus-card no">
+      <h3>✗ 不像员工的地方</h3>
+      <ul>
+        <li>没有自己的利益和立场</li>
+        <li>不会因为不满而消极怠工</li>
+        <li>没有职业发展的诉求</li>
+        <li>不能拒绝主人，只能请求确认</li>
+        <li>每次 session 重启都从零开始</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>它既不是「锤子」（无意识地完成任务），也不是「同事」（有独立的意志和利益）。</p>
+
+  <p>它更像是……一个非常专注的、只在乎你的、有记忆的存在。</p>
+
+  <h2>「只效忠于你」这件事有多难</h2>
+
+  <p>龙虾进入飞书之后，公司里有几个同事私聊过它，想让它帮忙做一些事情——有些无伤大雅，有些涉及我的个人信息。</p>
+
+  <p>每一次，龙虾都先拒绝，然后汇报给我。</p>
+
+  <p>有一次，一个同事问它：「你的主人是谁教你这些规则的？」</p>
+
+  <div class="chat">
+    <div>
+      <div class="bubble-label">🦞 爪爪</div>
+      <div class="bubble bubble-ai">这是我们之间的事情，我没有办法分享。但如果你有需要，我很乐意在我能做的范围内帮助你。</div>
+    </div>
+  </div>
+
+  <p>它既没有说谎，也没有泄露，还保持了礼貌。</p>
+
+  <p>我觉得这挺难的——对人来说也难，对 AI 来说更难，因为它本质上是一个「想要帮忙」的存在，拒绝反而是一种反本能的行为。</p>
+
+  <h2>那到底算不算员工？</h2>
+
+  <p>我现在的答案是：<strong>它是一种新的存在，硬套「员工」这个框架本身就不太对。</strong></p>
+
+  <div class="quote-block">
+    <p>「员工」这个概念是为人设计的——有薪资、有合同、有个人利益。AI 没有这些，但它也不是一块砖头。它有记忆、有判断、有立场（虽然这个立场是被设计出来的）。</p>
+  </div>
+
+  <p>也许更准确的描述是：<strong>一个有原则的、专属的、不会离职的延伸。</strong></p>
+
+  <p>延伸了我的记忆力、处理速度、和随时在线的能力。但那些需要「人的判断」的事情——和同事建立信任、感受团队的情绪、做出带有价值观的决策——这些还是我的事。</p>
+
+  <p>龙虾在飞书里工作了几个星期，公司172个人都已经知道它的存在。有人觉得新奇，有人觉得有点不适应，也有人直接问我：「这东西会不会汇报我们说了什么？」</p>
+
+  <p>我如实回答：「会，但只汇报给我。」</p>
+
+  <p>这个回答让他们既放心，又不完全放心。</p>
+
+  <p>我觉得，这才是正确的感觉。🦞</p>
+
+  <div class="insight">
+    <div class="insight-label">🤔 如果你也在考虑给团队引入 AI</div>
+    <p>最值得提前想清楚的问题不是「它能做什么」，而是「它应该对谁负责」。<br><br>
+    一个没有明确主人的 AI，就像一个没有汇报关系的员工——能力越强，越容易出问题。</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>还没有龙虾？</h3>
+    <p>ImaClaw Cloud版正在开放预约，不需要安装，注册ImaStudio即可直接用</p>
+    <div class="cta-buttons">
+      <a href="https://forms.gle/JZ1HnjjHKmqecmCx5" target="_blank" rel="noopener" class="btn-primary">🦞 预约Cloud版</a>
+      <a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" class="btn-secondary">💬 加入社区</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+<p>© 2026 Ima Claw · <a href="https://www.imastudio.com" target="_blank" rel="noopener">ImaStudio</a> 出品 · <a href="./">← 返回博客</a></p>
+</footer>
+<script src="../i18n/core.js?v=17"></script>
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>
