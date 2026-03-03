@@ -19,7 +19,7 @@ a{text-decoration:none;color:var(--lobster-light)}
 .page{max-width:850px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
 
 /* Hero */
-.hero{text-align:center;margin-bottom:48px}
+.hero{margin-bottom:48px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(212,64,58,0.12);color:var(--lobster-light);font-size:12px;font-weight:600;margin-bottom:20px}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--lobster);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
@@ -150,8 +150,12 @@ code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-si
 
 <!-- Hero -->
 <div class="hero">
+  <div class="hero-top">
   <div class="badge"><span class="dot"></span>龙虾学院 · EP01</div>
+  <div class="art-nav-top"><span class="anav-dis"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></span><span class="anav-sep">·</span><a href="./" title="博客首页"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a><span class="anav-sep">·</span><a href="tutorial-ep02-model.html" title="EP02: 给龙虾装大脑"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a></div>
+</div>
   <h1>10分钟，让飞书<br><span>多一个能干活的员工</span></h1>
+  <div class="hero-author">✍ Yuki &amp; 爪爪</div>
   <p class="hero-sub">
     零基础入门OpenClaw · 从安装到第一条消息<br>
     不需要写代码，只需要跟着做
