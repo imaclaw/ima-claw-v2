@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EP03 · 给龙虾装技能包 | 龙虾学院</title>
+<meta name="description" content="OpenClaw Skill安装教程。IMA基础智能包+IMA全能创作包，让龙虾从'能聊天'变成'能干活'。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=17">
+<link rel="stylesheet" href="../assets/css/nav.css?v=17">
+<style>
+@media(max-width:768px){.nav-links{display:none!important}.hamburger{display:block!important}}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;width:100%;max-width:100%}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:60px}
+a{text-decoration:none;color:var(--lobster-light)}
+.page{max-width:850px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
+
+.hero{text-align:center;margin-bottom:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(212,64,58,0.12);color:var(--lobster-light);font-size:12px;font-weight:600;margin-bottom:20px}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--lobster);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hero h1{font-size:clamp(24px,5vw,38px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:14px}
+.hero h1 span{color:var(--lobster-light)}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-2);line-height:1.7;max-width:560px;margin:0 auto}
+
+.terminal{background:#1a1b26;border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin:16px 0;font-family:'SF Mono','Fira Code','Consolas',monospace}
+.terminal-bar{background:#2d2e3a;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot.r{background:#ff5f56}
+.terminal-dot.y{background:#ffbd2e}
+.terminal-dot.g{background:#27c93f}
+.terminal-title{color:rgba(255,255,255,0.4);font-size:11px;margin-left:8px}
+.terminal-body{padding:16px 18px;font-size:13px;line-height:1.8;color:#c0caf5}
+.terminal-body .prompt{color:#7aa2f7}
+.terminal-body .cmd{color:#9ece6a;font-weight:600}
+.terminal-body .output{color:rgba(255,255,255,0.5)}
+.terminal-body .success{color:#9ece6a}
+.terminal-body .highlight{color:#ff9e64}
+
+h2{font-size:clamp(20px,3vw,26px);font-weight:800;margin:48px 0 18px;letter-spacing:-0.02em}
+h2 span{color:var(--lobster-light)}
+h3{font-size:17px;font-weight:700;margin:32px 0 12px;color:#58a6ff}
+p{color:var(--text-2);line-height:1.85;margin-bottom:18px;font-size:15px}
+strong{color:var(--text);font-weight:600}
+code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-size:13px;color:#a371f7;font-family:monospace}
+
+.story-box{background:rgba(212,64,58,0.06);border:1px solid rgba(212,64,58,0.15);border-radius:18px;padding:28px;margin:28px 0;position:relative}
+.story-box::before{content:'📖';position:absolute;top:-12px;left:24px;background:var(--bg);padding:0 12px;font-size:18px}
+.story-box h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:12px}
+.story-box p{color:var(--text-2);line-height:1.8;margin:0}
+
+.step{display:flex;gap:18px;margin:28px 0;padding:24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--lobster);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+.step-content{flex:1}
+.step-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
+.step-content p{color:var(--text-2);line-height:1.7;margin-bottom:12px;font-size:14px}
+
+.skill-card{background:linear-gradient(135deg,rgba(212,64,58,0.08),rgba(212,64,58,0.02));border:2px solid rgba(212,64,58,0.2);border-radius:18px;padding:28px;margin:28px 0}
+.skill-card.brain{background:linear-gradient(135deg,rgba(88,166,255,0.08),rgba(88,166,255,0.02));border-color:rgba(88,166,255,0.2)}
+.skill-card.create{background:linear-gradient(135deg,rgba(46,204,113,0.08),rgba(46,204,113,0.02));border-color:rgba(46,204,113,0.2)}
+.skill-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.skill-icon{font-size:48px}
+.skill-title{flex:1}
+.skill-title h4{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px}
+.skill-title .tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-right:8px}
+.skill-title .tag.required{background:var(--lobster);color:#fff}
+.skill-title .tag.recommended{background:#2ecc71;color:#000}
+.skill-desc{color:var(--text-2);font-size:14px;line-height:1.8;margin-bottom:16px}
+.skill-features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
+.skill-feature{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(255,255,255,0.03);border-radius:10px;font-size:13px;color:var(--text-2)}
+.skill-feature::before{content:'✓';color:#2ecc71;font-weight:800}
+
+.crash-box{background:rgba(255,80,60,0.06);border:1px solid rgba(255,80,60,0.2);border-radius:18px;padding:24px;margin:28px 0}
+.crash-box h4{font-size:16px;font-weight:700;color:#ff5040;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.crash-box h4::before{content:'💥'}
+
+.cta-box{background:linear-gradient(135deg,rgba(212,64,58,0.1),rgba(212,64,58,0.03));border:2px solid rgba(212,64,58,0.2);border-radius:20px;padding:36px 32px;margin:40px 0;text-align:center}
+.cta-icon{font-size:48px;margin-bottom:16px}
+.cta-box h3{font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px}
+.cta-box p{font-size:15px;color:var(--text-2);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.cta-btn:hover{transform:translateY(-2px)}
+.cta-btn-primary{background:var(--lobster);color:#fff;box-shadow:0 4px 16px rgba(212,64,58,0.3)}
+.cta-btn-secondary{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid var(--border)}
+
+.next-box{background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.15);border-radius:18px;padding:28px;margin:36px 0;display:flex;gap:20px;align-items:center}
+.next-icon{font-size:40px}
+.next-content{flex:1}
+.next-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.next-content p{font-size:14px;color:var(--text-2);margin:0}
+
+@media(max-width:600px){
+  .page{padding:28px 18px 60px}
+  .step{flex-direction:column;gap:14px}
+  .skill-features{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:stretch}
+  .next-box{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../" data-i18n="nav.home">Home</a>
+    <a href="../adopt/" data-i18n="nav.adopt" style="color:var(--lobster-light);font-weight:600">🦞 Adopt</a>
+    <a href="../skills/" data-i18n="nav.skills">Skills</a>
+    <a href="../pricing/" data-i18n="nav.pricing">🛒 Pricing</a>
+    <a href="../docs/" data-i18n="nav.docs">Docs</a>
+    <a href="./" data-i18n="nav.blog">Blog</a>
+    <a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600">Discord</a>
+    <div class="lang-dropdown" style="position:relative;margin-left:8px">
+      <button class="lang-trigger">🌐 中文 ▾</button>
+      <div class="lang-menu"><button data-lang="zh-CN">🇨🇳 中文</button><button data-lang="en">🇺🇸 English</button></div>
+    </div>
+  </div>
+  <button class="hamburger"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</nav>
+
+<div class="page">
+
+<div class="hero">
+  <div class="badge"><span class="dot"></span>龙虾学院 · EP03</div>
+  <h1>给龙虾<br><span>装技能包</span></h1>
+  <p class="hero-sub">
+    从"能聊天"到"能干活"<br>
+    IMA基础智能 + IMA全能创作，两个必装Skill
+  </p>
+</div>
+
+<div class="story-box">
+  <h4>为什么需要Skill？</h4>
+  <p>EP01你搭好了窝，EP02你装好了大脑。但光有大模型还不够——</p>
+  <p style="margin-top:12px"><strong>Skill = 龙虾的专业技能</strong>。就像人学了编程才能写代码、学了设计才能做图。Skill让龙虾从"能回答"变成"能执行"。</p>
+</div>
+
+<h2>Step 1 <span>打开Skill商店</span></h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-content">
+    <h4>访问 Ima Claw Skill 商店</h4>
+    <p>浏览器打开：<a href="https://imaclaw.github.io/ima-claw-v2/skills/" target="_blank">imaclaw.github.io/ima-claw-v2/skills/</a></p>
+    <p style="margin-top:12px">或者直接在飞书问你的龙虾：<code>打开Skill商店</code></p>
+    <p>你会看到几十个Skill，分三大类：</p>
+    <p>• <strong>🧠 智能类</strong> — 记忆、任务、调研<br>
+       • <strong>🎨 创作类</strong> — 图片、视频、音乐<br>
+       • <strong>🔧 工具类</strong> — 浏览器、飞书、Twitter</p>
+  </div>
+</div>
+
+<h2>Step 2 <span>安装第一个Skill（必装）</span></h2>
+
+<div class="skill-card brain">
+  <div class="skill-header">
+    <div class="skill-icon">🧠</div>
+    <div class="skill-title">
+      <h4>IMA 基础智能 Skill 包</h4>
+      <span class="tag required">必装</span>
+      <span style="color:var(--text-3);font-size:13px">让龙虾真正"懂事"</span>
+    </div>
+  </div>
+  <div class="skill-desc">
+    这是IMA官方出品的基础能力包，相当于给龙虾装上"长期记忆"和"项目管理"能力。没装这个，龙虾每次对话都从零开始，记不住你们之前聊过什么。
+  </div>
+  <div class="skill-features">
+    <div class="skill-feature">记忆系统 — 记住你们的对话历史</div>
+    <div class="skill-feature">项目记忆 — 每个项目独立存档</div>
+    <div class="skill-feature">任务追踪 — 自动记录TODO清单</div>
+    <div class="skill-feature">深度调研 — 联网搜索+报告生成</div>
+    <div class="skill-feature">上下文管理 — 长对话不丢上下文</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2a</div>
+  <div class="step-content">
+    <h4>一键安装</h4>
+    <p>在飞书对龙虾说：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">安装 ima-intelligence</span><br><br>
+        <span class="prompt">🦞：</span><span class="success">正在安装 IMA 基础智能 Skill 包...</span><br>
+        <span class="output">  ✓ 记忆系统</span><br>
+        <span class="output">  ✓ 项目记忆</span><br>
+        <span class="output">  ✓ 任务追踪</span><br>
+        <span class="success">🎉 安装完成！现在我可以记住我们的对话了。</span>
+      </div>
+    </div>
+    <p>或者终端命令：</p>
+    <div class="terminal">
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">openclaw skills install ima-intelligence</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2b</div>
+  <div class="step-content">
+    <h4>验证安装</h4>
+    <p>在飞书问：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">记住我叫小明，我喜欢吃辣</span><br><br>
+        <span class="prompt">🦞：</span><span class="success">记住了，小明喜欢吃辣 👍</span><br><br>
+        <span class="prompt">你：</span><span class="cmd">（过几分钟）我叫什么？</span><br><br>
+        <span class="prompt">🦞：</span><span class="success">你叫小明，喜欢吃辣。</span>
+      </div>
+    </div>
+    <p>如果龙虾能记住，说明记忆系统正常工作了！</p>
+  </div>
+</div>
+
+<h2>Step 3 <span>安装创作Skill（选装）</span></h2>
+
+<div class="skill-card create">
+  <div class="skill-header">
+    <div class="skill-icon">🦞</div>
+    <div class="skill-title">
+      <h4>IMA 全能创作 All-in-One</h4>
+      <span class="tag recommended">强烈推荐</span>
+      <span style="color:var(--text-3);font-size:13px">一个Skill = 40+ AI模型</span>
+    </div>
+  </div>
+  <div class="skill-desc">
+    如果你需要龙虾帮你做图、做视频、做音乐，装这一个就够了。集成图片生成（SeeDream、Midjourney、GPT Image）、视频生成（Wan、Kling、Sora、Veo）、音乐生成（Suno）等40+模型。
+  </div>
+  <div class="skill-features">
+    <div class="skill-feature">SeeDream 4.5 — 字节图片旗舰</div>
+    <div class="skill-feature">Midjourney — 艺术风格首选</div>
+    <div class="skill-feature">Wan 2.6 — 开源视频之王</div>
+    <div class="skill-feature">Kling 2.1 — 国产视频最强</div>
+    <div class="skill-feature">Sora — OpenAI视频</div>
+    <div class="skill-feature">Google Veo 3 — 谷歌视频</div>
+    <div class="skill-feature">Suno — AI音乐标杆</div>
+    <div class="skill-feature">积分统一 — 不用到处充值</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-content">
+    <h4>安装全能创作包</h4>
+    <p>在飞书对龙虾说：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">安装 ima-all-in-one</span><br><br>
+        <span class="prompt">🦞：</span><span class="success">正在安装 IMA 全能创作 All-in-One...</span><br>
+        <span class="output">  ✓ 图片生成模块</span><br>
+        <span class="output">  ✓ 视频生成模块</span><br>
+        <span class="output">  ✓ 音乐生成模块</span><br>
+        <span class="success">🎉 安装完成！我可以帮你生成图片、视频和音乐了。</span>
+      </div>
+    </div>
+    <p>或终端命令：</p>
+    <div class="terminal">
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">openclaw skills install ima-all-in-one</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="crash-box">
+  <h4>💥 翻车时刻：提示"需要API Key"？</h4>
+  <p><strong>原因：</strong>IMA创作Skill需要IMA Studio账号和API Key</p>
+  <p><strong>解决：</strong></p>
+  <p>1. 去 <a href="https://www.imastudio.com" target="_blank">imastudio.com</a> 注册账号<br>
+     2. 在个人中心获取 API Key<br>
+     3. 在OpenClaw配置：<code>openclaw config set ima.api_key YOUR_KEY</code></p>
+  <p style="margin-top:12px">🎁 <strong>新用户福利：</strong>注册送免费积分，够生成几十张图</p>
+</div>
+
+<h2>Step 4 <span>试试身手</span></h2>
+
+<div class="step">
+  <div class="step-num">🎨</div>
+  <div class="step-content">
+    <h4>生成一张图</h4>
+    <p>在飞书对龙虾说：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">生成一张图：一只红色的龙虾戴着墨镜，在海边度假，漫画风格</span><br><br>
+        <span class="prompt">🦞：</span><span class="output">正在用 SeeDream 4.5 生成...</span><br>
+        <span class="success">🎨 生成完成！（图片直接发送到飞书）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">🎬</div>
+  <div class="step-content">
+    <h4>生成一段视频</h4>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">生成5秒视频：一只红色的龙虾在冲浪</span><br><br>
+        <span class="prompt">🦞：</span><span class="output">正在用 Wan 2.6 生成视频（约需1-2分钟）...</span><br>
+        <span class="success">🎬 视频生成完成！</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-box">
+  <div class="cta-icon">🛒</div>
+  <h3>探索更多Skill</h3>
+  <p>IMA Skill商店有几十个官方和社区Skill：Seedance视频、Nano Banana图片、Twitter发布、浏览器自动化……</p>
+  <div class="cta-buttons">
+    <a class="cta-btn cta-btn-primary" href="https://imaclaw.github.io/ima-claw-v2/skills/" target="_blank">
+      🛒 浏览Skill商店
+    </a>
+    <a class="cta-btn cta-btn-secondary" href="https://discord.gg/UdXFVYhh" target="_blank">
+      💬 交流使用心得
+    </a>
+  </div>
+</div>
+
+<h2>📌 本篇要点</h2>
+<p>• Skill = 龙虾的专业技能，让AI从"能回答"变成"能执行"</p>
+<p>• <strong>必装：</strong>IMA基础智能包（记忆+任务+调研）</p>
+<p>• <strong>强烈推荐：</strong>IMA全能创作包（图+视频+音乐，40+模型）</p>
+<p>• 安装命令：<code>openclaw skills install [skill-name]</code> 或直接在飞书说"安装xxx"</p>
+<p>• 创作Skill需要IMA Studio账号和API Key</p>
+
+<div class="next-box">
+  <div class="next-icon">💬</div>
+  <div class="next-content">
+    <h4>EP04：接入Discord</h4>
+    <p>龙虾现在有窝、有大脑、有技能了。下一步：让它在Discord里也能回复消息，成为你服务器的AI助手。</p>
+  </div>
+  <div style="font-size:24px;color:#58a6ff">→</div>
+</div>
+
+<div style="border-top:1px solid var(--border);padding-top:32px;margin-top:56px;text-align:center;color:var(--text-3);font-size:12px;line-height:2">
+  Built with 🦞 by <a href="https://imaclaw.github.io/ima-claw-v2/" style="color:var(--lobster-light)">ImaClaw</a> · Powered by <a href="https://openclaw.ai" style="color:#58a6ff">OpenClaw</a>
+</div>
+
+</div>
+
+<script src="../assets/js/nav.js?v=17"></script>
+</body>
+</html>
