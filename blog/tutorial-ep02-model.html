@@ -113,9 +113,9 @@ tr:first-child td{color:var(--text)}
 .ss-content{flex:1}
 .ss-label{font-size:14px;color:var(--text-2);margin-bottom:12px;line-height:1.6}
 .ss-img-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);max-width:600px;margin:0 auto}
-.img-mobile{display:none}
-.img-desktop{display:block}
-@media(max-width:600px){.img-mobile{display:block}.img-desktop{display:none}}
+.ss-img-wrap .img-mobile{display:none}
+.ss-img-wrap .img-desktop{display:block}
+@media(max-width:600px){.ss-img-wrap .img-mobile{display:block!important}.ss-img-wrap .img-desktop{display:none!important}}
 .ss-img-wrap img{width:100%;display:block}
 .ss-arrow{text-align:center;color:var(--text-3);font-size:20px;margin:4px 0}
 @media(max-width:600px){.ss-img-wrap{max-width:100%}}
