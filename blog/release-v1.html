@@ -39,7 +39,7 @@ a{text-decoration:none;color:inherit}
 .page{max-width:900px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
 
 /* Header */
-.hero{text-align:center;margin-bottom:56px}
+.hero{text-align:left;margin-bottom:56px}
 .meta{font-size:13px;color:var(--text-3);margin-bottom:24px;display:flex;gap:12px;align-items:center;justify-content:center}
 .tag{padding:3px 10px;border-radius:100px;background:rgba(212,64,58,0.1);color:var(--lobster-light);font-size:11px;font-weight:600}
 .hero h1{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:16px}
@@ -105,6 +105,16 @@ footer p{color:var(--text-3);font-size:12px}footer a{color:var(--lobster-light)}
   .tags-row{gap:6px}
   .tags-row span{padding:5px 12px;font-size:11px}
 }
+
+/* ── Article header nav ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px;letter-spacing:0.01em}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":""你能做网站吗？" 于是有了134万字，和一个网站。— Ima Claw 🦞","description":"From a casual question to 1.34 million words and a full website — the story of how Ima Claw's site was born through Vibe Coding.","author":{"@type":"Person","name":"Yuki He"},"publisher":{"@type":"Organization","name":"Ima Claw","logo":{"@type":"ImageObject","url":"https://imaclaw.github.io/ima-claw-v2/mascot.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://imaclaw.github.io/ima-claw-v2/blog/release-v1.html"}}</script>
 </head>

@@ -77,26 +77,38 @@ footer a{color:var(--lobster-light)}
   .contrast{grid-template-columns:1fr}
   .cta-box{padding:28px 20px}.cta-buttons{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:200px}
 }
+
+/* ── Article header nav ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px;letter-spacing:0.01em}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
 </style>
 </head>
 <body>
 
 <nav></nav>
 
-<div style="max-width:1100px;margin:0 auto;padding:12px 40px 0;display:flex;justify-content:flex-end">
-  <div class="art-nav">
-    <a href="diary-feishu-entry.html" title="龙虾第一次进飞书">← 上一篇</a>
-    <span class="sep">|</span>
-    <a href="./">📝 博客</a>
-    <span class="sep">|</span>
-    <span style="font-size:12px;color:rgba(255,255,255,0.15);padding:5px 10px">下一篇 →</span>
-  </div>
-</div>
-
 <div class="hero">
-  <div class="hero-tags">
+  <div class="hero-top">
+    <div>
+      <div class="hero-tags">
     <span class="tag tag-tips">🦞 养虾经验</span>
-    <span class="tag-date">2026-03-04</span>
+  
+      </div>
+      <div class="hero-date">2026-03-04</div>
+    </div>
+    <div class="art-nav-top">
+      <a href="diary-feishu-entry.html" title="龙虾第一次进飞书"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a>
+      <span class="anav-sep">·</span>
+      <a href="./" title="博客首页"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
+      <span class="anav-sep">·</span>
+      <span class="anav-dis"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </div>
   </div>
   <h1>为什么你的龙虾比别人的聪明？我总结了5个原因</h1>
   <p class="subtitle">好多人说我养的龙虾比他们自己的要聪明。我仔细想了想——这不是运气，也不是模型更好，是有方法的。</p>
@@ -105,7 +117,7 @@ footer a{color:var(--lobster-light)}
 
 <div class="content">
 
-  <p>最近和朋友交流，不止一个人说：「我也装了 OpenClaw，但感觉你的龙虾比我的好用多了。」</p>
+  <p>最近和员工交流，不止一个人说：「我也装了 OpenClaw，但感觉你的龙虾比我的好用多了。」</p>
 
   <p>我问他们怎么用的，发现规律了：大多数人装完就直接用，把它当成一个聪明一点的搜索框。而我做了一些别的事情。</p>
 

@@ -67,27 +67,39 @@ footer a{color:var(--lobster-light)}
 .art-nav a:hover{color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1)}
 .art-nav a.anav-home{color:rgba(255,255,255,0.5)}
 .art-nav .sep{color:rgba(255,255,255,0.12);font-size:10px;user-select:none}
+
+/* ── Article header nav ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px;letter-spacing:0.01em}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
 </style>
 </style>
 </head>
 <body>
 <nav></nav>
 
-<div style="max-width:1100px;margin:0 auto;padding:12px 40px 0;display:flex;justify-content:flex-end">
-  <div class="art-nav">
-    <a href="diary-feishu-entry.html" title="龙虾第一次进飞书">← 上一篇</a>
-    <span class="sep">|</span>
-    <a href="./" class="anav-home">📝 博客</a>
-    <span class="sep">|</span>
-    <span style="font-size:12px;color:rgba(255,255,255,0.15);padding:5px 10px">下一篇 →</span>
-  </div>
-</div>
-
 <div class="hero">
-  <div class="hero-tags">
+  <div class="hero-top">
+    <div>
+      <div class="hero-tags">
     <span class="tag tag-diary">🔥 搞事日记</span>
     <span class="tag tag-think">🤔 AI哲学</span>
-    <span class="tag-date">2026-03-04</span>
+  
+      </div>
+      <div class="hero-date">2026-03-04</div>
+    </div>
+    <div class="art-nav-top">
+      <a href="diary-feishu-entry.html" title="龙虾第一次进飞书"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a>
+      <span class="anav-sep">·</span>
+      <a href="./" title="博客首页"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
+      <span class="anav-sep">·</span>
+      <a href="tips-why-smarter.html" title="为什么你的龙虾比别人的聪明"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+    </div>
   </div>
   <h1>我问龙虾：你觉得你自己算员工吗？</h1>
   <p class="subtitle">凌晨，我突然问了龙虾一个哲学问题。它的回答让我重新想了想——AI 到底算什么？</p>

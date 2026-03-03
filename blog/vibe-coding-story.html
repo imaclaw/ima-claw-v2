@@ -85,6 +85,16 @@ html[lang="en"] blockquote[data-zh]{display:none}html[lang="en"] blockquote[data
 body{padding-top:60px}
 @media(max-width:600px){
 #
+
+/* ── Article header nav ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px;letter-spacing:0.01em}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"我用 Ima Claw 做了这个网站 — Blog — Ima Claw 🦞","description":"How this entire website was built using Ima Claw itself — a meta Vibe Coding story of an AI assistant building its own home.","author":{"@type":"Person","name":"Yuki He"},"publisher":{"@type":"Organization","name":"Ima Claw","logo":{"@type":"ImageObject","url":"https://imaclaw.github.io/ima-claw-v2/mascot.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://imaclaw.github.io/ima-claw-v2/blog/vibe-coding-story.html"}}</script>
 </head>

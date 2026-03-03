@@ -19,7 +19,7 @@ a{text-decoration:none;color:var(--lobster-light)}
 .page{max-width:900px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
 
 /* Hero */
-.hero{text-align:center;margin-bottom:56px}
+.hero{text-align:left;margin-bottom:56px}
 .meta{font-size:13px;color:var(--text-3);margin-bottom:24px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
 .tag{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
 .tag.red{background:rgba(212,64,58,0.15);color:var(--lobster-light)}
@@ -83,6 +83,16 @@ p{color:var(--text-2);line-height:1.8;margin-bottom:18px;font-size:15px}
   .lesson-grid{grid-template-columns:1fr}
   .chat-bubble{max-width:85%}
 }
+
+/* ── Article header nav ── */
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px;letter-spacing:0.01em}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
 </style>
 </head>
 <body>
