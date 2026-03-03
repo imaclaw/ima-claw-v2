@@ -376,5 +376,12 @@ a{text-decoration:none;color:var(--lobster-light)}
 </div>
 <script src="../i18n/core.js?v=17"></script>
 <script src="../assets/js/nav.js?v=8"></script>
+<script>
+// If user switches to Chinese, redirect to Chinese version
+document.addEventListener('langChanged', function(){
+  var lang = (typeof getLang==='function') ? getLang() : 'en';
+  if(lang === 'zh-CN') window.location.href = 'vibe-coding-day2.html';
+});
+</script>
 </body>
 </html>
