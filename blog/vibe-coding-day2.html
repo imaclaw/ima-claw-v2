@@ -390,10 +390,15 @@ a{text-decoration:none;color:var(--lobster-light)}
 <script src="../i18n/core.js?v=17"></script>
 <script src="../assets/js/nav.js?v=8"></script>
 <script>
-// If user switches to non-Chinese, redirect to English version
+// Chinese page: if detected language is non-Chinese, redirect to English version
+(function(){
+  var lang = (typeof getLang==='function') ? getLang() : (localStorage.getItem('imaclaw-lang')||'zh-CN');
+  if(lang !== 'zh-CN' && lang !== 'zh') window.location.replace('vibe-coding-52h-en.html');
+})();
+// Also redirect on manual switch
 document.addEventListener('langChanged', function(){
   var lang = (typeof getLang==='function') ? getLang() : 'zh-CN';
-  if(lang !== 'zh-CN') window.location.href = 'vibe-coding-52h-en.html';
+  if(lang !== 'zh-CN' && lang !== 'zh') window.location.replace('vibe-coding-52h-en.html');
 });
 </script>
 </body>

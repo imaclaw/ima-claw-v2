@@ -377,10 +377,15 @@ a{text-decoration:none;color:var(--lobster-light)}
 <script src="../i18n/core.js?v=17"></script>
 <script src="../assets/js/nav.js?v=8"></script>
 <script>
-// If user switches to Chinese, redirect to Chinese version
+// English page: if detected language is Chinese, redirect to Chinese version
+(function(){
+  var lang = (typeof getLang==='function') ? getLang() : (localStorage.getItem('imaclaw-lang')||'en');
+  if(lang === 'zh-CN' || lang === 'zh') window.location.replace('vibe-coding-day2.html');
+})();
+// Also redirect on manual switch
 document.addEventListener('langChanged', function(){
   var lang = (typeof getLang==='function') ? getLang() : 'en';
-  if(lang === 'zh-CN') window.location.href = 'vibe-coding-day2.html';
+  if(lang === 'zh-CN' || lang === 'zh') window.location.replace('vibe-coding-day2.html');
 });
 </script>
 </body>
