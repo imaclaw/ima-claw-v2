@@ -54,9 +54,10 @@ code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-si
 .ima-hero .ima-icon{font-size:56px;margin-bottom:16px}
 .ima-hero h3{font-size:24px;font-weight:900;color:var(--text);margin-bottom:10px;letter-spacing:-0.02em}
 .ima-hero .tagline{font-size:16px;color:var(--text-2);margin-bottom:24px;line-height:1.6}
-.ima-hero .bundled{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
-.ima-bundle-item{display:flex;align-items:center;gap:10px;padding:14px 20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:12px;font-size:14px;font-weight:600;color:var(--text)}
-.ima-bundle-item .icon{font-size:24px}
+.ima-hero .bundled{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+.ima-bundle-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:12px;font-size:13px;font-weight:600;color:var(--text);text-align:left}
+.ima-bundle-item .icon{font-size:22px;flex-shrink:0}
+.ima-bundle-item small{font-size:11px;font-weight:400;color:var(--text-2);display:block;margin-top:2px}
 .ima-register-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;background:var(--lobster);color:#fff;border-radius:12px;font-size:17px;font-weight:700;box-shadow:0 4px 24px rgba(212,64,58,0.35);transition:transform .2s,box-shadow .2s}
 .ima-register-btn:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,64,58,0.45)}
 
@@ -137,7 +138,7 @@ tr:first-child td{color:var(--text)}
 
 <div class="hero">
   <div class="badge"><span class="dot"></span>龙虾学院 · EP02</div>
-  <h1>给龙虾<br><span>装大脑</span></h1>
+  <h1>给龙虾<span>装大脑</span></h1>
   <p class="hero-sub">1个账号 = 大模型大脑 + 预装智能技能包<br>IMA Studio，一站式搞定</p>
 </div>
 
@@ -154,9 +155,9 @@ tr:first-child td{color:var(--text)}
   <h3>1 个账号，全部解锁</h3>
   <p class="tagline">注册 IMA Studio，拿到 API Key<br>大模型大脑 + 智能技能套件 + 多媒体创作套件，一键全开</p>
   <div class="bundled">
-    <div class="ima-bundle-item"><span class="icon">🧠</span>多模型大脑（Claude/GPT/Gemini等）</div>
-    <div class="ima-bundle-item"><span class="icon">🤖</span>预装智能技能套件</div>
-    <div class="ima-bundle-item"><span class="icon">🎨</span>多媒体创作套件</div>
+    <div class="ima-bundle-item"><span class="icon">🧠</span><span>多模型大脑<br><small>Claude/GPT/Gemini等</small></span></div>
+    <div class="ima-bundle-item"><span class="icon">🤖</span><span>预装智能<br><small>技能套件</small></span></div>
+    <div class="ima-bundle-item"><span class="icon">🎨</span><span>多媒体创作<br><small>40+ AI模型</small></span></div>
   </div>
   <a href="https://www.imastudio.com" target="_blank" rel="noopener" class="ima-register-btn">
     🚀 免费注册 IMA Studio
