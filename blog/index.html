@@ -157,7 +157,7 @@ body{padding-top:60px}
 <script>
 // Switch blog post links based on language
 function updateBlogLinks(){
-  var lang = localStorage.getItem('imaclaw-lang') || 'zh-CN';
+  var lang = (typeof getLang === 'function') ? getLang() : (localStorage.getItem('imaclaw-lang') || 'zh-CN');
   var isEn = (lang !== 'zh-CN');
   document.querySelectorAll('.lang-link').forEach(function(a){
     var zhHref = a.getAttribute('data-href-zh');
