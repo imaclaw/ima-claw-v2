@@ -60,6 +60,29 @@ code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-si
 .step-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
 .step-content p{color:var(--text-2);line-height:1.7;margin-bottom:12px;font-size:14px}
 
+/* Terminal mockup */
+.terminal{background:#1a1b26;border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin:16px 0;font-family:'SF Mono','Fira Code','Consolas',monospace}
+.terminal-bar{background:#2d2e3a;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot.r{background:#ff5f56}
+.terminal-dot.y{background:#ffbd2e}
+.terminal-dot.g{background:#27c93f}
+.terminal-title{color:rgba(255,255,255,0.4);font-size:11px;margin-left:8px}
+.terminal-body{padding:16px 18px;font-size:13px;line-height:1.8;color:#c0caf5}
+.terminal-body .prompt{color:#7aa2f7}
+.terminal-body .cmd{color:#9ece6a;font-weight:600}
+.terminal-body .output{color:rgba(255,255,255,0.5)}
+.terminal-body .success{color:#9ece6a}
+.terminal-body .highlight{color:#ff9e64}
+
+/* How-to find */
+.find-app{display:flex;gap:16px;align-items:flex-start;margin:16px 0;padding:20px;background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.12);border-radius:14px}
+.find-icon{font-size:36px;flex-shrink:0}
+.find-text{flex:1}
+.find-text h5{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+.find-text p{font-size:13px;color:var(--text-2);line-height:1.7;margin:0}
+.find-text .kbd{display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);border-radius:5px;padding:2px 8px;font-size:12px;font-family:monospace;color:#fff;margin:0 2px}
+
 /* Crash box */
 .crash-box{background:rgba(255,80,60,0.06);border:1px solid rgba(255,80,60,0.2);border-radius:18px;padding:24px;margin:28px 0}
 .crash-box h4{font-size:16px;font-weight:700;color:#ff5040;margin-bottom:12px;display:flex;align-items:center;gap:8px}
@@ -167,97 +190,257 @@ code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-si
 
 <!-- Step 1 -->
 <h2>Step 1 <span>安装 OpenClaw</span></h2>
-<p>想象一下：OpenClaw 是「龙虾的窝」。你的AI助手（龙虾）住在这里，通过它和飞书对话。</p>
+<p>OpenClaw 是「龙虾的窝」——你的AI助手住在这里，通过它连接飞书。第一步，我们要把这个窝搭好。</p>
+
+<h3>🍎 Mac 用户</h3>
 
 <div class="step">
-  <div class="step-num">1</div>
+  <div class="step-num">1a</div>
   <div class="step-content">
-    <h4>Mac 用户</h4>
-    <p>打开终端（Terminal），复制粘贴这行：</p>
-    <code>brew install openclaw</code>
-    <p style="margin-top:12px">等它跑完，看到 🎉 就是装好了。</p>
+    <h4>打开「终端」应用</h4>
+    <div class="find-app">
+      <div class="find-icon">🔍</div>
+      <div class="find-text">
+        <h5>怎么找到终端？（3种方法，任选其一）</h5>
+        <p>
+          <strong>方法1：</strong>按 <span class="kbd">⌘</span> + <span class="kbd">空格</span>，弹出 Spotlight 搜索框，输入 <strong>Terminal</strong>（或"终端"），回车打开<br>
+          <strong>方法2：</strong>打开 Finder → 应用程序 → 实用工具 → 终端<br>
+          <strong>方法3：</strong>在 Launchpad（启动台）里搜索"终端"
+        </p>
+      </div>
+    </div>
+    <p>打开后你会看到一个黑色/白色的窗口，有一个闪烁的光标等你输入。这就是终端——你和电脑"对话"的地方。</p>
   </div>
 </div>
 
 <div class="step">
-  <div class="step-num">2</div>
+  <div class="step-num">1b</div>
   <div class="step-content">
-    <h4>Windows 用户</h4>
-    <p>打开 PowerShell，复制粘贴这行：</p>
-    <code>npm install -g openclaw</code>
-    <p style="margin-top:12px">需要提前装好 <a href="https://nodejs.org" target="_blank">Node.js</a>。装完后重启 PowerShell。</p>
+    <h4>先检查有没有 Homebrew</h4>
+    <p>Homebrew 是 Mac 上的"应用商店命令行版"，装软件用的。在终端里输入：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal — zsh</span></div>
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">brew --version</span>
+      </div>
+    </div>
+    <p>如果看到版本号（如 <code>Homebrew 4.x.x</code>），说明已经有了，跳到下一步。</p>
+    <p>如果提示 <code>command not found</code>，需要先装 Homebrew：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal — zsh</span></div>
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span><br>
+        <span class="output">==&gt; Downloading and installing Homebrew...</span><br>
+        <span class="output">==&gt; Installation successful!</span><br>
+        <span class="success">🍺 Homebrew is ready.</span>
+      </div>
+    </div>
+    <p>这一步大概需要 <strong>2-3 分钟</strong>，等它跑完出现 🍺 就好了。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">1c</div>
+  <div class="step-content">
+    <h4>安装 OpenClaw</h4>
+    <p>还是在终端里，输入这一行然后按回车：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal — zsh</span></div>
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">brew install openclaw</span><br>
+        <span class="output">==&gt; Downloading openclaw...</span><br>
+        <span class="output">==&gt; Installing openclaw...</span><br>
+        <span class="success">🎉 openclaw was successfully installed!</span>
+      </div>
+    </div>
+    <p>等 1-2 分钟，看到 🎉 就是装好了！</p>
+  </div>
+</div>
+
+<h3>🪟 Windows 用户</h3>
+
+<div class="step">
+  <div class="step-num">2a</div>
+  <div class="step-content">
+    <h4>先装 Node.js</h4>
+    <div class="find-app">
+      <div class="find-icon">📥</div>
+      <div class="find-text">
+        <h5>下载 Node.js</h5>
+        <p>
+          1. 打开浏览器，访问 <a href="https://nodejs.org" target="_blank" rel="noopener"><strong>nodejs.org</strong></a><br>
+          2. 点击绿色大按钮 <strong>"LTS 推荐版"</strong>（左边那个）下载<br>
+          3. 双击下载的 <code>.msi</code> 文件，一路点"Next"安装<br>
+          4. 装完后<strong>重启电脑</strong>（很重要！不重启可能找不到命令）
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2b</div>
+  <div class="step-content">
+    <h4>打开 PowerShell</h4>
+    <div class="find-app">
+      <div class="find-icon">🔍</div>
+      <div class="find-text">
+        <h5>怎么找到 PowerShell？</h5>
+        <p>
+          <strong>方法1：</strong>按 <span class="kbd">Win</span> 键（键盘左下角 Windows 图标），输入 <strong>PowerShell</strong>，点击"Windows PowerShell"<br>
+          <strong>方法2：</strong>右键桌面左下角的 Windows 图标 → 选择 "Windows Terminal" 或 "PowerShell"
+        </p>
+      </div>
+    </div>
+    <p>打开后你会看到一个蓝色/黑色的窗口，有闪烁的光标。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2c</div>
+  <div class="step-content">
+    <h4>安装 OpenClaw</h4>
+    <p>在 PowerShell 里输入：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">PowerShell</span></div>
+      <div class="terminal-body">
+        <span class="prompt">PS C:\Users\你&gt;</span> <span class="cmd">npm install -g openclaw</span><br>
+        <span class="output">added 142 packages in 45s</span><br>
+        <span class="success">✅ openclaw installed successfully</span>
+      </div>
+    </div>
+    <p>等 1-2 分钟，看到 ✅ 就是装好了。</p>
   </div>
 </div>
 
 <div class="crash-box">
   <h4>💥 翻车时刻 #1</h4>
-  <p>我装的时候提示 <code>command not found</code>，原来是 Homebrew 没装。</p>
-  <p><strong>解决：</strong>先装 Homebrew：<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></p>
+  <p><strong>症状：</strong>输入 <code>brew</code> 或 <code>npm</code> 提示 <code>command not found</code></p>
+  <p><strong>原因：</strong>Mac 没装 Homebrew / Windows 没装 Node.js，或者装完没重启</p>
+  <p><strong>解决：</strong>回到上面对应步骤装好前置工具。Windows 用户特别注意 <strong>装完 Node.js 要重启电脑</strong>！</p>
   <div class="crash-help">
     <h5>💬 卡在这一步？</h5>
-    <p>截图发 <a href="https://discord.gg/UdXFVYhh?utm_source=blog&utm_medium=tutorial&utm_campaign=ep01_crash" target="_blank" rel="noopener">Discord 社区</a>，200+ 龙虾主人帮你看</p>
+    <p>把终端报错截图发到 <a href="https://discord.gg/UdXFVYhh?utm_source=blog&utm_medium=tutorial&utm_campaign=ep01_crash" target="_blank" rel="noopener">Discord 社区</a>，200+ 龙虾主人帮你看</p>
   </div>
 </div>
 
 <!-- Step 2 -->
 <h2>Step 2 <span>启动你的龙虾</span></h2>
+<p>OpenClaw 装好了，现在让龙虾"活"过来。</p>
 
 <div class="step">
   <div class="step-num">3</div>
   <div class="step-content">
     <h4>初始化配置</h4>
-    <p>输入：</p>
-    <code>openclaw init</code>
-    <p style="margin-top:12px">一路回车（选默认配置就行）。这会创建一个工作文件夹 <code>~/.openclaw/workspace/</code>，你的龙虾会住在这里。</p>
+    <p>还是在刚才的终端/PowerShell 窗口里，输入：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">openclaw init</span><br>
+        <span class="output">🦞 Welcome to OpenClaw!</span><br>
+        <span class="output">Creating workspace at ~/.openclaw/workspace/...</span><br>
+        <span class="highlight">? Choose your AI provider: &gt; OpenAI (recommended)</span><br>
+        <span class="output">   Claude (Anthropic)</span><br>
+        <span class="output">   Other</span><br><br>
+        <span class="output">? Enter your API key: sk-xxxx...</span><br><br>
+        <span class="success">✅ Configuration saved!</span>
+      </div>
+    </div>
+    <p>它会问你几个问题：</p>
+    <p>• <strong>AI 模型选哪个？</strong>推荐选 OpenAI 或 Claude（如果你有API Key的话）<br>
+       • <strong>API Key 在哪拿？</strong>去 <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI后台</a> 或 <a href="https://console.anthropic.com" target="_blank">Claude后台</a> 创建一个<br>
+       • <strong>不知道选什么？</strong>一路按回车用默认值也行</p>
   </div>
 </div>
 
 <div class="step">
   <div class="step-num">4</div>
   <div class="step-content">
-    <h4>启动网关</h4>
-    <p>输入：</p>
-    <code>openclaw gateway start</code>
-    <p style="margin-top:12px">看到 <code>Gateway started</code> 就是成功了。这个窗口要保持开着，关了龙虾就下线了。</p>
+    <h4>启动网关（龙虾开机！）</h4>
+    <p>输入这行命令让龙虾正式上线：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+      <div class="terminal-body">
+        <span class="prompt">~ $</span> <span class="cmd">openclaw gateway start</span><br>
+        <span class="output">Starting OpenClaw gateway...</span><br>
+        <span class="success">🦞 Gateway started on port 3000</span><br>
+        <span class="highlight">📱 Feishu/Lark: 发送 start a1b2c3d4 到飞书机器人完成配对</span>
+      </div>
+    </div>
+    <p>⚠️ <strong>重要：</strong>这个终端窗口要一直开着！关掉 = 龙虾下线。可以把它最小化，但别关。</p>
   </div>
 </div>
 
 <div class="crash-box">
   <h4>💥 翻车时刻 #2</h4>
-  <p>我启动时提示端口被占用，原来是上次没关干净。</p>
-  <p><strong>解决：</strong>先 <code>openclaw gateway stop</code>，再重新 <code>start</code>。</p>
+  <p><strong>症状：</strong>提示 <code>Error: Port 3000 is already in use</code></p>
+  <p><strong>原因：</strong>上次没关干净，端口还被占着</p>
+  <p><strong>解决：</strong>先停再启：</p>
+  <div class="terminal">
+    <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+    <div class="terminal-body">
+      <span class="prompt">~ $</span> <span class="cmd">openclaw gateway stop</span><br>
+      <span class="prompt">~ $</span> <span class="cmd">openclaw gateway start</span>
+    </div>
+  </div>
 </div>
 
 <!-- Step 3 -->
 <h2>Step 3 <span>和飞书配对</span></h2>
-<p>现在让龙虾能「看到」你的飞书消息。</p>
+<p>现在让龙虾连上你的飞书，这样你就能在飞书里直接和它聊天了。</p>
 
 <div class="step">
   <div class="step-num">5</div>
   <div class="step-content">
-    <h4>获取配对码</h4>
-    <p>在启动网关的窗口里，找到这样一行：</p>
-    <p style="margin:10px 0;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px;font-size:13px">Feishu/Lark: 发送 <code>start xxxxxxxx</code> 到飞书机器人</p>
-    <p>复制那个 <code>xxxxxxxx</code>（8位字符）。</p>
+    <h4>复制配对码</h4>
+    <p>看刚才终端窗口里的这行：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+      <div class="terminal-body">
+        <span class="highlight">📱 Feishu/Lark: 发送 start <strong style="color:#9ece6a;text-decoration:underline">a1b2c3d4</strong> 到飞书机器人完成配对</span>
+      </div>
+    </div>
+    <p>把那个 <strong>8位字符</strong>（上面绿色下划线部分）复制下来。每次启动都会生成新的码，<strong>10分钟有效</strong>。</p>
   </div>
 </div>
 
 <div class="step">
   <div class="step-num">6</div>
   <div class="step-content">
-    <h4>飞书里完成配对</h4>
-    <p>1. 打开飞书，搜索「OpenClaw」官方应用<br>
-       2. 或者直接在飞书里 @Ima Claw 机器人<br>
-       3. 发送：<code>start xxxxxxxx</code>（把你复制的8位码填进去）</p>
-    <p style="margin-top:12px">看到「配对成功」就搞定了！</p>
+    <h4>在飞书里完成配对</h4>
+    <div class="find-app">
+      <div class="find-icon">💬</div>
+      <div class="find-text">
+        <h5>怎么找到机器人？</h5>
+        <p>
+          1. 打开<strong>飞书App</strong>（手机或电脑都行）<br>
+          2. 点击顶部<strong>搜索栏</strong><br>
+          3. 搜索「<strong>Ima Claw</strong>」或「<strong>OpenClaw</strong>」<br>
+          4. 找到带 🦞 图标的官方机器人，点击进入对话<br>
+          5. 在对话框里发送：
+        </p>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书对话 · Ima Claw</span></div>
+      <div class="terminal-body">
+        <span class="prompt">你：</span><span class="cmd">start a1b2c3d4</span><br><br>
+        <span class="prompt">🦞：</span><span class="success">配对成功！我是你的AI助手，你可以叫我…</span><br>
+        <span class="output">（龙虾会开始自我介绍，问你它该叫什么名字）</span>
+      </div>
+    </div>
+    <p>看到龙虾回复了？🎉 <strong>恭喜，配对成功！</strong></p>
   </div>
 </div>
 
 <div class="crash-box">
   <h4>💥 翻车时刻 #3</h4>
-  <p>配对码过期了！原来码只有10分钟有效期。</p>
-  <p><strong>解决：</strong>重启网关生成新码，或者等Cloud版（不用配对，扫码就行）。</p>
-  <p style="margin-top:12px;font-size:13px">👉 <a href="https://forms.gle/JZ1HnjjHKmqecmCx5?utm_source=blog&utm_medium=tutorial&utm_campaign=ep01_cloud" target="_blank" rel="noopener">Cloud版上线时通知我</a></p>
+  <p><strong>症状：</strong>发了 start 命令，龙虾没反应</p>
+  <p><strong>可能原因：</strong></p>
+  <p>• 配对码过期了（超过10分钟）→ 回终端重启 <code>openclaw gateway restart</code> 拿新码<br>
+     • 终端窗口关了 → 龙虾已下线，重新 <code>openclaw gateway start</code><br>
+     • 搜到的不是官方机器人 → 确认名字是 "Ima Claw" 且有官方标识</p>
+  <p style="margin-top:12px;font-size:13px">😮‍💨 <strong>嫌这步麻烦？</strong>Cloud版不用配对，扫码即用 → <a href="https://forms.gle/JZ1HnjjHKmqecmCx5?utm_source=blog&utm_medium=tutorial&utm_campaign=ep01_cloud" target="_blank" rel="noopener">预约Cloud版</a></p>
 </div>
 
 <!-- Step 4 -->
