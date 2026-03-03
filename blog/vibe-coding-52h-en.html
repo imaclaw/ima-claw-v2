@@ -377,15 +377,22 @@ a{text-decoration:none;color:var(--lobster-light)}
 <script src="../i18n/core.js?v=17"></script>
 <script src="../assets/js/nav.js?v=8"></script>
 <script>
-// English page: if detected language is Chinese, redirect to Chinese version
-(function(){
-  var lang = (typeof getLang==='function') ? getLang() : (localStorage.getItem('imaclaw-lang')||'en');
+// English page: redirect to Chinese version if language is Chinese
+function checkLangRedirect(){
+  var lang = localStorage.getItem('imaclaw-lang') || '';
   if(lang === 'zh-CN' || lang === 'zh') window.location.replace('vibe-coding-day2.html');
-})();
-// Also redirect on manual switch
-document.addEventListener('langChanged', function(){
-  var lang = (typeof getLang==='function') ? getLang() : 'en';
-  if(lang === 'zh-CN' || lang === 'zh') window.location.replace('vibe-coding-day2.html');
+}
+// Check on load (after core.js sets lang)
+setTimeout(checkLangRedirect, 100);
+// Check on manual switch
+document.addEventListener('langChanged', function(){ setTimeout(checkLangRedirect, 50); });
+// Also intercept lang button clicks directly
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('[data-lang]');
+  if(btn){
+    var lang = btn.getAttribute('data-lang');
+    if(lang === 'zh-CN' || lang === 'zh') setTimeout(function(){ window.location.replace('vibe-coding-day2.html'); }, 100);
+  }
 });
 </script>
 </body>
