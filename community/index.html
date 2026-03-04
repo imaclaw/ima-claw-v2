@@ -115,7 +115,7 @@ nav {
 }
 .creators-row::-webkit-scrollbar { display: none; }
 .creator-card {
-  flex-shrink: 0; width: 120px; scroll-snap-align: start;
+  flex-shrink: 0; width: 148px; scroll-snap-align: start;
   background: var(--card); border: 1px solid var(--border);
   border-radius: 16px; padding: 18px 12px; text-align: center;
   transition: all .25s; cursor: pointer; text-decoration: none; color: var(--text);
@@ -246,6 +246,16 @@ nav {
 /* ── FOOTER ── */
 footer { border-top: 1px solid var(--border); padding: 24px 28px; text-align: center; font-size: 13px; color: var(--muted); }
 
+.mcard-desc {
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 10px; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.mcard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.mtag {
+  font-size: 11px; color: var(--muted); background: var(--elevated);
+  padding: 3px 8px; border-radius: 8px;
+}
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -380,44 +390,130 @@ function lav(seed, size='sm') {
 
 // ── Data ──
 const CREATORS = [
-  {name:'Yuki He',u:'yuki',works:342,fol:'12.5K',emoji:'🦞'},
-  {name:'Sophie Lee',u:'sophie',works:412,fol:'15.6K'},
-  {name:'Alex Chen',u:'alex',works:156,fol:'8.2K'},
-  {name:'Kenji Sato',u:'kenji',works:234,fol:'9.8K'},
-  {name:'Maria G',u:'maria',works:89,fol:'5.1K'},
-  {name:'Lisa Wang',u:'lisa',works:178,fol:'7.3K'},
-  {name:'Tom H',u:'tom',works:67,fol:'3.2K'},
-  {name:'Emma B',u:'emma',works:98,fol:'4.5K'},
-  {name:'David K',u:'david',works:123,fol:'6.7K'},
-  {name:'James W',u:'james',works:267,fol:'11.2K'}
+  {name:'林晓薇 Vivian',u:'vivian',works:412,fol:'15.6K',badge:'🏆',bio:'电商摄影师转型AI创作者，专注产品图'},
+  {name:'何雁丹 Yuki',u:'yuki',works:342,fol:'12.5K',badge:'⭐',bio:'IMA Studio首批用户，龙虾养成达人'},
+  {name:'Marcus Tan',u:'marcus',works:289,fol:'11.8K',badge:'🔥',bio:'Singapore-based motion designer'},
+  {name:'陈思远 Charles',u:'charles',works:234,fol:'9.8K',badge:'',bio:'独立游戏开发者，用AI加速概念设计'},
+  {name:'Priya Sharma',u:'priya',works:178,fol:'7.3K',badge:'✨',bio:'Brand designer × AI enthusiast, Mumbai'},
+  {name:'李明轩 Leon',u:'leon',works:156,fol:'6.9K',badge:'',bio:'广告公司创意总监，AI副业中'},
+  {name:'Zara Kim',u:'zara',works:143,fol:'5.8K',badge:'',bio:'K-pop content creator + AI artist, Seoul'},
+  {name:'王芷涵 Iris',u:'iris',works:98,fol:'4.5K',badge:'',bio:'插画师，探索AI与手绘融合'},
+  {name:'Diego Morales',u:'diego',works:87,fol:'3.9K',badge:'',bio:'Freelance video editor, México'},
+  {name:'周云鹏 Jerry',u:'jerry',works:67,fol:'2.7K',badge:'',bio:'产品经理，AI工具重度使用者'}
 ];
 
 const IMGS = [
-  'https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=600&q=80',
-  'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80',
-  'https://images.unsplash.com/photo-1683009427666-295af85ccdcb?w=600&q=80',
-  'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=600&q=80',
-  'https://images.unsplash.com/photo-1698173498612-b5335a996873?w=600&q=80',
-  'https://images.unsplash.com/photo-1680009030521-79c532d2a758?w=600&q=80',
-  'https://images.unsplash.com/photo-1688827268210-3c977fe56b5d?w=600&q=80',
-  'https://images.unsplash.com/photo-1683009427699-7e0b90e7a13b?w=600&q=80',
-  'https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=600&q=80',
-  'https://images.unsplash.com/photo-1698173499670-480e004b7a8b?w=600&q=80',
+  'https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=600&q=80',   // 0 cyberpunk city
+  'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=600&q=80',   // 1 product cosmetics
+  'https://images.unsplash.com/photo-1683009427666-295af85ccdcb?w=600&q=80',   // 2 AI portrait
+  'https://images.unsplash.com/photo-1617791160536-598cf32026fb?w=600&q=80',   // 3 abstract art
+  'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&q=80',   // 4 futuristic interior
+  'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&q=80',   // 5 product shot
+  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',      // 6 fashion photography
+  'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=600&q=80',   // 7 AI art face
+  'https://images.unsplash.com/photo-1680009030521-79c532d2a758?w=600&q=80',   // 8 space/cosmos
+  'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&q=80',   // 9 minimal product
+  'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&q=80',   // 10 colorful abstract
+  'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=600&q=80',   // 11 portrait close-up
 ];
 
 const POSTS = [
-  {type:'w',img:0,h:'260px',title:'Cyberpunk Dreams',au:'yuki',likes:1234,coms:56,tags:['AI','sci-fi']},
-  {type:'b',emoji:'🤖',title:'我用AI龙虾写了52小时，做出了一个网站',excerpt:'从零到上线，完全靠IMA Claw生成代码和内容。这里是我的完整经历和踩坑记录——包括那些让我抓狂的瞬间。',au:'alex',likes:892,coms:34},
-  {type:'w',img:1,h:'200px',title:'Neon Tokyo Nights',au:'maria',likes:2156,coms:89,tags:['city','neon']},
-  {type:'w',img:2,h:'300px',title:'Ethereal Landscape',au:'kenji',likes:1567,coms:45,tags:['nature','dream']},
-  {type:'b',emoji:'🌊',title:'The Future of AI Art: What Nobody Is Talking About',excerpt:'Everyone focuses on image quality, but the real revolution is in creative workflow and authorship. Here's my take after 6 months of using AI tools daily.',au:'sophie',likes:3241,coms:156},
-  {type:'w',img:3,h:'220px',title:'Ancient Spirits',au:'tom',likes:923,coms:41,tags:['fantasy','dark']},
-  {type:'w',img:4,h:'180px',title:'Cosmic Journey',au:'lisa',likes:2678,coms:123,tags:['space','art']},
-  {type:'b',emoji:'💡',title:'Prompt Engineering: 5 patterns that changed my workflow',excerpt:'After analyzing 200+ successful prompts, I found 5 structural patterns that dramatically improve output quality. Pattern #3 surprised even me.',au:'david',likes:1456,coms:67},
-  {type:'w',img:5,h:'250px',title:'Dreamscape Portal',au:'emma',likes:1890,coms:78,tags:['surreal','portal']},
-  {type:'w',img:6,h:'200px',title:'Digital Horizon',au:'yuki',likes:1567,coms:45,tags:['digital','abstract']},
-  {type:'w',img:7,h:'280px',title:'Mystical Forest',au:'james',likes:2678,coms:123,tags:['forest','magical']},
-  {type:'b',emoji:'🎨',title:'Color Theory for AI: How to prompt for perfect palettes',excerpt:'Color is everything. AI models can understand color theory if you know how to ask. I spent a week testing these techniques — here's what actually works.',au:'maria',likes:2341,coms:89},
+  {
+    type:'w', img:11, h:'290px',
+    title:'国潮护肤品牌 · 春季宣传图',
+    desc:'客户要30张电商主图，用IMA Studio+Seedream 4.5，一个下午搞定。比以前外包省了80%成本。',
+    au:'vivian', likes:3241, coms:89, tags:['电商','产品图','国潮']
+  },
+  {
+    type:'b', emoji:'💸',
+    title:'我用IMA Claw接了第一个AI外包单，赚了¥8000',
+    excerpt:'三个月前我还不知道Prompt是什么。现在我靠AI接单，上个月收入超过正职。这篇文章记录我的完整路径——从0到第一个客户。',
+    au:'yuki', likes:4567, coms:234
+  },
+  {
+    type:'w', img:7, h:'240px',
+    title:'Digital Avatar Series #12',
+    desc:'用 Seedream 4.5 image-to-image，从真实照片生成动漫风头像，用了3个iteration。',
+    au:'zara', likes:2156, coms:91, tags:['avatar','anime','portrait']
+  },
+  {
+    type:'w', img:3, h:'210px',
+    title:'Abstract Brand Identity – Lumino',
+    desc:'A full brand identity project. All visuals generated with IMA Studio, refined in Figma.',
+    au:'priya', likes:1876, coms:67, tags:['branding','abstract','design']
+  },
+  {
+    type:'b', emoji:'🎮',
+    title:'用AI做独立游戏概念图：30天，200张，一个人',
+    excerpt:'我的游戏《深渊回响》所有概念图都是AI生成的。这里是我的工作流：从文字描述到可执行的角色设计，step by step。',
+    au:'charles', likes:3892, coms:178
+  },
+  {
+    type:'w', img:10, h:'180px',
+    title:'Color Explosion Series · Vol.3',
+    desc:'Purely experimental. No reference images, just prompts. 47 attempts to get this exact palette.',
+    au:'marcus', likes:1234, coms:45, tags:['abstract','color','experiment']
+  },
+  {
+    type:'w', img:1, h:'260px',
+    title:'极简美妆 · 白瓷系列',
+    desc:'用IMA Studio做的产品图，提示词调了一下午。最后那张白底黑影效果是意外得到的。',
+    au:'vivian', likes:2890, coms:112, tags:['产品','极简','美妆']
+  },
+  {
+    type:'b', emoji:'🤔',
+    title:'AI生图用了6个月，我的真实感受（不是广告）',
+    excerpt:'好的、坏的、让我崩溃的都有。Midjourney vs Seedream vs Nano Banana，我都用过，讲讲我的真实对比体验和使用场景。',
+    au:'leon', likes:5123, coms:312
+  },
+  {
+    type:'w', img:5, h:'200px',
+    title:'Nomad Gear – Product Campaign',
+    desc:'Shot brief + AI generation + manual color grade. Client approved on first round 🎉',
+    au:'diego', likes:987, coms:38, tags:['product','campaign','gear']
+  },
+  {
+    type:'w', img:4, h:'270px',
+    title:'未来系咖啡馆 · 空间概念设计',
+    desc:'给一个创业朋友做的空间氛围图，用 Wan 2.6 生成了飞屏视频，客户很满意。',
+    au:'iris', likes:1654, coms:73, tags:['空间设计','概念','氛围']
+  },
+  {
+    type:'b', emoji:'📐',
+    title:'How I Built a Full Brand System in 72 Hours Using Only AI',
+    excerpt:'Logo, color palette, typography, mockups, social templates — everything generated with IMA Studio. Here is the exact workflow I used, and what I'd do differently next time.',
+    au:'priya', likes:6234, coms:445
+  },
+  {
+    type:'w', img:8, h:'230px',
+    title:'星际遗迹 · 概念帧 No.7',
+    desc:'游戏场景概念，用文生图跑了14张之后选的这一版。后来拿去给美术组做了参考。',
+    au:'charles', likes:2341, coms:88, tags:['游戏','科幻','场景']
+  },
+  {
+    type:'w', img:2, h:'250px',
+    title:'Haenyeo Portrait Series',
+    desc:'AI-reimagined traditional Korean diving women. Exploring cultural identity through generative art.',
+    au:'zara', likes:3456, coms:167, tags:['portrait','culture','korea']
+  },
+  {
+    type:'b', emoji:'⚡',
+    title:'我是产品经理，我是怎么用AI龙虾提升30%工作效率的',
+    excerpt:'不是写代码，不是做设计——是需求文档、竞品分析、会议纪要、用研报告。AI龙虾已经成了我工作流里不可缺的一环，这篇讲具体怎么做。',
+    au:'jerry', likes:4123, coms:201
+  },
+  {
+    type:'w', img:6, h:'220px',
+    title:'Glow Season · Fashion Editorial',
+    desc:'Art direction + IMA Studio. Shot brief written in 20 min, final visuals approved same day.',
+    au:'marcus', likes:1789, coms:56, tags:['fashion','editorial','glow']
+  },
+  {
+    type:'w', img:9, h:'190px',
+    title:'手账本 · 品牌VI升级',
+    desc:'老客户找我做品牌升级，从logo到产品图全套，AI+人工各占50%。最满意的一单。',
+    au:'iris', likes:1123, coms:49, tags:['品牌','手账','VI']
+  },
 ];
 
 // ── Nav Avatar ──
@@ -450,7 +546,11 @@ CREATORS.forEach(c => {
   card.className = 'creator-card';
   const av = lav(c.u, 'lg');
   card.appendChild(av);
-  card.innerHTML += `<div class="c-name">${c.name}</div><div class="c-meta">${c.works} works · ${c.fol}</div><button class="c-follow" onclick="event.preventDefault();this.textContent=this.textContent==='Follow'?'Following ✓':'Follow'">Follow</button>`;
+  card.innerHTML += `
+    <div class="c-name">${c.name}</div>
+    <div class="c-bio">${c.bio || ''}</div>
+    <div class="c-meta">${c.works} works · ${c.fol}</div>
+    <button class="c-follow" onclick="event.preventDefault();this.textContent=this.textContent==='Follow'?'Following ✓':'Follow'">${c.badge||''} Follow</button>`;
   cr.appendChild(card);
 });
 
@@ -491,6 +591,8 @@ function makeCard(p) {
       </div>
       <div class="mcard-info">
         <div class="mcard-title">${p.title}</div>
+        ${p.desc ? `<div class="mcard-desc">${p.desc}</div>` : ''}
+        ${p.tags ? `<div class="mcard-tags">${p.tags.map(t=>'<span class=\'mtag\'>#'+t+'</span>').join('')}</div>` : ''}
         <div class="mcard-author">
           <div class="mcard-user" id="au_${p.au}_${Math.random().toString(36).slice(2)}">
             <span class="mcard-uname">${au.name}</span>
