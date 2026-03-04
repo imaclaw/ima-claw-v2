@@ -112,8 +112,8 @@ body{padding-top:60px}
 </div>
 
 <div class="blog-tabs">
-  <button class="blog-tab active" onclick="switchTab('diary')">📝 搞事日记</button>
-  <button class="blog-tab" onclick="switchTab('tips')">🦞 养虾经验</button>
+  <button class="blog-tab active" onclick="switchTab('diary')" data-i18n="blog.tab.diary">📝 Dev Diary</button>
+  <button class="blog-tab" onclick="switchTab('tips')" data-i18n="blog.tab.tips">🦞 Claw Tips</button>
 </div>
 
 <div class="blog-layout">
@@ -121,8 +121,8 @@ body{padding-top:60px}
   <!-- LEFT: Yuki的养虾经验 -->
   <div class="tips-col" id="col-tips">
     <div class="col-header">
-      🦞 Yuki的养虾经验
-      <span class="col-tag">持续更新</span>
+      <span data-i18n="blog.tips.title">🦞 Yuki's Claw Tips</span>
+      <span class="col-tag" data-i18n="blog.tips.ongoing">Ongoing Updates</span>
     </div>
 
     <a href="tips-why-smarter.html" class="post-card" style="border-color:rgba(88,166,255,0.18);background:linear-gradient(135deg,var(--surface),rgba(88,166,255,0.04))">
@@ -132,7 +132,7 @@ body{padding-top:60px}
       </div>
       <h2>为什么你的龙虾比别人的聪明？我总结了5个原因</h2>
       <p>不是模型更好，是养法不一样。身份设计、规则系统、错误编码、记忆机制、双向校准——5个方法，让龙虾越来越懂你。</p>
-      <span class="read-more">去看经验 →</span>
+      <span class="read-more" data-i18n="blog.read.tips">Read Tips →</span>
     </a>
 
         <a href="tutorial-ep01-install.html" class="post-card" style="border-color:rgba(88,166,255,0.15);background:linear-gradient(135deg,var(--surface),rgba(88,166,255,0.04))">
@@ -143,7 +143,7 @@ body{padding-top:60px}
       </div>
       <h2>安装 OpenClaw</h2>
       <p>10分钟，搭好龙虾的窝。零基础入门，Mac/Windows全流程，含3个真实翻车案例。</p>
-      <span class="read-more">去看教程 →</span>
+      <span class="read-more" data-i18n="blog.read.tutorial">Read Tutorial →</span>
     </a>
 
     <a href="tutorial-ep02-model.html" class="post-card" style="border-color:rgba(88,166,255,0.15);background:linear-gradient(135deg,var(--surface),rgba(88,166,255,0.04))">
@@ -154,7 +154,7 @@ body{padding-top:60px}
       </div>
       <h2>给龙虾装大脑</h2>
       <p>1个ImaStudio账号，一键解锁多模型大脑+创作套件。3步拿到API Key，附真实截图。</p>
-      <span class="read-more">去看教程 →</span>
+      <span class="read-more" data-i18n="blog.read.tutorial">Read Tutorial →</span>
     </a>
 
     <a href="tutorial-ep03-skills.html" class="post-card" style="border-color:rgba(88,166,255,0.15);background:linear-gradient(135deg,var(--surface),rgba(88,166,255,0.04))">
@@ -165,7 +165,7 @@ body{padding-top:60px}
       </div>
       <h2>装技能包</h2>
       <p>IMA基础智能 + 全能创作，40+模型一键解锁。让龙虾从"能聊天"变成"能干活"。</p>
-      <span class="read-more">去看教程 →</span>
+      <span class="read-more" data-i18n="blog.read.tutorial">Read Tutorial →</span>
     </a>
 
     <div class="col-discord">
@@ -178,7 +178,7 @@ body{padding-top:60px}
   <div class="diary-col active" id="col-diary">
     <div class="col-header col-header-diary">
       📝 搞事日记
-      <span class="col-tag">持续更新</span>
+      <span class="col-tag" data-i18n="blog.tips.ongoing">Ongoing Updates</span>
     </div>
 
     <a href="diary-feishu-entry.html" class="post-card" style="border-color:rgba(212,64,58,0.2);background:linear-gradient(135deg,var(--surface),rgba(212,64,58,0.04))">

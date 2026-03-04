@@ -101,47 +101,28 @@ footer a{color:var(--lobster-light)}
 </style>
 </head>
 <body>
-<nav>
-  <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
-  <div class="nav-links">
-    <a href="../../../">首页</a>
-    <a href="../../../adopt/" class="nav-adopt">🦞 领养</a>
-    <a href="../../../skills/">Skill 市场</a>
-    <a href="../../../pricing/">🛒 购买</a>
-    <a href="../../../docs/">帮助</a>
-    <a href="https://imastudio.com/community" target="_blank" rel="noopener">社区</a>
-    <a href="https://discord.gg/UdXFVYhh" aria-label="Join Ima Claw Discord community" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" style="width:14px;height:14px">Discord</a>
-    <div class="lang-dropdown">
-      <button class="lang-trigger">🌐 中文 ▾</button>
-      <div class="lang-menu">
-        <button data-lang="zh-CN">🇨🇳 中文</button>
-        <button data-lang="en">🇺🇸 English</button>
-      </div>
-    </div>
-  </div>
-  <button class="hamburger">☰</button>
-</nav>
+<nav></nav>
 <div class="tutorial">
 
 <div class="breadcrumb">
-<a href="../../../skills/">Skill 市场</a><span class="sep">›</span>
-<span style="color:var(--text)">Google Veo 视频</span></div>
+<a href="../../../skills/" data-i18n="skill.breadcrumb">Skill Market</a><span class="sep">›</span>
+<span style="color:var(--text)"><span data-i18n="skill.veo-video.title"></span></span></div>
 
 <div class="tut-header">
 <div class="tut-icon" style="font-size:40px">🎥</div>
-<div class="tut-meta"><h1>Google Veo 视频</h1>
+<div class="tut-meta"><h1 data-i18n="skill.veo-video.title"></h1>
 <div class="tut-tags"><span class="tut-tag tag-easy">⭐ 创作</span><span class="tut-tag tag-time">🌐 社区</span></div>
 </div></div>
 
-<div class="tip">💡 <strong>ImaStudio 账号即可使用。</strong>所有官方 Skill 已预装在 Ima Claw 中，只需 <a href="https://www.imastudio.com" target="_blank" rel="noopener" style="color:var(--gold)">ImaStudio 账号</a> 和 ImaClaw API Key 即可激活全部技能。</div>
+<div class="tip"><span data-i18n="skill.tip.preinstalled">💡 ImaStudio account required.</span></div>
 
-<div class="info-box"><h3>📋 关于这个 Skill</h3>
-<p style="color:var(--text-2);font-size:14px;line-height:1.8">使用 Google Veo 3.x 生成视频片段，支持拼接和 CLI 工作流。</p>
-<p style='color:var(--text-3);font-size:13px;margin-top:8px'>支持模型：Veo 3.1 · Veo 3.0</p>
+<div class="info-box"><h3 data-i18n="skill.info.about">📋 About This Skill</h3>
+<p style="color:var(--text-2);font-size:14px;line-height:1.8"><span data-i18n="skill.veo-video.desc"></span></p>
+<p style='color:var(--text-3);font-size:13px;margin-top:8px' data-i18n="skill.models.prefix">Supported: Veo 3.1 · Veo 3.0</p>
 </div>
 
-<div class="step"><div class="step-badge">功能</div>
-<h2>✨ 核心能力</h2>
+<div class="step"><div class="step-badge" data-i18n="skill.badge.feature">Features</div>
+<h2 data-i18n="skill.features.h2">✨ Core Capabilities</h2>
 <ul class="info-list">
 <li>文本生成视频</li>
 <li>多片段生成和拼接</li>
@@ -151,46 +132,46 @@ footer a{color:var(--lobster-light)}
 </ul>
 </div>
 
-<div class="step"><div class="step-badge">示例</div>
-<h2>💬 使用示例</h2>
-<p>直接对龙虾说：</p>
-<div class="code-block" style="text-align:center;font-size:15px;color:var(--text)">用 Veo 生成一段 5 秒的产品展示视频<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
-<p style="color:var(--text-3);font-size:13px;margin-top:12px">龙虾会自动调用 Google Veo 视频 技能为你完成任务。无需手动选择技能，自然对话即可。</p>
+<div class="step"><div class="step-badge" data-i18n="skill.badge.example">Example</div>
+<h2 data-i18n="skill.examples.h2">💬 Usage Example</h2>
+<p data-i18n="skill.examples.prompt">Just tell Claw:</p>
+<div class="code-block" style="text-align:center;font-size:15px;color:var(--text)">用 Veo 生成一段 5 秒的产品展示视频<button class="copy-btn" onclick="copyCode(this)" data-i18n="skill.install.copy">Copy</button></div>
+<p style="color:var(--text-3);font-size:13px;margin-top:12px" data-i18n="skill.examples.auto">Claw will automatically invoke this skill.</p>
 </div>
 
-<div class="step"><div class="step-badge">安装</div>
-<h2>🔧 安装方式</h2>
+<div class="step"><div class="step-badge" data-i18n="skill.badge.install">Install</div>
+<h2 data-i18n="skill.install.h2">🔧 Installation</h2>
 
-<p>如果需要手动安装或重新安装：</p>
-<div class="code-block">clawhub install ima-all-ai<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
-<p>安装完成后，重启龙虾生效：</p>
-<div class="code-block">openclaw gateway restart<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+<p data-i18n="skill.install.manual">To install or reinstall manually:</p>
+<div class="code-block">clawhub install ima-all-ai<button class="copy-btn" onclick="copyCode(this)" data-i18n="skill.install.copy">Copy</button></div>
+<p data-i18n="skill.install.restart">After installation, restart Claw to activate:</p>
+<div class="code-block">openclaw gateway restart<button class="copy-btn" onclick="copyCode(this)" data-i18n="skill.install.copy">Copy</button></div>
 </div>
 
 <div class="success-box">
 <div class="emoji"><img src="../../../logo-nav.png" alt="Ima Claw" style="width:64px;height:64px;display:inline-block;vertical-align:middle"> 🎉</div>
-<h3>Google Veo 视频 已就绪！</h3>
-<p>直接跟龙虾对话就能使用这个技能</p></div>
+<h3><span data-i18n="skill.veo-video.ready_title">Veo Video Ready!</span></h3>
+<p data-i18n="skill.success.desc">Just chat with Claw to use this skill</p></div>
 
-<div class="faq"><h2>❓ 常见问题</h2>
+<div class="faq"><h2 data-i18n="skill.faq.h2">❓ FAQ</h2>
 <div class="faq-item">
-<div class="faq-q">需要单独配置 API Key 吗？<span class="faq-arrow">▾</span></div>
-<div class="faq-a"><p>不需要。所有 Skill 通过 ImaClaw 统一调用，只需 ImaStudio 账号和 ImaClaw API Key。</p></div></div>
-
-<div class="faq-item">
-<div class="faq-q">怎么知道龙虾用了哪个 Skill？<span class="faq-arrow">▾</span></div>
-<div class="faq-a"><p>龙虾会自动根据你的需求选择合适的 Skill。你也可以指定："用 Google Veo 视频 帮我..."</p></div></div>
+<div class="faq-q" data-i18n="skill.faq1.q">Do I need a separate API Key?<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p data-i18n="skill.faq1.a">No. All Skills go through ImaClaw. You only need an ImaStudio account.</p></div></div>
 
 <div class="faq-item">
-<div class="faq-q">可以关闭这个 Skill 吗？<span class="faq-arrow">▾</span></div>
-<div class="faq-a"><p>可以。登录后在 Skill 管理页面可以开启/关闭任意技能。</p></div></div>
+<div class="faq-q" data-i18n="skill.faq2.q">How do I know which Skill Claw used?<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p data-i18n="skill.faq2.a">Claw auto-selects the right skill for your request.</p></div></div>
+
+<div class="faq-item">
+<div class="faq-q" data-i18n="skill.faq3.q">Can I disable this Skill?<span class="faq-arrow">▾</span></div>
+<div class="faq-a"><p data-i18n="skill.faq3.a">Yes. Go to Skill management in your account settings.</p></div></div>
 </div>
 
 <div class="bottom-nav">
-<a href="../../../skills/" class="btn-back">← 返回 Skill 市场</a>
-<a href="https://imastudio.com/community" target="_blank" rel="noopener" class="btn-community">💬 遇到问题？加入社区</a></div>
+<a href="../../../skills/" class="btn-back" data-i18n="skill.cta.back">← Back to Skill Market</a>
+<a href="https://imastudio.com/community" target="_blank" rel="noopener" class="btn-community" data-i18n="skill.cta.community">💬 Got a question? Join Community</a></div>
 
-<div class="other-channels"><h3>同类 Skill</h3>
+<div class="other-channels"><h3 data-i18n="skill.related.h3">Related Skills</h3>
 <div class="channel-row"><a href="../seedance/" class="channel-link">💃 Seedance 2.0</a>
 <a href="../nano-banana/" class="channel-link">🍌 Nano Banana 2</a>
 <a href="../ima-image/" class="channel-link">🎨 IMA 图片生成</a>

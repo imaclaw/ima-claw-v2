@@ -106,42 +106,23 @@ footer a{color:var(--lobster-light)}
 </style>
 </head>
 <body>
-<nav>
-  <a href="../../../" class="logo"><img src="../../../logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
-  <div class="nav-links">
-    <a href="../../../">首页</a>
-    <a href="../../../adopt/" class="nav-adopt">🦞 领养</a>
-    <a href="../../../skills/">Skill 市场</a>
-    <a href="../../../pricing/">🛒 购买</a>
-    <a href="../../../docs/">帮助</a>
-    <a href="https://imastudio.com/community" target="_blank" rel="noopener">社区</a>
-    <a href="https://discord.gg/UdXFVYhh" aria-label="Join Ima Claw Discord community" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" style="width:14px;height:14px">Discord</a>
-    <div class="lang-dropdown">
-      <button class="lang-trigger">🌐 中文 ▾</button>
-      <div class="lang-menu">
-        <button data-lang="zh-CN">🇨🇳 中文</button>
-        <button data-lang="en">🇺🇸 English</button>
-      </div>
-    </div>
-  </div>
-  <button class="hamburger">☰</button>
-</nav>
+<nav></nav>
 <div class="tutorial">
 
 <div class="breadcrumb">
-<a href="../../../skills/">Skill 市场</a><span class="sep">›</span>
-<span style="color:var(--text)">IMA 基础智能包</span></div>
+<a href="../../../skills/" data-i18n="skill.breadcrumb">Skill Market</a><span class="sep">›</span>
+<span style="color:var(--text)"><span data-i18n="skill.ima-intelligence.title"></span></span></div>
 
 <div class="tut-header" style="border:2px solid #3370FF;border-radius:16px;padding:20px;background:linear-gradient(135deg,var(--surface) 0%,rgba(51,112,255,0.08) 100%)">
 <div class="tut-icon" style="font-size:48px">🧠</div>
 <div class="tut-meta">
 <div class="hero-badge">⭐ 必装</div>
-<h1>IMA 基础智能包</h1>
+<h1 data-i18n="skill.ima-intelligence.title"></h1>
 </div></div>
 
 <div style="margin:24px 0;padding:20px;background:var(--surface);border-radius:12px;border:1px solid var(--border);line-height:1.8;color:var(--text-2);font-size:15px">龙虾的出厂标配。记忆系统、上下文管理、任务追踪、深度调研——让龙虾不只是一个聊天机器人，而是一个真正有记忆、有条理、能持续进化的 AI 助手。</div>
 
-<div class="tip">💡 <strong>ImaStudio 账号即可使用。</strong>此技能包已预装在 Ima Claw 中，只需 <a href="https://www.imastudio.com" target="_blank" rel="noopener" style="color:var(--gold)">ImaStudio 账号</a> 和 ImaClaw API Key 即可激活。</div>
+<div class="tip"><span data-i18n="skill.tip.preinstalled">💡 ImaStudio account required.</span></div>
 
 
 
@@ -157,9 +138,9 @@ footer a{color:var(--lobster-light)}
 </ul>
 </div>
 
-<div class="step"><div class="step-badge">示例</div>
-<h2>💬 使用示例</h2>
-<p>直接对龙虾说：</p>
+<div class="step"><div class="step-badge" data-i18n="skill.badge.example">Example</div>
+<h2 data-i18n="skill.examples.h2">💬 Usage Example</h2>
+<p data-i18n="skill.examples.prompt">Just tell Claw:</p>
 <div style="margin:12px 0;padding:12px 16px;background:var(--surface);border-radius:8px;border:1px solid var(--border)"><div style="font-size:12px;color:var(--lobster-light);margin-bottom:4px">🧠 记忆</div><div style="color:var(--text);font-size:14px">"记住我喜欢用 Midjourney 风格出图，以后默认用这个"</div></div>
 <div style="margin:12px 0;padding:12px 16px;background:var(--surface);border-radius:8px;border:1px solid var(--border)"><div style="font-size:12px;color:var(--lobster-light);margin-bottom:4px">📋 任务</div><div style="color:var(--text);font-size:14px">"把'周五前完成产品海报'加到待办"</div></div>
 <div style="margin:12px 0;padding:12px 16px;background:var(--surface);border-radius:8px;border:1px solid var(--border)"><div style="font-size:12px;color:var(--lobster-light);margin-bottom:4px">🔬 调研</div><div style="color:var(--text);font-size:14px">"帮我深度研究一下 2026 年 AI Agent 市场格局"</div></div>
@@ -174,21 +155,21 @@ footer a{color:var(--lobster-light)}
 <a href="../feishu-calendar/" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface);border-radius:8px;border:1px solid var(--border);margin:8px 0;text-decoration:none"><span style="color:var(--text);font-weight:600">飞书日历</span><span style="color:var(--text-3);font-size:12px">日历事件管理</span></a>
 </div>
 
-<div class="step"><div class="step-badge">安装</div>
-<h2>🔧 安装方式</h2>
+<div class="step"><div class="step-badge" data-i18n="skill.badge.install">Install</div>
+<h2 data-i18n="skill.install.h2">🔧 Installation</h2>
 <div class="tip" style="border-color:rgba(46,204,113,0.3);background:rgba(46,204,113,0.05)">✅ <strong>官方预装技能包</strong> — 已随 Ima Claw 一起安装，无需额外操作。确保你有 ImaStudio 账号即可使用全部能力。</div>
-<p>如果需要手动安装或重新安装：</p>
-<div class="code-block">clawhub install ima-intelligence<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
-<p>安装完成后，重启龙虾生效：</p>
-<div class="code-block">openclaw gateway restart<button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+<p data-i18n="skill.install.manual">To install or reinstall manually:</p>
+<div class="code-block">clawhub install ima-intelligence<button class="copy-btn" onclick="copyCode(this)" data-i18n="skill.install.copy">Copy</button></div>
+<p data-i18n="skill.install.restart">After installation, restart Claw to activate:</p>
+<div class="code-block">openclaw gateway restart<button class="copy-btn" onclick="copyCode(this)" data-i18n="skill.install.copy">Copy</button></div>
 </div>
 
 <div class="success-box">
 <div class="emoji"><img src="../../../logo-nav.png" alt="Ima Claw" style="width:64px;height:64px;display:inline-block;vertical-align:middle"> 🎉</div>
-<h3>IMA 基础智能包 已就绪！</h3>
+<h3><span data-i18n="skill.ima-intelligence.ready_title">Ima Intelligence Ready!</span></h3>
 <p>直接跟龙虾对话就能使用所有能力</p></div>
 
-<div class="faq"><h2>❓ 常见问题</h2>
+<div class="faq"><h2 data-i18n="skill.faq.h2">❓ FAQ</h2>
 <div class="faq-item">
 <div class="faq-q">这个包和单独的技能有什么区别？<span class="faq-arrow">▾</span></div>
 <div class="faq-a"><p>技能包是多个相关技能的集合，一键安装即可获得全部能力。你也可以单独安装/关闭包内的任意技能。</p></div></div>
@@ -203,8 +184,8 @@ footer a{color:var(--lobster-light)}
 </div>
 
 <div class="bottom-nav">
-<a href="../../../skills/" class="btn-back">← 返回 Skill 市场</a>
-<a href="https://imastudio.com/community" target="_blank" rel="noopener" class="btn-community">💬 遇到问题？加入社区</a></div>
+<a href="../../../skills/" class="btn-back" data-i18n="skill.cta.back">← Back to Skill Market</a>
+<a href="https://imastudio.com/community" target="_blank" rel="noopener" class="btn-community" data-i18n="skill.cta.community">💬 Got a question? Join Community</a></div>
 
 </div>
 <script>
