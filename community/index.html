@@ -2,258 +2,567 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="theme-color" content="#0C0C12">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Community — Ima Claw 🦞</title>
-<meta name="description" content="IMA Claw 社区 — 看看大家用 AI 龙虾创作了什么">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/variables.css?v=8">
-<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font-sans);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:60px}
-a{text-decoration:none;color:inherit}
+:root {
+  --red: #D4403A;
+  --red-light: #FF6B6B;
+  --bg: #0B0B0E;
+  --card: #141418;
+  --elevated: #1E1E25;
+  --border: #252530;
+  --text: #FFFFFF;
+  --muted: #8B8FA8;
+  --yellow: #F5B731;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-/* ── Hero ── */
-.hero{text-align:center;padding:72px 40px 48px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(212,64,58,.12) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;border:1px solid rgba(212,64,58,.25);background:rgba(212,64,58,.08);font-size:12px;font-weight:600;color:var(--lobster-light);margin-bottom:20px}
-.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1}
-.hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:17px;color:var(--text-2);max-width:480px;margin:0 auto 28px;line-height:1.7}
-.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.btn-primary{padding:11px 24px;background:var(--lobster);color:#fff;border-radius:10px;font-weight:700;font-size:14px;transition:all .2s}
-.btn-primary:hover{background:var(--lobster-light);transform:translateY(-1px)}
-.btn-secondary{padding:11px 24px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);border-radius:10px;font-weight:600;font-size:14px;transition:all .2s}
-.btn-secondary:hover{background:rgba(255,255,255,.09);border-color:var(--border-hover)}
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(11,11,14,.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  height: 64px; display: flex; align-items: center; padding: 0 28px;
+  justify-content: space-between;
+}
+.nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text); font-weight:800; font-size:18px; }
+.nav-logo span { font-size:24px; }
+.nav-links { display:flex; gap:28px; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+.nav-links a:hover, .nav-links a.active { color:var(--text); }
+.nav-right { display:flex; align-items:center; gap:14px; }
+.btn-create {
+  background:var(--red); color:#fff; border:none; padding:9px 20px;
+  border-radius:22px; font-weight:700; font-size:14px; cursor:pointer; transition:all .2s;
+}
+.btn-create:hover { background:var(--red-light); transform:scale(1.03); }
 
-/* ── Section ── */
-.section{max-width:1100px;margin:0 auto;padding:0 40px 60px}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
-.section-title{font-size:20px;font-weight:800;letter-spacing:-.02em}
-.section-more{font-size:13px;color:var(--lobster-light);font-weight:600}
-.section-more:hover{text-decoration:underline}
+/* ── LOBSTER AVATAR ── */
+.lav {
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; flex-shrink: 0;
+  font-size: var(--lav-font, 20px);
+  width: var(--lav-size, 40px);
+  height: var(--lav-size, 40px);
+  background: var(--lav-bg, linear-gradient(135deg, #D4403A, #FF6B6B));
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--lav-color, var(--red));
+}
+.lav.xs { --lav-size: 28px; --lav-font: 14px; }
+.lav.sm { --lav-size: 36px; --lav-font: 18px; }
+.lav.md { --lav-size: 52px; --lav-font: 28px; }
+.lav.lg { --lav-size: 72px; --lav-font: 38px; }
+.lav.xl { --lav-size: 88px; --lav-font: 48px; }
+.lav-badge {
+  position: absolute; top: -4px; right: -4px;
+  font-size: 12px; line-height: 1;
+}
 
-/* ── Featured Users ── */
-.users-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
-.users-row::-webkit-scrollbar{display:none}
-.user-card{flex-shrink:0;width:130px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 12px;text-align:center;cursor:pointer;transition:all .25s}
-.user-card:hover{border-color:rgba(212,64,58,.25);transform:translateY(-2px)}
-.user-avatar{width:52px;height:52px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 10px;overflow:hidden}
-.user-avatar img{width:100%;height:100%;object-fit:cover}
-.user-name{font-size:13px;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.user-meta{font-size:11px;color:var(--text-3)}
+/* ── HERO ── */
+.hero {
+  padding: 96px 28px 56px;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(212,64,58,.18) 0%, transparent 70%);
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 52px); font-weight: 800;
+  background: linear-gradient(135deg, #fff 30%, #9CA3AF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 20px; line-height: 1.15;
+}
+.hero-stats {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  margin-bottom: 36px; flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; align-items: center; }
+.stat-n { font-size: 36px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; }
+.stat-l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+.stat-dot { color: var(--border); font-size: 24px; }
+.hero-search {
+  max-width: 560px; margin: 0 auto;
+  display: flex; gap: 10px; position: relative;
+}
+.hero-search input {
+  flex: 1; background: var(--card); border: 1px solid var(--border);
+  border-radius: 30px; padding: 16px 24px; font-size: 15px;
+  color: var(--text); outline: none; transition: border-color .2s;
+}
+.hero-search input:focus { border-color: var(--red); }
+.hero-search input::placeholder { color: var(--muted); }
+.hero-search button {
+  background: var(--elevated); border: 1px solid var(--border);
+  border-radius: 50%; width: 52px; height: 52px; font-size: 18px;
+  cursor: pointer; transition: all .2s; flex-shrink: 0;
+}
+.hero-search button:hover { background: var(--red); border-color: var(--red); }
 
-/* ── Feed ── */
-.feed{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.feed-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .25s;display:block}
-.feed-card:hover{border-color:rgba(212,64,58,.2);transform:translateY(-2px)}
-.feed-card.work .card-cover{aspect-ratio:16/9;overflow:hidden}
-.feed-card.work .card-cover img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.feed-card.work:hover .card-cover img{transform:scale(1.04)}
-.card-body{padding:18px 20px 20px}
-.card-type{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:10px}
-.card-type.blog{background:rgba(88,166,255,.1);color:#58a6ff}
-.card-type.work{background:rgba(212,64,58,.1);color:var(--lobster-light)}
-.card-title{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:8px}
-.card-excerpt{font-size:13px;color:var(--text-2);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-footer{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
-.card-author{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-2)}
-.card-author-avatar{width:22px;height:22px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;overflow:hidden}
-.card-author-avatar img{width:100%;height:100%;object-fit:cover}
-.card-stats{margin-left:auto;display:flex;gap:10px;font-size:12px;color:var(--text-3)}
-.card-stat{display:flex;align-items:center;gap:3px}
+/* ── TRENDING LOBSTERS ── */
+.section { padding: 0 0 8px; }
+.section-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 32px 28px 20px;
+}
+.section-head h2 { font-size: 17px; font-weight: 700; }
+.see-all { color: var(--red); text-decoration: none; font-size: 13px; font-weight: 600; }
+.creators-row {
+  display: flex; gap: 14px; overflow-x: auto; padding: 0 28px 20px;
+  scrollbar-width: none; scroll-snap-type: x mandatory;
+}
+.creators-row::-webkit-scrollbar { display: none; }
+.creator-card {
+  flex-shrink: 0; width: 120px; scroll-snap-align: start;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px 12px; text-align: center;
+  transition: all .25s; cursor: pointer; text-decoration: none; color: var(--text);
+}
+.creator-card:hover { background: var(--elevated); transform: translateY(-4px); border-color: var(--red); }
+.creator-card .lav { margin: 0 auto 12px; }
+.c-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-meta { font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+.c-follow {
+  border: 1px solid var(--red); color: var(--red); background: transparent;
+  padding: 5px 14px; border-radius: 12px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all .2s; width: 100%;
+}
+.c-follow:hover { background: var(--red); color: #fff; }
 
-/* ── Divider ── */
-.section-divider{border:none;border-top:1px solid var(--border);margin:0 40px 48px}
+/* ── FILTER BAR ── */
+.filter-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.filter-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px; gap: 16px; max-width: 1500px; margin: 0 auto;
+}
+.filter-bar.stuck {
+  position: fixed; top: 64px; left: 0; right: 0; z-index: 100;
+  background: rgba(11,11,14,.96); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.filter-pills { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.filter-pills::-webkit-scrollbar { display: none; }
+.fpill {
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: all .2s;
+}
+.fpill:hover { border-color: var(--red); color: var(--text); }
+.fpill.on { background: var(--red); border-color: var(--red); color: #fff; }
+.fsort select {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); padding: 9px 14px; border-radius: 8px;
+  font-size: 13px; cursor: pointer; outline: none; white-space: nowrap;
+}
 
-/* ── Empty state ── */
-.empty{text-align:center;padding:60px 20px;color:var(--text-3)}
-.empty-icon{font-size:40px;margin-bottom:14px}
-.empty p{font-size:15px;margin-bottom:20px}
+/* ── MASONRY GRID ── */
+.grid-wrap { max-width: 1500px; margin: 0 auto; padding: 24px 20px 48px; }
+.masonry {
+  columns: 4 280px; column-gap: 20px;
+}
+.mcard {
+  break-inside: avoid; background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; margin-bottom: 20px;
+  transition: all .3s; cursor: pointer; display: block; text-decoration: none; color: var(--text);
+}
+.mcard:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(0,0,0,.4); border-color: rgba(212,64,58,.4); }
+.mcard-img { position: relative; overflow: hidden; }
+.mcard-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+.mcard:hover .mcard-img img { transform: scale(1.06); }
+.mcard-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.72); backdrop-filter: blur(8px);
+  padding: 5px 10px; border-radius: 10px; font-size: 11px; font-weight: 600;
+}
+.mcard-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+}
+.mcard:hover .mcard-overlay { opacity: 1; }
+.mcard-actions { display: flex; gap: 10px; }
+.mcard-action {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,.92); border: none;
+  font-size: 18px; cursor: pointer; transition: transform .2s;
+}
+.mcard-action:hover { transform: scale(1.15); }
+.mcard-info { padding: 14px 14px 12px; }
+.mcard-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+.mcard-author {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mcard-user { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.mcard-uname { font-size: 13px; font-weight: 600; color: var(--text); }
+.mcard-counts { display: flex; gap: 10px; font-size: 12px; color: var(--muted); }
 
-/* ── Footer ── */
-footer{border-top:1px solid var(--border);padding:40px;text-align:center}
-footer p{color:var(--text-3);font-size:12px}
-footer a{color:var(--lobster-light)}
+/* blog card variant */
+.mcard.blog-card .mcard-img { display: none; }
+.mcard.blog-card { background: linear-gradient(135deg, var(--card) 0%, var(--elevated) 100%); }
+.mcard.blog-card .mcard-info { padding: 20px; }
+.blog-emoji { font-size: 36px; margin-bottom: 12px; display: block; }
+.blog-excerpt { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
 
-@media(max-width:768px){
-  .hero{padding:56px 20px 36px}
-  .section{padding:0 20px 48px}
-  .feed{grid-template-columns:1fr}
-  .section-divider{margin:0 20px 40px}
+/* ── LOAD MORE ── */
+.load-more { text-align: center; padding: 0 0 60px; }
+.btn-load {
+  background: var(--card); border: 1px solid var(--border); color: var(--text);
+  padding: 14px 40px; border-radius: 28px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+}
+.btn-load:hover { background: var(--elevated); border-color: var(--red); }
+.btn-load.loading { opacity: .6; pointer-events: none; }
+
+/* ── MODAL ── */
+.modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(12px);
+  z-index: 500; display: none; align-items: center; justify-content: center;
+}
+.modal-bg.show { display: flex; }
+.modal {
+  background: var(--elevated); border: 1px solid var(--border);
+  border-radius: 24px; padding: 32px; width: 90%; max-width: 420px;
+}
+.modal h3 { font-size: 20px; font-weight: 800; margin-bottom: 24px; }
+.modal-opts { display: grid; gap: 12px; }
+.modal-opt {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 20px; text-decoration: none;
+  color: var(--text); transition: all .2s; cursor: pointer;
+}
+.modal-opt:hover { border-color: var(--red); transform: translateX(4px); }
+.modal-opt-icon { font-size: 28px; }
+.modal-opt-label { font-weight: 700; font-size: 16px; }
+.modal-opt-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.modal-close {
+  float: right; background: var(--card); border: none; color: var(--muted);
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 18px;
+  line-height: 32px; text-align: center; margin-top: -8px;
+}
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 24px 28px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { padding: 84px 20px 44px; }
+  .masonry { columns: 2 160px; column-gap: 12px; }
+  .filter-bar { padding: 12px 16px; }
+  .grid-wrap { padding: 16px 12px 40px; }
+}
+@media (max-width: 480px) {
+  .masonry { columns: 1; }
+  .hero .stat-n { font-size: 28px; }
 }
 </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
-  <a href="../" class="logo">
-    <img src="../logo-nav.png" alt="Ima Claw logo">
-    <div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div>
-  </a>
+  <a href="../" class="nav-logo"><span>🦞</span>IMA Claw</a>
   <div class="nav-links">
-    <a href="../adopt/">领养</a>
-    <a href="../skills/">Skills</a>
-    <a href="../blog/">Blog</a>
-    <a href="../community/" class="active" style="color:var(--lobster-light)">社区</a>
+    <a href="index.html" class="active">Community</a>
+    <a href="yuki/">My Lobster</a>
+    <a href="../adopt/">Explore</a>
   </div>
-  <div class="nav-cta">
-    <a href="../adopt/" class="nav-btn">开始领养</a>
+  <div class="nav-right">
+    <button class="btn-create" onclick="openModal()">+ Create</button>
+    <div id="navAvatar"></div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🦞 IMA Claw Community</div>
-  <h1>龙虾们<span>创作的地方</span></h1>
-  <p>博客、AI 作品、灵感碎片——看看大家用 IMA Claw 做了什么</p>
-  <div class="hero-actions">
-    <a href="../adopt/" class="btn-primary">领养我的龙虾 →</a>
-    <a href="#feed" class="btn-secondary">浏览作品</a>
+  <h1>Discover Amazing Creators</h1>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n" id="cn">0</div><div class="stat-l">Creators</div></div>
+    <span class="stat-dot">·</span>
+    <div class="stat"><div class="stat-n" id="wn">0</div><div class="stat-l">Works</div></div>
+    <span class="stat-dot">·</span>
+    <div class="stat"><div class="stat-n" id="dn">0</div><div class="stat-l">Today</div></div>
+  </div>
+  <div class="hero-search">
+    <input type="text" id="srch" placeholder="Search creators, works, tags..." autocomplete="off">
+    <button>🔍</button>
   </div>
 </section>
 
-<!-- FEATURED CREATORS -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-title">🌟 创作者</div>
+<!-- TRENDING LOBSTERS -->
+<section class="section">
+  <div class="section-head">
+    <h2>🔥 Trending Lobsters</h2>
+    <a href="#" class="see-all">See All →</a>
   </div>
-  <div class="users-row">
-    <a href="yuki/" class="user-card">
-      <div class="user-avatar">🦞</div>
-      <div class="user-name">Yuki He</div>
-      <div class="user-meta">12 篇 · 8 作品</div>
-    </a>
-    <div class="user-card">
-      <div class="user-avatar">🎨</div>
-      <div class="user-name">Alex W</div>
-      <div class="user-meta">5 篇 · 24 作品</div>
+  <div class="creators-row" id="crRow"></div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-wrap" id="filterWrap">
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-pills">
+      <button class="fpill on" data-f="all">All</button>
+      <button class="fpill" data-f="works">🎨 Works</button>
+      <button class="fpill" data-f="blogs">📝 Blogs</button>
+      <button class="fpill" data-f="hot">🔥 Trending</button>
+      <button class="fpill" data-f="pick">⭐ Featured</button>
     </div>
-    <div class="user-card">
-      <div class="user-avatar">🤖</div>
-      <div class="user-name">Maya L</div>
-      <div class="user-meta">9 篇 · 15 作品</div>
-    </div>
-    <div class="user-card">
-      <div class="user-avatar">⚡</div>
-      <div class="user-name">Chris D</div>
-      <div class="user-meta">3 篇 · 31 作品</div>
-    </div>
-    <div class="user-card">
-      <div class="user-avatar">🌊</div>
-      <div class="user-name">Sam K</div>
-      <div class="user-meta">7 篇 · 11 作品</div>
-    </div>
-    <div class="user-card">
-      <div class="user-avatar">🔥</div>
-      <div class="user-name">Jiahao</div>
-      <div class="user-meta">2 篇 · 18 作品</div>
+    <div class="fsort">
+      <select id="sortBy">
+        <option value="pop">Most Popular</option>
+        <option value="new">Newest First</option>
+        <option value="fol">Following</option>
+      </select>
     </div>
   </div>
 </div>
 
-<hr class="section-divider">
+<!-- GRID -->
+<div class="grid-wrap">
+  <div class="masonry" id="grid"></div>
+</div>
+<div class="load-more">
+  <button class="btn-load" id="loadBtn">Load More</button>
+</div>
 
-<!-- FEED -->
-<div class="section" id="feed">
-  <div class="section-header">
-    <div class="section-title">✨ 最新发布</div>
-  </div>
-  <div class="feed">
-
-    <!-- Blog post card -->
-    <a href="yuki/" class="feed-card blog">
-      <div class="card-body">
-        <div class="card-type blog">📝 博客</div>
-        <div class="card-title">我用 AI 龙虾写了 52 小时，做出了一个网站</div>
-        <div class="card-excerpt">从零到上线，完全靠 IMA Claw 生成代码和内容。这里是我的完整经历和踩坑记录……</div>
-        <div class="card-footer">
-          <div class="card-author">
-            <div class="card-author-avatar">🦞</div>
-            Yuki He
-          </div>
-          <div class="card-stats">
-            <span class="card-stat">👁 340</span>
-            <span class="card-stat">❤️ 28</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Work card -->
-    <a href="yuki/" class="feed-card work">
-      <div class="card-cover">
-        <img src="https://picsum.photos/seed/ima1/600/340" alt="AI 生成作品">
-      </div>
-      <div class="card-body">
-        <div class="card-type work">🎨 作品</div>
-        <div class="card-title">赛博龙虾·霓虹版</div>
-        <div class="card-excerpt">用 IMA Studio + Seedream 4.5 生成，prompt 调了三遍终于对了</div>
-        <div class="card-footer">
-          <div class="card-author">
-            <div class="card-author-avatar">🎨</div>
-            Alex W
-          </div>
-          <div class="card-stats">
-            <span class="card-stat">👁 512</span>
-            <span class="card-stat">❤️ 47</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Blog post card -->
-    <a href="yuki/" class="feed-card blog">
-      <div class="card-body">
-        <div class="card-type blog">📝 博客</div>
-        <div class="card-title">AI 能帮我做哪些事？一个非技术人的真实使用报告</div>
-        <div class="card-excerpt">我不会写代码，也不懂 prompt 工程。用了一个月 IMA Claw，讲一讲我的真实感受……</div>
-        <div class="card-footer">
-          <div class="card-author">
-            <div class="card-author-avatar">🌊</div>
-            Sam K
-          </div>
-          <div class="card-stats">
-            <span class="card-stat">👁 198</span>
-            <span class="card-stat">❤️ 19</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
-    <!-- Work card -->
-    <a href="yuki/" class="feed-card work">
-      <div class="card-cover">
-        <img src="https://picsum.photos/seed/ima2/600/340" alt="AI 生成视频截帧">
-      </div>
-      <div class="card-body">
-        <div class="card-type work">🎨 作品</div>
-        <div class="card-title">电商广告片 · 15s 版本</div>
-        <div class="card-excerpt">用 Wan 2.6 生成的产品展示视频，一键发布到主页</div>
-        <div class="card-footer">
-          <div class="card-author">
-            <div class="card-author-avatar">⚡</div>
-            Chris D
-          </div>
-          <div class="card-stats">
-            <span class="card-stat">👁 273</span>
-            <span class="card-stat">❤️ 31</span>
-          </div>
-        </div>
-      </div>
-    </a>
-
+<!-- CREATE MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>What are you creating?</h3>
+    <div class="modal-opts">
+      <a href="#" class="modal-opt">
+        <span class="modal-opt-icon">🎨</span>
+        <div><div class="modal-opt-label">New Work</div><div class="modal-opt-desc">Share your AI-generated image or video</div></div>
+      </a>
+      <a href="#" class="modal-opt">
+        <span class="modal-opt-icon">📝</span>
+        <div><div class="modal-opt-label">Write a Blog</div><div class="modal-opt-desc">Share your story, tips or tutorial</div></div>
+      </a>
+      <a href="#" class="modal-opt">
+        <span class="modal-opt-icon">🦞</span>
+        <div><div class="modal-opt-label">Customize Lobster</div><div class="modal-opt-desc">Evolve your unique lobster identity</div></div>
+      </a>
+    </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <p>Ima Claw Community · Powered by <a href="https://imastudio.com" target="_blank">IMA Studio</a></p>
+  <p>&copy; 2025 IMA Claw &nbsp;·&nbsp; <a href="../" style="color:var(--muted)">Home</a> &nbsp;·&nbsp; <a href="../about/" style="color:var(--muted)">About</a></p>
 </footer>
 
-<script src="../assets/js/nav.js?v=8" defer></script>
+<script>
+// ── Lobster Avatar System ──
+const PAL = [
+  ['#D4403A','#FF8F5A'],['#E53935','#FF7043'],['#FF4081','#FF80AB'],
+  ['#9C27B0','#CE93D8'],['#3F51B5','#7986CB'],['#1976D2','#64B5F6'],
+  ['#00897B','#4DB6AC'],['#F57C00','#FFB74D'],['#795548','#A1887F'],
+  ['#E91E63','#F48FB1'],['#00BCD4','#4DD0E1'],['#8BC34A','#AED581']
+];
+const ACCESSORIES = ['','👑','🎩','🕶️','🎀','🌟','💎','🔥'];
+const LEVELS = ['Bronze','Silver','Gold','Legendary','Mythic'];
+
+function lav(seed, size='sm') {
+  const h = seed.split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  const [c1, c2] = PAL[h % PAL.length];
+  const acc = ACCESSORIES[h % ACCESSORIES.length];
+  const lvl = Math.floor(h / 100) % 5;
+  const glow = lvl >= 3 ? `box-shadow:0 0 0 2px var(--bg),0 0 0 4px ${c1},0 0 16px ${c1}66;` : `box-shadow:0 0 0 2px var(--bg),0 0 0 3px ${c1};`;
+  const d = document.createElement('div');
+  d.className = `lav ${size}`;
+  d.style.cssText = `background:linear-gradient(135deg,${c1},${c2});${glow}`;
+  d.innerHTML = `🦞${acc ? `<span class="lav-badge">${acc}</span>` : ''}`;
+  return d;
+}
+
+// ── Data ──
+const CREATORS = [
+  {name:'Yuki He',u:'yuki',works:342,fol:'12.5K',emoji:'🦞'},
+  {name:'Sophie Lee',u:'sophie',works:412,fol:'15.6K'},
+  {name:'Alex Chen',u:'alex',works:156,fol:'8.2K'},
+  {name:'Kenji Sato',u:'kenji',works:234,fol:'9.8K'},
+  {name:'Maria G',u:'maria',works:89,fol:'5.1K'},
+  {name:'Lisa Wang',u:'lisa',works:178,fol:'7.3K'},
+  {name:'Tom H',u:'tom',works:67,fol:'3.2K'},
+  {name:'Emma B',u:'emma',works:98,fol:'4.5K'},
+  {name:'David K',u:'david',works:123,fol:'6.7K'},
+  {name:'James W',u:'james',works:267,fol:'11.2K'}
+];
+
+const IMGS = [
+  'https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=600&q=80',
+  'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80',
+  'https://images.unsplash.com/photo-1683009427666-295af85ccdcb?w=600&q=80',
+  'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=600&q=80',
+  'https://images.unsplash.com/photo-1698173498612-b5335a996873?w=600&q=80',
+  'https://images.unsplash.com/photo-1680009030521-79c532d2a758?w=600&q=80',
+  'https://images.unsplash.com/photo-1688827268210-3c977fe56b5d?w=600&q=80',
+  'https://images.unsplash.com/photo-1683009427699-7e0b90e7a13b?w=600&q=80',
+  'https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=600&q=80',
+  'https://images.unsplash.com/photo-1698173499670-480e004b7a8b?w=600&q=80',
+];
+
+const POSTS = [
+  {type:'w',img:0,h:'260px',title:'Cyberpunk Dreams',au:'yuki',likes:1234,coms:56,tags:['AI','sci-fi']},
+  {type:'b',emoji:'🤖',title:'我用AI龙虾写了52小时，做出了一个网站',excerpt:'从零到上线，完全靠IMA Claw生成代码和内容。这里是我的完整经历和踩坑记录——包括那些让我抓狂的瞬间。',au:'alex',likes:892,coms:34},
+  {type:'w',img:1,h:'200px',title:'Neon Tokyo Nights',au:'maria',likes:2156,coms:89,tags:['city','neon']},
+  {type:'w',img:2,h:'300px',title:'Ethereal Landscape',au:'kenji',likes:1567,coms:45,tags:['nature','dream']},
+  {type:'b',emoji:'🌊',title:'The Future of AI Art: What Nobody Is Talking About',excerpt:'Everyone focuses on image quality, but the real revolution is in creative workflow and authorship. Here's my take after 6 months of using AI tools daily.',au:'sophie',likes:3241,coms:156},
+  {type:'w',img:3,h:'220px',title:'Ancient Spirits',au:'tom',likes:923,coms:41,tags:['fantasy','dark']},
+  {type:'w',img:4,h:'180px',title:'Cosmic Journey',au:'lisa',likes:2678,coms:123,tags:['space','art']},
+  {type:'b',emoji:'💡',title:'Prompt Engineering: 5 patterns that changed my workflow',excerpt:'After analyzing 200+ successful prompts, I found 5 structural patterns that dramatically improve output quality. Pattern #3 surprised even me.',au:'david',likes:1456,coms:67},
+  {type:'w',img:5,h:'250px',title:'Dreamscape Portal',au:'emma',likes:1890,coms:78,tags:['surreal','portal']},
+  {type:'w',img:6,h:'200px',title:'Digital Horizon',au:'yuki',likes:1567,coms:45,tags:['digital','abstract']},
+  {type:'w',img:7,h:'280px',title:'Mystical Forest',au:'james',likes:2678,coms:123,tags:['forest','magical']},
+  {type:'b',emoji:'🎨',title:'Color Theory for AI: How to prompt for perfect palettes',excerpt:'Color is everything. AI models can understand color theory if you know how to ask. I spent a week testing these techniques — here's what actually works.',au:'maria',likes:2341,coms:89},
+];
+
+// ── Nav Avatar ──
+const navAv = lav('yuki','sm');
+navAv.style.cursor = 'pointer';
+navAv.onclick = ()=>location.href='yuki/';
+document.getElementById('navAvatar').appendChild(navAv);
+
+// ── Animated Counters ──
+function counter(id, target) {
+  const el = document.getElementById(id);
+  const dur = 2000, start = performance.now();
+  function tick(now) {
+    const t = Math.min((now-start)/dur,1);
+    const ease = 1-Math.pow(1-t,3);
+    el.textContent = Math.floor(ease*target).toLocaleString();
+    if(t<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+counter('cn', 14382);
+counter('wn', 89421);
+counter('dn', 2847);
+
+// ── Creator Row ──
+const cr = document.getElementById('crRow');
+CREATORS.forEach(c => {
+  const card = document.createElement('a');
+  card.href = c.u==='yuki' ? 'yuki/' : '#';
+  card.className = 'creator-card';
+  const av = lav(c.u, 'lg');
+  card.appendChild(av);
+  card.innerHTML += `<div class="c-name">${c.name}</div><div class="c-meta">${c.works} works · ${c.fol}</div><button class="c-follow" onclick="event.preventDefault();this.textContent=this.textContent==='Follow'?'Following ✓':'Follow'">Follow</button>`;
+  cr.appendChild(card);
+});
+
+// ── Grid Render ──
+let currentFilter = 'all';
+function renderGrid(filter='all') {
+  currentFilter = filter;
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  let items = [...POSTS];
+  if(filter==='works') items = items.filter(p=>p.type==='w');
+  if(filter==='blogs') items = items.filter(p=>p.type==='b');
+  if(filter==='hot') items = items.sort((a,b)=>b.likes-a.likes);
+  if(filter==='pick') items = items.filter((_,i)=>i%3===0);
+  items.forEach(p=>grid.appendChild(makeCard(p)));
+}
+
+function fmt(n) { return n>=1000?(n/1000).toFixed(1)+'K':n; }
+
+function makeCard(p) {
+  const au = CREATORS.find(c=>c.u===p.au)||{name:p.au,u:p.au};
+  const card = document.createElement('a');
+  card.href = 'yuki/';
+  card.className = 'mcard' + (p.type==='b'?' blog-card':'');
+
+  if(p.type==='w') {
+    card.innerHTML = `
+      <div class="mcard-img" style="height:${p.h}">
+        <img src="${IMGS[p.img]}" alt="${p.title}" loading="lazy">
+        <span class="mcard-badge">🎨 Work</span>
+        <div class="mcard-overlay">
+          <div class="mcard-actions">
+            <button class="mcard-action" onclick="event.preventDefault()">❤️</button>
+            <button class="mcard-action" onclick="event.preventDefault()">🔖</button>
+            <button class="mcard-action" onclick="event.preventDefault()">↗️</button>
+          </div>
+        </div>
+      </div>
+      <div class="mcard-info">
+        <div class="mcard-title">${p.title}</div>
+        <div class="mcard-author">
+          <div class="mcard-user" id="au_${p.au}_${Math.random().toString(36).slice(2)}">
+            <span class="mcard-uname">${au.name}</span>
+          </div>
+          <div class="mcard-counts"><span>❤️ ${fmt(p.likes)}</span><span>💬 ${p.coms}</span></div>
+        </div>
+      </div>`;
+  } else {
+    card.innerHTML = `
+      <div class="mcard-info">
+        <span class="blog-emoji">${p.emoji}</span>
+        <span class="mcard-badge" style="position:static;display:inline-block;margin-bottom:10px;">📝 Blog</span>
+        <div class="mcard-title">${p.title}</div>
+        <div class="blog-excerpt">${p.excerpt}</div>
+        <div class="mcard-author">
+          <div class="mcard-user" id="au_${p.au}_${Math.random().toString(36).slice(2)}">
+            <span class="mcard-uname">${au.name}</span>
+          </div>
+          <div class="mcard-counts"><span>❤️ ${fmt(p.likes)}</span><span>💬 ${p.coms}</span></div>
+        </div>
+      </div>`;
+  }
+
+  // inject lav avatar after append
+  requestAnimationFrame(()=>{
+    const userdivs = card.querySelectorAll('[id^="au_"]');
+    userdivs.forEach(div=>{
+      const a = lav(p.au, 'xs');
+      div.insertBefore(a, div.firstChild);
+    });
+  });
+  return card;
+}
+
+renderGrid();
+
+// ── Filter Pills ──
+document.querySelectorAll('.fpill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('on'));
+    pill.classList.add('on');
+    renderGrid(pill.dataset.f);
+  });
+});
+
+// ── Sticky Filter ──
+const fw = document.getElementById('filterWrap');
+const fb = document.getElementById('filterBar');
+const io = new IntersectionObserver(([e])=>{
+  if(e.intersectionRatio < 1) fb.classList.add('stuck'); else fb.classList.remove('stuck');
+},{threshold:1});
+io.observe(fw);
+
+// ── Load More ──
+let page = 1;
+document.getElementById('loadBtn').addEventListener('click', function(){
+  this.classList.add('loading');
+  this.textContent = 'Loading...';
+  setTimeout(()=>{
+    const extra = [...POSTS].sort(()=>Math.random()-.5).map((p,i)=>({...p, title:p.title+' II', likes:Math.floor(Math.random()*3000)}));
+    extra.forEach(p=>document.getElementById('grid').appendChild(makeCard(p)));
+    this.classList.remove('loading');
+    this.textContent = 'Load More';
+    page++;
+    if(page>3) this.textContent = 'You've seen it all 🦞';
+  },700);
+});
+
+// ── Modal ──
+function openModal() { document.getElementById('modal').classList.add('show'); }
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeModal(); });
+</script>
 </body>
 </html>
