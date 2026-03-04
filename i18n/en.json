@@ -780,5 +780,13 @@
   "cloud.discord": "Join Community",
   "blog.tag.devdiary": "Dev Diary",
   "blog.title.52h": "52 Hours, 544 Commits: The Birth of a Lobster",
-  "blog.desc.52h": "At 5 AM she was still circling pixels in red. The AI was still pushing fixes. 1.89M characters of conversation, zero handwritten code. The Red-Blue War, i18n hell, 16 cache bumps — this is our 52 hours."
+  "blog.desc.52h": "At 5 AM she was still circling pixels in red. The AI was still pushing fixes. 1.89M characters of conversation, zero handwritten code. The Red-Blue War, i18n hell, 16 cache bumps — this is our 52 hours.",
+  "hero.cta.pre": "📋 Pre-register",
+  "hero.join.community": "Join Community",
+  "sc.subtitle": "Real creations from the <a href='https://www.imastudio.com/community' target='_blank' rel='noopener' style='color:var(--accent);text-decoration:none'>ImaStudio Community</a>",
+  "sc.commercial": "AI Ad Films",
+  "sc.mv": "AI Music Videos",
+  "sc.nano": "Nano Banana 2 Gallery",
+  "sc.challenge": "Creation Contest · $20,000",
+  "footer.by": " Made by "
 }

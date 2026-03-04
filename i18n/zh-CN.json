@@ -780,5 +780,13 @@
   "cloud.discord": "加入社区",
   "blog.tag.devdiary": "开发日记",
   "blog.title.52h": "52小时，544个Commit：一只龙虾的诞生日记",
-  "blog.desc.52h": "凌晨5点，她还在截图标红圈。AI还在改像素。189万字对话，0行手写代码。红蓝大战、i18n地狱、bump 16次——这是一个人和一只AI龙虾的52小时。"
+  "blog.desc.52h": "凌晨5点，她还在截图标红圈。AI还在改像素。189万字对话，0行手写代码。红蓝大战、i18n地狱、bump 16次——这是一个人和一只AI龙虾的52小时。",
+  "hero.cta.pre": "📋 抢先预约",
+  "hero.join.community": "加入社区",
+  "sc.subtitle": "来自 <a href='https://www.imastudio.com/community' target='_blank' rel='noopener' style='color:var(--accent);text-decoration:none'>ImaStudio 社区</a> 的真实创作",
+  "sc.commercial": "AI 广告片",
+  "sc.mv": "AI MV",
+  "sc.nano": "Nano Banana 2 图片合集",
+  "sc.challenge": "创作挑战赛 · $20,000 大奖",
+  "footer.by": " 出品 · "
 }

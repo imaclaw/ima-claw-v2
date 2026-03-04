@@ -31,6 +31,14 @@
       '<button class="hamburger"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>';
   }
 
+  // Re-apply translations to newly injected nav
+  // (core.js may have run before nav was injected)
+  setTimeout(function() {
+    var lang = (typeof getLang === 'function') ? getLang() :
+               (localStorage.getItem('imaclaw-lang') || 'zh-CN');
+    if (typeof setLang === 'function') setLang(lang);
+  }, 0);
+
   // ─── Hamburger toggle ────────────────────────────────────────────────────
   var hamburger = document.querySelector('.hamburger');
   if (hamburger) {
