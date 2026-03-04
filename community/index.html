@@ -481,7 +481,7 @@ const POSTS = [
   {
     type:'b', emoji:'📐',
     title:'How I Built a Full Brand System in 72 Hours Using Only AI',
-    excerpt:'Logo, color palette, typography, mockups, social templates — everything generated with IMA Studio. Here is the exact workflow I used, and what I'd do differently next time.',
+    excerpt:'Logo, color palette, typography, mockups, social templates — everything generated with IMA Studio. Here is the exact workflow I used, and what I\'d do differently next time.',
     au:'priya', likes:6234, coms:445
   },
   {
@@ -592,7 +592,7 @@ function makeCard(p) {
       <div class="mcard-info">
         <div class="mcard-title">${p.title}</div>
         ${p.desc ? `<div class="mcard-desc">${p.desc}</div>` : ''}
-        ${p.tags ? `<div class="mcard-tags">${p.tags.map(t=>'<span class=\'mtag\'>#'+t+'</span>').join('')}</div>` : ''}
+        ${p.tags ? '<div class="mcard-tags">'+p.tags.map(t=>'<span class="mtag">#'+t+'</span>').join('')+'</div>' : ''}
         <div class="mcard-author">
           <div class="mcard-user" id="au_${p.au}_${Math.random().toString(36).slice(2)}">
             <span class="mcard-uname">${au.name}</span>
@@ -657,7 +657,7 @@ document.getElementById('loadBtn').addEventListener('click', function(){
     this.classList.remove('loading');
     this.textContent = 'Load More';
     page++;
-    if(page>3) this.textContent = 'You've seen it all 🦞';
+    if(page>3) this.textContent = 'You\'ve seen it all 🦞';
   },700);
 });
 
