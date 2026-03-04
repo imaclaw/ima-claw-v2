@@ -224,7 +224,7 @@ footer a{color:var(--lobster-light)}
 function copyCode(btn){var block=btn.parentElement;var text=block.textContent.replace('复制','').replace('已复制!','').trim();navigator.clipboard.writeText(text);btn.textContent='已复制!';btn.style.background='var(--green)';btn.style.color='#fff';setTimeout(function(){btn.textContent='复制';btn.style.background='';btn.style.color=''},1500)}
 document.addEventListener('click',function(e){document.querySelectorAll('.lang-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')});var nav=document.querySelector('.nav-links');var ham=document.querySelector('.hamburger');if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==ham){nav.classList.remove('open')}});
 </script>
-<script src="../../../i18n/core.js?v=9"></script>
+<script src="../../../i18n/core.js?v=10"></script>
 <script src="../../../assets/js/nav.js?v=9"></script>
 <footer>
 <div style="max-width:600px;margin:0 auto 24px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px">
