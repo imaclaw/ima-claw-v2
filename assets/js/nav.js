@@ -22,7 +22,7 @@
         '<a href="' + base + '/" data-i18n="nav.home" ' + act('home') + '>Home</a>' +
         '<a href="' + base + '/adopt/" data-i18n="nav.adopt" style="color:var(--lobster-light);font-weight:600">🦞 Adopt</a>' +
         '<a href="' + base + '/skills/" data-i18n="nav.skills" ' + act('skills') + '>Skills</a>' +
-        '<a href="' + base + '/pricing/" data-i18n="nav.pricing" ' + act('pricing') + '>🛒 Pricing</a>' +
+        /* pricing hidden: '<a href="' + base + '/pricing/" data-i18n="nav.pricing" ' + act('pricing') + '>🛒 Pricing</a>' + */
         '<a href="' + base + '/docs/" data-i18n="nav.docs" ' + act('docs') + '>Docs</a>' +
         '<a href="' + base + '/blog/" data-i18n="nav.blog" ' + act('blog') + '>Blog</a>' +
         '<a href="https://discord.gg/QmNHCnv2Tf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;color:#5865F2;font-weight:600">' + discordIcon + 'Discord</a>' +
