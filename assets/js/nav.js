@@ -25,7 +25,7 @@
         '<a href="' + base + '/pricing/" data-i18n="nav.pricing" ' + act('pricing') + '>🛒 Pricing</a>' +
         '<a href="' + base + '/docs/" data-i18n="nav.docs" ' + act('docs') + '>Docs</a>' +
         '<a href="' + base + '/blog/" data-i18n="nav.blog" ' + act('blog') + '>Blog</a>' +
-        '<a href="https://discord.gg/UdXFVYhh" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;color:#5865F2;font-weight:600">' + discordIcon + 'Discord</a>' +
+        '<a href="https://discord.gg/QmNHCnv2Tf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;color:#5865F2;font-weight:600">' + discordIcon + 'Discord</a>' +
         '<div class="lang-dropdown" style="position:relative;margin-left:8px"><button class="lang-trigger">🌐 中文 ▾</button><div class="lang-menu"><button data-lang="zh-CN">🇨🇳 中文</button><button data-lang="en">🇺🇸 English</button></div></div>' +
       '</div>' +
       '<button class="hamburger"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>';
