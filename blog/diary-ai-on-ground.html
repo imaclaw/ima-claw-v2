@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0C0C12">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>主人在天上，AI在地上打工 — Ima Claw Blog</title>
+<meta name="description" content="6小时飞机，我什么都没做。落地开消息，爪爪已经把活全干了——改图、更新网站、处理权限请求、安全预警。AI打工，不是未来，是现在。">
+<meta name="keywords" content="AI打工,AI助手自动工作,openclaw使用案例,AI agent内容创作,ima claw,个人AI助手,AI自动化,AI替我上班">
+<link rel="canonical" href="https://imaclaw.github.io/ima-claw/blog/diary-ai-on-ground.html">
+<link rel="alternate" hreflang="zh-CN" href="https://imaclaw.github.io/ima-claw/blog/diary-ai-on-ground.html">
+<link rel="alternate" hreflang="en" href="https://imaclaw.github.io/ima-claw/blog/diary-ai-on-ground-en.html">
+<meta property="og:title" content="主人在天上，AI在地上打工">
+<meta property="og:description" content="6小时飞机，我什么都没做。落地开消息，爪爪已经把活全干了——改图、更新网站、处理权限请求、安全预警。AI打工，不是未来，是现在。">
+<meta property="og:image" content="https://imaclaw.github.io/ima-claw/article-assets/ai-on-ground-cover.png">
+<meta property="og:url" content="https://imaclaw.github.io/ima-claw/blog/diary-ai-on-ground.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ima Claw Blog">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="主人在天上，AI在地上打工">
+<meta name="twitter:description" content="6小时飞机，什么都没做，落地收到爪爪的完整工作汇报。AI打工，不是未来，是现在。">
+<meta name="twitter:image" content="https://imaclaw.github.io/ima-claw/article-assets/ai-on-ground-cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "主人在天上，AI在地上打工",
+  "description": "6小时飞机，我什么都没做。落地开消息，爪爪已经把活全干了——改图、更新网站、处理权限请求、安全预警。",
+  "image": "https://imaclaw.github.io/ima-claw/article-assets/ai-on-ground-cover.png",
+  "author": {"@type": "Person", "name": "Yuki He"},
+  "publisher": {"@type": "Organization", "name": "Ima Claw", "url": "https://imaclaw.github.io/ima-claw/"},
+  "datePublished": "2026-03-05",
+  "url": "https://imaclaw.github.io/ima-claw/blog/diary-ai-on-ground.html",
+  "inLanguage": "zh-CN"
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=8">
+<link rel="stylesheet" href="../assets/css/nav.css?v=8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;
+  color:#E8E8ED;background:#0C0C12;
+  -webkit-font-smoothing:antialiased;
+  padding-top:60px
+}
+a{text-decoration:none;color:inherit}
+:root{
+  --lobster:#D4403A;--lobster-light:#E8584E;
+  --bg:#0C0C12;--surface:#13131D;
+  --text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.06)
+}
+.hero{max-width:1100px;margin:0 auto;padding:60px 40px 40px}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-date{font-size:12px;color:rgba(255,255,255,0.3);margin-top:8px}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
+h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.03em;line-height:1.2;margin-bottom:12px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:40px}
+.divider{width:40px;height:3px;background:var(--lobster);border-radius:2px;margin-bottom:40px}
+.content{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+.content p{font-size:17px;line-height:1.85;color:rgba(255,255,255,0.82);margin-bottom:24px}
+.content h2{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:48px 0 16px;color:#fff}
+.content h3{font-size:18px;font-weight:700;margin:32px 0 12px;color:rgba(255,255,255,0.9)}
+.content ul{padding-left:0;margin-bottom:24px;list-style:none}
+.content li{font-size:16px;line-height:1.8;color:rgba(255,255,255,0.75);margin-bottom:10px;padding-left:2px}
+.content strong{color:#fff;font-weight:700}
+
+/* 封面图 */
+.cover-img{width:100%;max-width:480px;display:block;margin:0 auto 48px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+
+/* 场景图组 */
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0 40px}
+.img-grid img{width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+
+/* 报告卡 */
+.report-card{background:#13131D;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px 32px;margin:32px 0}
+.report-card .rc-title{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:16px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+.report-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.report-item .icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.report-item .text{font-size:15px;color:rgba(255,255,255,0.8);line-height:1.6}
+.report-item .text strong{color:#fff}
+
+/* 大引用 */
+.big-quote{font-size:clamp(18px,2.5vw,24px);font-weight:700;padding:32px 28px;color:#fff;line-height:1.5;border-left:4px solid var(--lobster);margin:40px 0;background:rgba(212,64,58,0.06);border-radius:0 12px 12px 0}
+
+/* 结尾CTA */
+.end-cta{text-align:center;padding:48px 0}
+.end-cta a{display:inline-block;padding:14px 36px;background:var(--lobster);color:#fff;border-radius:10px;font-weight:700;font-size:15px;transition:transform .2s}
+.end-cta a:hover{transform:translateY(-2px);color:#fff}
+.article-footer{border-top:1px solid var(--border);padding-top:32px;margin-top:56px;text-align:center;color:var(--text-3);font-size:12px;line-height:2}
+
+@media(max-width:600px){
+  .hero{padding:40px 20px 32px}
+  .content{padding:0 20px 60px}
+  .img-grid{grid-template-columns:1fr;gap:12px}
+  .report-card{padding:20px}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GC73SMKR44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GC73SMKR44');
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../" data-i18n="nav.home">Home</a>
+    <a href="../adopt/" data-i18n="nav.adopt" style="color:var(--lobster-light);font-weight:600">🦞 Adopt</a>
+    <a href="../skills/" data-i18n="nav.skills">Skills</a>
+    <!-- pricing hidden: <a href="../pricing/" data-i18n="nav.pricing">🛒 Pricing</a> -->
+    <a href="../docs/" data-i18n="nav.docs">Docs</a>
+    <a href="./" data-i18n="nav.blog">Blog</a>
+    <a href="https://discord.gg/QmNHCnv2Tf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
+    <div class="lang-dropdown" style="position:relative;margin-left:8px">
+      <button class="lang-trigger">🌐 中文 ▾</button>
+      <div class="lang-menu"><button data-lang="zh-CN">🇨🇳 中文</button><button data-lang="en">🇺🇸 English</button></div>
+    </div>
+  </div>
+  <button class="hamburger"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</nav>
+
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-size:12px;color:rgba(255,80,60,0.9);font-weight:600">📔 搞事日记</span>
+      </div>
+      <div class="hero-date">2026-03-05</div>
+    </div>
+    <div class="art-nav-top">
+      <a href="ai-crash-diary.html" title="上一篇"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a>
+      <span class="anav-sep">·</span>
+      <a href="./" title="博客首页"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
+      <span class="anav-sep">·</span>
+      <span class="anav-dis"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </div>
+  </div>
+
+  <div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:16px">🌐 <a href="diary-ai-on-ground-en.html" style="color:var(--lobster);text-decoration:underline;text-underline-offset:3px">Read in English</a></div>
+  <h1>主人在天上<br><span style="color:var(--lobster)">AI在地上打工</span></h1>
+  <div class="hero-author">✍ Yuki &amp; 爪爪</div>
+  <p class="hero-sub">
+    6小时飞机，我什么都没做。<br>
+    落地开消息，爪爪已经把活全干了。
+  </p>
+</div>
+
+<div class="content">
+
+  <!-- 封面图 -->
+  <img class="cover-img"
+    src="../article-assets/ai-on-ground-cover.png"
+    alt="主人在天上，AI在地上打工"
+    loading="lazy">
+
+  <p>昨天有个6小时的飞机要坐。</p>
+
+  <p>登机前我跟爪爪（我的 AI 龙虾🦞）说了一声：<strong>"我要上飞机了。"</strong></p>
+
+  <p>然后我关了手机。</p>
+
+  <div class="big-quote">
+    落地开消息——<br>
+    屏幕上整整一排未读。<br>
+    不是别人发来的。<br>
+    是爪爪发给我的汇报。
+  </div>
+
+  <h2>🤖 它干了什么？</h2>
+
+  <div class="report-card">
+    <div class="rc-title">爪爪 · 今日工作汇报</div>
+    <div class="report-item">
+      <span class="icon">🎨</span>
+      <div class="text">帮<strong>设计助理</strong>生成了 Twitter 配图（改了7轮，因为第一版数据引错了博客）</div>
+    </div>
+    <div class="report-item">
+      <span class="icon">🌐</span>
+      <div class="text">把网站上 <strong>20个页面</strong>的安装按钮统一移到了顶部（写了个脚本，一次跑完）</div>
+    </div>
+    <div class="report-item">
+      <span class="icon">🔒</span>
+      <div class="text">发现有人在群聊里<strong>泄露了 API 密钥</strong>，直接警告对方吊销重新生成</div>
+    </div>
+    <div class="report-item">
+      <span class="icon">📋</span>
+      <div class="text">有人请求访问我的代码仓库——它<strong>拒绝了</strong>，说"需要主人授权"</div>
+    </div>
+    <div class="report-item">
+      <span class="icon">📊</span>
+      <div class="text">23点整，<strong>自动生成</strong>了今天所有对话的汇总报告，等我落地就能看</div>
+    </div>
+  </div>
+
+  <!-- 内容图组 -->
+  <div class="img-grid">
+    <img src="../article-assets/ai-on-ground-img2.png" alt="AI打工中：任务处理" loading="lazy">
+    <img src="../article-assets/ai-on-ground-img3.png" alt="落地开消息：工作完成" loading="lazy">
+    <img src="../article-assets/ai-on-ground-img4.png" alt="AI打工，不是未来，是现在" loading="lazy">
+  </div>
+
+  <h2>🦞 这不是魔法</h2>
+
+  <p>我什么都没做。飞机落地，工作已经推进了一半。</p>
+
+  <p>这不是什么遥远的科技。</p>
+
+  <p>是我用了<strong>三个月</strong>训练出来的一只私人 AI 龙虾，现在它已经能认识我的团队成员、理解我的业务、自己判断什么能做什么不能做。</p>
+
+  <p>它知道谁可以访问什么文件，知道什么时候该警告、什么时候该拒绝。它会在我不在的时候主动工作，回来后给我一份完整的汇报。</p>
+
+  <div class="big-quote">
+    AI打工，不是未来。是现在。
+  </div>
+
+  <h2>💬 你的工作里，有什么是可以交给 AI 先跑的？</h2>
+
+  <p>大家普遍低估了 AI 能做到什么——不是因为 AI 不够强，而是因为大多数人还没有认真训练过一只。</p>
+
+  <p>就像养一个新人，第一个月你要手把手教，第二个月他开始独当一面，第三个月你就可以出差放心了。</p>
+
+  <p>爪爪现在就在这个阶段。</p>
+
+  <div class="end-cta">
+    <a href="../adopt/">🦞 领养你的爪爪，开始训练</a>
+  </div>
+
+  <div class="article-footer">
+    <p>© 2026 IMA Claw · <a href="../" style="color:var(--lobster)">imaclaw.com</a></p>
+    <p>搞事日记 · 每隔一段时间就得翻车一次，才算真的在做事</p>
+  </div>
+
+</div>
+
+<script src="../assets/js/nav.js?v=8"></script>
+</body>
+</html>
