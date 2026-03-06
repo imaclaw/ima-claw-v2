@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="../favicon.ico"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EP04 · 让龙虾接管你的飞书 | 龙虾学院</title>
+<meta name="description" content="OpenClaw接入飞书教程。15分钟把AI龙虾变成飞书里的同事，帮你回消息、管日程、读文档。">
+<meta property="og:title" content="EP04 · 让龙虾接管你的飞书">
+<meta property="og:description" content="15分钟把AI龙虾变成飞书里的同事">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://imaclaw.bot/blog/tutorial-ep04-feishu.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EP04 · 让龙虾接管你的飞书">
+<link rel="canonical" href="https://imaclaw.bot/blog/tutorial-ep04-feishu.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/variables.css?v=17">
+<link rel="stylesheet" href="../assets/css/nav.css?v=17">
+<style>
+@media(max-width:768px){.nav-links{display:none!important}.hamburger{display:block!important}}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;width:100%;max-width:100%}
+:root{--lobster:#D4403A;--lobster-light:#E8584E;--bg:#0C0C12;--surface:#13131D;--text:#E8E8ED;--text-2:rgba(255,255,255,0.55);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.06)}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;padding-top:60px}
+a{text-decoration:none;color:var(--lobster-light)}
+.page{max-width:850px;margin:0 auto;padding:60px 40px 100px;overflow:hidden}
+
+.hero{text-align:left;margin-bottom:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(212,64,58,0.12);color:var(--lobster-light);font-size:12px;font-weight:600;margin-bottom:20px}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--lobster);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hero h1{font-size:clamp(24px,5vw,38px);font-weight:900;letter-spacing:-0.03em;line-height:1.3;margin-bottom:14px}
+.hero h1 span{color:var(--lobster-light)}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-2);line-height:1.7;max-width:560px}
+
+.terminal{background:#1a1b26;border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin:16px 0;font-family:'SF Mono','Fira Code','Consolas',monospace}
+.terminal-bar{background:#2d2e3a;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot.r{background:#ff5f56}.terminal-dot.y{background:#ffbd2e}.terminal-dot.g{background:#27c93f}
+.terminal-title{color:rgba(255,255,255,0.4);font-size:11px;margin-left:8px}
+.terminal-body{padding:16px 18px;font-size:13px;line-height:1.8;color:#c0caf5}
+.terminal-body .prompt{color:#7aa2f7}
+.terminal-body .cmd{color:#9ece6a;font-weight:600}
+.terminal-body .output{color:rgba(255,255,255,0.5)}
+.terminal-body .success{color:#9ece6a}
+.terminal-body .highlight{color:#ff9e64}
+
+h2{font-size:clamp(20px,3vw,26px);font-weight:800;margin:48px 0 18px;letter-spacing:-0.02em}
+h2 span{color:var(--lobster-light)}
+h3{font-size:17px;font-weight:700;margin:32px 0 12px;color:#58a6ff}
+p{color:var(--text-2);line-height:1.85;margin-bottom:18px;font-size:15px}
+strong{color:var(--text);font-weight:600}
+code{background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:5px;font-size:13px;color:#a371f7;font-family:monospace}
+
+.story-box{background:rgba(212,64,58,0.06);border:1px solid rgba(212,64,58,0.15);border-radius:18px;padding:28px;margin:28px 0;position:relative}
+.story-box::before{content:'📖';position:absolute;top:-12px;left:24px;background:var(--bg);padding:0 12px;font-size:18px}
+.story-box h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:12px}
+.story-box p{color:var(--text-2);line-height:1.8;margin:0}
+
+.step{display:flex;gap:18px;margin:28px 0;padding:24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--lobster);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+.step-content{flex:1}
+.step-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
+.step-content p{color:var(--text-2);line-height:1.7;margin-bottom:12px;font-size:14px}
+
+.warn-box{background:rgba(255,180,40,0.08);border:1px solid rgba(255,180,40,0.2);border-radius:18px;padding:24px;margin:28px 0}
+.warn-box h4{font-size:16px;font-weight:700;color:#ffbd2e;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.warn-box h4::before{content:'⚠️'}
+.warn-box p{color:var(--text-2);line-height:1.8;margin:0 0 8px}
+
+.tip-box{background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.15);border-radius:18px;padding:24px;margin:28px 0}
+.tip-box h4{font-size:16px;font-weight:700;color:#2ecc71;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tip-box h4::before{content:'💡'}
+.tip-box p{color:var(--text-2);line-height:1.8;margin:0 0 8px}
+
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:28px 0}
+.feature-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:20px}
+.feature-card .icon{font-size:28px;margin-bottom:10px}
+.feature-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+.feature-card p{font-size:13px;color:var(--text-2);line-height:1.6;margin:0}
+
+.crash-box{background:rgba(255,80,60,0.06);border:1px solid rgba(255,80,60,0.2);border-radius:18px;padding:24px;margin:28px 0}
+.crash-box h4{font-size:16px;font-weight:700;color:#ff5040;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.crash-box h4::before{content:'💥'}
+.crash-box p{color:var(--text-2);line-height:1.8;margin:0 0 8px}
+
+.cta-box{background:linear-gradient(135deg,rgba(212,64,58,0.1),rgba(212,64,58,0.03));border:2px solid rgba(212,64,58,0.2);border-radius:20px;padding:36px 32px;margin:40px 0;text-align:center}
+.cta-icon{font-size:48px;margin-bottom:16px}
+.cta-box h3{font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px}
+.cta-box p{font-size:15px;color:var(--text-2);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.cta-btn:hover{transform:translateY(-2px)}
+.cta-btn-primary{background:var(--lobster);color:#fff;box-shadow:0 4px 16px rgba(212,64,58,0.3)}
+.cta-btn-secondary{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid var(--border)}
+
+.next-box{background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.15);border-radius:18px;padding:28px;margin:36px 0;display:flex;gap:20px;align-items:center}
+.next-icon{font-size:40px}
+.next-content{flex:1}
+.next-content h4{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.next-content p{font-size:14px;color:var(--text-2);margin:0}
+
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.hero-author{font-size:13px;color:rgba(255,255,255,0.4);margin:10px 0 14px}
+.art-nav-top{display:flex;align-items:center;gap:2px;margin-top:4px;flex-shrink:0}
+.art-nav-top a,.art-nav-top .anav-dis{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:rgba(255,255,255,0.35);border-radius:7px;transition:all .2s;border:1px solid transparent}
+.art-nav-top a:hover{color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1)}
+.art-nav-top .anav-dis{opacity:0.2;cursor:default}
+.art-nav-top .anav-sep{color:rgba(255,255,255,0.12);font-size:8px;padding:0 1px;user-select:none}
+
+@media(max-width:600px){
+  .page{padding:28px 18px 60px}
+  .step{flex-direction:column;gap:14px}
+  .feature-grid{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:stretch}
+  .next-box{flex-direction:column;text-align:center}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GC73SMKR44"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GC73SMKR44');</script>
+</head>
+<body>
+<nav>
+  <a href="../" class="logo"><img src="../logo-nav.png" alt="Ima Claw logo"><div class="logo-text">Ima<b>Claw</b> <span style="font-size:11px;color:var(--text-3);font-weight:400;margin-left:6px">by ImaStudio</span></div></a>
+  <div class="nav-links">
+    <a href="../">Home</a>
+    <a href="../adopt/" style="color:var(--lobster-light);font-weight:600">🦞 Adopt</a>
+    <a href="../skills/">Skills</a>
+    <a href="../docs/">Docs</a>
+    <a href="./" style="font-weight:600">Blog</a>
+    <a href="https://discord.gg/QmNHCnv2Tf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:#5865F2;font-weight:600">Discord</a>
+    <div class="lang-dropdown" style="position:relative;margin-left:8px">
+      <button class="lang-trigger">🌐 中文 ▾</button>
+      <div class="lang-menu"><button data-lang="zh-CN">🇨🇳 中文</button><button data-lang="en">🇺🇸 English</button></div>
+    </div>
+  </div>
+  <button class="hamburger"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</nav>
+
+<div class="page">
+
+<div class="hero">
+  <div class="hero-top">
+  <div class="badge"><span class="dot"></span>龙虾学院 · EP04</div>
+  <div class="art-nav-top"><a href="tutorial-ep03-skills.html" title="EP03: 给龙虾装技能包"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></a><span class="anav-sep">·</span><a href="./" title="博客首页"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a><span class="anav-sep">·</span><span class="anav-dis"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+</div>
+  <h1>让龙虾<br><span>接管你的飞书</span></h1>
+  <div class="hero-author">✍ Yuki &amp; 爪爪</div>
+  <p class="hero-sub">
+    15分钟，把AI龙虾变成飞书里最能干的同事<br>
+    帮你回消息、管日程、读文档、发图片
+  </p>
+</div>
+
+<div class="story-box">
+  <h4>为什么是飞书？</h4>
+  <p>EP01-03，你的龙虾已经有了窝、大脑和技能。但它住在终端里——你得开电脑、打命令行才能和它说话。<br><br>
+  把它接到飞书，龙虾就变成了你的<strong>飞书同事</strong>。手机上随时@它，它就能帮你干活。我们团队每天就是这么用的：群里喊一声"爪爪帮我查个东西"，它就动起来了。</p>
+</div>
+<h2>接入后能干嘛？</h2>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="icon">💬</div>
+    <h4>私聊 & 群聊</h4>
+    <p>在飞书里直接和龙虾对话，群里@它也能回复</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">📅</div>
+    <h4>管理日程</h4>
+    <p>"帮我约明天下午3点的会议"——龙虾直接写入飞书日历</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">📄</div>
+    <h4>读写文档</h4>
+    <p>龙虾能读飞书文档、写多维表格、搜知识库</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🎨</div>
+    <h4>发图发文件</h4>
+    <p>"帮我画张图"——生成完直接发到飞书聊天</p>
+  </div>
+</div>
+
+<h2>Step 1 <span>创建飞书应用</span></h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-content">
+    <h4>打开飞书开放平台</h4>
+    <p>浏览器访问 <a href="https://open.feishu.cn/app/" target="_blank">open.feishu.cn/app</a>，用你的飞书账号登录。</p>
+    <p>点击<strong>「创建企业自建应用」</strong>，填个名字（比如"我的龙虾"🦞），上传个头像。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-content">
+    <h4>获取 App ID 和 App Secret</h4>
+    <p>创建完成后，在应用的<strong>「凭证与基础信息」</strong>页面，你会看到：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书开放平台</span></div>
+      <div class="terminal-body">
+        <span class="output">App ID:     </span><span class="highlight">cli_a1b2c3d4e5f6</span><br>
+        <span class="output">App Secret: </span><span class="highlight">xxxxxxxxxxxxxxxxxxxx</span>
+      </div>
+    </div>
+    <p>把这两个值记下来，待会儿要用。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-content">
+    <h4>开启机器人能力</h4>
+    <p>左侧菜单找到<strong>「应用能力」→「机器人」</strong>，点击开启。</p>
+    <p>这一步让你的应用能在飞书聊天里收发消息。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-content">
+    <h4>配置权限</h4>
+    <p>左侧菜单<strong>「权限管理」</strong>，搜索并添加以下权限：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">必选权限</span></div>
+      <div class="terminal-body">
+        <span class="success">✓</span> <span class="cmd">im:message</span> <span class="output">— 收发消息</span><br>
+        <span class="success">✓</span> <span class="cmd">im:message:send_as_bot</span> <span class="output">— 以机器人身份发消息</span><br>
+        <span class="success">✓</span> <span class="cmd">im:resource</span> <span class="output">— 发送图片和文件</span><br>
+        <span class="success">✓</span> <span class="cmd">contact:user.base:readonly</span> <span class="output">— 读取用户信息</span><br><br>
+        <span class="highlight">可选（推荐）：</span><br>
+        <span class="success">✓</span> <span class="cmd">docx:document</span> <span class="output">— 读写飞书文档</span><br>
+        <span class="success">✓</span> <span class="cmd">bitable:app</span> <span class="output">— 读写多维表格</span><br>
+        <span class="success">✓</span> <span class="cmd">calendar:calendar</span> <span class="output">— 管理日历</span><br>
+        <span class="success">✓</span> <span class="cmd">wiki:wiki</span> <span class="output">— 搜索知识库</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">5</div>
+  <div class="step-content">
+    <h4>配置事件订阅</h4>
+    <p>左侧菜单<strong>「事件订阅」</strong>：</p>
+    <p>1. <strong>请求地址</strong>填你服务器的 Webhook URL：<code>https://你的域名/webhook/feishu</code></p>
+    <p>2. 添加事件：<code>im.message.receive_v1</code>（接收消息事件）</p>
+    <p>这样飞书收到消息时，会自动推给你的龙虾。</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">6</div>
+  <div class="step-content">
+    <h4>发布应用</h4>
+    <p>点击<strong>「版本管理与发布」→「创建版本」</strong>，填写版本说明，提交审核。</p>
+    <p>如果是企业内部使用，管理员审批后就能用了。个人版直接上线。</p>
+  </div>
+</div>
+
+<div class="warn-box">
+  <h4>注意：服务器要先跑起来</h4>
+  <p>配置事件订阅时，飞书会向你的 Webhook URL 发一个验证请求。所以<strong>你的 OpenClaw 需要先启动</strong>，否则验证会失败。</p>
+  <p>如果你还没装 OpenClaw，先回 <a href="tutorial-ep01-install.html">EP01</a> 走一遍。</p>
+</div>
+
+<h2>Step 2 <span>配置 OpenClaw</span></h2>
+
+<p>现在回到你的服务器，告诉龙虾怎么连飞书。</p>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-content">
+    <h4>编辑配置文件</h4>
+    <p>打开 OpenClaw 配置：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+      <div class="terminal-body">
+        <span class="prompt">$ </span><span class="cmd">openclaw config edit</span>
+      </div>
+    </div>
+    <p>在 <code>channels</code> 部分添加飞书配置：</p>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">openclaw.yaml</span></div>
+      <div class="terminal-body">
+        <span class="highlight">channels:</span><br>
+        <span class="output">  feishu:</span><br>
+        <span class="output">    appId: </span><span class="cmd">"cli_a1b2c3d4e5f6"</span><br>
+        <span class="output">    appSecret: </span><span class="cmd">"你的AppSecret"</span><br>
+        <span class="output">    port: </span><span class="cmd">3121</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-content">
+    <h4>重启 OpenClaw</h4>
+    <div class="terminal">
+      <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">Terminal</span></div>
+      <div class="terminal-body">
+        <span class="prompt">$ </span><span class="cmd">openclaw gateway restart</span><br>
+        <span class="success">✓ Gateway restarted</span><br>
+        <span class="output">  Feishu channel listening on :3121</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-content">
+    <h4>回飞书验证事件订阅</h4>
+    <p>OpenClaw 启动后，回到飞书开放平台，重新保存事件订阅配置。看到<span class="success">「验证成功」</span>就OK了。</p>
+  </div>
+</div>
+
+<div class="tip-box">
+  <h4>小贴士：用 Nginx 反代更优雅</h4>
+  <p>推荐用 Nginx 把 <code>https://你的域名/webhook/feishu</code> 反代到 <code>localhost:3121</code>。这样你可以用 HTTPS，也方便以后加其他渠道（Telegram、Discord）。</p>
+</div>
+
+<h2>Step 3 <span>测试一下！</span></h2>
+
+<p>配置完成，去飞书找你的机器人聊天：</p>
+
+<div class="terminal">
+  <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书 · 我的龙虾 🦞</span></div>
+  <div class="terminal-body">
+    <span class="prompt">你：</span><span class="cmd">你好！你是谁？</span><br><br>
+    <span class="prompt">🦞：</span><span class="output">你好！我是你的AI龙虾助手，刚搬进飞书 🏠</span><br>
+    <span class="output">有什么需要帮忙的？</span><br><br>
+    <span class="prompt">你：</span><span class="cmd">帮我画一只在冲浪的龙虾</span><br><br>
+    <span class="prompt">🦞：</span><span class="success">🎨 好的！正在生成...</span><br>
+    <span class="success">[图片直接发送到聊天]</span><br><br>
+    <span class="prompt">你：</span><span class="cmd">帮我查一下明天的日程</span><br><br>
+    <span class="prompt">🦞：</span><span class="success">📅 明天有2个日程：</span><br>
+    <span class="output">  10:00 产品周会</span><br>
+    <span class="output">  15:00 客户对接会</span>
+  </div>
+</div>
+
+<h2>进阶：<span>群聊里用</span></h2>
+
+<p>龙虾不只能私聊，还能加到群里当"AI同事"：</p>
+
+<p>1. 在飞书群设置里，<strong>添加机器人</strong>，搜索你的应用名</p>
+<p>2. 群里<strong>@龙虾名字</strong>就能和它对话</p>
+<p>3. 龙虾默认只在被@时回复，不会刷屏</p>
+
+<div class="terminal">
+  <div class="terminal-bar"><span class="terminal-dot r"></span><span class="terminal-dot y"></span><span class="terminal-dot g"></span><span class="terminal-title">飞书群 · 项目讨论</span></div>
+  <div class="terminal-body">
+    <span class="prompt">小明：</span><span class="output">@我的龙虾 帮我总结一下这个文档</span><br>
+    <span class="output">[小明分享了一个飞书文档链接]</span><br><br>
+    <span class="prompt">🦞：</span><span class="success">好的，我来看看...</span><br>
+    <span class="output">📄 文档要点：</span><br>
+    <span class="output">1. Q1目标完成率 92%</span><br>
+    <span class="output">2. 重点待跟进项：...</span><br>
+    <span class="output">3. 下季度预算建议：...</span>
+  </div>
+</div>
+
+<div class="tip-box">
+  <h4>真实案例：我们怎么用的</h4>
+  <p>我们团队的龙虾"爪爪"每天在飞书里：帮老板管日程、给同事生成图片视频、自动推送AI行业资讯、回答各种问题。今天它同时帮6个人干活，没一个投诉的。</p>
+</div>
+<h2>常见问题</h2>
+
+<div class="crash-box">
+  <h4>飞书收不到消息？</h4>
+  <p><strong>原因1：</strong>事件订阅没验证成功。回飞书开放平台检查 Webhook URL 是否能访问。</p>
+  <p><strong>原因2：</strong>权限没审批。企业应用需要管理员在飞书管理后台审批权限。</p>
+  <p><strong>原因3：</strong>防火墙。确保服务器的端口（如3121）对外开放，或 Nginx 反代正确配置。</p>
+</div>
+
+<div class="crash-box">
+  <h4>龙虾回复说"没有权限"？</h4>
+  <p><strong>原因：</strong>你想用的功能（日历、文档等）对应的权限没有申请或没审批。</p>
+  <p><strong>解决：</strong>回飞书开放平台「权限管理」，添加需要的权限，然后让管理员审批。</p>
+</div>
+
+<div class="crash-box">
+  <h4>图片发不出来？</h4>
+  <p><strong>原因：</strong>缺少 <code>im:resource</code> 权限，或者图片文件太大（飞书限制约20MB）。</p>
+  <p><strong>解决：</strong>确认权限已开启。大图片龙虾会自动压缩后再发。</p>
+</div>
+
+<h2>📌 本篇要点</h2>
+<p>• 飞书开放平台创建应用 → 获取 App ID + Secret</p>
+<p>• 开启机器人能力 + 配置权限 + 事件订阅</p>
+<p>• OpenClaw 配置 <code>channels.feishu</code>，重启生效</p>
+<p>• 私聊直接聊，群里@龙虾名字</p>
+<p>• 配了文档/日历权限，龙虾就能帮你管飞书里的一切</p>
+
+<div class="cta-box">
+  <div class="cta-icon">🦞</div>
+  <h3>你的飞书新同事，上线！</h3>
+  <p>从今天开始，龙虾随时在飞书等你。有问题，@一下就行。</p>
+  <div class="cta-buttons">
+    <a class="cta-btn cta-btn-primary" href="https://imaclaw.bot/adopt/" target="_blank">
+      🦞 领养龙虾
+    </a>
+    <a class="cta-btn cta-btn-secondary" href="https://discord.gg/QmNHCnv2Tf" target="_blank">
+      💬 加入社区
+    </a>
+  </div>
+</div>
+
+<div class="next-box">
+  <div class="next-icon">🧠</div>
+  <div class="next-content">
+    <h4>EP05：教龙虾记住你</h4>
+    <p>龙虾现在能干活了。下一步：让它记住你是谁、你的习惯偏好，变成真正的"私人助手"。</p>
+  </div>
+  <div style="font-size:24px;color:#58a6ff">→</div>
+</div>
+
+<div style="border-top:1px solid var(--border);padding-top:32px;margin-top:56px;text-align:center;color:var(--text-3);font-size:12px;line-height:2">
+  Built with 🦞 by <a href="https://imaclaw.bot/" style="color:var(--lobster-light)">ImaClaw</a> · Powered by <a href="https://openclaw.ai" style="color:#58a6ff">OpenClaw</a>
+</div>
+
+</div>
+
+<script src="../assets/js/nav.js?v=17"></script>
+</body>
+</html>

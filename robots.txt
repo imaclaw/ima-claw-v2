@@ -1,5 +1,5 @@
-# https://imaclaw.github.io/ima-claw-v2/
+# https://imaclaw.bot/
 User-agent: *
 Allow: /
 
-Sitemap: https://imaclaw.github.io/ima-claw-v2/sitemap.xml
+Sitemap: https://imaclaw.bot/sitemap.xml
